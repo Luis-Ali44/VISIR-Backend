@@ -1,0 +1,81 @@
+[project]
+name = "visir-api"
+version = "0.1.0"
+description = "ERP inteligente"
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "fastapi>=0.136.1",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
+    "supabase>=2.30.0",
+    "uvicorn>=0.47.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=2.1.0",
+    "pre-commit>=4.6.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.13",
+]
+
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort (ordenamiento de imports)
+    "N",      # pep8-naming
+    "UP",     # pyupgrade (sintaxis moderna)
+    "B",      # flake8-bugbear (bugs comunes)
+    "C4",     # flake8-comprehensions
+    "SIM",    # flake8-simplify
+    "ASYNC",  # reglas para código async — relevante en FastAPI
+    "RUF",    # reglas propias de Ruff
+]
+ignore = [
+    
+    "B008",   # llamada a función en argumento por default — FastAPI usa esto con Depends()
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]   # asserts permitidos en tests
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+
+
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+disallow_untyped_defs = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+[pydantic-mypy]
+init_typed = true
+
+
+
+
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
