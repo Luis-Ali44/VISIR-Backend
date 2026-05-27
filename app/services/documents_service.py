@@ -51,8 +51,8 @@ async def subir_documento_service(
     metadata = {
         "nombre": archivo.filename,
         "tipo": archivo.content_type,
-        "tamano": len(contenido),
-        "url": nombre_guardado,
+        "tamaño": len(contenido),
+        "link": nombre_guardado,
     }
 
     save_document_metadata(metadata)

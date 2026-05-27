@@ -8,7 +8,7 @@ ALTER TABLE roles             ENABLE ROW LEVEL SECURITY;
 ALTER TABLE categorias        ENABLE ROW LEVEL SECURITY;
 ALTER TABLE usuarios          ENABLE ROW LEVEL SECURITY;
 ALTER TABLE emisores          ENABLE ROW LEVEL SECURITY;
-ALTER TABLE formas_pago       ENABLE ROW LEVEL SECURITY;
+ALTER TABLE FormasPagos       ENABLE ROW LEVEL SECURITY;
 ALTER TABLE documentos        ENABLE ROW LEVEL SECURITY;
 ALTER TABLE extracciones      ENABLE ROW LEVEL SECURITY;
 ALTER TABLE conversaciones    ENABLE ROW LEVEL SECURITY;
@@ -148,16 +148,16 @@ USING (get_my_role() = 'usuario');
 -- ============================================================
 
 CREATE POLICY "owner: todas las formas de pago"
-ON formas_pago FOR ALL
+ON FormasPagos FOR ALL
 USING (get_my_role() = 'owner')
 WITH CHECK (get_my_role() = 'owner');
 
 CREATE POLICY "admin: ver formas de pago"
-ON formas_pago FOR SELECT
+ON FormasPagos FOR SELECT
 USING (get_my_role() = 'admin');
 
 CREATE POLICY "usuario: ver formas de pago"
-ON formas_pago FOR SELECT
+ON FormasPagos FOR SELECT
 USING (get_my_role() = 'usuario');
 
 

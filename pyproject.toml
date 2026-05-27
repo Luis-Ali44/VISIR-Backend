@@ -1,59 +1,58 @@
-[project]
-name = "visir-api"
-version = "0.1.0"
-description = "ERP inteligente"
-readme = "README.md"
-requires-python = ">=3.12"
+[project]                           #Info del pryecto 
+name = "visir-api"                  # Nombre
+version = "0.1.0"                   # Version del proyecto
+description = "ERP inteligente"     # Descripción 
+readme = "README.md"                # Para la documentacion principal
+requires-python = ">=3.12, < 3.13"  # Version minima que necesita
 
-dependencies = [
-    "fastapi>=0.136.1",
-    "pydantic>=2.13.4",
-    "pydantic-settings>=2.14.1",
-    "python-multipart>=0.0.29",
-    "supabase>=2.30.0",
-    "uvicorn>=0.47.0",
+dependencies = [                    # Librerias necesarias para el proyecto 
+    "fastapi>=0.136.1",             #
+    "pydantic>=2.13.4",             #
+    "pydantic-settings>=2.14.1",    #
+    "supabase>=2.30.0",             #
+    "uvicorn>=0.47.0",              #
 ]
 
-[dependency-groups]
-dev = [
-    "httpx>=0.28.1",
-    "mypy>=2.1.0",
-    "pre-commit>=4.6.0",
-    "pytest>=9.0.3",
-    "ruff>=0.15.13",
+[dependency-groups]                 # Dependencias de desarrollo 
+dev = [                             # Desarrollo, testing, calidad 
+    "httpx>=0.28.1",                # Cliente http moderno 
+    "mypy>=2.1.0",                  # Revisa los tipos 
+    "pre-commit>=4.6.0",            # Automatiza las revisiones antes de dubir el commit
+    "pytest>=9.0.3",                # Testing 
+    "ruff>=0.15.13",                # ordenamiento
 ]
 
 
-[tool.ruff]
-target-version = "py312"
-line-length = 100
+[tool.ruff]                         # Configuracion de ruff
+target-version = "py312"            # Version de python con la que se trabaja 
+line-length = 100                   # Maximo 100 caracteres por linea 
 
 
-[tool.ruff.lint]
-select = [
-    "E",      # pycodestyle errors
-    "W",      # pycodestyle warnings
-    "F",      # pyflakes
-    "I",      # isort (ordenamiento de imports)
-    "N",      # pep8-naming
-    "UP",     # pyupgrade (sintaxis moderna)
-    "B",      # flake8-bugbear (bugs comunes)
-    "C4",     # flake8-comprehensions
-    "SIM",    # flake8-simplify
-    "ASYNC",  # reglas para código async — relevante en FastAPI
-    "RUF",    # reglas propias de Ruff
+[tool.ruff.lint]                    #   Configuracion de validaciones
+select = [                          # Las reglas que queremos 
+    "E",                            # Errores de estilo
+    "W",                            # Advertencia de estilo
+    "F",                            # Errores detectados (variables no usadas, imports de sobra)
+    "I",                            # Ordenamiento de imports
+    "N",                            # Nombres correctos, clases o funciones
+    "UP",                           # Sintaxis moderna
+    "B",                            # Bugs comunes
+    "C4",                           # Mejor comprehensions
+    "SIM",                          # Simplifica codigo 
+    "ASYNC",                        # reglas para código async — relevante en FastAPI
+    "RUF",                          # reglas propias de Ruff
 ]
-ignore = [
+ignore = [                          # Reglas que no vamos a ocupar
     
     "B008",   # llamada a función en argumento por default — FastAPI usa esto con Depends()
 ]
 
-[tool.ruff.lint.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]   
 "tests/*" = ["S101"]   # asserts permitidos en tests
 
 [tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
+quote-style = "double"              # Comillas dobles
+indent-style = "space"              # Espacios y no tabs
 
 
 
@@ -71,11 +70,8 @@ warn_unused_ignores = true
 module = "tests.*"
 disallow_untyped_defs = false
 
-[pydantic-mypy]
+[tool.pydantic-mypy]
 init_typed = true
-
-
-
 
 
 [tool.pytest.ini_options]
