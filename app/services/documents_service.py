@@ -35,7 +35,7 @@ async def validate_document(file: UploadFile) -> bytes:
     return content
 
 
-async def subir_documento_service(archivo: UploadFile, current_user: dict) -> DocumentResponse:
+async def subir_documento_service(archivo: UploadFile) -> DocumentResponse:
 
     contenido = await validate_document(archivo)
 
@@ -58,8 +58,8 @@ async def subir_documento_service(archivo: UploadFile, current_user: dict) -> Do
         tipo=tipo_archivo,
         tamaño=len(contenido),
         link=ruta_archivo,
-        id_usuario=current_user["id"],
-        id_organizacion=current_user["org_id"],
+        id_usuario=None,
+        id_organizacion=None,
     )
 
     resultado = save_document_metadata(metadata.model_dump())

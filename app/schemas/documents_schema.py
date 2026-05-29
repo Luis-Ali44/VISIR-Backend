@@ -8,8 +8,9 @@ class DocumentCreate(BaseModel):
     nombre: str
     tipo: str
     tamaño: int | None = None
-    id_usuario: UUID
-    id_organizacion: UUID
+    link: str
+    id_usuario: UUID | None = None
+    id_organizacion: UUID | None = None
 
 
 class DocumentResponse(BaseModel):

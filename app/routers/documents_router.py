@@ -1,8 +1,7 @@
 from typing import Any
 
-from fastapi import APIRouter, Depends, File, Query, UploadFile
+from fastapi import APIRouter, File, Query, UploadFile
 
-from app.core.auth import get_current_user
 from app.schemas.documents_schema import DocumentResponse
 from app.services.documents_service import (
     get_document_id,
@@ -10,16 +9,12 @@ from app.services.documents_service import (
     subir_documento_service,
 )
 
-router = APIRouter(
-    prefix="/v1/documentos", tags=["Documentos"], dependencies=[Depends(get_current_user)]
-)
+router = APIRouter(prefix="/v1/documentos", tags=["Documentos"])
 
 
 @router.post("/cargar", response_model=DocumentResponse)
-async def upload_document(
-    file: UploadFile = File(...), current_user: dict = Depends(get_current_user)
-) -> DocumentResponse:
-    return await subir_documento_service(file, current_user)
+async def upload_document(file: UploadFile = File(...)) -> DocumentResponse:
+    return await subir_documento_service(file)
 
 
 @router.get("/id", response_model=list[DocumentResponse])
