@@ -6,6 +6,7 @@ readme = "README.md"                # Para la documentacion principal
 requires-python = ">=3.12, < 3.13"  # Version minima que necesita
 
 dependencies = [                    # Librerias necesarias para el proyecto
+    "email-validator>=2.3.0",
     "fastapi>=0.136.1",             #
     "pydantic>=2.13.4",             #
     "pydantic-settings>=2.14.1",    #

@@ -3,6 +3,6 @@ from supabase import Client, create_client
 from app.core.config import settings
 
 supabase: Client = create_client(
-    settings.supabase_url,
-    settings.supabase_secret_key,
+    settings.SUPABASE_URL,
+    settings.SUPABASE_SECRET_KEY,
 )

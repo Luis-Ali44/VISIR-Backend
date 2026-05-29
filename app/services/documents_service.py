@@ -8,16 +8,15 @@ from app.repositories.documents_repository import (
     save_document_metadata,
     save_document_storage,
 )
+from app.schemas.documents_schema import DocumentCreate, DocumentResponse
 
 MAX_FILE_SIZE = 5 * 1024 * 1024
 
-ALLOWED_TYPES = [
-    "application/pdf",
-    "text/xml",
-]
+ALLOWED_TYPES = ["application/pdf", "text/xml", "application/xml"]
 
 
 async def validate_document(file: UploadFile) -> bytes:
+
     if file.content_type not in ALLOWED_TYPES:
         raise HTTPException(
             status_code=400,
@@ -33,35 +32,39 @@ async def validate_document(file: UploadFile) -> bytes:
         )
 
     await file.seek(0)
-
     return content
 
 
-async def subir_documento_service(
-    archivo: UploadFile,
-) -> dict[str, object]:
+async def subir_documento_service(archivo: UploadFile, current_user: dict) -> DocumentResponse:
+
     contenido = await validate_document(archivo)
 
-    nombre_guardado = save_document_storage(
+    tipo_archivo = archivo.content_type
+
+    if tipo_archivo is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Tipo de archivo inválido",
+        )
+
+    ruta_archivo = save_document_storage(
         contenido_archivo=contenido,
         nombre_archivo=archivo.filename or "archivo",
-        tipo_archivo=archivo.content_type or "application/octet-stream",
+        tipo_archivo=tipo_archivo,
     )
 
-    metadata = {
-        "nombre": archivo.filename,
-        "tipo": archivo.content_type,
-        "tamaño": len(contenido),
-        "link": nombre_guardado,
-    }
+    metadata = DocumentCreate(
+        nombre=archivo.filename or "archivo",
+        tipo=tipo_archivo,
+        tamaño=len(contenido),
+        link=ruta_archivo,
+        id_usuario=current_user["id"],
+        id_organizacion=current_user["org_id"],
+    )
 
-    save_document_metadata(metadata)
+    resultado = save_document_metadata(metadata.model_dump())
 
-    return {
-        "messege": "archivo guardado",
-        "archivo guardado": nombre_guardado,
-        "metadata": metadata,
-    }
+    return DocumentResponse(**resultado[0])
 
 
 def get_document_id(document_id: str) -> list[Any]:
@@ -81,7 +84,6 @@ def get_documents_service(
     documentos = get_documents_repository(limit=limit, cursor=cursor)
 
     next_cursor = None
-
     if documentos:
         next_cursor = documentos[-1]["created_at"]
 

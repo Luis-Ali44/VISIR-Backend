@@ -16,9 +16,9 @@ class Settings(BaseSettings):
     host: str = "0.0.0.0"
     port: int = 8000
 
-    supabase_url: str
-    supabase_public_key: str
-    supabase_secret_key: str
+    SUPABASE_URL: str
+    SUPABASE_PUBLIC_KEY: str
+    SUPABASE_SECRET_KEY: str
 
 
 settings = Settings()

@@ -1,23 +1,20 @@
 # Arquitectura por capas
 
-Visir API sigue una arquitectura de separación de responsabilidades en capas. Cada capa tiene una función específica y solo se comunica con la capa inmediatamente inferior, lo que hace que el código sea fácil de mantener, testear y extender.
+La API sigue una arquitectura de separación de responsabilidades en capas. Cada capa tiene una función específica y solo se comunica con la capa correspondinete, lo que hace que el código sea fácil de mantener y extender.
 
-El framework principal es **FastAPI** y el proveedor de base de datos y autenticación es **Supabase**.
+Se trabaja con FastAPI y el proveedor de base de datos y autenticación es Supabase.
 
----
 
 ## Estructura de carpetas
 
-```
 app/
 ├── routers/        # Capa HTTP — recibe y responde peticiones
 ├── services/       # Capa de negocio — lógica y reglas
 ├── repositories/   # Capa de datos — consultas a Supabase
 ├── schemas/        # Modelos Pydantic — validación de entrada/salida
 └── core/           # Configuración global y cliente de Supabase
-```
 
----
+
 
 ## Capas
 
