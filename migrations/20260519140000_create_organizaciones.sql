@@ -1,7 +1,7 @@
 CREATE TABLE organizaciones (
-    id      uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-    nombre  varchar(255) not null,
-    descripcion varchar(255)not null,
-    created_at  timestamp not null default now(),
-    updated_at  timestamp not null default now()
+    id          uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    nombre      varchar(255) NOT NULL,
+    descripcion varchar(255),
+    created_at  timestamp NOT NULL DEFAULT now(),
+    updated_at  timestamp NOT NULL DEFAULT now()
 );

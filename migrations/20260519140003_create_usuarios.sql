@@ -1,11 +1,11 @@
-    CREATE TABLE usuarios(
-        id uuid primary key references auth.users(id),
-        nombre  varchar(255) not null, 
-        apellido_paterno varchar(255) not null, 
-        apellido_materno varchar(255) not null,
-        created_at  timestamp not null default now(),
-        updated_at  timestamp not null default now(),
-        id_role uuid references roles(id),
-        id_organizacion uuid references organizaciones(id) on delete restrict,
-        activa boolean default true  
-    );
+CREATE TABLE usuarios (
+    id               uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+    nombre           varchar(255) NOT NULL,
+    apellido_paterno varchar(255) NOT NULL,
+    apellido_materno varchar(255),
+    created_at       timestamp NOT NULL DEFAULT now(),
+    updated_at       timestamp NOT NULL DEFAULT now(),
+    id_role          uuid REFERENCES roles(id),
+    id_organizacion  uuid REFERENCES organizaciones(id) ON DELETE RESTRICT,
+    activa           boolean DEFAULT true
+);

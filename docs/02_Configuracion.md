@@ -4,49 +4,50 @@
 
 ## Variables de entorno
 
-Las variables sensibles (URLs, credenciales) se guardan en `.env` y se cargan con **Pydantic Settings** desde `app/core/config.py`. Nunca se sube el `.env` al repositorio — existe un `.env.example` como plantilla.
+Las variables sensibles se guardan en `.env` y se cargan con Pydantic Settings desde `app/core/config.py`.Existe el  `.env.example` como plantilla para no subir el `.env`
 
 ```dotenv
-# App
+
+# app
 APP_NAME="visir_app"
 APP_VERSION="0.1.0"
 ENVIRONMENT="development"
 
-# Servidor
+# servidor
 HOST=0.0.0.0
 PORT=8000
 
-# Supabase
+# supabase
 SUPABASE_URL=https://<proyecto>.supabase.co
 SUPABASE_PUBLIC_KEY=sb_publishable_...
 SUPABASE_SECRET_KEY=sb_secret_...
 
-# Postgres local (solo si no usas Supabase cloud)
+# postgres local (solo si no usas Supabase cloud)
 DATABASE_URL=postgresql://visir:visir123@localhost:5432/visir_dev
 
-# Redis
+# redis
 REDIS_URL=redis://localhost:6379
 ```
 
-Copiar el ejemplo y rellenar:
 ```bash
 cp .env.example .env
+# rellenar credenciales
 ```
 
 ---
 
-## Gestión de dependencias — `uv`
+## Gestión de dependencias — uv
 
-Las dependencias se definen en `pyproject.toml` y se resuelven con **uv**. El archivo `uv.lock` fija las versiones exactas para que todos los entornos sean idénticos.
+Las dependencias se definen en `pyproject.toml` y se resuelven con uv. El archivo `uv.lock` fija las versiones exactas para que todos los entornos sean idénticos.
 
 ```bash
-uv sync          # instala dependencias de producción y desarrollo
-uv sync --no-dev # solo producción (usado en Docker)
-uv add <paquete> # agregar una dependencia
+uv sync           # instala todo 
+uv sync --no-dev  # solo producción 
+uv add <paquete>
 uv remove <paquete>
 ```
 
-### Dependencias de producción
+### Producción
 | Paquete | Uso |
 |---|---|
 | `fastapi` | Framework HTTP |
@@ -54,8 +55,10 @@ uv remove <paquete>
 | `pydantic` | Validación de datos |
 | `pydantic-settings` | Carga de variables de entorno |
 | `supabase` | Cliente de Supabase |
+| `python-multipart` | Parseo de `multipart/form-data` para subida de archivos |
+| `email-validator` | Validación de emails en schemas Pydantic |
 
-### Dependencias de desarrollo
+### Desarrollo
 | Paquete | Uso |
 |---|---|
 | `ruff` | Linter y formateador |
@@ -66,17 +69,16 @@ uv remove <paquete>
 
 ---
 
-## Ruff — linter y formateador
+## Ruff
 
 Configurado en `pyproject.toml` bajo `[tool.ruff]`.
 
 ```bash
-uv run ruff check app          # revisar errores
+uv run ruff check app          # revisar
 uv run ruff check app --fix    # corregir automáticamente
 uv run ruff format app         # formatear
 ```
 
-### Reglas activas
 | Prefijo | Qué revisa |
 |---|---|
 | `E` / `W` | Estilo PEP 8 |
@@ -87,24 +89,19 @@ uv run ruff format app         # formatear
 | `B` | Bugs comunes |
 | `C4` | Comprehensions más limpias |
 | `SIM` | Simplificación de código |
-| `ASYNC` | Reglas para código async (relevante en FastAPI) |
+| `ASYNC` | Reglas para código async |
 | `RUF` | Reglas propias de Ruff |
 
-### Excepciones
-- `B008` — ignorado globalmente porque FastAPI usa llamadas a función en `Depends()`.
-- `S101` — asserts permitidos dentro de `tests/`.
+Excepciones: `B008` ignorado globalmente (FastAPI usa llamadas a función en `Depends()`). `S101` permitido en `tests/`.
 
 ---
 
-## Mypy — verificación de tipos
-
-Configurado en `pyproject.toml` bajo `[tool.mypy]`.
+## Mypy
 
 ```bash
 uv run mypy app
 ```
 
-### Opciones activas
 | Opción | Efecto |
 |---|---|
 | `disallow_untyped_defs` | Todas las funciones deben tener tipos |
@@ -113,34 +110,30 @@ uv run mypy app
 | `ignore_missing_imports` | No falla si una librería no tiene stubs |
 | `plugins = ["pydantic.mypy"]` | Soporte para modelos Pydantic |
 
-Los tests tienen `disallow_untyped_defs = false` para no obligar tipos en fixtures y helpers de prueba.
+Los tests tienen `disallow_untyped_defs = false`.
 
 ---
 
-## Pytest — testing
-
-Configurado en `pyproject.toml` bajo `[tool.pytest.ini_options]`.
+## Pytest
 
 ```bash
-uv run pytest                  # correr todos los tests
-uv run pytest tests/test_x.py  # correr un archivo específico
-uv run pytest -v               # verbose
+uv run pytest                   # todos los tests
+uv run pytest tests/test_x.py   # un archivo
+uv run pytest -v                # muestra mas detalles 
 ```
 
-Los tests viven en `tests/`. Ver `docs/05_Endpoints.md` para los casos de prueba de cada endpoint.
+Los tests viven en `tests/`. Ver `docs/04_Endpoints.md` para los casos de prueba de cada endpoint.
 
 ---
 
-## Pre-commit — hooks automáticos
-
-Configurado en `.pre-commit-config.yaml`. Se ejecuta automáticamente antes de cada `git commit`.
+## Pre-commit
 
 ```bash
-uv run pre-commit install              # activar hooks (solo una vez)
-uv run pre-commit run --all-files      # correr manualmente sobre todo
+uv run pre-commit install             # activar
+uv run pre-commit run --all-files     # correr manualmente
 ```
 
-### Hooks configurados
+Hooks configurados en `.pre-commit-config.yaml`:
 1. **ruff** — linting con auto-fix
 2. **ruff-format** — formateo
 3. **mypy** — verificación de tipos

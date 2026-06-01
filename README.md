@@ -2,47 +2,50 @@
 
 Backend del sistema Visir — ERP inteligente con procesamiento de facturas XML (CFDI).
 
-Construido con **FastAPI** + **Supabase** + **uv**.
+FastAPI + Supabase + uv.
 
 ---
 
 ## Requisitos
 
+Antes de empezar verifica que tienes instalado:
+
 - [Python 3.12](https://www.python.org/downloads/)
 - [uv](https://docs.astral.sh/uv/) — gestor de dependencias
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-Verificar que están instalados:
 ```bash
-python --version   # 3.12.x
+python --version   # debe ser 3.12.x
 uv --version
 docker --version
 ```
 
-Instalar uv si no lo tienes:
+Si no tienes uv, instalarlo en Windows:
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 ---
 
-## Arranque rápido
+## Arranque local
+
+### Opción A — con Docker (recomendado)
 
 ```bash
-# 1. Clonar el repositorio
+# 1. clonar el repo
 git clone <url-del-repo>
 cd Visir-Api
 
-# 2. Copiar variables de entorno y rellenar credenciales
+# 2. copiar variables de entorno y rellenar credenciales
 cp .env.example .env
 
-# 3. Levantar con Docker
+# 3. levantar
 make dev
 ```
 
-El servidor queda disponible en:
-- API: `http://localhost:8000`
-- Swagger: `http://localhost:8000/docs`
+La API queda disponible en:
+- `http://localhost:8000`
+- `http://localhost:8000/docs` — Swagger UI
 
 Verificar que funciona:
 ```bash
@@ -50,42 +53,37 @@ curl http://localhost:8000/health
 # {"status":"ok","version":"0.1.0"}
 ```
 
----
-
-## Arranque sin Docker (solo Supabase cloud)
+### Opción B — sin Docker (solo Supabase cloud)
 
 ```bash
-# 1. Instalar dependencias
+# 1. instalar dependencias
 uv sync
 
-# 2. Rellenar .env con credenciales de Supabase
-# SUPABASE_URL, SUPABASE_PUBLIC_KEY, SUPABASE_SECRET_KEY
+# 2. rellenar .env con credenciales de Supabase
 
-# 3. Levantar el servidor
+# 3. levantar
 uv run uvicorn app.main:app --reload
 ```
 
-> Si usas Supabase cloud, comenta los servicios `postgres` y `redis` en `docker-compose.yml`. Ver `docs/03_Docker.md`.
+> Comentar los servicios `postgres` y `redis` en `docker-compose.yml` si usas esta opción. Ver `docs/03_Docker.md`.
 
 ---
 
 ## Migraciones
 
-Aplicar los archivos de `migrations/` **en orden numérico** desde el SQL Editor de Supabase:
+Aplicar en orden desde el **SQL Editor de Supabase**, uno por uno:
 
 ```
 20260519140000_create_organizaciones.sql
 20260519140001_create_roles.sql
 20260519140002_create_categorias.sql
 20260519140003_create_usuarios.sql
-20260519140004_create_emisores.sql
-20260519140005_create_formas_pago.sql
-20260519140006_create_documentos.sql
-20260519140007_create_extracciones.sql
-20260519140008_create_conversaciones.sql
-20260519140009_rls_policies.sql
-20260519140010_create_receptores.sql
-20260519140011_seed_data.sql
+20260519140007_create_formas_pago.sql
+20260519140008_create_documentos.sql
+20260519140009_create_conversaciones.sql
+20260519140010_create_extracciones.sql
+20260519140011_rls_policies.sql
+20260519140012_seed_data.sql
 ```
 
 ---
@@ -94,19 +92,19 @@ Aplicar los archivos de `migrations/` **en orden numérico** desde el SQL Editor
 
 ```bash
 make dev            # levantar Docker
-make dev-down       # bajar Docker
-make dev-logs       # ver logs de la API
-make dev-reset      # reset completo (borra volúmenes)
+make dev-down       # bajar
+make dev-logs       # ver logs de la API en tiempo real
+make dev-reset      # reset completo — borra volúmenes y reconstruye
 
-uv run ruff check app --fix    # linter
-uv run mypy app                # tipos
-uv run pytest                  # tests
+uv run ruff check app --fix   # linter
+uv run mypy app               # tipos
+uv run pytest                 # tests
 uv run pre-commit run --all-files
 ```
 
 ---
 
-## Estructura
+## Estructura del proyecto
 
 ```
 app/
@@ -122,45 +120,64 @@ tests/              # pruebas
 
 ---
 
+## CI / CD
+
+- **CI** (`ci.yml`) — corre en cada PR a `main`: ruff, mypy, pytest y docker build.
+- **CD** (`cd.yml`) — corre al hacer merge a `main`: despliega en Railway via CLI.
+
+Secrets necesarios en GitHub (`Settings > Secrets > Actions`):
+- `RAILWAY_TOKEN`
+- `RAILWAY_SERVICE_ID`
+
+Verificar el despliegue:
+```bash
+curl https://<dominio-railway>/health
+# {"status":"ok","version":"0.1.0"}
+```
+
+---
+
 ## Documentación
 
-| Documento | Contenido |
+| Archivo | Contenido |
 |---|---|
 | `docs/01_Arquitectura.md` | Capas del proyecto y flujo de peticiones |
 | `docs/02_Configuracion.md` | Variables de entorno, ruff, mypy, pytest, pre-commit |
 | `docs/ER.md` | Esquema de base de datos y diagrama ER |
 | `docs/03_Docker.md` | Dockerfile multi-stage y docker-compose |
-| `docs/04_Endpoints.md` | Referencia completa de endpoints |
+| `docs/04_Endpoints.md` | Referencia de endpoints y tests |
 
 ---
 
-## Solución de problemas comunes
+## Solución de problemas
 
 **Puerto 8000 ocupado**
 ```yaml
-# En docker-compose.yml cambiar:
+# docker-compose.yml — cambiar el puerto izquierdo
 ports:
-  - "8001:8000"   # usar el puerto libre que prefieras
+  - "8001:8000"
 ```
 
 **Error de credenciales de Supabase**
-Verificar que `SUPABASE_URL`, `SUPABASE_PUBLIC_KEY` y `SUPABASE_SECRET_KEY` están correctamente copiados del dashboard de Supabase en `Settings > API`.
+Verificar que `SUPABASE_URL`, `SUPABASE_PUBLIC_KEY` y `SUPABASE_SECRET_KEY` están correctamente copiados desde `Settings > API` en el dashboard de Supabase.
 
 **`uv: command not found`**
-Instalar uv con el comando de la sección Requisitos y reiniciar la terminal.
-
-**La API arranca pero `/supabase` devuelve error**
-- Verificar que las migraciones se aplicaron en Supabase.
-- Verificar que el `.env` tiene las credenciales correctas.
-- Revisar los logs: `make dev-logs`.
+Instalar uv con el comando de la sección Requisitos y abrir una terminal nueva.
 
 **`ModuleNotFoundError` al correr sin Docker**
 ```bash
-uv sync   # instalar dependencias
+uv sync
 ```
 
-**Pre-commit falla en el commit**
+**Docker no levanta — error en `depends_on`**
+El compose espera que postgres y redis estén healthy. Si usas Supabase cloud, comentar esos servicios y el `depends_on` de `api`. Ver `docs/03_Docker.md`.
+
+**La API arranca pero los endpoints fallan**
+- Verificar que las migraciones se aplicaron en Supabase en el orden correcto.
+- Revisar logs: `make dev-logs`.
+
+**Pre-commit cancela el commit**
 ```bash
-uv run pre-commit run --all-files   # ver qué falla
-uv run ruff check app --fix         # corregir automáticamente
+uv run ruff check app --fix   # corregir automáticamente
+uv run pre-commit run --all-files
 ```

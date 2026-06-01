@@ -11,7 +11,6 @@ class Settings(BaseSettings):
     app_name: str = "Visir API"
     app_version: str = "0.1.0"
     environment: str = "development"
-    debug: bool = False
 
     host: str = "0.0.0.0"
     port: int = 8000

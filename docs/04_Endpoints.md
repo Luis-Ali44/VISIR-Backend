@@ -2,7 +2,7 @@
 
 Base URL: `http://localhost:8000`
 
-Documentación interactiva disponible en `http://localhost:8000/docs` (Swagger UI).
+Swagger UI: `http://localhost:8000/docs`
 
 ---
 
@@ -13,16 +13,13 @@ Verifica que el servidor está corriendo.
 
 **Respuesta `200`**
 ```json
-{
-  "status": "ok",
-  "version": "0.1.0"
-}
+{ "status": "ok", "version": "0.1.0" }
 ```
 
 ---
 
 ### `GET /supabase`
-Prueba de conexión a Supabase. Devuelve todas las organizaciones.
+Prueba de conexión — devuelve todas las organizaciones.
 
 **Respuesta `200`**
 ```json
@@ -45,25 +42,24 @@ Prueba de conexión a Supabase. Devuelve todas las organizaciones.
 Sube un archivo al storage de Supabase y guarda sus metadatos en la tabla `documentos`.
 
 **Request** — `multipart/form-data`
-| Campo | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `file` | archivo | ✅ | PDF o XML, máximo 5 MB |
+| Campo | Tipo |
+|---|---|
+| `file` | archivo |
 
-**Tipos permitidos**
-- `application/pdf`
-- `text/xml`
+**Tipos permitidos**: `application/pdf`, `text/xml`, `application/xml`
+**Tamaño máximo**: 5 MB
 
 **Respuesta `200`**
 ```json
 {
-  "messege": "archivo guardado",
-  "archivo guardado": "uuid-nombre_archivo.pdf",
-  "metadata": {
-    "nombre": "factura.pdf",
-    "tipo": "application/pdf",
-    "tamaño": 102400,
-    "link": "uuid-factura.pdf"
-  }
+  "id": "uuid",
+  "nombre": "factura.pdf",
+  "tipo": "application/pdf",
+  "tamaño": 102400,
+  "link": "documentos/uuid.pdf",
+  "id_usuario": null,
+  "id_organizacion": null,
+  "created_at": "2026-05-19T14:00:00"
 }
 ```
 
@@ -72,6 +68,7 @@ Sube un archivo al storage de Supabase y guarda sus metadatos en la tabla `docum
 |---|---|
 | `400` | Tipo de archivo no permitido |
 | `400` | Archivo mayor a 5 MB |
+| `400` | `content-type` nulo |
 
 ---
 
@@ -79,10 +76,10 @@ Sube un archivo al storage de Supabase y guarda sus metadatos en la tabla `docum
 Lista documentos con paginación por cursor.
 
 **Query params**
-| Param | Tipo | Default | Descripción |
+| Param | Tipo | Default | Rango |
 |---|---|---|---|
-| `limit` | int | `10` | Cantidad de resultados (1–50) |
-| `cursor` | string | `null` | `created_at` del último elemento recibido |
+| `limit` | int | `10` | 1–50 |
+| `cursor` | string | `null` | valor de `created_at` del último elemento recibido |
 
 **Respuesta `200`**
 ```json
@@ -93,7 +90,7 @@ Lista documentos con paginación por cursor.
       "nombre": "factura.pdf",
       "tipo": "application/pdf",
       "tamaño": 102400,
-      "link": "uuid-factura.pdf",
+      "link": "documentos/uuid.pdf",
       "id_usuario": "uuid",
       "id_organizacion": "uuid",
       "created_at": "2026-05-19T14:00:00"
@@ -103,7 +100,12 @@ Lista documentos con paginación por cursor.
 }
 ```
 
-> Cuando `next_cursor` es `null` no hay más páginas.
+Cuando `next_cursor` es `null` no hay más páginas.
+
+**Errores**
+| Código | Motivo |
+|---|---|
+| `422` | `limit` fuera de rango|
 
 ---
 
@@ -111,9 +113,9 @@ Lista documentos con paginación por cursor.
 Obtiene un documento por su ID.
 
 **Query params**
-| Param | Tipo | Requerido | Descripción |
-|---|---|---|---|
-| `document_id` | string (UUID) | ✅ | ID del documento |
+| Param | Tipo |
+|---|---|
+| `document_id` | string (UUID) |
 
 **Respuesta `200`**
 ```json
@@ -123,7 +125,7 @@ Obtiene un documento por su ID.
     "nombre": "factura.pdf",
     "tipo": "application/pdf",
     "tamaño": 102400,
-    "link": "uuid-factura.pdf",
+    "link": "documentos/uuid.pdf",
     "id_usuario": "uuid",
     "id_organizacion": "uuid",
     "created_at": "2026-05-19T14:00:00"
@@ -138,18 +140,15 @@ Obtiene un documento por su ID.
 
 ---
 
-## Paginación por cursor
+## Tests de integración
 
-La lista de documentos usa cursor-based pagination en lugar de offset para evitar duplicados cuando se insertan registros entre páginas.
+Los tests viven en `tests/test_documentos.py` y cubren los tres endpoints con casos de error:
 
-**Primera página**
-```
-GET /v1/documentos?limit=10
-```
-
-**Página siguiente** — usar el `next_cursor` de la respuesta anterior
-```
-GET /v1/documentos?limit=10&cursor=2026-05-19T14:00:00
-```
-
-Cuando `next_cursor` es `null`, se llegó al final.
+| Test | Endpoint | Caso |
+|---|---|---|
+| `test_cargar_documento_pdf_valido` | `POST /cargar` | PDF válido → 200 |
+| `test_cargar_documento_tipo_invalido` | `POST /cargar` | `.txt` → 400 |
+| `test_cargar_documento_muy_grande` | `POST /cargar` | 6 MB → 400 |
+| `test_listar_documentos` | `GET /` | respuesta con `data` y `next_cursor` → 200 |
+| `test_listar_documentos_limit_invalido` | `GET /` | `limit=0` → 422 |
+| `test_get_documento_no_encontrado` | `GET /id` | UUID inexistente → 404 |
