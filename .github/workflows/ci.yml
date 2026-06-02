@@ -27,6 +27,10 @@ jobs:
 
       - name: Pytest — tests
         run: uv run pytest
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_PUBLIC_KEY: ${{ secrets.SUPABASE_PUBLIC_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
 
       - name: Docker — compilar imagen
         run: docker build -t visir-api .
