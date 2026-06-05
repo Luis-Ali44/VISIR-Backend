@@ -1,6 +1,6 @@
 # Visir API
 
-Backend del sistema Visir — ERP inteligente con procesamiento de facturas XML (CFDI).
+Backend del sistema Visir — ERP inteligente 
 
 FastAPI + Supabase + uv.
 
@@ -20,7 +20,7 @@ uv --version
 docker --version
 ```
 
-Si no tienes uv, instalarlo en Windows:
+Si no tienes uv, puedes intalarlo:
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
@@ -33,7 +33,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 
 ```bash
 # 1. clonar el repo
-git clone <url-del-repo>
+git clone https://github.com/Luis-Ali44/VISIR-Backend.git
 cd Visir-Api
 
 # 2. copiar variables de entorno y rellenar credenciales
@@ -41,6 +41,9 @@ cp .env.example .env
 
 # 3. levantar
 make dev
+
+si no tienen make instalado pueden correr directemnte:
+docker compose up --build
 ```
 
 La API queda disponible en:
@@ -53,7 +56,7 @@ curl http://localhost:8000/health
 # {"status":"ok","version":"0.1.0"}
 ```
 
-### Opción B — sin Docker (solo Supabase cloud)
+### Opción B — sin Docker (solo Supabase)
 
 ```bash
 # 1. instalar dependencias
@@ -64,9 +67,6 @@ uv sync
 # 3. levantar
 uv run uvicorn app.main:app --reload
 ```
-
-> Comentar los servicios `postgres` y `redis` en `docker-compose.yml` si usas esta opción. Ver `docs/03_Docker.md`.
-
 ---
 
 ## Migraciones
@@ -120,23 +120,6 @@ tests/              # pruebas
 
 ---
 
-## CI / CD
-
-- **CI** (`ci.yml`) — corre en cada PR a `main`: ruff, mypy, pytest y docker build.
-- **CD** (`cd.yml`) — corre al hacer merge a `main`: despliega en Railway via CLI.
-
-Secrets necesarios en GitHub (`Settings > Secrets > Actions`):
-- `RAILWAY_TOKEN`
-- `RAILWAY_SERVICE_ID`
-
-Verificar el despliegue:
-```bash
-curl https://<dominio-railway>/health
-# {"status":"ok","version":"0.1.0"}
-```
-
----
-
 ## Documentación
 
 | Archivo | Contenido |
@@ -164,10 +147,6 @@ Verificar que `SUPABASE_URL`, `SUPABASE_PUBLIC_KEY` y `SUPABASE_SECRET_KEY` est�
 **`uv: command not found`**
 Instalar uv con el comando de la sección Requisitos y abrir una terminal nueva.
 
-**`ModuleNotFoundError` al correr sin Docker**
-```bash
-uv sync
-```
 
 **Docker no levanta — error en `depends_on`**
 El compose espera que postgres y redis estén healthy. Si usas Supabase cloud, comentar esos servicios y el `depends_on` de `api`. Ver `docs/03_Docker.md`.
