@@ -66,7 +66,7 @@ def get_id_categoria(categoria: str = "Sin categoria") -> str | None:
         .execute()
     )
 
-    if response and response.data:
+    if response and isinstance(response.data, dict):
         return str(response.data["id"])
 
     if categoria != "Sin categoria":
@@ -78,7 +78,7 @@ def get_id_categoria(categoria: str = "Sin categoria") -> str | None:
             .execute()
         )
 
-    if default_response and default_response.data:
+    if default_response and isinstance(default_response.data, dict):
         return str(default_response.data["id"])
 
     return None

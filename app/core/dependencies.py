@@ -1,3 +1,5 @@
+from typing import Any, cast
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
@@ -25,11 +27,13 @@ async def get_user(credenciales: HTTPAuthorizationCredentials = Depends(security
             .execute()
         )
 
-        org_id = None
+        org_id: str | None = None
         if org_response.data and len(org_response.data) > 0:
-            org_id = org_response.data[0]["id_organizacion"]
-        else:
-            pass
+            row = cast(dict[str, Any], org_response.data[0])
+
+            value = row.get("id_organizacion")
+            if value is not None:
+                org_id = str(value)
 
         return UsuarioActual(id=str(response.user.id), id_organizacion=org_id)
 
