@@ -33,5 +33,5 @@ def login_repository(data: Login) -> Any:
 
 def logout_repository(jwt_token: str) -> Any:
     supabase.auth.set_session(jwt_token, "")
-    response = supabase.auth.sign_out()
-    return response
+    supabase.auth.sign_out()
+    return True
