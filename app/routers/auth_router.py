@@ -1,6 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from fastapi.security import HTTPAuthorizationCredentials
 
+from app.core.dependencies import get_user, security
 from app.schemas.auth_schema import Login, MenssageResponse, Registrar, TokenResponse
+from app.schemas.user_schema import UsuarioActual
 from app.services.auth_service import login_service, logout_service, registro_service
 
 router = APIRouter(prefix="/v1/auth", tags=["Autenticacion"])
@@ -17,5 +20,9 @@ async def login_router(data: Login) -> TokenResponse:
 
 
 @router.post("/logout")
-async def logout_router() -> MenssageResponse:
-    return logout_service()
+async def logout_router(
+    user: UsuarioActual = Depends(get_user),
+    credenciales: HTTPAuthorizationCredentials = Depends(security),
+) -> MenssageResponse:
+    jwt_token = credenciales.credentials
+    return logout_service(jwt_token)

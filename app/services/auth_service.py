@@ -10,13 +10,6 @@ from app.schemas.auth_schema import Login, MenssageResponse, Registrar, TokenRes
 
 def registro_service(data: Registrar) -> MenssageResponse:
     try:
-        response = registro_repository(data)
-
-        if not response:
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST, detail="Error al crear usuario"
-            )
-
         pass_lower = data.password.lower()
 
         if (
@@ -29,13 +22,22 @@ def registro_service(data: Registrar) -> MenssageResponse:
                 detail="Tu contraseña no puede ser igual correo, nombre o apellido",
             )
 
+        response = registro_repository(data)
+
+        if not response:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Error al crear usuario"
+            )
+
         return MenssageResponse(menssage="Usuario creado. Revise su correo para confirmar")
 
     except HTTPException:
         raise
 
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e)) from e
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=f"Error interno: {e!r}"
+        ) from e
 
 
 def login_service(data: Login) -> TokenResponse:
@@ -48,10 +50,12 @@ def login_service(data: Login) -> TokenResponse:
             )
         return TokenResponse(token=response.session.access_token, token_type="Bearer")
 
-    except HTTPException:
-        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="Correo o contraseña incorrectos"
+        ) from e
 
 
-def logout_service() -> MenssageResponse:
-    logout_repository()
+def logout_service(jwt_token: str) -> MenssageResponse:
+    logout_repository(jwt_token)
     return MenssageResponse(menssage="Sesion Cerrada")

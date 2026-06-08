@@ -5,7 +5,7 @@ from app.schemas.auth_schema import Login, Registrar
 
 
 def registro_repository(data: Registrar) -> Any:
-    supabase.auth.sign_up(
+    response = supabase.auth.sign_up(
         {
             "email": data.email,
             "password": data.password,
@@ -22,6 +22,7 @@ def registro_repository(data: Registrar) -> Any:
             # },"""
         }
     )
+    return response
 
 
 def login_repository(data: Login) -> Any:
@@ -30,5 +31,7 @@ def login_repository(data: Login) -> Any:
     return response
 
 
-def logout_repository() -> Any:
-    supabase.auth.sign_out()
+def logout_repository(jwt_token: str) -> Any:
+    supabase.auth.set_session(jwt_token, "")
+    response = supabase.auth.sign_out()
+    return response

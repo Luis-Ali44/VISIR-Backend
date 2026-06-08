@@ -11,6 +11,7 @@ class DocumentCreate(BaseModel):
     link: str
     id_usuario: UUID | None = None
     id_organizacion: UUID | None = None
+    id_categorias: UUID | None
 
 
 class DocumentResponse(BaseModel):
@@ -21,4 +22,5 @@ class DocumentResponse(BaseModel):
     link: str
     id_usuario: UUID | None = None
     id_organizacion: UUID | None = None
+    id_categorias: UUID | None
     created_at: datetime
