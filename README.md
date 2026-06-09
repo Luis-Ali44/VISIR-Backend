@@ -101,3 +101,6 @@ El pipeline genera dos archivos junto al archivo de entrada:
 - `<nombre>_ocr.txt` — texto crudo extraído por PaddleOCR (para verificación)
 - `<nombre>_cfdis.json` — datos estructurados y validados (el json a guardar)
 
+## Archivos en Drive para pruebas 
+
+link al dataset en drive: https://drive.google.com/drive/folders/1ff7dVfDPQoh53ahYL4vCWp_kgwzYkD9y?usp=sharing
