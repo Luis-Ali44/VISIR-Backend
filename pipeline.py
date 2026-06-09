@@ -392,6 +392,11 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     print(f" Procesando: {ruta.name}")
     print(f"{'='*60}")
 
+    xml_hermano = ruta.with_suffix(".xml")
+    if ext != ".xml" and xml_hermano.exists():
+        print(f"  [XML hermano] usando {xml_hermano.name} en lugar de OCR")
+        return procesar(xml_hermano)
+
     if ext in EXTENSIONES_XML:
         print("[XML] Parseando directamente...")
         from xml_parser import extraer_desde_xml
@@ -401,6 +406,12 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
         if errores:
             for e in errores:
                 print(f"  {e}")
+
+        out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
+        with open(out_json, "w", encoding="utf-8") as f:
+            json.dump({"archivo": ruta.stem, "fuente": "xml", "datos": datos}, f, ensure_ascii=False, indent=2)
+        print(f"\n[OK] JSON guardado en: {out_json}")
+
         return {"archivo": ruta.stem, "fuente": "xml", "datos": datos,
                 "valido": valido, "errores": errores}
 
@@ -467,6 +478,11 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
     resultados = []
     for arch in archivos:
         try:
+            xml_hermano = arch.with_suffix(".xml")
+            if arch.suffix.lower() != ".xml" and xml_hermano.exists():
+                print(f"  [Skip] {arch.name} — existe XML hermano")
+                continue
+
             resultados.append(procesar(arch))
         except Exception as e:
             print(f"  ERROR procesando {arch.name}: {e}")
