@@ -16,7 +16,6 @@ def test_cargar_documento_pdf_valido(tmp_path):
             "/v1/documentos/cargar",
             files={"file": ("test.pdf", f, "application/pdf")},
         )
-
     assert response.status_code == 200
 
 
