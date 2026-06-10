@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="27100"
+  Fecha="2026-03-21T14:22:56"
+  FormaPago="02"
+  NoCertificado="01975629195497051147"
+  Certificado="ZStxrWxmkNDstYXsSr+jjwS+AkZD/6jKBt+RwT3Yq7xNXXQZsRXG5effGKgvhR6UvopuEn9CaUShzro+6m8wFymGgu9sqWU7j1XXa5NS+YU="
+  Sello="VePTlBjj8gqdZnYzmHcADRAfq8eEFnuKjv9B1u3rodpkIiq08wNI8g/S16NevxFxuEgEF4mmJnNFqik11Q5qLV70cgx6rhzKzK8QpUeDkGaSmTjfVtnVH2pd2Qy1SwlV+6/Vbr0Yh7d2oHJ1U/st/rH2CpOKh+5QJysBcCZ//wAhamhsQhd5AdgtOtAp0abRtahPHHipMu7Vapu+4wp15lt0uL+PTbY/fepjOay7jhbR/zG7z50JEu72pdJgPYix1/7obsUBQJWSIQoZyIOaJ/OWSRQr9YwD9PfOvxBuA6kbdtkJROyuju85AVkXM4Buayn2MOMXh8VNOFd0C6nlhA=="
+  SubTotal="62805.36"
+  Moneda="MXN"
+  Total="72854.22"
+  TipoDeComprobante="E"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="44100">
+
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="5C1323F0-FE68-40F1-8F17-D89CB928AC61"/>
+  </cfdi:CfdiRelacionados>
+
+  <cfdi:Emisor Rfc="QJQ030603FF0" Nombre="DESPACHO RIOJAS MOLINA Y DUARTE S DE RL DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor Rfc="FDQ081006KS8" Nombre="LABORATORIOS GALLARDO JIMÉNEZ Y PONCE SA DE CV" DomicilioFiscalReceptor="07006" RegimenFiscalReceptor="612" UsoCFDI="G02"/>
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="52141500"
+      Cantidad="7"
+      ClaveUnidad="H87"
+      Unidad="Pieza"
+      Descripcion="Devolución: Artículos para el hogar y decoración de interiores"
+      ValorUnitario="4211.60"
+      Importe="29481.20"
+      ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="29481.20" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="4716.99"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto
+      ClaveProdServ="43211700"
+      Cantidad="2"
+      ClaveUnidad="H87"
+      Unidad="Pieza"
+      Descripcion="Devolución: Equipo de cómputo portátil y accesorios"
+      ValorUnitario="16020.34"
+      Importe="32040.68"
+      ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="32040.68" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="5126.51"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+    <cfdi:Concepto
+      ClaveProdServ="44121500"
+      Cantidad="22"
+      ClaveUnidad="H87"
+      Unidad="Pieza"
+      Descripcion="Devolución: Artículos de papelería y oficina"
+      ValorUnitario="58.34"
+      Importe="1283.48"
+      ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="1283.48" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="205.36"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos TotalImpuestosTrasladados="10048.86">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="62805.36" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="10048.86"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="27E4F1E3-8CFD-48F6-91B1-4C83A1F1D610"
+      FechaTimbrado="2026-03-21T14:23:06"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000554429945"
+      SelloCFDI="VePTlBjj8gqdZnYzmHcADRAfq8eEFnuKjv9B1u3rodpkIiq08wNI8g/S16NevxFxuEgEF4mmJnNFqik11Q5qLV70cgx6rhzKzK8QpUeDkGaSmTjfVtnVH2pd2Qy1SwlV+6/Vbr0Yh7d2oHJ1U/st/rH2CpOKh+5QJysBcCZ//wAhamhsQhd5AdgtOtAp0abRtahPHHipMu7Vapu+4wp15lt0uL+PTbY/fepjOay7jhbR/zG7z50JEu72pdJgPYix1/7obsUBQJWSIQoZyIOaJ/OWSRQr9YwD9PfOvxBuA6kbdtkJROyuju85AVkXM4Buayn2MOMXh8VNOFd0C6nlhA=="
+      SelloSAT="aQ0eFmqDWY4qog503VcLDnZ2UCcwl6sn53ixdcsQRriGamPXyL8aCPcb3hszGy2lNh/IHDr3dkjgldgDiNzV3Dp6GUaTY5X0coWLDmT7/v2UkULQ42QW3www1GFwQ0h7VG4tsBfc552L1UyFyEUXNgb4O+3yBvUz6WKRkwUYaVXuEvnspBd4uUxVubq1yX0BUQlcDthiuZxVgkpw9V/JaUUKWt8R5OvRgUni7n1S8dWNnL7l5ypOTzqERN/dC9cz0a3Fo9lVllsO8L5Xe63YRLNlguYNGvaRp4aou1Zc74Rvbph1AQtuCd6HyDVv+Gy0/v7QnsNjnkw4LElYRCHysg="/>
+  </cfdi:Complemento>
+</cfdi:Comprobante>

@@ -1,0 +1,50 @@
+Egreso CFDI 4.0 ContadorMx
+COMPROBANTE FISCAL DIGITAL
+por Internet (CFDI)
+Serie: B Folio: 27100
+FOLIO FISCAL (UUID): 27E4F1E3-8CFD-48F6-91B1-4C83A1F1D610
+Fecha de timbrado: 21/03/2026, 02:23:06 p.m. Certificado SAT: 00001000000554429945
+CFDI RELACIONADOS
+Tipo Relación: 01 - Nota de crédito de los documentos relacionados −
+• 5C1323F0-FE68-40F1-8F17-D89CB928AC61
+EMISOR
+DESPACHO RIOJAS MOLINA Y DUARTE S DE RL DE CV
+RFC: QJQ030603FF0
+Régimen Fiscal: 601 - General de Ley Personas Morales
+RECEPTOR
+LABORATORIOS GALLARDO JIMÉNEZ Y PONCE SA DE CV
+RFC: FDQ081006KS8
+Domicilio Fiscal: 07006
+Régimen Fiscal: 612 - Personas Físicas con Actividades Empresariales y Profesionales
+Uso del CFDI: G02 - Devoluciones, descuentos o bonificaciones
+DATOS DEL COMPROBANTE
+Fecha: 21/03/2026, 02:22:56 p.m. Lugar Expedición: 44100
+Forma de Pago: 02 - Cheque nominativo Método de Pago: PUE - Pago en Una sola Exhibición
+Moneda: MXN
+No. Certificado: 01975629195497051147
+CONCEPTOS
+CLAVE DESCRIPCIÓN CANT. P. UNIT. IMPORTE IMPUESTOS
+52141500 Devolución: Artículos para el hogar y decoración de 7 $4,211.60 $29,481.20 $4,716.99
+interiores
+43211700 Devolución: Equipo de cómputo portátil y accesorios 2 $16,020.34 $32,040.68 $5,126.51
+
+---Inicio de Pagina---
+
+44121500 Devolución: Artículos de papelería y oficina 22 $58.34 $1,283.48 $205.36
+Subtotal: $62,805.36
+IVA Trasladado: $10,048.86
+TOTAL: $72,854.22 MXN
+Verificación SAT
+Escanea el código QR o visita verificacfdi.facturaelectronica.sat.gob.mx para verificar este comprobante.
+CADENA ORIGINAL DEL TIMBRE FISCAL DIGITAL
+|1.1|27E4F1E3-8CFD-48F6-91B1-4C83A1F1D610|2026-03-21T14:23:06|INT020124V62||00001000000554429945|
+SELLOS DIGITALES
+Sello Digital del CFDI:
+VePTIBj8gqdZnYzmHcADRAfq8eEFnuKjv9B1u3rodpkliq08wNI8g/S16NevxFxuEgEF4mmJnNFqik11Q5qLV70cgx6rhzKzK8QpUeDkGaSmTjfVtnVH2pd2Qy1SwlV+6/Vbr0Yh7d2oHJ1U/st/rH2CpOKh+5QJysBcCZ//wAhamhsQhd5Adg
+tOtAp0abRtahPHHipMu7Vapu+4wp15It0uL+PTbY/fepjOay7jhbR/zG7z50JEu72pdJgPYix1/7obsUBQJWSIQoZylOaJ/OWSRQr9YwD9PfOvxBuA6kbdtkJROyuju85AVkXM4Buayn2MOMXh8VNOFd0C6nlhA==
+Sello Digital del SAT:
+aQ0eFmqDWY4qog503VcLDnZ2UCcwl6sn53ixdcsQRriGamPXyL8aCPcb3hszGy2INh/IHDr3dkjgldgDiNzV3Dp6GUaTY5X0coWLDmT7/v2UkULQ42QW3www1GFwQ0h7VG4tsBfc552L1UyFyEUXNgb4O+3yBvUz6WKRkwUYaVXuE
+vnspBd4uUxVubq1yX0BUQlcDthiuZxVgkpw9V/JaUUKWt8R5OvRgUni7n1S8dWNnL7I5ypOTzqERN/dC9cz0a3Fo9IVIlsO8L5Xe63YRLNlguYNGvaRp4aou1Zc74Rvbph1AQtuCd6HyDVv+Gy0/v7QnsNjnkw4LEIYRCHysg=
+Este documento es una representación impresa de un CFDi
+Generado por Lector CFDI de ContadorMx
+contadormx.net/

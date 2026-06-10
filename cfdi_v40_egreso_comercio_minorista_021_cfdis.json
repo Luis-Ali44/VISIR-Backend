@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_v40_egreso_comercio_minorista_021",
+  "fuente": "ocr+llm",
+  "version": "4.0",
+  "cfdis": [
+    {
+      "datos": {
+        "version": "4.0",
+        "folio_fiscal": "27E4F1E3-8CFD-48F6-91B1-4C83A1F1D610",
+        "fecha_emision": "2026-03-21T14:22:56",
+        "metodo_pago": "PUE",
+        "forma_pago": "02",
+        "moneda": "MXN",
+        "emisor": {
+          "RFC": "QJQ030603FF0",
+          "nombre": "DESPACHO RIOJAS MOLINA Y DUARTE S DE RL DE CV"
+        },
+        "receptor": {
+          "RFC": "FDQ081006KS8",
+          "nombre": "LABORATORIOS GALLARDO JIMÉNEZ Y PONCE SA DE CV"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Devolución: Artículos para el hogar y decoración de interiores",
+            "clave_prod_serv": "52141500",
+            "unidad": null,
+            "cantidad": 7,
+            "valor_unitario": 4211.6,
+            "descuento": null,
+            "importe": 29481.2,
+            "iva": 4716.99
+          },
+          {
+            "descripcion": "Devolución: Equipo de cómputo portátil y accesorios",
+            "clave_prod_serv": "43211700",
+            "unidad": null,
+            "cantidad": 2,
+            "valor_unitario": 16020.34,
+            "descuento": null,
+            "importe": 32040.68,
+            "iva": 5126.51
+          },
+          {
+            "descripcion": "Devolución: Artículos de papelería y oficina",
+            "clave_prod_serv": "44121500",
+            "unidad": null,
+            "cantidad": 22,
+            "valor_unitario": 58.34,
+            "descuento": null,
+            "importe": 1283.48,
+            "iva": 205.36
+          }
+        ],
+        "subtotal": 62805.36,
+        "descuento": null,
+        "iva": 10048.86,
+        "retenciones": null,
+        "total": 72854.22,
+        "archivo": "cfdi_v40_egreso_comercio_minorista_021_cfdi_01"
+      },
+      "valido": true,
+      "errores": []
+    }
+  ]
+}

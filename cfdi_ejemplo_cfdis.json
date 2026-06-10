@@ -1,0 +1,45 @@
+{
+  "archivo": "cfdi_ejemplo",
+  "fuente": "ocr+llm",
+  "version": "4.0",
+  "cfdis": [
+    {
+      "datos": {
+        "version": "4.0",
+        "folio_fiscal": "82E97F59-EA04-4C80-AFE1-915A845875F9",
+        "fecha_emision": "2024-02-02T00:00:00",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "emisor": {
+          "RFC": "AZU240101M01",
+          "nombre": "MISCELANEA EL AZULITO S.A DE C.V"
+        },
+        "receptor": {
+          "RFC": "PIVC9709253WE",
+          "nombre": "CARMEN PINZON VILLANUEVA"
+        },
+        "conceptos": [
+          {
+            "descripcion": "50202306- COCCOL-ORG-NOR-PET-1.5L-1 PZ",
+            "clave_prod_serv": "50202306",
+            "unidad": "Piezas",
+            "cantidad": 5,
+            "valor_unitario": 22,
+            "descuento": null,
+            "importe": 110,
+            "iva": 17.6
+          }
+        ],
+        "subtotal": 110,
+        "descuento": null,
+        "iva": 17.6,
+        "retenciones": null,
+        "total": 127.6,
+        "archivo": "cfdi_ejemplo_cfdi_01"
+      },
+      "valido": true,
+      "errores": []
+    }
+  ]
+}

@@ -11,13 +11,12 @@ from typing import Any
 from catalogos import (
     CATALOGO_METODO_PAGO,
     CATALOGO_FORMA_PAGO,
-    CATALOGO_USO_CFDI,
-    CATALOGO_TIPO_COMPROBANTE,
     CATALOGO_CLAVE_UNIDAD,
     normalizar_catalogo,
     validar_digito_rfc,
 )
 from schema import validar
+from llm_extractor import construir_prompt
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_MODEL   = "mistral-large-latest"
@@ -27,56 +26,43 @@ EXTENSIONES_PDF    = {".pdf"}
 EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp"}
 EXTENSIONES_XML    = {".xml"}
 
+_UUID_PATRON = r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
+
 
 def _norm_rfc(rfc: str) -> str:
     return re.sub(r"[\s\-_]", "", rfc.upper().strip())
 
 
 def es_uuid_valido(cadena: str) -> bool:
-    return bool(re.match(
-        r"^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$",
-        cadena,
-    ))
-
-
-def _reparar_uuid_ocr(candidato: str) -> str | None:
-    mapa = {
-        "O": "0", "o": "0", "I": "1", "l": "1", "|": "1",
-        "B": "8", "S": "5", "Z": "2", "G": "6", "Q": "0", "U": "0",
-    }
-    limpio = "".join(mapa.get(ch, ch) for ch in candidato)
-    limpio = re.sub(r"[^0-9A-Fa-f-]", "", limpio)
-    if "-" in limpio:
-        if re.fullmatch(r"[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}", limpio, re.IGNORECASE):
-            return limpio.upper()
-    else:
-        if len(limpio) == 32 and re.fullmatch(r"[0-9A-F]{32}", limpio, re.IGNORECASE):
-            s = limpio.upper()
-            return f"{s[:8]}-{s[8:12]}-{s[12:16]}-{s[16:20]}-{s[20:]}"
-    return None
-
+    return bool(re.fullmatch(_UUID_PATRON, cadena, re.IGNORECASE))
 
 def extraer_uuid_del_texto(texto: str) -> str | None:
-    for patron in (
-        r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}",
-        r"\|\|1\.1\|([0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12})\|",
-        r"[0-9A-Fa-fOoIiBbSsZz]{8}-[0-9A-Fa-fOoIiBbSsZz]{4}-[0-9A-Fa-fOoIiBbSsZz]{4}-[0-9A-Fa-fOoIiBbSsZz]{4}-[0-9A-Fa-fOoIiBbSsZz]{12}",
-    ):
-        m = re.search(patron, texto)
-        if m:
-            candidato = m.group(1) if m.lastindex else m.group(0)
-            reparado = _reparar_uuid_ocr(candidato)
-            if reparado:
-                return reparado
 
-    m = re.search(r"(?<![0-9A-Fa-f])([0-9A-Fa-f]{32})(?![0-9A-Fa-f])", texto)
+    m = re.search(
+        r"FOLIO\s+FISCAL.*?(" + _UUID_PATRON + r")",
+        texto, re.IGNORECASE | re.DOTALL,
+    )
     if m:
-        reparado = _reparar_uuid_ocr(m.group(1))
-        if reparado:
-            return reparado
+        return m.group(1).upper()
+
+    m = re.search(r"\|(" + _UUID_PATRON + r")\|", texto)
+    if m:
+        return m.group(1).upper()
+
+    relacionados = {
+        u.upper() for u in re.findall(r"[•\-]\s*(" + _UUID_PATRON + r")", texto)
+    }
+    for u in re.findall(_UUID_PATRON, texto):
+        if u.upper() not in relacionados:
+            return u.upper()
+
+    m = re.search(r"[0-9A-Fa-f\s]{8,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{12,}", texto)
+    if m:
+        limpio = re.sub(r"\s", "", m.group(0))
+        if re.fullmatch(_UUID_PATRON, limpio, re.IGNORECASE):
+            return limpio.upper()
 
     return None
-
 
 def detectar_version(texto: str, ruta: Path | None = None) -> str | None:
     if "||1.1|" in texto:
@@ -87,7 +73,7 @@ def detectar_version(texto: str, ruta: Path | None = None) -> str | None:
     for patron in (
         r'[Vv]ersion\s*=\s*"?(4\.0|3\.3)"?',
         r"[Cc][Ff][Dd][Ii]\s*:?\s*(4\.0|3\.3)",
-        r"VERSI[OÓ]N\s*:?\s*(4\.0|3\.3)",
+        r"VERSI[OÓ]N\s*[:\-]?\s*(4\.0|3\.3)",
         r"\bV(4\.0|3\.3)\b",
     ):
         m = re.search(patron, texto, re.IGNORECASE)
@@ -144,14 +130,40 @@ def _limpiar_nulos(obj: Any) -> Any:
     return None if obj == "null" else obj
 
 
-def _postprocesar(datos: dict, version: str | None, uuid_fallback: str | None = None) -> dict:
+def _normalizar_fecha(fecha_str: str | None) -> str | None:
+    if not fecha_str or not isinstance(fecha_str, str):
+        return None
+    s = fecha_str.strip()
+    s = re.sub(r"\s+[aApP]\.?\s*[mM]\.?$", "", s).strip()
+    s = re.sub(r"[+-]\d{2}:\d{2}$", "", s).rstrip("Z").strip()
+    s = re.sub(r"\.\d+$", "", s)
+    s = re.sub(r"[T ]", "T", s, count=1)
+    m = re.match(r"^(\d{2})/(\d{2})/(\d{4})(?:T(\d{2}:\d{2}(?::\d{2})?))?$", s)
+    if m:
+        hora = m.group(4) or "00:00:00"
+        if len(hora) == 5:
+            hora += ":00"
+        s = f"{m.group(3)}-{m.group(2)}-{m.group(1)}T{hora}"
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", s):
+        s += "T00:00:00"
+    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$", s):
+        s += ":00"
+    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$", s):
+        return s
+    print(f"  [Fecha] No se pudo normalizar: {fecha_str!r}")
+    return None
+
+
+def _postprocesar(
+    datos: dict,
+    version: str | None,
+    uuid_extraido: str | None = None,
+) -> dict:
+
     datos = _limpiar_nulos(datos)
 
-    datos["metodo_pago"]         = normalizar_catalogo(datos.get("metodo_pago"),         CATALOGO_METODO_PAGO)
-    datos["forma_pago"]          = normalizar_catalogo(datos.get("forma_pago"),          CATALOGO_FORMA_PAGO)
-    datos["uso_cfdi"]            = normalizar_catalogo(datos.get("uso_cfdi"),            CATALOGO_USO_CFDI)
-    datos["tipo_de_comprobante"] = normalizar_catalogo(datos.get("tipo_de_comprobante"), CATALOGO_TIPO_COMPROBANTE)
-
+    datos["metodo_pago"] = normalizar_catalogo(datos.get("metodo_pago"), CATALOGO_METODO_PAGO)
+    datos["forma_pago"]  = normalizar_catalogo(datos.get("forma_pago"),  CATALOGO_FORMA_PAGO)
     for concepto in datos.get("conceptos", []):
         if isinstance(concepto, dict):
             concepto["unidad"] = normalizar_catalogo(concepto.get("unidad"), CATALOGO_CLAVE_UNIDAD)
@@ -165,15 +177,28 @@ def _postprocesar(datos: dict, version: str | None, uuid_fallback: str | None = 
                 if not validar_digito_rfc(nodo["RFC"]):
                     print(f"  Advertencia: RFC {entidad} '{nodo['RFC']}' no pasa dígito verificador")
 
-    if uuid_fallback and es_uuid_valido(uuid_fallback):
-        if not datos.get("folio_fiscal") or "X" in uuid_fallback.upper():
-            datos["folio_fiscal"] = uuid_fallback.upper()
+    if uuid_extraido and es_uuid_valido(uuid_extraido):
+        uuid_llm = datos.get("folio_fiscal", "")
+        if uuid_llm and uuid_llm.upper() != uuid_extraido.upper():
+            print(f"  [UUID] LLM dio '{uuid_llm}' → reemplazado por '{uuid_extraido}' (texto OCR)")
+        datos["folio_fiscal"] = uuid_extraido.upper()
+    elif not datos.get("folio_fiscal"):
+        pass  
+    else:
+        raw = re.sub(r"\s", "", str(datos["folio_fiscal"]).upper())
+        sin_guiones = raw.replace("-", "")
+        if len(sin_guiones) == 32 and re.fullmatch(r"[0-9A-F]{32}", sin_guiones):
+            datos["folio_fiscal"] = (
+                f"{sin_guiones[:8]}-{sin_guiones[8:12]}-"
+                f"{sin_guiones[12:16]}-{sin_guiones[16:20]}-{sin_guiones[20:]}"
+            )
 
     if version and not datos.get("version"):
         datos["version"] = version
 
+    datos["fecha_emision"] = _normalizar_fecha(datos.get("fecha_emision"))
     if "fecha" in datos and "fecha_emision" not in datos:
-        datos["fecha_emision"] = datos.pop("fecha")
+        datos["fecha_emision"] = _normalizar_fecha(datos.pop("fecha"))
     else:
         datos.pop("fecha", None)
 
@@ -203,65 +228,6 @@ def _extraer_todos_los_json(texto: str) -> list[dict]:
     return resultados
 
 
-_PROMPT = """Eres un especialista en CFDIs e información fiscal mexicana.
-El texto puede contener UNO O VARIOS comprobantes fiscales (CFDIs).
-Devuelve ÚNICAMENTE objetos JSON válidos, uno por cada CFDI encontrado,
-separados por salto de línea. Sin explicaciones, sin markdown, sin texto extra.
-Si un campo no aparece en el texto usa null.
-{nota_uuid}
-REGLAS CRÍTICAS:
-
-1. VERSIÓN: La versión detectada automáticamente es "{version}".
-   Usa exactamente ese valor.
-
-2. EMISOR vs RECEPTOR — regla de posición:
-   - EMISOR: quien EXPIDE la factura. RFC y nombre en el ENCABEZADO, ANTES del "FOLIO FISCAL".
-   - RECEPTOR: quien RECIBE. Sus datos aparecen DESPUÉS del folio fiscal.
-   - NUNCA pongas el mismo RFC en emisor y receptor.
-
-3. metodo_pago: exactamente 'PUE' o 'PPD'.
-4. forma_pago: código de 2 dígitos ('01', '02', '03', '28', '99').
-5. folio_fiscal: formato xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.
-6. fecha_emision: copia la cadena COMPLETA tal como aparece.
-
-Estructura EXACTA por CFDI:
-{{
-    "folio_fiscal": null,
-    "fecha_emision": null,
-    "version": null,
-    "emisor": {{"nombre": null, "RFC": null}},
-    "receptor": {{"nombre": null, "RFC": null}},
-    "serie": null,
-    "folio": null,
-    "metodo_pago": null,
-    "forma_pago": null,
-    "moneda": null,
-    "uso_cfdi": null,
-    "tipo_de_comprobante": null,
-    "conceptos": [
-        {{
-            "descripcion": null,
-            "clave_prod_serv": null,
-            "unidad": null,
-            "cantidad": null,
-            "valor_unitario": null,
-            "descuento": null,
-            "importe": null,
-            "iva": null
-        }}
-    ],
-    "subtotal": null,
-    "descuento": null,
-    "iva": null,
-    "retenciones": null,
-    "total": null
-}}
-
-Texto OCR:
-{texto}
-"""
-
-
 def _llamar_mistral(client, prompt: str) -> str:
     for intento in range(MAX_REINTENTOS):
         try:
@@ -281,43 +247,9 @@ def _llamar_mistral(client, prompt: str) -> str:
     return ""
 
 
-def _second_pass_rfc(texto_ocr: str, facturas: list[dict], client) -> list[dict]:
-    necesita = any(
-        not f.get("emisor", {}).get("RFC") or not f.get("receptor", {}).get("RFC")
-        for f in facturas
-    )
-    if not necesita:
-        return facturas
-
-    prompt_rfc = (
-        "Del siguiente texto de una factura CFDI mexicana, extrae SOLO los RFCs.\n"
-        "EMISOR RFC: aparece en el ENCABEZADO, ANTES de la sección 'FOLIO FISCAL'.\n"
-        "RECEPTOR RFC: aparece DESPUÉS del folio fiscal.\n"
-        "Responde ÚNICAMENTE con este JSON:\n"
-        '{"emisor_rfc": "RFC_O_null", "receptor_rfc": "RFC_O_null"}\n\n'
-        f"Texto OCR:\n{texto_ocr[:3000]}"
-    )
-    try:
-        resp = _llamar_mistral(client, prompt_rfc)
-        resp = resp.replace("```json", "").replace("```", "").strip()
-        rfcs = json.loads(resp)
-        for factura in facturas:
-            emisor   = factura.setdefault("emisor",   {"nombre": None, "RFC": None})
-            receptor = factura.setdefault("receptor", {"nombre": None, "RFC": None})
-            if not emisor.get("RFC") and rfcs.get("emisor_rfc") not in (None, "null"):
-                emisor["RFC"] = rfcs["emisor_rfc"]
-                print(f"    [Second pass] emisor_rfc: {rfcs['emisor_rfc']}")
-            if not receptor.get("RFC") and rfcs.get("receptor_rfc") not in (None, "null"):
-                receptor["RFC"] = rfcs["receptor_rfc"]
-                print(f"    [Second pass] receptor_rfc: {rfcs['receptor_rfc']}")
-    except Exception as e:
-        print(f"  [Second pass] Error: {e}")
-    return facturas
-
-
 def _estructurar_con_mistral(
     texto_ocr: str,
-    uuid_detectado: str | None,
+    uuid_extraido: str | None,
     version_detectada: str | None,
 ) -> list[dict]:
     if not MISTRAL_API_KEY:
@@ -325,7 +257,6 @@ def _estructurar_con_mistral(
             "MISTRAL_API_KEY no configurada.\n"
             "Ejecuta: export MISTRAL_API_KEY=tu_clave"
         )
-
     try:
         from mistralai.client import Mistral
     except ImportError:
@@ -333,16 +264,10 @@ def _estructurar_con_mistral(
 
     client = Mistral(api_key=MISTRAL_API_KEY)
 
-    nota_uuid = (
-        f'\nNOTA: El folio fiscal (UUID) pre-extraído es "{uuid_detectado}". '
-        f'Úsalo directamente en "folio_fiscal".\n'
-        if uuid_detectado else ""
-    )
-
-    prompt = _PROMPT.format(
-        nota_uuid=nota_uuid,
-        version=version_detectada or "desconocida",
-        texto=texto_ocr[:6000],
+    prompt = construir_prompt(
+        texto_ocr=texto_ocr,
+        version=version_detectada,
+        uuid_detectado=uuid_extraido,
     )
 
     respuesta = _llamar_mistral(client, prompt)
@@ -355,23 +280,17 @@ def _estructurar_con_mistral(
 
     print(f"  {len(datos_lista)} CFDI(s) encontrado(s)")
 
-    facturas = [
-        _postprocesar(d, version_detectada, uuid_fallback=uuid_detectado)
+    return [
+        _postprocesar(d, version_detectada, uuid_extraido=uuid_extraido)
         for d in datos_lista
     ]
-    facturas = _second_pass_rfc(texto_ocr, facturas, client)
-    return facturas
 
 
 def _extraer_texto_ocr(ruta: Path) -> str:
-    from ocr_preprocess import extraer_paginas_pdf, extraer_imagen_suelta, items_a_texto
-
-    if ruta.suffix.lower() == ".pdf":
-        paginas = extraer_paginas_pdf(ruta)
-    else:
-        paginas = extraer_imagen_suelta(ruta)
-
+    from ocr_preprocess import extraer_paginas_pdf, extraer_imagen_suelta
     from ocr_paddle import _get_paddle_ocr, _ocr_desde_array, SCORE_MINIMO, SCORE_MINIMO_NATIVO
+
+    paginas = extraer_paginas_pdf(ruta) if ruta.suffix.lower() == ".pdf" else extraer_imagen_suelta(ruta)
 
     ocr = _get_paddle_ocr()
     bloques = []
@@ -388,30 +307,28 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     ruta = Path(ruta_archivo)
     ext  = ruta.suffix.lower()
 
-    print(f"\n{'='*60}")
     print(f" Procesando: {ruta.name}")
-    print(f"{'='*60}")
 
+    # XML hermano tiene prioridad
     xml_hermano = ruta.with_suffix(".xml")
     if ext != ".xml" and xml_hermano.exists():
         print(f"  [XML hermano] usando {xml_hermano.name} en lugar de OCR")
         return procesar(xml_hermano)
 
+    # Ruta XML directa
     if ext in EXTENSIONES_XML:
         print("[XML] Parseando directamente...")
         from xml_parser import extraer_desde_xml
         datos = extraer_desde_xml(ruta)
         valido, errores, modelo = validar(datos)
         print(f"[Validación] {'OK' if valido else 'ERRORES'}")
-        if errores:
-            for e in errores:
-                print(f"  {e}")
-
+        for e in errores:
+            print(f"  {e}")
         out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
         with open(out_json, "w", encoding="utf-8") as f:
-            json.dump({"archivo": ruta.stem, "fuente": "xml", "datos": datos}, f, ensure_ascii=False, indent=2)
+            json.dump({"archivo": ruta.stem, "fuente": "xml", "datos": datos},
+                      f, ensure_ascii=False, indent=2)
         print(f"\n[OK] JSON guardado en: {out_json}")
-
         return {"archivo": ruta.stem, "fuente": "xml", "datos": datos,
                 "valido": valido, "errores": errores}
 
@@ -424,48 +341,47 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     if guardar_txt:
         txt_path = ruta.parent / f"{ruta.stem}_ocr.txt"
         txt_path.write_text(texto_ocr, encoding="utf-8")
-        print(f"[OCR] Texto crudo → {txt_path}")
+        print(f"[OCR] Texto crudo → {txt_path.name}")
 
     version_detectada = detectar_version(texto_ocr, ruta) or "4.0"
-    uuid_detectado    = extraer_uuid_del_texto(texto_ocr)
+    uuid_extraido     = extraer_uuid_del_texto(texto_ocr)
 
     print(f"[Versión] {version_detectada}")
-    print(f"[UUID] {uuid_detectado or 'no encontrado'}")
+    print(f"[UUID]    {uuid_extraido or 'no encontrado'}")
 
     print(f"\n[Mistral] Estructurando con {MISTRAL_MODEL}")
-    facturas = _estructurar_con_mistral(texto_ocr, uuid_detectado, version_detectada)
+    facturas = _estructurar_con_mistral(texto_ocr, uuid_extraido, version_detectada)
 
     resultados_validados = []
     for i, factura in enumerate(facturas):
         factura["archivo"] = f"{ruta.stem}_cfdi_{i + 1:02d}"
         valido, errores, _ = validar(factura)
         print(f"[Validación CFDI {i+1}] {'OK' if valido else 'ERRORES'}")
-        if errores:
-            for e in errores:
-                print(f"  {e}")
+        for e in errores:
+            print(f"  {e}")
         resultados_validados.append({
-            "datos": factura,
-            "valido": valido,
+            "datos":   factura,
+            "valido":  valido,
             "errores": errores,
         })
 
     resultado = {
-        "archivo":  ruta.stem,
-        "fuente":   "ocr+llm",
-        "version":  version_detectada,
-        "cfdis":    resultados_validados,
+        "archivo": ruta.stem,
+        "fuente":  "ocr+llm",
+        "version": version_detectada,
+        "cfdis":   resultados_validados,
     }
 
     out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
     with open(out_json, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
-    print(f"\n[OK] JSON guardado en: {out_json}")
+    print(f"\n[OK] JSON guardado en: {out_json.name}")
 
     return resultado
 
 
 def procesar_carpeta(carpeta: str | Path) -> list[dict]:
-    carpeta = Path(carpeta)
+    carpeta  = Path(carpeta)
     archivos = sorted(
         p for p in carpeta.rglob("*")
         if p.suffix.lower() in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN | EXTENSIONES_XML)
@@ -482,7 +398,6 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
             if arch.suffix.lower() != ".xml" and xml_hermano.exists():
                 print(f"  [Skip] {arch.name} — existe XML hermano")
                 continue
-
             resultados.append(procesar(arch))
         except Exception as e:
             print(f"  ERROR procesando {arch.name}: {e}")
