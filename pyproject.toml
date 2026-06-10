@@ -1,62 +1,78 @@
-[project]                           #Info del pryecto 
-name = "visir-api"                  # Nombre
-version = "0.1.0"                   # Version del proyecto
-description = "ERP inteligente"     # Descripción 
-readme = "README.md"                # Para la documentacion principal
-requires-python = ">=3.12, < 3.13"  # Version minima que necesita
+[project]
+name = "visir-api"
+version = "0.2.0"
+description = "ERP inteligente VISIR — API · RAG Fiscal · ChromaDB · Supabase"
+readme = "README.md"
+requires-python = ">=3.12, < 3.13"
 
-dependencies = [                    # Librerias necesarias para el proyecto
+dependencies = [
+    # ── HTTP y FastAPI ────────────────────────────────────────────────────────
     "email-validator>=2.3.0",
-    "fastapi>=0.136.1",             #
-    "pydantic>=2.13.4",             #
-    "pydantic-settings>=2.14.1",    #
+    "fastapi>=0.136.1",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
     "python-multipart>=0.0.29",
-    "supabase>=2.30.0",             #
-    "uvicorn>=0.47.0",              #
+    "uvicorn[standard]>=0.47.0",
+
+    # ── Supabase — autenticación ──────────────────────────────────────────────
+    "supabase>=2.30.0",
+
+    # ── ChromaDB — vector store ───────────────────────────────────────────────
+    "chromadb>=0.5.0",
+
+    # ── Embeddings (cliente HTTP OpenAI-compatible) ────────────────────────────
+    # El cliente usa requests directamente con la API POST /v1/embeddings,
+    # compatible con Ollama, OpenAI, LM Studio, vLLM, etc.
+    "requests>=2.31.0",
+
+    # ── LlamaIndex — chunking semántico e interfaz BaseEmbedding ─────────────
+    "llama-index-core>=0.10.0",
+    "pymupdf4llm>=0.0.17",
+    "pymupdf>=1.24.0",
+    "tqdm>=4.66.0",
+
+    # ── LangChain — cadena RAG con LLM OpenAI-compatible ─────────────────────
+    # langchain-openai incluye ChatOpenAI con base_url configurable:
+    #   Groq:     base_url="https://api.groq.com/openai/v1"
+    #   Ollama:   base_url="http://localhost:11434/v1"
+    #   OpenAI:   base_url="https://api.openai.com/v1"  (default)
+    #   LiteLLM:  base_url="http://localhost:4000/v1"
+    "langchain>=0.3.0",
+    "langchain-core>=0.3.0",
+    "langchain-openai>=0.2.0",
+
+    # ── Utilidades ────────────────────────────────────────────────────────────
+    "python-dotenv>=1.0.0",
 ]
 
-[dependency-groups]                 # Dependencias de desarrollo 
-dev = [                             # Desarrollo, testing, calidad 
-    "httpx>=0.28.1",                # Cliente http moderno 
-    "mypy>=2.1.0",                  # Revisa los tipos 
-    "pre-commit>=4.6.0",            # Automatiza las revisiones antes de dubir el commit
-    "pytest>=9.0.3",                # Testing 
-    "ruff>=0.15.13",                # ordenamiento
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=2.1.0",
+    "pre-commit>=4.6.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.13",
 ]
 
 
-[tool.ruff]                         # Configuracion de ruff
-target-version = "py312"            # Version de python con la que se trabaja 
-line-length = 100                   # Maximo 100 caracteres por linea 
+[tool.ruff]
+target-version = "py312"
+line-length = 100
 
-
-[tool.ruff.lint]                    #   Configuracion de validaciones
-select = [                          # Las reglas que queremos 
-    "E",                            # Errores de estilo
-    "W",                            # Advertencia de estilo
-    "F",                            # Errores detectados (variables no usadas, imports de sobra)
-    "I",                            # Ordenamiento de imports
-    "N",                            # Nombres correctos, clases o funciones
-    "UP",                           # Sintaxis moderna
-    "B",                            # Bugs comunes
-    "C4",                           # Mejor comprehensions
-    "SIM",                          # Simplifica codigo 
-    "ASYNC",                        # reglas para código async — relevante en FastAPI
-    "RUF",                          # reglas propias de Ruff
+[tool.ruff.lint]
+select = [
+    "E", "W", "F", "I", "N", "UP", "B", "C4", "SIM", "ASYNC", "RUF",
 ]
-ignore = [                          # Reglas que no vamos a ocupar
-    
-    "B008",   # llamada a función en argumento por default — FastAPI usa esto con Depends()
+ignore = [
+    "B008",   # Depends() en argumentos por default — patrón de FastAPI
 ]
 
-[tool.ruff.lint.per-file-ignores]   
-"tests/*" = ["S101"]   # asserts permitidos en tests
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101"]
 
 [tool.ruff.format]
-quote-style = "double"              # Comillas dobles
-indent-style = "space"              # Espacios y no tabs
-
-
+quote-style = "double"
+indent-style = "space"
 
 
 [tool.mypy]
@@ -78,3 +94,6 @@ init_typed = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app", "rag", "ingestion"]
