@@ -22,7 +22,7 @@ async def upload_document(
     return await subir_documento_service(file, user)
 
 
-@router.get("/id", response_model=list[DocumentResponse])
+@router.get("/{id}", response_model=list[DocumentResponse])
 async def get_document(document_id: str) -> list[Any]:
     return get_document_id(document_id)
 

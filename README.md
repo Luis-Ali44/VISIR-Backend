@@ -1,162 +1,103 @@
-# Visir API
+# CFDI Pipeline 
 
-Backend del sistema Visir — ERP inteligente 
+Pipeline de extracción de facturas CFDI mexicanas PDF/imagen y XML.
 
-FastAPI + Supabase + uv.
+## Archivos
 
----
-
-## Requisitos
-
-Antes de empezar verifica que tienes instalado:
-
-- [Python 3.12](https://www.python.org/downloads/)
-- [uv](https://docs.astral.sh/uv/) — gestor de dependencias
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
-```bash
-python --version   # debe ser 3.12.x
-uv --version
-docker --version
-```
-
-Si no tienes uv, puedes intalarlo:
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
----
-
-## Arranque local
-
-### Opción A — con Docker (recomendado)
-
-```bash
-# 1. clonar el repo
-git clone https://github.com/Luis-Ali44/VISIR-Backend.git
-cd Visir-Api
-
-# 2. copiar variables de entorno y rellenar credenciales
-cp .env.example .env
-
-# 3. levantar
-make dev
-
-si no tienen make instalado pueden correr directemnte:
-docker compose up --build
-```
-
-La API queda disponible en:
-- `http://localhost:8000`
-- `http://localhost:8000/docs` — Swagger UI
-
-Verificar que funciona:
-```bash
-curl http://localhost:8000/health
-# {"status":"ok","version":"0.1.0"}
-```
-
-### Opción B — sin Docker (solo Supabase)
-
-```bash
-# 1. instalar dependencias
-uv sync
-
-# 2. rellenar .env con credenciales de Supabase
-
-# 3. levantar
-uv run uvicorn app.main:app --reload
-```
----
-
-## Migraciones
-
-Aplicar en orden desde el **SQL Editor de Supabase**, uno por uno:
-
-```
-20260519140000_create_organizaciones.sql
-20260519140001_create_roles.sql
-20260519140002_create_categorias.sql
-20260519140003_create_usuarios.sql
-20260519140007_create_formas_pago.sql
-20260519140008_create_documentos.sql
-20260519140009_create_conversaciones.sql
-20260519140010_create_extracciones.sql
-20260519140011_rls_policies.sql
-20260519140012_seed_data.sql
-```
-
----
-
-## Comandos útiles
-
-```bash
-make dev            # levantar Docker
-make dev-down       # bajar
-make dev-logs       # ver logs de la API en tiempo real
-make dev-reset      # reset completo — borra volúmenes y reconstruye
-
-uv run ruff check app --fix   # linter
-uv run mypy app               # tipos
-uv run pytest                 # tests
-uv run pre-commit run --all-files
-```
-
----
-
-## Estructura del proyecto
-
-```
-app/
-├── routers/        # endpoints HTTP
-├── services/       # lógica de negocio
-├── repositories/   # acceso a Supabase
-├── schemas/        # modelos Pydantic
-└── core/           # config y cliente de Supabase
-migrations/         # SQL en orden numérico
-docs/               # documentación
-tests/              # pruebas
-```
-
----
-
-## Documentación
-
-| Archivo | Contenido |
+| Archivo | Rol |
 |---|---|
-| `docs/01_Arquitectura.md` | Capas del proyecto y flujo de peticiones |
-| `docs/02_Configuracion.md` | Variables de entorno, ruff, mypy, pytest, pre-commit |
-| `docs/ER.md` | Esquema de base de datos y diagrama ER |
-| `docs/03_Docker.md` | Dockerfile multi-stage y docker-compose |
-| `docs/04_Endpoints.md` | Referencia de endpoints y tests |
+| `pipeline.py` | Punto de entrada. Orquesta todo el flujo. |
+| `ocr_preprocess.py` | Clasificación de página, renderizado y preprocesamiento de imagen. |
+| `ocr_paddle.py` | Extracción de texto con PaddleOCR (preprocesamiento + OCR). |
+| `llm_extractor.py` | Estructuración con Mistral + normalización + fallback regex. |
+| `xml_parser.py` | Parser directo para archivos XML CFDI. |
+| `schema.py` | Validación Pydantic del JSON extraído. |
+| `catalogos.py` | Catálogos SAT y funciones de normalización. |
 
----
+## Flujo
 
-## Solución de problemas
+```
+PDF/Imagen → ocr_preprocess (clasifica página) → ocr_paddle (extrae texto)
+           → pipeline (detecta versión/UUID) → Mistral (estructura JSON)
+           → schema (valida Pydantic) → JSON final
 
-**Puerto 8000 ocupado**
-```yaml
-# docker-compose.yml — cambiar el puerto izquierdo
-ports:
-  - "8001:8000"
+XML → xml_parser → schema (valida Pydantic) → JSON final
 ```
 
-**Error de credenciales de Supabase**
-Verificar que `SUPABASE_URL`, `SUPABASE_PUBLIC_KEY` y `SUPABASE_SECRET_KEY` están correctamente copiados desde `Settings > API` en el dashboard de Supabase.
+## Requisitos previos
 
-**`uv: command not found`**
-Instalar uv con el comando de la sección Requisitos y abrir una terminal nueva.
+- Python 3.12
+- Cuenta en [Mistral AI](https://console.mistral.ai/) para obtener API key
 
+## Instalación
 
-**Docker no levanta — error en `depends_on`**
-El compose espera que postgres y redis estén healthy. Si usas Supabase cloud, comentar esos servicios y el `depends_on` de `api`. Ver `docs/03_Docker.md`.
+### 1. Crear y activar entorno virtual
 
-**La API arranca pero los endpoints fallan**
-- Verificar que las migraciones se aplicaron en Supabase en el orden correcto.
-- Revisar logs: `make dev-logs`.
-
-**Pre-commit cancela el commit**
+**Git Bash (Windows):**
 ```bash
-uv run ruff check app --fix   # corregir automáticamente
-uv run pre-commit run --all-files
+python -m venv .venv
+source .venv/Scripts/activate
 ```
+
+
+### 2. Actualizar pip
+
+```bash
+python -m pip install --upgrade pip
+```
+
+### 3. Instalar numpy primero (versión fija requerida por PaddlePaddle)
+
+```bash
+python -m pip install numpy==1.26.4
+```
+
+### 4. Instalar PaddlePaddle
+
+**CPU (Git Bash / Windows):**
+```bash
+python -m pip install paddlepaddle==3.2.1
+```
+
+### 5. Instalar PaddleOCR
+
+```bash
+python -m pip install paddleocr==3.5.0
+```
+
+### 6. Instalar el resto de dependencias
+
+```bash
+python -m pip install PyMuPDF==1.27.2.3 opencv-python==4.11.0.86 Pillow==11.1.0 mistralai==2.4.5 pydantic requests==2.34.2
+```
+
+### 7. Verificar instalación
+
+```bash
+python -c "import paddle; import paddleocr; import fitz; import cv2; import PIL; import mistralai; import pydantic; print('Todo OK')"
+```
+
+Debes ver `Todo OK`. Los warnings de `ccache` y `oneDNN` son normales y no afectan el funcionamiento.
+
+## Configuración
+
+Configura tu API key de Mistral antes de correr el pipeline:
+
+```bash
+export MISTRAL_API_KEY=tu_clave_aqui
+```
+
+## Uso
+
+```bash
+# Un archivo
+python pipeline.py cfdi_ejemplo.jpg
+
+# Una carpeta completa
+python pipeline.py ./facturas/
+```
+
+El pipeline genera dos archivos junto al archivo de entrada:
+- `<nombre>_ocr.txt` — texto crudo extraído por PaddleOCR (para verificación)
+- `<nombre>_cfdis.json` — datos estructurados y validados (el json a guardar)
+

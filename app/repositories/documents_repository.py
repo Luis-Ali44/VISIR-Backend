@@ -80,5 +80,57 @@ def get_id_categoria(categoria: str = "Sin categoria") -> str | None:
 
     if default_response and isinstance(default_response.data, dict):
         return str(default_response.data["id"])
+    return None
+
+
+def save_extracciones_repository(data: list[dict[str, Any]]):
+    response = supabase.table("extracciones").insert(data).execute()
+    return list(response.data)
+
+
+def tipo_comprobante(tipo: str) -> str | None:
+    if not tipo:
+        return None
+
+    try:
+        response = (
+            supabase.table("tipos_comprobantes")
+            .select("nombre")
+            .eq("clave", str(tipo).strip().upper())
+            .maybe_single()
+            .execute()
+        )
+
+        if response and isinstance(response.data, dict):
+            return str(response.data.get("nombre"))
+
+    except Exception:
+        print(f"Error al obtener tipo_comprobante para clave: {tipo}")
+    return None
+
+
+def nombre_forma_pago(forma_pago: str) -> str | None:
+    if not forma_pago:
+        return None
+
+    try:
+        clave = int(str(forma_pago).strip())
+    except (TypeError, ValueError):
+        return None
+
+    try:
+        response = (
+            supabase.table("formas_pago")
+            .select("nombre")
+            .eq("clave", clave)
+            .maybe_single()
+            .execute()
+        )
+
+        if response and response.data:
+            return str(response.data.get("nombre"))
+
+    except Exception:
+        return None
 
     return None

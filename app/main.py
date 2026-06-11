@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.routers.auth_router import router as auth_router
 from app.routers.documents_router import router as documents_router
+from app.routers.extracciones_router import router as extracciones_router
 
 app = FastAPI(title="VISIR API", version="0.1.0")
 
@@ -18,3 +19,4 @@ def welcome() -> str:
 
 app.include_router(documents_router)
 app.include_router(auth_router)
+app.include_router(extracciones_router)

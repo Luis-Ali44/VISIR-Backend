@@ -19,5 +19,7 @@ class Settings(BaseSettings):
     SUPABASE_PUBLIC_KEY: str
     SUPABASE_SECRET_KEY: str
 
+    MISTRAL_API_KEY: str
+
 
 settings = Settings()

@@ -1,3 +1,5 @@
+import tempfile
+from pathlib import Path
 from typing import Any
 from uuid import UUID
 
@@ -6,13 +8,17 @@ from fastapi import HTTPException, UploadFile
 from app.repositories.documents_repository import (
     get_document_by_id,
     get_documents_repository,
-    get_id_categoria,
     get_my_documents,
     save_document_metadata,
     save_document_storage,
+    save_extracciones_repository,
 )
 from app.schemas.documents_schema import DocumentCreate, DocumentResponse
 from app.schemas.user_schema import UsuarioActual
+
+# Conexion de paola
+from app.services.Extraccion.pipeline import procesar
+from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
 
 MAX_FILE_SIZE = 5 * 1024 * 1024
 
@@ -44,6 +50,9 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
     id_usuario = user.id
     id_organizacion = user.id_organizacion
 
+    if not id_usuario or not id_organizacion:
+        raise HTTPException(status_code=400, detail="Usuario u organización inválidos")
+
     contenido = await validate_document(archivo)
 
     tipo_archivo = archivo.content_type
@@ -54,17 +63,24 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             detail="Tipo de archivo inválido",
         )
 
-    ruta_archivo = save_document_storage(
-        id_usuario=id_usuario,
-        contenido_archivo=contenido,
-        nombre_archivo=archivo.filename or "archivo",
-        tipo_archivo=tipo_archivo,
-    )
+    # Guardar el archivo en el almacenamiento y obtener la ruta
+    try:
+        ruta_archivo = save_document_storage(
+            id_usuario=id_usuario,
+            contenido_archivo=contenido,
+            nombre_archivo=archivo.filename or "archivo",
+            tipo_archivo=tipo_archivo,
+        )
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500, detail="No se pudo guardar el archivo en storage"
+        ) from exc
 
-    categoria = get_id_categoria()
+    if not ruta_archivo:
+        raise HTTPException(status_code=500, detail="No se obtuvo la ruta del archivo guardado")
 
-    id_categoria = UUID(categoria) if categoria else None
-
+    # Crear metadata del documento
+    # Categoria se deja fuera del flujo por ahora; se activará cuando el OCR la devuelva.
     metadata = DocumentCreate(
         nombre=archivo.filename or "archivo",
         tipo=tipo_archivo,
@@ -72,12 +88,92 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
         link=ruta_archivo,
         id_usuario=UUID(id_usuario),
         id_organizacion=UUID(id_organizacion),
-        id_categorias=id_categoria,
+        # id_categorias=id_categoria,
+        id_categorias=None,
     )
 
-    resultado = save_document_metadata(
-        metadata.model_dump(mode="json")
-    )  # Maneja el UUID como str para que no de error
+    # Guardar metadata en la base de datos
+    try:
+        resultado = save_document_metadata(
+            metadata.model_dump(mode="json")
+        )  # Maneja el UUID como str para que no de error
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500, detail="No se pudieron guardar los metadatos del documento"
+        ) from exc
+
+    if not isinstance(resultado, list) or not resultado or not isinstance(resultado[0], dict):
+        raise HTTPException(
+            status_code=500, detail="No se pudo recuperar la metadata guardada del documento"
+        )
+
+    ext = Path(archivo.filename or "archivo.pdf").suffix
+    tmp_path = None
+
+    # Descargar el archivo para procesarlo con la libreria de paolaG
+    try:
+        with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
+            tmp.write(contenido)
+            tmp_path = Path(tmp.name)
+
+        try:
+            Data = procesar(ruta_archivo=tmp_path, guardar_txt=False)  # noqa: N806
+        except Exception as exc:
+            raise HTTPException(
+                status_code=422, detail="No se pudo procesar el archivo con OCR"
+            ) from exc
+    finally:
+        if tmp_path and tmp_path.exists():
+            tmp_path.unlink(missing_ok=True)  # Eliminar el archivo temporal
+
+    # Categoria se mantiene fuera del flujo actual hasta que el OCR la entregue.
+    # categoria = get_id_categoria()
+    # id_categoria = UUID(categoria) if categoria else None
+
+    # Obtenemos id_documento de la metadata guardada para relacionarlo con las extracciones
+    id_documento = resultado[0]["id"]
+
+    if (
+        not isinstance(Data, dict)
+        or not isinstance(Data.get("cfdis"), list)
+        or not Data.get("cfdis")
+    ):
+        raise HTTPException(status_code=422, detail="No se encontraron CFDIs para extraer")
+
+    rows = []
+    for item in Data.get("cfdis", []):
+        datos = item.get("datos", {}) if isinstance(item, dict) else {}
+
+        forma_pago = datos.get("forma_pago")
+
+        rows.append(
+            {
+                "folio_fiscal": datos.get("folio_fiscal"),
+                "total": datos.get("total"),
+                "metadatos": datos,
+                "fecha_emision": parse_fecha(datos.get("fecha_emision")).isoformat()
+                if datos.get("fecha_emision")
+                else None,
+                "tipo_comprobante": map_tipo_comprobante(datos.get("tipo_de_comprobante")),
+                "metodo_pago": datos.get("metodo_pago"),
+                "estado": "procesado",
+                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
+                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
+                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
+                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
+                "id_documento": id_documento,
+                "id_organizacion": id_organizacion,
+                "forma_pago": get_nombre_forma_pago(int(forma_pago)) if forma_pago else None,
+            }
+        )
+
+    # Guardamos las extracciones en la base de datos
+    try:
+        save_extracciones_repository(rows)
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500, detail="No se pudieron guardar las extracciones"
+        ) from exc
 
     return DocumentResponse(**resultado[0])
 
