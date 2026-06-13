@@ -1,0 +1,343 @@
+{
+  "timestamp": "20260610_140129",
+  "modelo_embedding": "embeddinggemma:latest",
+  "collection": "documentos_fiscales",
+  "queries": [
+    {
+      "query": "¿Qué es el CFDI y para qué se usa?",
+      "fragments_found": 5,
+      "trazabilidad_ok": true,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "b3b0b671a3d59bf5b10cda682ae513c7f9157b5c252499b08fad428db47640fd",
+          "similarity": 0.6566,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "Apéndice 2 Clasificación de los tipos de CFDI \n\nTipos de comprobantes",
+          "page_number": 46,
+          "importance": 4,
+          "text_preview": "– \n\nEs un CFDI que incorpora un"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5bf38cc2de3c88d00dd333591264cc228cebbff1c9bd879e15f1c4bd70acfe80",
+          "similarity": 0.6545,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "introduccion",
+          "page_number": 54,
+          "importance": 4,
+          "text_preview": "debe emitir el CFDI con Complemento para recepción de Pagos (Ver “Guía de llenado del comprobante al que se le incorpore el complemento para recepción de pagos”)."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "d178bac1ac4d9cd007f2d33824c801fde6cad64998c84d0bff10cff63449eef8",
+          "similarity": 0.6428,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "Control de cambios",
+          "page_number": 1,
+          "importance": 4,
+          "text_preview": "de la Guía de llenado del Comprobante Fiscal Digital por Introducción \n\nLos Comprobantes Fiscales Digitales por Internet (CFDI) deben emitirse por los actos o actividades que se realicen, por los ingresos que perciban o por las retenciones de contribuciones que efectúen los contribuyentes ya sean pe..."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "7621c34fc7cd9c28b5767ea61675885de69e0af97002ff63abb6f716e68923ae",
+          "similarity": 0.6416,
+          "doc_id": "Guia_Complemento_Pagos_v2_limpio__c9bba1e8d80f",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_Complemento_Pagos_v2_limpio.pdf",
+          "filename": "Guia_Complemento_Pagos_v2_limpio.pdf",
+          "section": "6. ¿Es obligatorio el campo de “UsoCFDI” en el CFDI con complemento para recepción de pagos, también \n\ndenominado “recibo electrónico de pago”?",
+          "page_number": 61,
+          "importance": 4,
+          "text_preview": "Sí, es obligatorio. Cuando se emita un CFDI con complemento para recepción de pagos, en el campo UsoCFDI se \n\ndebe registrar la clave “CP01” Pagos. En razón, de que el Uso del CFDI quedó registrado en la factura emitida por \n\nel monto total de la operación. \n\n"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f4f16fde508893d6b106acd66bad42224e1a3c148aa29651dddc5012094a3abd",
+          "similarity": 0.6411,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "II. Guía de llenado del Comprobante Fiscal Digital por Internet que ampara Apéndice 6",
+          "page_number": 1,
+          "importance": 4,
+          "text_preview": "Procedimiento para la emisión de los CFDI en el caso de anticipos"
+        }
+      ]
+    },
+    {
+      "query": "¿Cuáles son los campos obligatorios del CFDI 4.0?",
+      "fragments_found": 5,
+      "trazabilidad_ok": true,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "921377e5ad61c2562db142caeea3ea5e6b48e5931ee696e732cb084bfaaec5c1",
+          "similarity": 0.6667,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "3. ¿Cómo se deben reflejar los impuestos retenidos y trasladados en el CFDI versión 4.0?",
+          "page_number": 58,
+          "importance": 4,
+          "text_preview": "En la versión 4.0 del CFDI se expresarán los impuestos trasladados y retenidos \n\naplicables por cada concepto registrado en el comprobante, debiéndose detallar lo siguiente: \n\n- Base para el cálculo del impuesto. \n\n- Impuesto (Tipo de impuesto ISR, IVA, IEPS). \n\n- Tipo factor (Tasa, cuota o exento)...."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "d567698d3604ad6fcfe6503561d5741e4072ff2b312cb2c7e68e6ff24cfa22d6",
+          "similarity": 0.6593,
+          "doc_id": "Guia_llenado_CFDI_global_limpio__c563cbe38e98",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_llenado_CFDI_global_limpio.pdf",
+          "filename": "Guia_llenado_CFDI_global_limpio.pdf",
+          "section": "introduccion",
+          "page_number": 4,
+          "importance": 4,
+          "text_preview": "|**Nombre del nodo o atributo**|**Descripción**|\n|---|---|\n|Sello|Es el sello digital del comprobante fiscal generado con|\n\n\n\n## I. Guía de llenado del CFDI global versión 4.0 \n\nCuando se emita un CFDI, se debe hacer con las especificaciones señaladas en \n\ncada uno de los campos expresados en lengua..."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "adaa58e7f3c56db1df6b201ebba7603e8a7b66d83ea2ac5635d7a1676842f9cc",
+          "similarity": 0.6522,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "4. ¿En qué caso los campos condicionales del CFDI son de uso obligatorio?",
+          "page_number": 59,
+          "importance": 4,
+          "text_preview": "Los campos condicionales deberán informarse –serán obligatorios- siempre que se registre información en algún otro campo que como resultado de las reglas de validación contenidas en el estándar técnico y precisadas en la Guía de llenado, obligue en consecuencia a que se registre información en dicho..."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "6f49333ce0e65c0a96f10accd16258ad5bb87529fcef1508786bfda09ec5525f",
+          "similarity": 0.6379,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "2. ¿En el CFDI versión 4.0 se podrán registrar cantidades en negativo?",
+          "page_number": 58,
+          "importance": 4,
+          "text_preview": "No, en la versión 4.0 del CFDI no aplica el uso de números negativos para ningún dato. \n\nFundamento Legal: Anexo 20 versión 4.0 vigente."
+        },
+        {
+          "rank": 5,
+          "chunk_id": "c57a9677191d59ed2f892b8a30ca07bfb5aebb43c011e76d1f6979a5cd7a5fb1",
+          "similarity": 0.6199,
+          "doc_id": "topic_seed__974eb44b156b",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\topic_seed.md",
+          "filename": "topic_seed.md",
+          "section": "introduccion",
+          "page_number": null,
+          "importance": 4,
+          "text_preview": "Coincidencia con CFDI 4.0 y Anexo 20.\n"
+        }
+      ]
+    },
+    {
+      "query": "¿Cómo se cancela un CFDI?",
+      "fragments_found": 5,
+      "trazabilidad_ok": true,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "4b93b296d4bab4157c8d07cab39b5cffd42e76eb70364a244ae6f5acb0a8634b",
+          "similarity": 0.7196,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "Apéndice 7 Preguntas y respuestas sobre el Anexo 20 versión 4.0 \n\n1.",
+          "page_number": 58,
+          "importance": 4,
+          "text_preview": "¿Se deberá cancelar el CFDI cuando el receptor dará un uso diferente al señalado en el campo UsoCFDI? Sí, se debe cancelar y sustituir por el CFDI que contenga la clave del UsoCFDI correcta. \n\nFundamento Legal: Artículo 29-A, primer párrafo, fracción IV del CFF, regla 2.7.1.29. de la Resolución Misc..."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "43bd4d7fac1043f6e4c01d7bebbfb73ece90e08218c8f92a7c483e0b8675c18f",
+          "similarity": 0.694,
+          "doc_id": "GuiaAnexo20Global_limpio__7e2010b95b08",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\GuiaAnexo20Global_limpio.pdf",
+          "filename": "GuiaAnexo20Global_limpio.pdf",
+          "section": "II. Ejemplo de cancelación de factura Global por una solicitud de generación \n\nde un",
+          "page_number": 26,
+          "importance": 4,
+          "text_preview": "CFDI de ingresos por una operación documentada en dicha factura. \n\nEn esta opción el contribuyente puede cancelar el CFDI global, para volverlo a \n\ngenerar sin considerar la operación documentada en el comprobante de \n\noperaciones con el público en general con el número 17-2358-4569, por el cual le ..."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "4ab69e54cee25fa53d43252499d3a8aad7b598bc6945a856c6154bcd52ce2799",
+          "similarity": 0.6892,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "introduccion",
+          "page_number": 69,
+          "importance": 4,
+          "text_preview": "Se debe actuar en este orden: \n\n1. Se debe emitir el comprobante que contiene los datos correctos, registrando la clave “04” (Sustitución de los CFDI previos) relacionando el folio fiscal del comprobante que se sustituye. \n\n2. Al registrar la solicitud de cancelación se debe seleccionar la opción \"0..."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "ba945cc1c804d89fd5ffa17308e0cfc664a11311d7b6fb15e45b76134b8c6c98",
+          "similarity": 0.6863,
+          "doc_id": "Guia_Complemento_Comercio_Exterior_limpio__75157c856326",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_Complemento_Comercio_Exterior_limpio.pdf",
+          "filename": "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+          "section": "13. ¿Qué debo de hacer en caso de desistimiento del régimen aduanero?",
+          "page_number": 67,
+          "importance": 4,
+          "text_preview": "Se deberá cancelar el comprobante fiscal y agregarlo como E-document junto con el archivo XML al pedimento de desistimiento del régimen."
+        },
+        {
+          "rank": 5,
+          "chunk_id": "bf36da219d41d827114076a139426981f0fbcc28ea5e2b117d3d69b93469320d",
+          "similarity": 0.682,
+          "doc_id": "Guia_llenado_CFDI_global_limpio__c563cbe38e98",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_llenado_CFDI_global_limpio.pdf",
+          "filename": "Guia_llenado_CFDI_global_limpio.pdf",
+          "section": "introduccion",
+          "page_number": 31,
+          "importance": 4,
+          "text_preview": "estan solicitando la factura individual. \n\n## a) Cancelación de CFDI Global \n\nSe cancela la factura en el Portal del SAT o a través del Proveedor de \n\nCertificación del CFDI, en este ejemplo se cancela la factura con UUID \n\nAAAca0c2-3ea4-4506-abe3-f05771737e69. \n\n"
+        }
+      ]
+    },
+    {
+      "query": "¿Qué es el complemento de pago?",
+      "fragments_found": 5,
+      "trazabilidad_ok": true,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "0fd48ade4fc2fca69e6f8399fd00a5ff7c3be305e02aced223732cb5d42b3265",
+          "similarity": 0.6854,
+          "doc_id": "Guia_Complemento_Pagos_v2_limpio__c9bba1e8d80f",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_Complemento_Pagos_v2_limpio.pdf",
+          "filename": "Guia_Complemento_Pagos_v2_limpio.pdf",
+          "section": "introduccion",
+          "page_number": 58,
+          "importance": 4,
+          "text_preview": "Complemento para recepción de pagos: También denominado “Recibo Electrónico de Pago”."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "346f5dee21d2d4cff9f0478428d08c0e81042959650c454f1935200a4997e148",
+          "similarity": 0.6553,
+          "doc_id": "Guia_Complemento_Pagos_v2_limpio__c9bba1e8d80f",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_Complemento_Pagos_v2_limpio.pdf",
+          "filename": "Guia_Complemento_Pagos_v2_limpio.pdf",
+          "section": "introduccion",
+          "page_number": 26,
+          "importance": 4,
+          "text_preview": "|||**Complemento para recep**|**ción de pagos, para mayor**|\n|---|---|---|---|\n|||Ejemplo:||\n|||MontoTotalPagos=15000.0|0|\n|"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "5bf38cc2de3c88d00dd333591264cc228cebbff1c9bd879e15f1c4bd70acfe80",
+          "similarity": 0.6425,
+          "doc_id": "Anexo_20_Guia_Llenado_CFDI_v4_v2__8f99cde3c7e9",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+          "section": "introduccion",
+          "page_number": 54,
+          "importance": 4,
+          "text_preview": "debe emitir el CFDI con Complemento para recepción de Pagos (Ver “Guía de llenado del comprobante al que se le incorpore el complemento para recepción de pagos”)."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "f7baa48af37664fa52776d83ecfdcd096cb0720d5fa8e56184ee39f5e90353f4",
+          "similarity": 0.6076,
+          "doc_id": "complementos__d312ded73c2b",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\complementos.md",
+          "filename": "complementos.md",
+          "section": "introduccion",
+          "page_number": null,
+          "importance": 4,
+          "text_preview": "---\ntitulo: complementos_cfdi_comunes\nfuente: SAT CFDI 4.0 - Complementos publicados en portal SAT\nfecha_publicacion_sat: 2025-12-31 \nfecha_consulta: 26-05-2026\nversion: 1.0\n---\n\n# Complementos Comunes del CFDI 4.0\n\nUn complemento es un nodo adicional que se incorpora al CFDI cuando una operación re..."
+        },
+        {
+          "rank": 5,
+          "chunk_id": "70d7a2315aecd9120cdfade07367b1a05ba66204a205153a58e8c886c345cbeb",
+          "similarity": 0.6033,
+          "doc_id": "Guia_Complemento_Pagos_v2_limpio__c9bba1e8d80f",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_Complemento_Pagos_v2_limpio.pdf",
+          "filename": "Guia_Complemento_Pagos_v2_limpio.pdf",
+          "section": "Nodo: Pagos",
+          "page_number": 15,
+          "importance": 4,
+          "text_preview": "|||Complemento pa|ra el Comprobante|\n|||||información sobre|la recepción de pa|\n|||||||\n|||||El emisor del CF|DI con Complement|\n|||||en el caso de pag|o en parcialidades|\n|||||||"
+        }
+      ]
+    },
+    {
+      "query": "¿Cuáles son los regímenes fiscales disponibles en México?",
+      "fragments_found": 5,
+      "trazabilidad_ok": true,
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "b5aa26351d3b739a07f36f80c7a101d1f4f1c22710849c12fe5622d2e1830a66",
+          "similarity": 0.6899,
+          "doc_id": "El_ABC_personas_contribuyentes_v2__161562b6f2ee",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\El_ABC_personas_contribuyentes_v2.pdf",
+          "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+          "section": "introduccion",
+          "page_number": 51,
+          "importance": 3,
+          "text_preview": "- Régimen Simplificado de Confianza para personas \n\nmorales. \n\n- De las personas morales con fines no lucrativos. \n\n## **Regímenes fiscales en personas físicas** \n\nEste régimen es para las personas que reciben un pago (sueldo o salario) de forma periódica por su trabajo subordinado, por parte de la ..."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "2031a9e590e887e29c87844a456db40100e0b559c4a401c83b3b43eb4cfc7a3e",
+          "similarity": 0.6681,
+          "doc_id": "El_ABC_personas_contribuyentes_v2__161562b6f2ee",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\El_ABC_personas_contribuyentes_v2.pdf",
+          "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+          "section": "introduccion",
+          "page_number": 51,
+          "importance": 3,
+          "text_preview": "## **es** \n\nSe le llama régimen fiscal al conjunto de disposiciones jurídicas que determinan los derechos y obligaciones que tienen las personas físicas y morales, atendiendo a la actividad económica que realizan, a partir del momento en que la inician. \n\n## **Clasificación de los Regímenes fiscales..."
+        },
+        {
+          "rank": 3,
+          "chunk_id": "0eeedf13b28813505caf8b9ded0c2d9e013d9f49fd4843b4283f6b6b4e580415",
+          "similarity": 0.6095,
+          "doc_id": "Guia_llenado_CFDI_global_limpio__c563cbe38e98",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Guia_llenado_CFDI_global_limpio.pdf",
+          "filename": "Guia_llenado_CFDI_global_limpio.pdf",
+          "section": "Nodo: Emisor En este nodo se debe expresar la información",
+          "page_number": 13,
+          "importance": 4,
+          "text_preview": "Las claves de los diversos regímenes se encuentran incluidas en el catálogo c_RegimenFiscal publicado en el Portal del SAT. Ejemplo: En el caso de que el emisor sea una persona moral inscrita en el Régimen General de Ley de Personas Morales, debe registrar lo siguiente: RegimenFiscal= 601 Aplica par..."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "9619fb1c3e58e3b9e81c86011d991b6f66f573b6e24121c757ddb5fb8c725ae5",
+          "similarity": 0.6435,
+          "doc_id": "RMF_2026_Completa_limpio__2b037907a08d",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\RMF_2026_Completa_limpio.pdf",
+          "filename": "RMF_2026_Completa_limpio.pdf",
+          "section": "IX. Interpretación y aplicación de acuerdos interinstitucionales en el ámbito interna",
+          "page_number": 77,
+          "importance": 3,
+          "text_preview": "cional con cláusula fiscal, acuerdos, convenios o tratados fiscales o de intercambio de información fiscal de los que México sea parte u otros que contengan disposiciones sobre dichas materias."
+        },
+        {
+          "rank": 5,
+          "chunk_id": "a9b4d7c07a0ea4b49ce1272acfa041324b9506308a905d792ea53817550b4f2f",
+          "similarity": 0.6391,
+          "doc_id": "Anexo_1A_RMF_2025_Tramites_v2__5f587a6fcda7",
+          "source": "C:\\Users\\Derek\\Desktop\\Estadias\\Sprint1\\Backend-visir\\Visir-backend-1.3\\VISIR-Backend\\data\\Anexo_1A_RMF_2025_Tramites_v2.pdf",
+          "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+          "section": "introduccion",
+          "page_number": 758,
+          "importance": 3,
+          "text_preview": "- Personas físicas que tributen en el régimen de Cuando lo requieras. "
+        }
+      ]
+    }
+  ],
+  "all_passed": true
+}

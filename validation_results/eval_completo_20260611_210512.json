@@ -1,0 +1,1712 @@
+{
+  "timestamp": "2026-06-11T21:05:12.992334",
+  "modo": "completo",
+  "modelo_rag": "meta-llama/llama-4-scout-17b-16e-instruct",
+  "modelo_juez": "llama-3.3-70b-versatile",
+  "top_k": 5,
+  "recall_global": {
+    "total_preguntas": 30,
+    "recall_at_1": 0.5333,
+    "recall_at_3": 0.7,
+    "recall_at_5": 0.8
+  },
+  "recall_por_dificultad": {
+    "alta": {
+      "total_preguntas": 7,
+      "recall_at_1": 0.7143,
+      "recall_at_3": 0.8571,
+      "recall_at_5": 0.8571
+    },
+    "baja": {
+      "total_preguntas": 11,
+      "recall_at_1": 0.2727,
+      "recall_at_3": 0.5455,
+      "recall_at_5": 0.7273
+    },
+    "media": {
+      "total_preguntas": 12,
+      "recall_at_1": 0.6667,
+      "recall_at_3": 0.75,
+      "recall_at_5": 0.8333
+    }
+  },
+  "resultados": [
+    {
+      "pregunta": "¿Qué RFC genérico se debe usar para facturar a un extranjero sin registro fiscal en México?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "rfc-generico.md"
+      ],
+      "filenames_recuperados": [
+        "rfc-generico.md",
+        "rfc-generico.md",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "9c45a136d6f67bd35ce41cd66f46f0abeb2db96000c96697b74e7316d8059d63",
+        "719c45b4a8d66867d25ffac27502e44b1f1e74f9a862142424f89768458e60e6",
+        "c711d0466eec80523d5baa8f14134b9aab0d20057c9046c03b6ad36c900a6afd",
+        "f964eed138d841b052b1b59c6136a6972bc0edb77a30e2ef160a6e614e1d9304",
+        "00f4610bd7549d324cbd9c7771da69e43df587c24805fa929cafdd120d946c52"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 3493,
+      "respuesta_generada": "Para facturar a un extranjero sin registro fiscal en México, se debe utilizar el RFC genérico **XEXX010101000**. Este RFC se usa cuando el receptor es residente en el extranjero sin inscripción en el RFC mexicano. Es importante mencionar que, a diferencia del RFC genérico nacional, con este RFC sí se debe registrar el nombre real del receptor en el campo correspondiente. Además, el régimen fiscal del receptor debe ser `616 — Sin obligaciones fiscales` y el uso del CFDI debe ser `S01 — Sin efectos fiscales`. \n\n(Fuente: rfc-generico.md, Sección: introduccion)",
+      "respuesta_esperada": "XEXX010101000",
+      "tokens_entrada": 1872,
+      "tokens_salida": 125,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en la información proporcionada en los fragmentos de contexto, específicamente en la sección sobre el RFC genérico XEXX010101000 para extranjeros sin registro fiscal en México. Todas las afirmaciones están explícitamente soportadas por los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "Para facturar a un extranjero sin registro fiscal en México, se debe utilizar el RFC genérico XEXX010101000",
+          "Este RFC se usa cuando el receptor es residente en el extranjero sin inscripción en el RFC mexicano",
+          "con este RFC sí se debe registrar el nombre real del receptor en el campo correspondiente",
+          "el régimen fiscal del receptor debe ser 616 — Sin obligaciones fiscales y el uso del CFDI debe ser S01 — Sin efectos fiscales"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en la información proporcionada en los fragmentos de contexto, específicamente en la sección sobre el RFC genérico XEXX010101000 para extranjeros sin registro fiscal en México. Todas las afirmaciones están explícitamente soportadas por los fragmentos."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el RFC genérico correcto y los requisitos adicionales necesarios para su uso. La información es precisa y útil, satisfaciendo la necesidad informativa del usuario.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "RFC genérico para extranjeros sin registro fiscal",
+          "Requisitos adicionales para el uso del RFC genérico"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el RFC genérico correcto y los requisitos adicionales necesarios para su uso. La información es precisa y útil, satisfaciendo la necesidad informativa del usuario."
+      },
+      "latencia_generacion_ms": 1179,
+      "latencia_juez_ms": 1509
+    },
+    {
+      "pregunta": "¿Cuál es el plazo máximo para emitir el complemento de recepción de pagos (REP) después de recibir un pago?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "complementos.md"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "complementos.md",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "52551085bef313b8462cb5d1d0f3e09fd2b4468e2a8aa8abc8fcba19c7605491",
+        "f7baa48af37664fa52776d83ecfdcd096cb0720d5fa8e56184ee39f5e90353f4",
+        "5444fbd2e87de0a741b3f29be7028e12a722726cedcc05795a20a8801659ace1",
+        "9782fdbae18f27789731b99f1050651fce2110782f62003a04794c0da21de63b",
+        "26ecb9cad29b44f49b36c92559c7977425e950f621db240b49e23a4fcfe3bdc8"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 419,
+      "respuesta_generada": "El plazo máximo para emitir el complemento de recepción de pagos (REP) después de recibir un pago es a más tardar al quinto día natural del mes siguiente al que se recibió el pago. Esto se establece en la Guía del Complemento de Pagos v2, que indica que el CFDI con complemento para recepción de pagos debe emitirse a más tardar al quinto día natural del mes inmediato siguiente al que corresponda el pago recibido. \n\n(Fuente: Guia_Complemento_Pagos_v2_limpio.pdf, Sección: 4. ¿Qué plazo se tiene para emitir el CFDI con complemento para recepción de pagos?)",
+      "respuesta_esperada": "Quinto día natural del mes siguiente al que se recibió el pago",
+      "tokens_entrada": 1483,
+      "tokens_salida": 128,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en la Guía del Complemento de Pagos v2, que establece el plazo máximo para emitir el complemento de recepción de pagos. Los fragmentos de contexto proporcionan el soporte explícito para las afirmaciones realizadas en la respuesta.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "El plazo máximo para emitir el complemento de recepción de pagos (REP) después de recibir un pago es a más tardar al quinto día natural del mes siguiente al que se recibió el pago",
+          "Esto se establece en la Guía del Complemento de Pagos v2"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en la Guía del Complemento de Pagos v2, que establece el plazo máximo para emitir el complemento de recepción de pagos. Los fragmentos de contexto proporcionan el soporte explícito para las afirmaciones realizadas en la respuesta."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el plazo máximo para emitir el complemento de recepción de pagos y su fuente, lo que satisface la necesidad informativa del usuario. La información es precisa y útil, sin omitir detalles relevantes.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "plazo máximo para emitir el complemento de recepción de pagos",
+          "fuente de la información"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el plazo máximo para emitir el complemento de recepción de pagos y su fuente, lo que satisface la necesidad informativa del usuario. La información es precisa y útil, sin omitir detalles relevantes."
+      },
+      "latencia_generacion_ms": 518,
+      "latencia_juez_ms": 1413
+    },
+    {
+      "pregunta": "¿Qué código de forma de pago corresponde a 'Tarjeta de Débito'?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "metodos-pago.md"
+      ],
+      "filenames_recuperados": [
+        "Documentacion_Tecnica_CFDI_limpio.pdf",
+        "metodos-pago.md",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "GuiaAnexo20DPA_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "c50fa3aefd53aba8ee38e2f3b5b23bd90e165c09bcca1b69fc712465b27d1d6b",
+        "55709848d58813403db80f029aed072b77e50086bd496e9096e7d7c0b13a88fd",
+        "cb3b8f3c4bc3cfa72652f3c4726f4e70ac352b4babedf9e27dd9c83584c9ca38",
+        "bde08bd56ee1c091091f6a1250c4b79fb842440f1cbb73cd75b5737d8a29410d",
+        "f07419d06bfea92c2e52868264f891b045acbf8cbe60230ba4ab76a90b7b828b"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 384,
+      "respuesta_generada": "El contexto disponible no cubre esta pregunta. \n\nSin embargo, puedo decir que en el contexto proporcionado, se mencionan varios códigos de forma de pago, como:\n\n- 01: Efectivo\n- 02: Cheque Nominativo\n- 03: Transferencia Electrónica de Fondos SPEI\n- 04: Tarjeta de Crédito\n- 05: Monedero Electrónico\n- 06: Dinero Electrónico\n- 08: Vales de Despensa\n- 12: Dación en Pago\n- 13: Pago por Subrogación\n\nPero no se menciona explícitamente el código para 'Tarjeta de Débito'. \n\nPodrías revisar el catálogo de formas de pago en el sitio web oficial del SAT o en cfdi.org.mx para obtener esta información.",
+      "respuesta_esperada": "28",
+      "tokens_entrada": 1502,
+      "tokens_salida": 168,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta proporciona información soportada por los fragmentos sobre los códigos de forma de pago, pero no encuentra el código para 'Tarjeta de Débito' y sugiere buscar en fuentes externas, lo que no está soportado por los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "El contexto disponible no cubre esta pregunta.",
+          "se mencionan varios códigos de forma de pago, como: 01: Efectivo, 02: Cheque Nominativo, 03: Transferencia Electrónica de Fondos SPEI, 04: Tarjeta de Crédito, 05: Monedero Electrónico, 06: Dinero Electrónico, 08: Vales de Despensa, 12: Dación en Pago, 13: Pago por Subrogación"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Pero no se menciona explícitamente el código para 'Tarjeta de Débito'.",
+          "Podrías revisar el catálogo de formas de pago en el sitio web oficial del SAT o en cfdi.org.mx para obtener esta información."
+        ],
+        "razonamiento": "La respuesta proporciona información soportada por los fragmentos sobre los códigos de forma de pago, pero no encuentra el código para 'Tarjeta de Débito' y sugiere buscar en fuentes externas, lo que no está soportado por los fragmentos."
+      },
+      "relevancia_score": 2,
+      "relevancia_razonamiento": "La respuesta generada no proporciona el código de forma de pago para 'Tarjeta de Débito', pero sugiere buscar en fuentes oficiales, lo que obliga al usuario a buscar más información. La respuesta no cubre completamente la necesidad informativa expresada en la pregunta.",
+      "relevancia_detalle": {
+        "score": 2,
+        "aspectos_respondidos": [
+          "menciona la falta de información explícita en el contexto proporcionado",
+          "sugiere buscar en el sitio web oficial del SAT o en cfdi.org.mx"
+        ],
+        "aspectos_faltantes": [
+          "el código de forma de pago para 'Tarjeta de Débito'"
+        ],
+        "razonamiento": "La respuesta generada no proporciona el código de forma de pago para 'Tarjeta de Débito', pero sugiere buscar en fuentes oficiales, lo que obliga al usuario a buscar más información. La respuesta no cubre completamente la necesidad informativa expresada en la pregunta."
+      },
+      "latencia_generacion_ms": 599,
+      "latencia_juez_ms": 1537
+    },
+    {
+      "pregunta": "¿Qué tipo de comprobante se utiliza para registrar una nota de crédito o devolución de mercancía?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "tipos-comprobante.md"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "tipos-comprobante.md",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "tipos-comprobante.md",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "ce82052cc08c147e2030b00919e374bc924ae4f240e13e82ac0a61a7431bb2e9",
+        "79f5bfbbe7e152c02c547e6211218789c3d07381982fc22ca4bfe1f2bb0a3f7c",
+        "1309f6d690f6e46b9bd6f9df82030949d811127a7ca4fbf34bccdae600e024bb",
+        "ccd34c330218c6bc2066f1f98cef36719e3a3da9682c18ab13aee83e5fa7684d",
+        "a6d365b7c1add943035564cf73a7f6068ad8f4be26d39bdfc3f2e6d91df277b9"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 342,
+      "respuesta_generada": "Para registrar una nota de crédito o devolución de mercancía, se puede utilizar el comprobante de tipo \"E\" (Egreso). \n\nSegún el fragmento 4, el comprobante de tipo \"E\" se utiliza para registrar devoluciones, descuentos, bonificaciones o correcciones relacionadas con una factura de ingreso.\n\nAdemás, el fragmento 2 menciona que el comprobante de tipo \"E\" se utiliza para casos de uso como nota de crédito, devolución de mercancía, descuento posterior a la venta.\n\nTambién se menciona en el fragmento 1 que el comprobante de egreso ampara devoluciones, descuentos y bonificaciones para efectos de deducibilidad y también puede utilizarse para corregir o restar un comprobante de ingresos en cuanto a los montos que documenta, como la aplicación de anticipos.\n\nFuente: Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: Apéndice 2 Clasificación de los tipos de CFDI y tipos-comprobante.md | Sección: introduccion. \n\nPor lo tanto, el comprobante adecuado para registrar una nota de crédito o devolución de mercancía es el de tipo \"E\" (Egreso).",
+      "respuesta_esperada": "E / Egreso",
+      "tokens_entrada": 1284,
+      "tokens_salida": 248,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en información proporcionada en los fragmentos 1, 2 y 4, que describen el uso del comprobante de tipo 'E' (Egreso) para registrar devoluciones y descuentos, aunque la respuesta hace una inferencia razonable al combinar esta información para responder a la pregunta.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Para registrar una nota de crédito o devolución de mercancía, se puede utilizar el comprobante de tipo 'E' (Egreso)",
+          "el comprobante de tipo 'E' se utiliza para registrar devoluciones, descuentos, bonificaciones o correcciones relacionadas con una factura de ingreso",
+          "el comprobante de egreso ampara devoluciones, descuentos y bonificaciones para efectos de deducibilidad"
+        ],
+        "afirmaciones_sin_soporte": [
+          "la respuesta contradice o ignora completamente los fragmentos"
+        ],
+        "razonamiento": "La respuesta se basa en información proporcionada en los fragmentos 1, 2 y 4, que describen el uso del comprobante de tipo 'E' (Egreso) para registrar devoluciones y descuentos, aunque la respuesta hace una inferencia razonable al combinar esta información para responder a la pregunta."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el tipo de comprobante adecuado para registrar una nota de crédito o devolución de mercancía, que es el comprobante de tipo E (Egreso), y explica su uso correcto según la guía de llenado de CFDI.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "tipo de comprobante",
+          "uso del comprobante de tipo E"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el tipo de comprobante adecuado para registrar una nota de crédito o devolución de mercancía, que es el comprobante de tipo E (Egreso), y explica su uso correcto según la guía de llenado de CFDI."
+      },
+      "latencia_generacion_ms": 769,
+      "latencia_juez_ms": 2664
+    },
+    {
+      "pregunta": "¿Qué régimen fiscal debe tener el receptor cuando se emite un CFDI con el RFC ΧΑΧΧ010101000?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "rfc-generico.md"
+      ],
+      "filenames_recuperados": [
+        "Guia_llenado_CFDI_global_limpio.pdf",
+        "GuiaAnexo20Global_limpio.pdf",
+        "Guia_llenado_CFDI_global_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "GuiaAnexo20DPA_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "4b8ae3dd5d53fe54b80f306509d7f6690ca4952a3844a0c370cd91ef098b808f",
+        "be11d34419e1b4851987536f6ee7e08a4a1ee4b2d3538a4ebc69fae04cedbf34",
+        "a8dcf2a06bb888ccaf7780c37c6002f126242a99757ee2b2ce35aa980df565fb",
+        "00f4610bd7549d324cbd9c7771da69e43df587c24805fa929cafdd120d946c52",
+        "b3eeadad84d66320126b80a161377b423ba6edede74da1ce25b28ccf7310dd78"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 459,
+      "respuesta_generada": "El contexto disponible indica que cuando se utiliza el RFC \"XAXX010101000\" para el receptor en un CFDI, el régimen fiscal del receptor es \"616, Sin obligaciones fiscales\".\n\nFuente: Guia_llenado_CFDI_global_limpio.pdf, Sección: introduccion, Página: p.39.\n\nPor lo tanto, el régimen fiscal que debe tener el receptor en este caso es \"616, Sin obligaciones fiscales\".",
+      "respuesta_esperada": "616 / Sin obligaciones fiscales",
+      "tokens_entrada": 998,
+      "tokens_salida": 88,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en el fragmento 1, que establece el régimen fiscal del receptor como '616, Sin obligaciones fiscales' cuando el RFC es 'XAXX010101000'. Esta información es explícitamente proporcionada en el fragmento.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "El contexto disponible indica que cuando se utiliza el RFC 'XAXX010101000' para el receptor en un CFDI, el régimen fiscal del receptor es '616, Sin obligaciones fiscales'",
+          "Por lo tanto, el régimen fiscal que debe tener el receptor en este caso es '616, Sin obligaciones fiscales'"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en el fragmento 1, que establece el régimen fiscal del receptor como '616, Sin obligaciones fiscales' cuando el RFC es 'XAXX010101000'. Esta información es explícitamente proporcionada en el fragmento."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el régimen fiscal correcto para el receptor con el RFC XAXX010101000. La información es precisa y útil, sin omitir detalles relevantes.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "régimen fiscal del receptor",
+          "RFC específico"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando el régimen fiscal correcto para el receptor con el RFC XAXX010101000. La información es precisa y útil, sin omitir detalles relevantes."
+      },
+      "latencia_generacion_ms": 419,
+      "latencia_juez_ms": 8497
+    },
+    {
+      "pregunta": "¿En qué situaciones se debe usar el complemento de Carta Porte versión 3.1?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "complementos.md"
+      ],
+      "filenames_recuperados": [
+        "complementos.md",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "68517591dff02efdb82ff862fb162f0e3066ae3a5fd23a1c72de9a0b3480c1c6",
+        "b7a995c99dcf95151f616c47a34bdfec255233c8a0b17e074852ec5718245bfc",
+        "f3065baecf462a9da33f32f3f421189e80e30c88a725c6cb8d602a3b690c58f6",
+        "a070dc53768eed5faec01a7fffa677f3237741198cb5f3237461db4aaf0fb441",
+        "4db8cb4e053825a0a02bb2a80af9e2cc2bdf2c9d8b134e471543e5d2e84ce07e"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 399,
+      "respuesta_generada": "El complemento de Carta Porte versión 3.1 se debe usar en las siguientes situaciones:\n\n- Se incorpora a un CFDI de tipo **I** (cuando el transportista presta el servicio) o de tipo **T** (cuando el propietario traslada su propia mercancía).\n- Es obligatorio para acreditar el traslado legal de mercancías por territorio nacional, incluyendo vías terrestres federales, aéreas, marítimas y ferroviarias.\n\nAdemás, según el fragmento 4 de la RMF_2026_Completa_limpio.pdf, en la etapa intermedia del servicio, se deberá emitir un CFDI con el complemento Carta Porte por cada tramo que implique un cambio de medio o modo de transporte.\n\n Fuente: [FRAGMENTO 1 | complementos.md | Sección: introduccion] \ny [FRAGMENTO 4 | RMF_2026_Completa_limpio.pdf | Sección: II].",
+      "respuesta_esperada": "Cuando se traslada mercancía por carretera federal, ferrocarril, vía aérea o marítima dentro de México, ya sea que el transportista preste el servicio (CFDI tipo 1) o que el propietario traslade su propia mercancía (CFDI tipo T).",
+      "tokens_entrada": 1225,
+      "tokens_salida": 186,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero la última afirmación sobre la etapa intermedia del servicio y el cambio de medio o modo de transporte se basa en una interpretación del fragmento 4 que no está explícitamente mencionada en la respuesta generada.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Se incorpora a un CFDI de tipo I o de tipo T",
+          "Es obligatorio para acreditar el traslado legal de mercancías por territorio nacional"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Además, según el fragmento 4 de la RMF_2026_Completa_limpio.pdf, en la etapa intermedia del servicio, se deberá emitir un CFDI con el complemento Carta Porte por cada tramo que implique un cambio de medio o modo de transporte."
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero la última afirmación sobre la etapa intermedia del servicio y el cambio de medio o modo de transporte se basa en una interpretación del fragmento 4 que no está explícitamente mencionada en la respuesta generada."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, incluyendo las situaciones de uso del complemento de Carta Porte y los tipos de CFDI involucrados. La información proporcionada es precisa y útil, sin omitir detalles relevantes.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "situaciones de uso del complemento de Carta Porte",
+          "tipos de CFDI involucrados",
+          "medios de transporte"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, incluyendo las situaciones de uso del complemento de Carta Porte y los tipos de CFDI involucrados. La información proporcionada es precisa y útil, sin omitir detalles relevantes."
+      },
+      "latencia_generacion_ms": 684,
+      "latencia_juez_ms": 11688
+    },
+    {
+      "pregunta": "Si emito una factura que se va a pagar en varias partes, ¿qué debo poner en los campos de método de pago y forma de pago?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "metodos-pago.md"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "f9ed92045c8c9de9713f2bb1c0a4ce4c7ee06cb82c29e261a2ce398ded5c8fa6",
+        "8d1c0c143cef66f3d5898b9bd918db473443479d0b1d5c5430397c90c4f216b0",
+        "95f3380164813803869dde3d018656d2b8f6b808e6525ce38fdc8a143215014e",
+        "6821a1b9cbd41d01b55b217ce5852a64decefb0eeed666005ccc4207b33f1eaa",
+        "84c4badfdf7505eb5cb0d883b7956cc4558053c3fd44a17122140be839fb51ed"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 374,
+      "respuesta_generada": "Para responder a tu pregunta, debemos considerar las instrucciones proporcionadas en los fragmentos del contexto fiscal recuperado.\n\nCuando se emite una factura que se va a pagar en varias partes, es decir, en parcialidades o de manera diferida, el método de pago que debes registrar es \"PPD\" (Pago en parcialidades o diferido). Esto se indica en el fragmento 4 de la GuíaAnexo20DPA_limpio.pdf, página 9, y se refuerza en el fragmento 2 del Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, página 4.\n\nEn cuanto a la forma de pago, dado que el pago se efectuará en parcialidades y no se conoce aún la forma específica en que se liquidarán esas parcialidades, se debe seleccionar la clave \"99\" (Por definir) del catálogo c_FormaPago. Esto se menciona en el fragmento 2 del Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, página 4.\n\nPor lo tanto, para una factura que se va a pagar en varias partes:\n\n- En el campo de **método de pago**, debes poner \"PPD\" (Pago en parcialidades o diferido).\n- En el campo de **forma de pago**, debes poner \"99\" (Por definir), ya que se trata de un pago en parcialidades o diferido y aún no se especifica la forma de pago de esas parcialidades.\n\nRecuerda que cuando se reciba el pago total o parcial, se deberá emitir adicionalmente un CFDI con complemento para recepción de pagos, según se indica en el fragmento 2 del Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, página 4.",
+      "respuesta_esperada": "En la factura original de Ingreso (tipo 'I') , el método de pago debe ser PPD (Pago en Parcialidades o Diferido) y la forma de pago debe ser 99 (Por definir). Estos campos son obligatorios.",
+      "tokens_entrada": 1345,
+      "tokens_salida": 358,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en los fragmentos 2 y 4, que especifican claramente el método y forma de pago para pagos en parcialidades o diferidos. Los fragmentos proporcionan soporte explícito para cada afirmación.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "Debes registrar 'PPD' como método de pago",
+          "Debes seleccionar la clave '99' (Por definir) como forma de pago"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en los fragmentos 2 y 4, que especifican claramente el método y forma de pago para pagos en parcialidades o diferidos. Los fragmentos proporcionan soporte explícito para cada afirmación."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la información precisa sobre el método y forma de pago para facturas con pago en parcialidades, y menciona la obligatoriedad de estos campos. La respuesta es detallada y útil, sin omitir detalles relevantes.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "método de pago",
+          "forma de pago",
+          "obligatoriedad de campos"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la información precisa sobre el método y forma de pago para facturas con pago en parcialidades, y menciona la obligatoriedad de estos campos. La respuesta es detallada y útil, sin omitir detalles relevantes."
+      },
+      "latencia_generacion_ms": 1260,
+      "latencia_juez_ms": 13311
+    },
+    {
+      "pregunta": "¿Para qué sirve el complemento de nómina versión 1.2 y cuándo es obligatorio?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "complementos.md"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "GuiaAnexo20Global_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "7621c34fc7cd9c28b5767ea61675885de69e0af97002ff63abb6f716e68923ae",
+        "5bf38cc2de3c88d00dd333591264cc228cebbff1c9bd879e15f1c4bd70acfe80",
+        "f3065baecf462a9da33f32f3f421189e80e30c88a725c6cb8d602a3b690c58f6",
+        "3c5b4472635b806e92a0129ef642e9ea28ab2d24651a53731dc0106c3833bf07",
+        "952bffdeab9db22a1b4048dfd134ee8812eeecc3b686b5801fd2befdbc4e75fc"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 326,
+      "respuesta_generada": "El contexto disponible no cubre esta pregunta. \n\nNo hay información en los fragmentos proporcionados sobre el complemento de nómina versión 1.2, su uso o obligatoriedad. Los fragmentos hablan sobre otros complementos como el de pagos, comercio exterior y timbre fiscal digital, pero no sobre el complemento de nómina.",
+      "respuesta_esperada": "Sirve para detallar percepciones, deducciones, retenciones y otros pagos relacionados con salarios y prestaciones laborales.Es obligatorio para todos los patrones que pagan nómina a sus trabajadores.",
+      "tokens_entrada": 952,
+      "tokens_salida": 67,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en la ausencia de información sobre el complemento de nómina versión 1.2 en los fragmentos proporcionados, lo que está soportado por la falta de mención a este tema en los fragmentos. La mención a otros complementos es una inferencia razonable basada en el contenido de los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "El contexto disponible no cubre esta pregunta.",
+          "No hay información en los fragmentos proporcionados sobre el complemento de nómina versión 1.2, su uso o obligatoriedad."
+        ],
+        "afirmaciones_sin_soporte": [
+          "Los fragmentos hablan sobre otros complementos como el de pagos, comercio exterior y timbre fiscal digital, pero no sobre el complemento de nómina."
+        ],
+        "razonamiento": "La respuesta se basa en la ausencia de información sobre el complemento de nómina versión 1.2 en los fragmentos proporcionados, lo que está soportado por la falta de mención a este tema en los fragmentos. La mención a otros complementos es una inferencia razonable basada en el contenido de los fragmentos."
+      },
+      "relevancia_score": 1,
+      "relevancia_razonamiento": "La respuesta generada no proporciona información relevante sobre el complemento de nómina versión 1.2, ni su propósito ni su obligatoriedad, por lo que no satisface la necesidad informativa de la pregunta. La respuesta solo indica la falta de información en los fragmentos proporcionados.",
+      "relevancia_detalle": {
+        "score": 1,
+        "aspectos_respondidos": [],
+        "aspectos_faltantes": [
+          "propósito del complemento de nómina versión 1.2",
+          "obligatoriedad"
+        ],
+        "razonamiento": "La respuesta generada no proporciona información relevante sobre el complemento de nómina versión 1.2, ni su propósito ni su obligatoriedad, por lo que no satisface la necesidad informativa de la pregunta. La respuesta solo indica la falta de información en los fragmentos proporcionados."
+      },
+      "latencia_generacion_ms": 377,
+      "latencia_juez_ms": 9015
+    },
+    {
+      "pregunta": "¿Qué es el complemento de pagos (REP) versión 2.0 y para qué se usa?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "complementos.md"
+      ],
+      "filenames_recuperados": [
+        "complementos.md",
+        "Guia_Complemento_Recepcion_Pagos_REP_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "f7baa48af37664fa52776d83ecfdcd096cb0720d5fa8e56184ee39f5e90353f4",
+        "fed8c11a349e52211b9b1d71f39d85762af888faaf39c8a464dcf377417bea25",
+        "1591192decf7baf7e03be0841c6a44021a8638c8cc44319383a30eeb04218f95",
+        "0fd48ade4fc2fca69e6f8399fd00a5ff7c3be305e02aced223732cb5d42b3265",
+        "e06308a4130596661a436b347d9065f7afe155219aef8130f42afd04db77688c"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 416,
+      "respuesta_generada": "El complemento de pagos, también conocido como Recibo Electrónico de Pago (REP), versión 2.0, es un nodo adicional que se incorpora al Comprobante Fiscal Digital por Internet (CFDI) de tipo \"P\" (Pago). Se utiliza cuando una factura de ingreso fue generada con método de pago PPD (Pago en Parcialidades o Diferido) y el pago se recibe en una fecha posterior a la emisión, ya sea de forma total o parcial.\n\nEste complemento se emite para expresar la información sobre la recepción de pagos y debe ser utilizado por quien recibe el pago. El CFDI que se emita solo debe contener un complemento para recepción de pagos, y puede convivir con otros complementos como el Timbre fiscal digital y CFDI Registro fiscal.\n\nLa versión del complemento debe ser \"2.0\", y este dato es integrado por el sistema que utiliza el contribuyente para la emisión del comprobante fiscal.\n\n(Fuente: complementos.md, Guia_Complemento_Recepcion_Pagos_REP_limpio.pdf y Guia_Complemento_Pagos_v2_limpio.pdf)",
+      "respuesta_esperada": "Es un complemento que se incorpora a un CFDI de tipo P para registrar pagos recibidos de facturas que se emitieron originalmente con método de pago PPD.",
+      "tokens_entrada": 1089,
+      "tokens_salida": 226,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero hay una afirmación que no tiene soporte explícito en los fragmentos proporcionados. La afirmación sobre el uso del complemento para expresar la información sobre la recepción de pagos y su utilización por quien recibe el pago no se encuentra en los fragmentos de contexto.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "El complemento de pagos, también conocido como Recibo Electrónico de Pago (REP), versión 2.0, es un nodo adicional que se incorpora al Comprobante Fiscal Digital por Internet (CFDI) de tipo 'P' (Pago).",
+          "Se utiliza cuando una factura de ingreso fue generada con método de pago PPD (Pago en Parcialidades o Diferido) y el pago se recibe en una fecha posterior a la emisión, ya sea de forma total o parcial.",
+          "El CFDI que se emita solo debe contener un complemento para recepción de pagos, y puede convivir con otros complementos como el Timbre fiscal digital y CFDI Registro fiscal.",
+          "La versión del complemento debe ser '2.0'"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Este complemento se emite para expresar la información sobre la recepción de pagos y debe ser utilizado por quien recibe el pago."
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero hay una afirmación que no tiene soporte explícito en los fragmentos proporcionados. La afirmación sobre el uso del complemento para expresar la información sobre la recepción de pagos y su utilización por quien recibe el pago no se encuentra en los fragmentos de contexto."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando una definición clara del complemento de pagos y su uso, así como detalles sobre su implementación y características. La información proporcionada es precisa y útil, respondiendo completamente la necesidad informativa del usuario.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "definición del complemento de pagos",
+          "uso del complemento de pagos",
+          "características del complemento"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando una definición clara del complemento de pagos y su uso, así como detalles sobre su implementación y características. La información proporcionada es precisa y útil, respondiendo completamente la necesidad informativa del usuario."
+      },
+      "latencia_generacion_ms": 848,
+      "latencia_juez_ms": 12127
+    },
+    {
+      "pregunta": "¿Qué tipo de CFDI se usa para registrar un pago parcial de una factura previamente emitida con pago diferido?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "tipos-comprobante.md",
+        "complementos.md"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "metodos-pago.md",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "96d751e5a02c8dcba3389a27232a9606107fedc3883129f315a88aa3e42c2044",
+        "58953bb5a1f4852340c6fbf56fed092c1bd5c0e4fa7af59cd099b569415ede58",
+        "750d6dec3e21e9d874656704f780a9afe9ec0ce0312440a76dd2b89105d12046",
+        "8d1c0c143cef66f3d5898b9bd918db473443479d0b1d5c5430397c90c4f216b0",
+        "1289a60c02a64bcc6fe3fe9259af8c0b2a44752d42714aebf7aa4ecf07079601"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 1358,
+      "respuesta_generada": "Para registrar un pago parcial de una factura previamente emitida con pago diferido, se debe emitir un CFDI de tipo \"P\" (Pago) al que se le incorpora el \"Complemento para recepción de pagos\" (REP).\n\nSegún el contexto, cuando una factura se emite con método de pago PPD (Pago en Parcialidades o Diferido), posteriormente, al recibir el pago, se emite un CFDI de tipo \"P\" con el complemento REP. En ese complemento se indica la forma de pago real mediante el campo `FormaDePagoP`, usando la clave correspondiente del catálogo (01, 02, 03, etc.).\n\nFuente: [FRAGMENTO 3 | metodos-pago.md | Sección: introduccion | Página: N/A] y [FRAGMENTO 2 | Guia_Complemento_Comercio_Exterior_limpio.pdf | Sección: introduccion | Página: p.6].",
+      "respuesta_esperada": "P / Pago",
+      "tokens_entrada": 2433,
+      "tokens_salida": 191,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en el FRAGMENTO 3 y FRAGMENTO 2, que describen el proceso para registrar pagos parciales y el uso del Complemento para recepción de pagos.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "Para registrar un pago parcial de una factura previamente emitida con pago diferido, se debe emitir un CFDI de tipo 'P' (Pago) al que se le incorpora el 'Complemento para recepción de pagos' (REP)",
+          "posteriormente, al recibir el pago, se emite un CFDI de tipo 'P' con el complemento REP"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en el FRAGMENTO 3 y FRAGMENTO 2, que describen el proceso para registrar pagos parciales y el uso del Complemento para recepción de pagos."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, indicando el tipo de CFDI correcto (P) y el complemento necesario (REP) para registrar un pago parcial de una factura con pago diferido. La información proporcionada es precisa y útil.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "tipo de CFDI para pago parcial",
+          "complemento requerido"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, indicando el tipo de CFDI correcto (P) y el complemento necesario (REP) para registrar un pago parcial de una factura con pago diferido. La información proporcionada es precisa y útil."
+      },
+      "latencia_generacion_ms": 1001,
+      "latencia_juez_ms": 17207
+    },
+    {
+      "pregunta": "¿Cuál es la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "topic_seed.md",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Documentacion_Tecnica_CFDI_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "c57a9677191d59ed2f892b8a30ca07bfb5aebb43c011e76d1f6979a5cd7a5fb1",
+        "3689f69b7ee14e92703ab122f70714524bd265ad14527913fb68d0e1104e8d36",
+        "76b2838d7078faf4b73f4520e08bc4b0c4d24356d7170aa44ceb0d7bcfefa27d",
+        "0e9cdd318d28192ae2a1e975ece9909dc03b5dbfc3a9ae2b62da815cb8c40e4c",
+        "5550788c11d6b21a88a8e1c45875ab3bd0c1f03f6ec4787b60ee7b3eb9cb9ff1"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 732,
+      "respuesta_generada": "Según la información proporcionada en los fragmentos, específicamente en el [FRAGMENTO 2](GuiaAnexo20DPA_limpio.pdf | Sección: introduccion | Página: p.31), se menciona la versión del CFDI en relación con el Anexo 20. Sin embargo, la versión específica no se indica directamente en este fragmento.\n\nPero, al revisar el [FRAGMENTO 4](Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: Apéndice 1 Notas Generales del | Página: p.60), se menciona la “Anexo 20 Guía de llenado de los comprobantes fiscales digitales por Internet” versión 4.0.\n\nPor lo tanto, la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20 es la versión 4.0.\n\nFuente: Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: Apéndice 1 Notas Generales del | Página: p.60.",
+      "respuesta_esperada": "La versión que deben registrar en el campo Version del CFDI es '4.0'.",
+      "tokens_entrada": 866,
+      "tokens_salida": 211,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en la información proporcionada en los fragmentos, específicamente en el FRAGMENTO 4, que menciona la versión 4.0 del CFDI, aunque la afirmación sobre el FRAGMENTO 2 no tiene soporte directo.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20 es la versión 4.0",
+          "se menciona la “Anexo 20 Guía de llenado de los comprobantes fiscales digitales por Internet” versión 4.0"
+        ],
+        "afirmaciones_sin_soporte": [
+          "la mención directa de la versión del CFDI en relación con el Anexo 20 en el FRAGMENTO 2"
+        ],
+        "razonamiento": "La respuesta se basa en la información proporcionada en los fragmentos, específicamente en el FRAGMENTO 4, que menciona la versión 4.0 del CFDI, aunque la afirmación sobre el FRAGMENTO 2 no tiene soporte directo."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20, y ofrece una referencia clara a la fuente de la información. La respuesta es precisa y útil, satisfaciendo la necesidad informativa del usuario.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "versión del CFDI",
+          "referencia al Anexo 20"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20, y ofrece una referencia clara a la fuente de la información. La respuesta es precisa y útil, satisfaciendo la necesidad informativa del usuario."
+      },
+      "latencia_generacion_ms": 656,
+      "latencia_juez_ms": 10722
+    },
+    {
+      "pregunta": "¿Cuántos caracteres puede tener el campo Folio de un CFDI?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "GuiaAnexo20Global_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Documentacion_Tecnica_CFDI_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "630e12d34c672ed86c9584eb668fc734e32a770a2b853bd05b6cdc54ac4a7fb9",
+        "0f6383163bee30c999b144f91ac7532d44a096d860510a4e87226c496a5546cf",
+        "57f8165ee2b5c84f7b08fb96de5933466f5958dc3bb84b0b0ee5ff87698372eb",
+        "1fd7844974ca68f8d1ddb2b4f112ddce3199356b5bb14958eff41d138558fcc9",
+        "f11188a3c8c89b83a8fb2c71cd3d5a58cc90bff8ec72d73733ab3dc20f2ee2cb"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 390,
+      "respuesta_generada": "El campo Folio de un CFDI puede tener entre 1 y 40 caracteres alfanuméricos. Esta información se puede verificar en múltiples fuentes dentro del contexto proporcionado, como en la Guia_Complemento_Comercio_Exterior_limpio.pdf, GuiaAnexo20Global_limpio.pdf, Guia_Complemento_Pagos_v2_limpio.pdf y Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf.\n\nFuente: \n- Guia_Complemento_Comercio_Exterior_limpio.pdf, p.3\n- GuiaAnexo20Global_limpio.pdf, p.4 \n- Guia_Complemento_Pagos_v2_limpio.pdf, p.6 \n- Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, p.3",
+      "respuesta_esperada": "hasta 40 caracteres alfanuméricos",
+      "tokens_entrada": 1671,
+      "tokens_salida": 168,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La afirmación sobre el rango de caracteres del campo Folio está explícitamente soportada por varios fragmentos, como Guia_Complemento_Comercio_Exterior_limpio.pdf y Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf. La mención a múltiples fuentes también es verificable con los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "El campo Folio de un CFDI puede tener entre 1 y 40 caracteres alfanuméricos.",
+          "Esta información se puede verificar en múltiples fuentes dentro del contexto proporcionado"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La afirmación sobre el rango de caracteres del campo Folio está explícitamente soportada por varios fragmentos, como Guia_Complemento_Comercio_Exterior_limpio.pdf y Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf. La mención a múltiples fuentes también es verificable con los fragmentos proporcionados."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la cantidad exacta de caracteres permitidos para el campo Folio de un CFDI y especificando que pueden ser alfanuméricos. La información proporcionada es precisa y útil.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "cantidad de caracteres del campo Folio",
+          "tipo de caracteres permitidos"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la cantidad exacta de caracteres permitidos para el campo Folio de un CFDI y especificando que pueden ser alfanuméricos. La información proporcionada es precisa y útil."
+      },
+      "latencia_generacion_ms": 672,
+      "latencia_juez_ms": 8989
+    },
+    {
+      "pregunta": "¿Qué valor deben registrar en el campo SubTotal los CFDI de tipo T (Traslado) y P (Pago)?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "GuiaAnexo20DPA_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "851ce3237b1294db7115d5b155e38a1777b4d697e5638d259f1018fb810848ae",
+        "cb1b62fee922cecef3e6b29f742d23f4858daff4b73bdd9e8e0382f9f7346fa1",
+        "99a54214641972a61798e005bb1da1f52aa68cbc8d106e3fe3428eccbdf5afd8",
+        "c5ad3e84af1c26ea6b94399cb163cb99b47f3dcb26fc60c6095114cda846a719",
+        "551dd749b41b642d3c41b44ab2b5340ec87aef992502961d6f198a3d1d34b068"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 374,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el [FRAGMENTO 2 | Guia_Complemento_Comercio_Exterior_limpio.pdf | Sección: introduccion | Página: p.7], para los comprobantes de tipo \"T\" (Traslado), el campo `SubTotal` debe registrar un valor igual a cero.\n\nNo se encontró información específica para comprobantes de tipo \"P\" (Pago) en relación con el campo `SubTotal` en los fragmentos proporcionados. Sin embargo, en el [FRAGMENTO 3 | GuiaAnexo20DPA_limpio.pdf | Sección: introduccion | Página: p.24], se menciona que para el TipoDeComprobante sea “T” (Traslado), “N” (Nómina), o “P” (Pago), el elemento de impuestos no debe existir, pero no proporciona detalles sobre el `SubTotal` para \"P\" (Pago).\n\nPor lo tanto, con la información disponible, se puede concluir que:\n\n- Para CFDI de tipo T (Traslado), el campo SubTotal debe registrar un valor de cero.\n- Para CFDI de tipo P (Pago), el contexto disponible no cubre esta pregunta.",
+      "respuesta_esperada": "Cuando el campo TipoDeComprobante sea 'T' (Traslado) o 'P' (Pago), el importe registrado en el campo SubTotal debe ser igual a cero.",
+      "tokens_entrada": 1154,
+      "tokens_salida": 246,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La afirmación sobre el tipo T está soportada por el fragmento 2, pero la información sobre el tipo P no se encuentra explícitamente en los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Para CFDI de tipo T (Traslado), el campo SubTotal debe registrar un valor de cero"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Para CFDI de tipo P (Pago), el contexto disponible no cubre esta pregunta"
+        ],
+        "razonamiento": "La afirmación sobre el tipo T está soportada por el fragmento 2, pero la información sobre el tipo P no se encuentra explícitamente en los fragmentos proporcionados."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre parcialmente la pregunta, proporcionando información precisa para CFDI de tipo T, pero no logra ofrecer una respuesta clara y directa para CFDI de tipo P, aunque menciona la falta de información específica en los fragmentos proporcionados.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "CFDI de tipo T (Traslado)",
+          "CFDI de tipo P (Pago)"
+        ],
+        "aspectos_faltantes": [
+          "información precisa para CFDI de tipo P (Pago)"
+        ],
+        "razonamiento": "La respuesta generada cubre parcialmente la pregunta, proporcionando información precisa para CFDI de tipo T, pero no logra ofrecer una respuesta clara y directa para CFDI de tipo P, aunque menciona la falta de información específica en los fragmentos proporcionados."
+      },
+      "latencia_generacion_ms": 828,
+      "latencia_juez_ms": 10671
+    },
+    {
+      "pregunta": "¿A partir de qué edad pueden tramitar el RFC las personas físicas menores de edad?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "cb9eb8110135c444cc3269acd39c1ccd004673eddadeee0dec1a4088f1975fa4",
+        "b4b19b6fe829354bef8175638079ae71a1d28139af98d38e34a59e6dbd0df229",
+        "44ae5d22b2d5c42d4cb1ad165a5ea9a1bac83402b2b77d0b7fb9fbf1ac11fe50",
+        "9a4ee608957a4e89bf51fa3c962c82c779e3b498b770f82dd6445ad71e028ba8",
+        "054049fae7241c7a1451d29a08573d5278f7f6a782fb018781a3b1a67d1df013"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 798,
+      "respuesta_generada": "Las personas físicas menores de edad pueden tramitar el RFC a partir de los 16 años, siempre que presten exclusivamente un servicio personal subordinado (salarios). Esto se establece en el artículo 27, primer párrafo, apartados A, fracción I; B, fracciones I, II y III y C, fracción III del CFF y se menciona en la sección 2.4.4 de la RMF 2026 Completa Limpio.pdf.\n\nAdemás, las personas físicas menores de 18 años pueden preinscribirse en el RFC a través del Portal del SAT, siempre que cuenten con la CURP, como se indica en El_ABC_personas_contribuyentes_v2.pdf. \n\nFuente: \n- RMF_2026_Completa_limpio.pdf, sección: introduccion, página: p.119 \n- El_ABC_personas_contribuyentes_v2.pdf, sección: introduccion, página: p.25",
+      "respuesta_esperada": "Los menores de edad pueden tramitar el RFC a partir de los 16 años, cuando van a realizar un servicio personal subordinado. Las personas físicas que hayan cumplido 18 años también pueden inscribirse con o sin obligaciones fiscales, y pueden preinscribirse a través del Portal del SAT siempre que cuenten con la CURP.",
+      "tokens_entrada": 1796,
+      "tokens_salida": 200,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en información explícita de los fragmentos, pero incluye detalles sobre la ubicación en las fuentes que no están soportados. Las afirmaciones principales sobre la edad y el proceso de inscripción en el RFC están directamente soportadas por los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Las personas físicas menores de edad pueden tramitar el RFC a partir de los 16 años, siempre que presten exclusivamente un servicio personal subordinado (salarios)",
+          "Las personas físicas menores de 18 años pueden preinscribirse en el RFC a través del Portal del SAT, siempre que cuenten con la CURP"
+        ],
+        "afirmaciones_sin_soporte": [
+          "La mención a la página y sección específica en las fuentes"
+        ],
+        "razonamiento": "La respuesta se basa en información explícita de los fragmentos, pero incluye detalles sobre la ubicación en las fuentes que no están soportados. Las afirmaciones principales sobre la edad y el proceso de inscripción en el RFC están directamente soportadas por los fragmentos."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre la edad mínima y el proceso de preinscripción, pero omite el detalle sobre la inscripción sin obligaciones fiscales para personas mayores de 18 años. La información proporcionada es precisa, pero falta un detalle secundario relevante.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "edad mínima para tramitar RFC",
+          "requisito de preinscripción en el Portal del SAT"
+        ],
+        "aspectos_faltantes": [
+          "inscripción sin obligaciones fiscales para mayores de 18 años"
+        ],
+        "razonamiento": "La respuesta generada cubre la edad mínima y el proceso de preinscripción, pero omite el detalle sobre la inscripción sin obligaciones fiscales para personas mayores de 18 años. La información proporcionada es precisa, pero falta un detalle secundario relevante."
+      },
+      "latencia_generacion_ms": 954,
+      "latencia_juez_ms": 15695
+    },
+    {
+      "pregunta": "¿Cuál es la tasa máxima del ISR aplicable a ingresos que excedan $425,642.00 en la tarifa mensual de pagos provisionales 2026?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "cd8635d0d79318b197e78529f5d68793cb857a1ad60f2eef2c6b66dd123835bb",
+        "9c6098113eac3294fc05b59cace621fd721c0c168fabae82a637083d14e34264",
+        "025ed4fcce788b17d226405ae2e401dabad6515cf0a0f9a00dfcf81c58a0be89",
+        "a23e24d46c04d8d22da993b58ed85ab0a6e8c7642c86120ad0e666c9c5f0eeaf",
+        "4d3cd2ceb1b2311b39af0114a0b05225b670a4944163efd7e830ca80bfbbbd1a"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 1115,
+      "respuesta_generada": "La tasa máxima del ISR aplicable a ingresos que excedan $425,642.00 en la tarifa mensual de pagos provisionales 2026 es del 34%.\n\nEsto se puede verificar en los fragmentos proporcionados, específicamente en el Fragmento 2, donde se detalla la tarifa del mes de febrero de 2026. En esta sección, se observa que para ingresos superiores a $425,642.00, la tasa aplicable es del 34%.\n\nFuente: Anexo-8-RMF-2026_DOF-28122025_limpio.pdf, Sección: introduccion, Página: p.9. \n\nCabe mencionar que esta información se repite en otras tarifas mensuales para diferentes meses de 2026, lo que confirma que la tasa del 34% es aplicable para ingresos superiores a $425,642.00 durante todo el año 2026.",
+      "respuesta_esperada": "La tasa máxima del ISR en la tarifa mensual de pagos provisionales 2026 es del 35%, aplicable a ingresos que excedan $425,642.00. La cuota fija para ese rango es de $133,488.54.",
+      "tokens_entrada": 3355,
+      "tokens_salida": 178,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La afirmación se soporta directamente en el Fragmento 2, que detalla la tarifa del mes de febrero de 2026 y establece la tasa del 34% para ingresos superiores a $425,642.00. Esta información se repite en otras tarifas mensuales, lo que confirma la tasa del 34% para todo el año 2026.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "La tasa máxima del ISR aplicable a ingresos que excedan $425,642.00 en la tarifa mensual de pagos provisionales 2026 es del 34%"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La afirmación se soporta directamente en el Fragmento 2, que detalla la tarifa del mes de febrero de 2026 y establece la tasa del 34% para ingresos superiores a $425,642.00. Esta información se repite en otras tarifas mensuales, lo que confirma la tasa del 34% para todo el año 2026."
+      },
+      "relevancia_score": 3,
+      "relevancia_razonamiento": "La respuesta generada cubre parcialmente la pregunta, proporcionando la tasa máxima del ISR, pero no es precisa en el valor de la tasa y falta la cuota fija para ese rango. La respuesta generada indica una tasa del 34% en lugar de la tasa correcta del 35%.",
+      "relevancia_detalle": {
+        "score": 3,
+        "aspectos_respondidos": [
+          "tasa máxima del ISR",
+          "ingresos que excedan $425,642.00"
+        ],
+        "aspectos_faltantes": [
+          "cuota fija para ese rango",
+          "precisión en la tasa máxima del ISR"
+        ],
+        "razonamiento": "La respuesta generada cubre parcialmente la pregunta, proporcionando la tasa máxima del ISR, pero no es precisa en el valor de la tasa y falta la cuota fija para ese rango. La respuesta generada indica una tasa del 34% en lugar de la tasa correcta del 35%."
+      },
+      "latencia_generacion_ms": 912,
+      "latencia_juez_ms": 19817
+    },
+    {
+      "pregunta": "¿Cuál es la diferencia entre un impuesto directo y uno indirecto ?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "d27d2ae517e14e387365f37ab108c9279069d68feac371b7d6e4065b5c736b8c",
+        "1521c4ea8bbbc1548e88127068d4e540e6fe212710cfdeac7229742609848970",
+        "58f30bc968ad9719eb8a6333d94c9fd4cb2d4f38c6d759a2adfd53bafc101c14",
+        "abbb760898022cb96d6c339fe09bb07ba2530676b9aed29eac0ac195e0abb40a",
+        "b7fcdea7d2530bddb52b4d80a8cb0afc3b67392171739b537f78ce6ccb6e17bb"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 318,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el fragmento 1 de \"El_ABC_personas_contribuyentes_v2.pdf\", la diferencia entre un impuesto directo y uno indirecto es la siguiente:\n\n- Los impuestos directos son pagados por el contribuyente sin intermediarios. Un ejemplo de impuesto directo es el Impuesto Sobre la Renta (ISR).\n\n- Los impuestos indirectos son aplicados en gastos de producción y consumo, en los cuales existe un intermediario entre el contribuyente y la autoridad fiscal. Un ejemplo de impuesto indirecto es el Impuesto al Valor Agregado (IVA).\n\nEsto se menciona en la sección de clasificación de los impuestos, donde se explica que los impuestos directos e indirectos se diferencian básicamente por la forma en que se pagan y quién es el responsable de pagarlo. \n\nFuente: El_ABC_personas_contribuyentes_v2.pdf, Sección: introduccion, Página: p.10.",
+      "respuesta_esperada": "Los impuestos directos son pagados por el contribuyente sin intermediarios. Los impuestos indirectos son aplicados en gastos de producción y consumo, donde existe un intermediario entre el contribuyente y la autoridad fiscal",
+      "tokens_entrada": 1217,
+      "tokens_salida": 191,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en la clasificación de impuestos directos e indirectos proporcionada en el fragmento 1, pero incluye una referencia a una página específica que no se encuentra en los fragmentos proporcionados. Las definiciones de impuestos directos e indirectos están soportadas por los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Los impuestos directos son pagados por el contribuyente sin intermediarios",
+          "Los impuestos indirectos son aplicados en gastos de producción y consumo, en los cuales existe un intermediario entre el contribuyente y la autoridad fiscal"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Fuente: El_ABC_personas_contribuyentes_v2.pdf, Sección: introduccion, Página: p.10"
+        ],
+        "razonamiento": "La respuesta se basa en la clasificación de impuestos directos e indirectos proporcionada en el fragmento 1, pero incluye una referencia a una página específica que no se encuentra en los fragmentos proporcionados. Las definiciones de impuestos directos e indirectos están soportadas por los fragmentos."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando una clara distinción entre impuestos directos e indirectos, junto con ejemplos relevantes. La información es precisa y útil, satisfaciendo la necesidad informativa del usuario.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "diferencia entre impuestos directos e indirectos",
+          "ejemplos de cada tipo de impuesto"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando una clara distinción entre impuestos directos e indirectos, junto con ejemplos relevantes. La información es precisa y útil, satisfaciendo la necesidad informativa del usuario."
+      },
+      "latencia_generacion_ms": 708,
+      "latencia_juez_ms": 11773
+    },
+    {
+      "pregunta": "¿Qué campo del CFDI debe registrarse cuando la moneda utilizada es distinta del peso mexicano (MXN), y qué ocurre si el valor está fuera del rango permitido?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "b898d553e47cf22bf59287aa3edc435b29d8211c122a25e9d591b5d9f0a73109",
+        "9faf56c96748fac39ba1975337514925f8e2e3db17dda124a671311f7a8b58ed",
+        "ddf73a32eeea758fdaae589b35e97d98438407a387ab1357d7d2a8e8bdfae5ea",
+        "309fc2c9625335230ce961423ba4334c3384ee982c686c74d527cc1d78d6f933",
+        "6475bb7abeee232404ab0e470e339e22ca618d894c4817cca6d35e5b98a423a3"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 522,
+      "respuesta_generada": "Cuando la moneda utilizada en un CFDI es distinta del peso mexicano (MXN), el campo que debe registrarse es el de **TipoCambio**. Este campo representa el número de pesos mexicanos que equivalen a una unidad de la divisa señalada.\n\nSi el valor del **TipoCambio** está fuera del rango permitido, que se obtiene del catálogo **c_Moneda**, el emisor debe obtener una **clave de confirmación** de manera no automática para ratificar que el valor es correcto. Esta clave se integra al CFDI en el campo **Confirmacion**.\n\nEl rango permitido se calcula de la siguiente manera:\n- **Límite superior**: valor publicado del tipo de cambio FIX por la suma de uno más el porcentaje aplicable a la moneda.\n- **Límite inferior**: valor publicado del tipo de cambio FIX por la suma de uno menos el porcentaje aplicable a la moneda. Si este límite es negativo, se toma cero.\n\nPor ejemplo, si se utiliza el Dólar Americano (USD) con un porcentaje de variación del 35%, el emisor debe verificar si el valor del **TipoCambio** se encuentra dentro de los límites establecidos.\n\nFuente: \n- Guia_Complemento_Comercio_Exterior_limpio.pdf, Sección: introduccion, Página: p.9 \n- Guia_Complemento_Pagos_v2_limpio.pdf, Sección: introduccion, Página: p.30 \n- Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: introduccion, Página: p.6",
+      "respuesta_esperada": "Debe registrarse el campo TipoCambio con el tipo de cambio FIX. Si el valor está fuera del porcentaje aplicable a la moneda tomado del catálogo c_Moneda, el emisor debe obtener del PAC una clave de confirmación única para ratificar que el valor es correcto, e integrar dicha clave en el campo Confirmacion.",
+      "tokens_entrada": 2091,
+      "tokens_salida": 318,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero hay una pequeña inferencia en la explicación del cálculo del rango permitido. Los fragmentos proporcionan la información necesaria, pero la respuesta la presenta de manera ligeramente diferente.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Cuando la moneda utilizada en un CFDI es distinta del peso mexicano (MXN), el campo que debe registrarse es el de TipoCambio",
+          "Si el valor del TipoCambio está fuera del rango permitido, que se obtiene del catálogo c_Moneda, el emisor debe obtener una clave de confirmación de manera no automática"
+        ],
+        "afirmaciones_sin_soporte": [
+          "El rango permitido se calcula de la siguiente manera: Límite superior: valor publicado del tipo de cambio FIX por la suma de uno más el porcentaje aplicable a la moneda. Límite inferior: valor publicado del tipo de cambio FIX por la suma de uno menos el porcentaje aplicable a la moneda"
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero hay una pequeña inferencia en la explicación del cálculo del rango permitido. Los fragmentos proporcionan la información necesaria, pero la respuesta la presenta de manera ligeramente diferente."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando información precisa sobre el campo TipoCambio y el proceso para obtener una clave de confirmación si el valor está fuera del rango permitido. La respuesta incluye detalles relevantes y fuentes de información, lo que la hace útil y completa.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "campo a registrarse cuando la moneda es distinta al peso mexicano",
+          "proceso a seguir si el valor del TipoCambio está fuera del rango permitido"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando información precisa sobre el campo TipoCambio y el proceso para obtener una clave de confirmación si el valor está fuera del rango permitido. La respuesta incluye detalles relevantes y fuentes de información, lo que la hace útil y completa."
+      },
+      "latencia_generacion_ms": 1066,
+      "latencia_juez_ms": 18029
+    },
+    {
+      "pregunta": "¿Bajo qué condiciones se puede optar por no habilitar el Buzón Tributario?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "RMF_2026_Completa_limpio.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "libro_regimen_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "659538cb7eecd3a8d114bea8e3fe698077d36aa74367aa04386a8c18ca2b8fb1",
+        "640bae0c7875eca79c1f981813035bedca057aec758cc765c2687f7b00ecda0b",
+        "920ad3e3132f094cb8ebde04280ef9fafee96e4f2fe11036b43127c0453a2b0b",
+        "35003b17327d01c4c03447c7dacc0606241e8afdd430f88befd6d1d3cf89545d",
+        "189e134852470b827a0086a626aa5dc05393a5b1e66f0cb009cf86ab370d2428"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": false,
+      "hit_at_5": false,
+      "latencia_recuperacion_ms": 362,
+      "respuesta_generada": "Según el contexto disponible, se puede optar por no habilitar el Buzón Tributario en las siguientes condiciones:\n\n1. **Personas físicas con situación fiscal**: \n   - Sin obligaciones fiscales.\n   - Sin actividad económica.\n   - Suspendidos.\n\n2. **Personas físicas que hayan emitido CFDI de nómina**: \n   - Dentro de los últimos doce meses.\n\n3. **Contribuyentes con ingresos menores a $400,000.00**:\n   - Que hayan obtenido ingresos en el ejercicio inmediato anterior menores a $400,000.00 (cuatrocientos mil pesos 00/100 M.N.) y estén comprendidos en el Título IV, Capítulo I de la Ley del ISR.\n\n4. **Situación de cancelados**:\n   - Las personas físicas y morales que se encuentren ante el RFC con situación fiscal de cancelados quedan relevados de habilitar el buzón tributario.\n\nFuentes:\n- RMF_2026_Completa_limpio.pdf, Sección: Introducción, Página: p.100.\n- RMF_2026_Completa_limpio.pdf, Sección: II, Página: p.100.",
+      "respuesta_esperada": "Los contribuyentes pueden optar por no habilitar el Buzón Tributario en tres supuestos: cuando las personas físicas cuenten ante el RFC con situación fiscal sin obligaciones fiscales, sin actividad económica o suspendidas; cuando las personas morales tengan situación fiscal de suspendidos; y cuando las personas físicas y morales se encuentren ante el RFC con situación fiscal de cancelados. Sin embargo, esto no aplica cuando el trámite específico requiera que el contribuyente cuente con Buzón Tributario.",
+      "tokens_entrada": 1019,
+      "tokens_salida": 233,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están directamente soportadas por los fragmentos, pero la condición relacionada con la emisión de CFDI de nómina no se encuentra explícitamente en los fragmentos proporcionados. Los fragmentos sí mencionan condiciones específicas para personas físicas y morales, así como para contribuyentes con ingresos menores a $400,000.00.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Personas físicas con situación fiscal: sin obligaciones fiscales, sin actividad económica o suspendidos",
+          "Contribuyentes con ingresos menores a $400,000.00",
+          "Situación de cancelados: personas físicas y morales que se encuentren ante el RFC con situación fiscal de cancelados"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Personas físicas que hayan emitido CFDI de nómina dentro de los últimos doce meses"
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están directamente soportadas por los fragmentos, pero la condición relacionada con la emisión de CFDI de nómina no se encuentra explícitamente en los fragmentos proporcionados. Los fragmentos sí mencionan condiciones específicas para personas físicas y morales, así como para contribuyentes con ingresos menores a $400,000.00."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre varios supuestos en los que se puede optar por no habilitar el Buzón Tributario, pero omite mencionar la excepción importante relacionada con trámites específicos que requieren el Buzón Tributario. Esto reduce la precisión y utilidad de la respuesta para el usuario.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "condiciones para personas físicas",
+          "situación de cancelados"
+        ],
+        "aspectos_faltantes": [
+          "excepción para trámites específicos que requieren Buzón Tributario"
+        ],
+        "razonamiento": "La respuesta generada cubre varios supuestos en los que se puede optar por no habilitar el Buzón Tributario, pero omite mencionar la excepción importante relacionada con trámites específicos que requieren el Buzón Tributario. Esto reduce la precisión y utilidad de la respuesta para el usuario."
+      },
+      "latencia_generacion_ms": 1022,
+      "latencia_juez_ms": 10956
+    },
+    {
+      "pregunta": "¿Qué campos del CFDI NO deben existir cuando el TipoDeComprobante es 'N' (Nómina)?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "8bef0fa8d4c55af79f2e4f08b827acd67a2c9998bc58f731ef765c0b0be07c70",
+        "51528fe268e1829f976849c06e1015a01e8773932cb3a73b4ea339400590581b",
+        "99a54214641972a61798e005bb1da1f52aa68cbc8d106e3fe3428eccbdf5afd8",
+        "949a39e7e26b78ac5c815edebad61269a8e1b8020135c709e5809a5b71b3e3fd",
+        "5fc829a91269225eee025e98b9e9e62d3b19bad25d9a72cf1546ce2575f0c978"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 336,
+      "respuesta_generada": "Cuando el TipoDeComprobante es 'N' (Nómina), los siguientes campos del CFDI no deben existir:\n\n1. **Impuestos**: El nodo Impuestos no debe existir.\n2. **FormaPago**: El campo FormaPago no debe existir.\n3. **Descuento** (en los conceptos): No debe existir el campo Descuento de los conceptos.\n4. **CondicionesDePago**: No debe existir el campo CondicionesDePago.\n\nFuentes:\n- Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: Introducción, Página: p.8\n- GuiaAnexo20DPA_limpio.pdf, Sección: Introducción, Página: p.24",
+      "respuesta_esperada": "Cuando el TipoDeComprobante es 'N' (Nómina): no debe existir el campo CondicionesDePago, no debe existir el nodo Impuestos, y no debe existir el campo FormaPago. Sí pueden existir los campos MetodoPago y Descuento.",
+      "tokens_entrada": 1649,
+      "tokens_salida": 145,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero la afirmación sobre el campo Descuento en los conceptos no tiene soporte explícito en los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Impuestos",
+          "FormaPago",
+          "CondicionesDePago"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Descuento (en los conceptos)"
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, pero la afirmación sobre el campo Descuento en los conceptos no tiene soporte explícito en los fragmentos proporcionados."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre la mayoría de los puntos clave, pero omite mencionar que los campos MetodoPago y Descuento sí pueden existir en un CFDI con TipoDeComprobante 'N'.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "campos que no deben existir en el CFDI con TipoDeComprobante 'N'",
+          "especificación de nodos y campos como Impuestos, FormaPago y CondicionesDePago"
+        ],
+        "aspectos_faltantes": [
+          "permisión de los campos MetodoPago y Descuento"
+        ],
+        "razonamiento": "La respuesta generada cubre la mayoría de los puntos clave, pero omite mencionar que los campos MetodoPago y Descuento sí pueden existir en un CFDI con TipoDeComprobante 'N'."
+      },
+      "latencia_generacion_ms": 667,
+      "latencia_juez_ms": 13982
+    },
+    {
+      "pregunta": "¿Cuáles son los requisitos para tributar en el Régimen Simplificado de Confianza (RESICO) para personas físicas y cuáles son las causas de exclusión?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "libro_regimen_limpio.pdf",
+        "libro_regimen_limpio.pdf",
+        "libro_regimen_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "4d067843c2f1798da78e08dda661426d9d01acce9484c7b2212f98683310e11c",
+        "a9b4d7c07a0ea4b49ce1272acfa041324b9506308a905d792ea53817550b4f2f",
+        "62d7420e9e625e8f922c86c93a3e042c4ca04c28b7ed7ae557ce0947b90e3586",
+        "111648aef19d79210f163248f18deaff3e3deebf3660f16b134edd36d58ae79e",
+        "5c0885705b82308d10dc3df0c0b3fa41f40d68cbc6c69a82c4e6e7332da87890"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 380,
+      "respuesta_generada": "Para tributar en el Régimen Simplificado de Confianza (RESICO) para personas físicas, se deben cumplir los siguientes requisitos:\n\n1. **Límite de ingresos**: El total de ingresos obtenidos en el ejercicio inmediato anterior por actividades empresariales, servicios profesionales u otorgamiento del uso o goce temporal de bienes no debe exceder $3,500,000.00. También se puede tributar en este régimen si se obtienen ingresos por salarios e intereses, siempre que el total de ingresos no exceda el límite mencionado.\n\n2. **Inscripción al RFC**: Inscribirse al Registro Federal de Contribuyentes (RFC) o actualizar sus actividades económicas.\n\n3. **Generación de e.firma y buzón tributario**: Generar su e.firma y activar su buzón tributario.\n\n4. **Expedir CFDI**: Expedir comprobantes fiscales digitales por internet (CFDI) por la totalidad de sus ingresos efectivamente cobrados.\n\n**Causas de exclusión**:\n\n- Quienes obtengan ingresos mayores a $3,500,000.00 en el ejercicio inmediato anterior.\n- Los socios, accionistas o integrantes de personas morales o cuando sean partes relacionadas.\n- Residentes en el extranjero que tengan uno o varios establecimientos permanentes en el país.\n- Quienes cuenten con ingresos sujetos a regímenes fiscales preferentes.\n\n**Obligaciones**:\n\n- No están obligados a llevar contabilidad de conformidad con el Código Fiscal de la Federación, pero deben cumplir con las obligaciones formales como expedir CFDI y presentar declaraciones.\n\n- Si tienen trabajadores, están obligados a pagar la participación de utilidades (PTU).\n\n**Fuente**:\n\n- [El_ABC_personas_contribuyentes_v2.pdf | Sección: introduccion | Página: p.58]\n- [libro_regimen_limpio.pdf | Sección: introduccion | Página: p.12 y p.13]\n- [libro_regimen_limpio.pdf | Sección: introduccion | Página: p.8]",
+      "respuesta_esperada": "Pueden tributar en RESICO las personas físicas que realicen actividades empresariales, agrícolas, ganaderas, pesqueras, silvícolas, servicios profesionales u otorguen uso o goce temporal de bienes, siempre que sus ingresos del ejercicio anterior no hayan excedido $3,500,000. No pueden tributar: socios o accionistas de personas morales o partes relacionadas, residentes en el extranjero con establecimiento permanente, y quienes obtengan ingresos sujetos a regímenes fiscales preferentes. Se sale del régimen si los ingresos anuales exceden $3,500,000, si se incumplen las obligaciones del artículo 113-G, o si se omiten tres o más pagos mensuales en un año calendario o no se presenta la declaración anual.",
+      "tokens_entrada": 1791,
+      "tokens_salida": 411,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, aunque hay algunas inferencias menores razonables y bien acotadas, como la causa de exclusión por ingresos mayores a $3,500,000.00 que se infiere de la descripción del régimen.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Límite de ingresos",
+          "Inscripción al RFC",
+          "Generación de e.firma y buzón tributario",
+          "Expedir CFDI",
+          "No están obligados a llevar contabilidad",
+          "Si tienen trabajadores, están obligados a pagar la participación de utilidades (PTU)"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Causas de exclusión: Quienes obtengan ingresos mayores a $3,500,000.00 en el ejercicio inmediato anterior"
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, aunque hay algunas inferencias menores razonables y bien acotadas, como la causa de exclusión por ingresos mayores a $3,500,000.00 que se infiere de la descripción del régimen."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre los requisitos y causas de exclusión para tributar en RESICO, pero omite detalles sobre las condiciones para salir del régimen, como el incumplimiento de obligaciones o la omisión de pagos mensuales.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "requisitos para tributar en RESICO",
+          "causas de exclusión"
+        ],
+        "aspectos_faltantes": [
+          "condiciones para salir del régimen"
+        ],
+        "razonamiento": "La respuesta generada cubre los requisitos y causas de exclusión para tributar en RESICO, pero omite detalles sobre las condiciones para salir del régimen, como el incumplimiento de obligaciones o la omisión de pagos mensuales."
+      },
+      "latencia_generacion_ms": 1454,
+      "latencia_juez_ms": 16890
+    },
+    {
+      "pregunta": "¿Cuál es el límite inferior, el límite superior y la cuota fija de la primera fila de la tarifa diaria para pagos de retenciones de ISR 2026?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf",
+        "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "91f18be921b1939580e64aa410642c29b4bf452bcf7b1cae33a033db4f535c0f",
+        "cd8635d0d79318b197e78529f5d68793cb857a1ad60f2eef2c6b66dd123835bb",
+        "a23e24d46c04d8d22da993b58ed85ab0a6e8c7642c86120ad0e666c9c5f0eeaf",
+        "025ed4fcce788b17d226405ae2e401dabad6515cf0a0f9a00dfcf81c58a0be89",
+        "6f3ae5e58071b0aec7bcab038302fda9b1e6b1e4743c7ff2fb1cc41ceee7622b"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 350,
+      "respuesta_generada": "El contexto disponible no cubre esta pregunta. \n\nSin embargo, puedo proporcionarte información sobre la tarifa mensual. Según el fragmento 1, para el mes de enero de 2026 (no específica la tarifa diaria), los límites y cuota fija son los siguientes:\n\n- Límite inferior: $0.01 \n- Límite superior: $416.70\n- Cuota fija: $0.00 \n\nPorcentaje para aplicarse sobre el excedente del límite inferior: 1.92% \n\nPara proporcionar una respuesta más precisa sobre la tarifa diaria, se necesitaría información específica sobre dicha tarifa en el contexto. \n\nFuentes: \n- Anexo-8-RMF-2026_DOF-28122025_limpio.pdf | Sección: IV. Tarifa aplicable... | Página: p.7",
+      "respuesta_esperada": "En la tarifa diaria de retenciones de ISR 2026, el primer rango tiene un límite inferior de $0.01 y un límite superior de $27.78, con una cuota fija de $0.00 y una tasa del 1.92% sobre el excedente del límite inferior.",
+      "tokens_entrada": 2561,
+      "tokens_salida": 168,
+      "fidelidad_score": 2,
+      "fidelidad_razonamiento": "La respuesta proporciona información parcialmente soportada por el fragmento 1, pero carece de soporte para la tarifa diaria específica y hace una inferencia sobre la necesidad de información adicional.",
+      "fidelidad_detalle": {
+        "score": 2,
+        "afirmaciones_soportadas": [
+          "El contexto disponible no cubre esta pregunta.",
+          "Según el fragmento 1, para el mes de enero de 2026 (no específica la tarifa diaria), los límites y cuota fija son los siguientes: - Límite inferior: $0.01, - Límite superior: $416.70, - Cuota fija: $0.00"
+        ],
+        "afirmaciones_sin_soporte": [
+          "Para proporcionar una respuesta más precisa sobre la tarifa diaria, se necesitaría información específica sobre dicha tarifa en el contexto."
+        ],
+        "razonamiento": "La respuesta proporciona información parcialmente soportada por el fragmento 1, pero carece de soporte para la tarifa diaria específica y hace una inferencia sobre la necesidad de información adicional."
+      },
+      "relevancia_score": 2,
+      "relevancia_razonamiento": "La respuesta generada no cubre la pregunta sobre la tarifa diaria de retenciones de ISR 2026, proporcionando información sobre la tarifa mensual en su lugar. Falta información precisa sobre los límites y la cuota fija para la tarifa diaria.",
+      "relevancia_detalle": {
+        "score": 2,
+        "aspectos_respondidos": [
+          "tarifa mensual"
+        ],
+        "aspectos_faltantes": [
+          "límite inferior",
+          "límite superior",
+          "cuota fija de la tarifa diaria"
+        ],
+        "razonamiento": "La respuesta generada no cubre la pregunta sobre la tarifa diaria de retenciones de ISR 2026, proporcionando información sobre la tarifa mensual en su lugar. Falta información precisa sobre los límites y la cuota fija para la tarifa diaria."
+      },
+      "latencia_generacion_ms": 687,
+      "latencia_juez_ms": 19035
+    },
+    {
+      "pregunta": "¿Cuál es la clave de producto o servicio (ClaveProdServ) y de unidad (ClaveUnidad) que debe registrarse en el CFDI de anticipo?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "12a55fd9822752a4fed8c26657613d48b1f0bbf726d1b36a6dd036a6f9da0863",
+        "1289a60c02a64bcc6fe3fe9259af8c0b2a44752d42714aebf7aa4ecf07079601",
+        "f4f16fde508893d6b106acd66bad42224e1a3c148aa29651dddc5012094a3abd",
+        "041b277fd9ac437442f2a442c45900d581d682a6c76eab8ab127e23c88f128eb",
+        "666d4a2aec2e9acb5419bc0cbffb8a5e66c1bf5d485f2651e778ed1c95057df2"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 391,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el [FRAGMENTO 1 | Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: Nodo: Concepto | Página: p.57], para el CFDI de anticipo:\n\n- La clave de unidad (ClaveUnidad) que debe registrarse es “ACT” (Actividad).\n\nSin embargo, el contexto disponible no proporciona información explícita sobre la clave de producto o servicio (ClaveProdServ) para el CFDI de anticipo. \n\nPor lo tanto, solo puedo confirmar la clave de unidad: La clave de unidad (ClaveUnidad) es \"ACT\". \n\nEl contexto disponible no cubre la pregunta sobre la clave de producto o servicio (ClaveProdServ).",
+      "respuesta_esperada": "En el CFDI por el valor del anticipo recibido, en el nodo Concepto debe registrarse: ClaveProdServ = '84111506' (Servicios de facturación), Cantidad = '1', ClaveUnidad = 'ACT' (Actividad), y en el campo Descripcion debe registrarse el valor 'Anticipo del bien o servicio'. El ValorUnitario corresponde al monto entregado como anticipo antes de impuestos.",
+      "tokens_entrada": 1075,
+      "tokens_salida": 151,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en el fragmento 1 que menciona la clave de unidad, pero no encuentra información sobre la clave de producto o servicio en los fragmentos proporcionados, lo que lleva a una afirmación sin soporte sobre la falta de información para esta última.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "La clave de unidad (ClaveUnidad) es ACT"
+        ],
+        "afirmaciones_sin_soporte": [
+          "No se proporciona información explícita sobre la clave de producto o servicio (ClaveProdServ)"
+        ],
+        "razonamiento": "La respuesta se basa en el fragmento 1 que menciona la clave de unidad, pero no encuentra información sobre la clave de producto o servicio en los fragmentos proporcionados, lo que lleva a una afirmación sin soporte sobre la falta de información para esta última."
+      },
+      "relevancia_score": 2,
+      "relevancia_razonamiento": "La respuesta generada solo cubre parcialmente la pregunta, proporcionando la clave de unidad pero no la clave de producto o servicio, ni otros detalles importantes para el CFDI de anticipo. La respuesta carece de precisión y utilidad para el usuario.",
+      "relevancia_detalle": {
+        "score": 2,
+        "aspectos_respondidos": [
+          "ClaveUnidad"
+        ],
+        "aspectos_faltantes": [
+          "ClaveProdServ",
+          "otros detalles como Cantidad, Descripcion y ValorUnitario"
+        ],
+        "razonamiento": "La respuesta generada solo cubre parcialmente la pregunta, proporcionando la clave de unidad pero no la clave de producto o servicio, ni otros detalles importantes para el CFDI de anticipo. La respuesta carece de precisión y utilidad para el usuario."
+      },
+      "latencia_generacion_ms": 682,
+      "latencia_juez_ms": 8804
+    },
+    {
+      "pregunta": "¿Cómo se describe el proceso completo de emisión de CFDI cuando se recibe un anticipo?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "GuiaAnexo20DPA_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "f4f16fde508893d6b106acd66bad42224e1a3c148aa29651dddc5012094a3abd",
+        "deaad46fefaf79abb3023669e483369b741a2c38ffcca95c7e0555934764b684",
+        "46cb67be3900bc43d36d512ffa86addbfe5480d2c4b3d657cb4852c9065c28fd",
+        "75854955e9a453da5f5b4580fe6f211ce1b2d8a8d93d7c5a5db2859c7fd78dab",
+        "8068d1b17cfa7014b0c2f660d0bd824691f58dea97d2893a32b359a8be4aeb9a"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 448,
+      "respuesta_generada": "El proceso completo de emisión de CFDI cuando se recibe un anticipo implica los siguientes pasos:\n\n1. **Emisión de un CFDI por el valor del anticipo recibido**: \n   - Al recibir un anticipo, se debe emitir un Comprobante Fiscal Digital por Internet (CFDI) por el valor del anticipo.\n   - En este CFDI, se debe registrar información específica en campos determinados, como:\n     - **TipoDeComprobante**: Debe registrarse la información correspondiente a este campo, aunque el contexto no especifica el valor exacto.\n   - Ejemplo: El 10 de agosto de 2022, se emite una factura por $348,000.00, recibido mediante transferencia electrónica de fondos.\n\n2. **Facturación aplicando anticipo con CFDI de egreso**:\n   - Posteriormente, se deben emitir comprobantes adicionales conforme al procedimiento de \"Facturación aplicando anticipo con CFDI de egreso\".\n   - El contexto menciona que se deben emitir **tres comprobantes** en este caso, pero no proporciona detalles adicionales sobre los pasos específicos para cada uno.\n\nEs importante mencionar que el contexto disponible no proporciona una descripción detallada de cada paso o campo específico para el proceso completo, pero básicamente implica la emisión de un CFDI inicial por el anticipo y luego la aplicación de ese anticipo mediante comprobantes adicionales.\n\nFuentes:\n- Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: II. Guía de llenado del Comprobante Fiscal Digital por Internet, Página: p.1\n- Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: 3. Emisión de un CFDI de tipo, Página: p.75\n- GuiaAnexo20DPA_limpio.pdf, Sección: introduccion, Página: p.32\n- GuiaAnexo20DPA_limpio.pdf, Sección: I. Emisión de un CFDI por el valor del anticipo recibido, Página: p.34",
+      "respuesta_esperada": "El proceso completa tres pasos: (1) Al recibir el anticipo se emite un CFDI tipo 'I' (Ingreso) con MetodoPago 'PUE' y la forma de pago real con que se recibió; no debe existir el nodo CfdiRelacionados. (2) Al concretar la operación se emite un CFDI tipo 'I' por el valor total, relacionando al anticipo con TipoRelacion '07' (CFDI por aplicación de anticipo) referenciando el UUID del CFDI del anticipo. (3) Inmediatamente se emite un CFDI tipo 'E' (Egreso) con FormaPago '30' (Aplicación de anticipo) y MetodoPago 'PUE', relacionando con TipoRelacion '07' el UUID del CFDI por el valor total. Si al emitir la factura por el valor total la diferencia no se paga de inmediato, también debe emitirse un CFDI con Complemento para Recepción de Pagos por cada pago recibido.",
+      "tokens_entrada": 1056,
+      "tokens_salida": 407,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en los fragmentos proporcionados, que describen el proceso de emisión de CFDI para anticipos, pero algunos detalles como los pasos específicos para los comprobantes adicionales no están completamente claros en los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "El proceso implica la emisión de un CFDI por el valor del anticipo recibido",
+          "Se deben registrar campos específicos como TipoDeComprobante",
+          "Se deben emitir comprobantes adicionales conforme al procedimiento de Facturación aplicando anticipo con CFDI de egreso"
+        ],
+        "afirmaciones_sin_soporte": [
+          "El contexto no proporciona detalles adicionales sobre los pasos específicos para cada comprobante adicional"
+        ],
+        "razonamiento": "La respuesta se basa en los fragmentos proporcionados, que describen el proceso de emisión de CFDI para anticipos, pero algunos detalles como los pasos específicos para los comprobantes adicionales no están completamente claros en los fragmentos."
+      },
+      "relevancia_score": 3,
+      "relevancia_razonamiento": "La respuesta generada cubre parcialmente la pregunta, mencionando la emisión de un CFDI por el anticipo y la necesidad de comprobantes adicionales, pero falta precisión en los detalles específicos de cada paso y los tipos de comprobante involucrados. La respuesta no proporciona una descripción clara de los pasos necesarios para la emisión de CFDI en el proceso completo.",
+      "relevancia_detalle": {
+        "score": 3,
+        "aspectos_respondidos": [
+          "emisión de CFDI por anticipo",
+          "necesidad de comprobantes adicionales"
+        ],
+        "aspectos_faltantes": [
+          "detalles específicos de cada paso del proceso",
+          "tipos de comprobante y relaciones entre ellos"
+        ],
+        "razonamiento": "La respuesta generada cubre parcialmente la pregunta, mencionando la emisión de un CFDI por el anticipo y la necesidad de comprobantes adicionales, pero falta precisión en los detalles específicos de cada paso y los tipos de comprobante involucrados. La respuesta no proporciona una descripción clara de los pasos necesarios para la emisión de CFDI en el proceso completo."
+      },
+      "latencia_generacion_ms": 1183,
+      "latencia_juez_ms": 13314
+    },
+    {
+      "pregunta": "¿Cuándo un pago anticipado no se considera anticipo y cuál es la diferencia con una venta en parcialidades?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "GuiaAnexo20DPA_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "314d2c587860979e49151dc43cf26e367f516d69ab4a940a06f11ebe8fd19667",
+        "cf3ceeff2c046b890af5ed4cf10a68dbacc54125a8b5629bf5f1c86ab6afdfb0",
+        "f18d725b464893c4fe8f1d28279d8e0b5393b64abd4e21fe8b02920653028128",
+        "593ca628088f5bfbecba27d34123bef28b31e1d399952f9d10f17c4cf658b985",
+        "533f7a2c2881b93f9cc0e76a0cb94e0d7a089effb095329448cb84eb4284ee0e"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 425,
+      "respuesta_generada": "Un pago anticipado no se considera anticipo en los siguientes casos:\n\n1. **Entrega de una cantidad por concepto de garantía o depósito**: cuando se entrega una cantidad que garantiza la realización o cumplimiento de alguna condición, como un depósito para garantizar el pago de rentas en un contrato de arrendamiento inmobiliario.\n\n2. **Operaciones con acuerdo previo sobre el bien o servicio y su precio**: cuando ya exista acuerdo sobre el bien o servicio que se va a adquirir y de su precio (aunque sea un acuerdo no escrito), y el comprador o adquirente del servicio realiza el pago de una parte del precio. En este caso, se considera una **venta en parcialidades** y no un anticipo.\n\nEn resumen, la diferencia entre un anticipo y una venta en parcialidades radica en que, en el caso de una venta en parcialidades, ya existe un acuerdo sobre el bien o servicio y su precio, y el pago es una parte del precio acordado. Por otro lado, un anticipo se da cuando no se conoce o no se ha determinado el bien o servicio que se va a adquirir o el precio del mismo.\n\n(Fuente: Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: Apéndice 8 Caso de Uso Facturación de Anticipos y Apéndice 6 Procedimiento para la emisión de los CFDI)",
+      "respuesta_esperada": "No es anticipo cuando la entrega de dinero funciona como garantía o depósito, por ejemplo, el depósito que da un arrendatario al arrendador para garantizar el pago de rentas. Tampoco es anticipo cuando ya existe acuerdo sobre el bien o servicio a adquirir y su precio,  el comprador paga una parte del precio; ese caso es una venta en parcialidades. Solo existe anticipo cuando se realiza un pago en una operación donde no se conoce o no se ha determinado el bien o servicio a adquirir, su precio, o ambos.",
+      "tokens_entrada": 1429,
+      "tokens_salida": 284,
+      "fidelidad_score": 5,
+      "fidelidad_razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en los fragmentos 2, 3 y 5, que explican claramente los casos en los que un pago anticipado no se considera anticipo y la diferencia con una venta en parcialidades.",
+      "fidelidad_detalle": {
+        "score": 5,
+        "afirmaciones_soportadas": [
+          "Un pago anticipado no se considera anticipo en los casos de entrega de una cantidad por concepto de garantía o depósito",
+          "Un pago anticipado no se considera anticipo en operaciones con acuerdo previo sobre el bien o servicio y su precio",
+          "La diferencia entre un anticipo y una venta en parcialidades radica en que, en el caso de una venta en parcialidades, ya existe un acuerdo sobre el bien o servicio y su precio"
+        ],
+        "afirmaciones_sin_soporte": [],
+        "razonamiento": "La respuesta se basa directamente en los fragmentos proporcionados, específicamente en los fragmentos 2, 3 y 5, que explican claramente los casos en los que un pago anticipado no se considera anticipo y la diferencia con una venta en parcialidades."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, incluyendo los casos en que un pago anticipado no se considera anticipo y la diferencia con una venta en parcialidades, proporcionando una explicación clara y precisa. La respuesta se ajusta a la expectativa del experto fiscal.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "casos en que un pago anticipado no se considera anticipo",
+          "diferencia con una venta en parcialidades"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, incluyendo los casos en que un pago anticipado no se considera anticipo y la diferencia con una venta en parcialidades, proporcionando una explicación clara y precisa. La respuesta se ajusta a la expectativa del experto fiscal."
+      },
+      "latencia_generacion_ms": 894,
+      "latencia_juez_ms": 14919
+    },
+    {
+      "pregunta": "¿Cuáles son las tasas de retención del ISR que aplican las plataformas tecnológicas digitales sobre los ingresos de personas físicas",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "Guia_Complemento_Comercio_Exterior_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "8146d41a737e943003a7e037d5172ff01d75e1fc44f6c983844e583879bf632f",
+        "c590f451b4c71264a65e3633130b6c03461e4c43a26da623bc4f3e5c282e4278",
+        "65406332eeef57bab872b4720abdca18daf8aac52956134a048ffbcb13fd7c92",
+        "aa90fdd5f8796680139be5138d60c6b13b316e85e276abaa388c2f0491eb0a01",
+        "e5f51fe799c802502a884cf1a6913370ae181fc672cd639af1b6e151c73a6bb6"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 333,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el Fragmento 1 de \"El_ABC_personas_contribuyentes_v2.pdf\", para la prestación de servicios de transporte terrestre de pasajeros y de entrega de bienes, la tasa de retención del ISR es del 2.1%.\n\nNo se proporciona información sobre otras tasas de retención para diferentes tipos de servicios o actividades. \n\nPara más detalles sobre otras posibles tasas o condiciones específicas, te recomendaría revisar la fuente original: \"El_ABC_personas_contribuyentes_v2.pdf\", Sección: Introducción, Página: p.61. \n\nAdemás, es importante mencionar que las plataformas tecnológicas deben realizar el entero de las retenciones efectuadas a través de la “Declaración de pago del ISR retenciones por el uso de plataformas tecnológicas” a más tardar el día 17 del mes inmediato siguiente, según lo establecido en el Fragmento 2 de \"RMF_2026_Completa_limpio.pdf\". \n\nSi necesitas más información sobre otros aspectos o condiciones, no dudes en preguntar.",
+      "respuesta_esperada": "Las tasas de retención del ISR que aplican las plataformas digitales son: 2.1% por prestación de servicios de transporte terrestre de pasajeros y de entrega de bienes; 4% por prestación de servicios de hospedaje; 1% por enajenación de bienes y prestación de servicios en general. La retención se efectúa sobre el total de los ingresos efectivamente percibidos sin incluir el IVA y tiene el carácter de pago provisional.",
+      "tokens_entrada": 1339,
+      "tokens_salida": 216,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en información explícita de los fragmentos, pero también incluye algunas afirmaciones que no están directamente soportadas por los fragmentos, como la referencia a la página y sección de la fuente original.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "La tasa de retención del ISR es del 2.1% para la prestación de servicios de transporte terrestre de pasajeros y de entrega de bienes",
+          "Las plataformas tecnológicas deben realizar el entero de las retenciones efectuadas a través de la Declaración de pago del ISR retenciones por el uso de plataformas tecnológicas"
+        ],
+        "afirmaciones_sin_soporte": [
+          "No se proporciona información sobre otras tasas de retención para diferentes tipos de servicios o actividades",
+          "Revisar la fuente original: El_ABC_personas_contribuyentes_v2.pdf, Sección: Introducción, Página: p.61"
+        ],
+        "razonamiento": "La respuesta se basa en información explícita de los fragmentos, pero también incluye algunas afirmaciones que no están directamente soportadas por los fragmentos, como la referencia a la página y sección de la fuente original."
+      },
+      "relevancia_score": 2,
+      "relevancia_razonamiento": "La respuesta generada solo cubre parcialmente la pregunta, proporcionando información sobre una tasa de retención específica, pero no aborda otras tasas de retención relevantes para diferentes servicios o actividades. La respuesta carece de precisión y no proporciona una visión completa de las tasas de retención del ISR aplicables.",
+      "relevancia_detalle": {
+        "score": 2,
+        "aspectos_respondidos": [
+          "tasa de retención del ISR para prestación de servicios de transporte terrestre de pasajeros y de entrega de bienes"
+        ],
+        "aspectos_faltantes": [
+          "tasas de retención del ISR para otros tipos de servicios o actividades",
+          "carácter de la retención"
+        ],
+        "razonamiento": "La respuesta generada solo cubre parcialmente la pregunta, proporcionando información sobre una tasa de retención específica, pero no aborda otras tasas de retención relevantes para diferentes servicios o actividades. La respuesta carece de precisión y no proporciona una visión completa de las tasas de retención del ISR aplicables."
+      },
+      "latencia_generacion_ms": 863,
+      "latencia_juez_ms": 12910
+    },
+    {
+      "pregunta": "¿Cuál es la regla sobre cómo registrar el campo FormaPago cuando en una misma transacción se aplican más de una forma de pago?",
+      "dificultad": "alta",
+      "fuentes_esperadas": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Guia_Complemento_Pagos_v2_limpio.pdf",
+        "Guia_llenado_CFDI_global_limpio.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "f9ed92045c8c9de9713f2bb1c0a4ce4c7ee06cb82c29e261a2ce398ded5c8fa6",
+        "8d586d443a5f6ec0c01e31bce84668033efabd275cf5ffae098c37fec93485fc",
+        "eae07995e190e3f5ab5b214accf10c60e16b674d45e25dbef7b39ac66a684f47",
+        "8d1c0c143cef66f3d5898b9bd918db473443479d0b1d5c5430397c90c4f216b0",
+        "51528fe268e1829f976849c06e1015a01e8773932cb3a73b4ea339400590581b"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 346,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el [FRAGMENTO 1 | Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: Nodo:Traslados se debe expresar la información detallada | Página: p.61] y reiterado en [FRAGMENTO 4 | Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf | Sección: introduccion | Página: p.4], cuando en una transacción se aplican más de una forma de pago, los contribuyentes deben registrar en el campo `FormaPago` la clave de la forma de pago con la que se liquida la mayor cantidad del pago. \n\nSi las distintas formas de pago tienen el mismo importe, el contribuyente debe registrar a su consideración una de las formas de pago con las que se recibió el pago de la contraprestación. \n\nLas claves de forma de pago se encuentran incluidas en el catálogo `c_FormaPago`, que incluye opciones como:\n\n- `01` Efectivo\n- `02` Cheque nominativo\n- `03` Transferencia electrónica de fondos\n- `99` Por definir\n\nEs importante mencionar que si no se recibe el pago de la contraprestación al momento de la emisión del comprobante fiscal (pago en parcialidades o diferido), se debe seleccionar la clave `99` (Por definir) del catálogo `c_FormaPago`, y la clave del método de pago debe ser `PPD` (Pago en parcialidades o diferido). \n\nFuente: Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf, Sección: Nodo:Traslados se debe expresar la información detallada, Página: p.61 y Sección: introduccion, Página: p.4.",
+      "respuesta_esperada": "Cuando se aplica más de una forma de pago en una sola transacción, el contribuyente debe incluir en el campo FormaPago la clave vigente del catálogo c_FormaPago correspondiente a la forma de pago con la que se liquida la mayor cantidad. En caso de que se reciban distintas formas de pago con el mismo importe, el contribuyente puede registrar a su consideración cualquiera de las formas de pago con las que se recibió la contraprestación.",
+      "tokens_entrada": 1397,
+      "tokens_salida": 361,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, especialmente en el FRAGMENTO 1 y FRAGMENTO 4, pero hay una mención a una sección y página específica que no se encuentra en los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "los contribuyentes deben registrar en el campo `FormaPago` la clave de la forma de pago con la que se liquida la mayor cantidad del pago",
+          "Si las distintas formas de pago tienen el mismo importe, el contribuyente debe registrar a su consideración una de las formas de pago con las que se recibió el pago de la contraprestación",
+          "Las claves de forma de pago se encuentran incluidas en el catálogo `c_FormaPago`"
+        ],
+        "afirmaciones_sin_soporte": [
+          "la respuesta menciona una sección y página específica en el Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf que no se encuentra en los fragmentos proporcionados"
+        ],
+        "razonamiento": "La mayoría de las afirmaciones están soportadas directamente por los fragmentos, especialmente en el FRAGMENTO 1 y FRAGMENTO 4, pero hay una mención a una sección y página específica que no se encuentra en los fragmentos proporcionados."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre todos los puntos clave de la pregunta, incluyendo la regla para registrar el campo FormaPago y la selección de la clave de forma de pago en diferentes escenarios. La información proporcionada es precisa y útil, lo que justifica una puntuación máxima.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "regla para registrar el campo FormaPago con múltiples formas de pago",
+          "selección de la clave de forma de pago en caso de igual importe",
+          "uso de la clave 99 para pagos en parcialidades o diferidos"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre todos los puntos clave de la pregunta, incluyendo la regla para registrar el campo FormaPago y la selección de la clave de forma de pago en diferentes escenarios. La información proporcionada es precisa y útil, lo que justifica una puntuación máxima."
+      },
+      "latencia_generacion_ms": 1117,
+      "latencia_juez_ms": 14128
+    },
+    {
+      "pregunta": "¿Qué elementos se compone la e.firma?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "El_ABC_personas_contribuyentes_v2.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "El_ABC_personas_contribuyentes_v2.pdf",
+        "Documentacion_Tecnica_CFDI_limpio.pdf",
+        "Documentacion_Tecnica_CFDI_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "dc49c599ad66c27acaa739967da2306a109bef5015d04a0390c7efb59632d74b",
+        "7a766674015ad191d10d31fcd03929cea5f864577ed3d475dbb41542da40e553",
+        "d67ff9b71faa27fc8da646b0a8059bb6f5401b59ce475ce4a37185e04fcb8e59",
+        "b34024a9a37d845c79435aa21a7dd4205629ff86a4b35f54cab78b6870e36f6e",
+        "325751aefe4f1547a3efd45a8030b95ab91976ed4b34e5d79b2953d8eac7e427"
+      ],
+      "hit_at_1": false,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 363,
+      "respuesta_generada": "La e.firma se compone de una contraseña y tres archivos:\n\n1. CER: Certificado\n2. KEY: Llave privada\n3. REQ: Requerimiento\n\nEsto se menciona en el documento \"El_ABC_personas_contribuyentes_v2.pdf\", sección: introduccion, página: p.29.",
+      "respuesta_esperada": "Se compone de una contraseña y tres archivos: CER (Certificado), KEY (Llave privada) y REQ (Requerimiento).",
+      "tokens_entrada": 798,
+      "tokens_salida": 70,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La composición de la e.firma está explícitamente mencionada en el fragmento 3, pero la referencia a la página y sección del documento no se encuentra en los fragmentos proporcionados. La información sobre la composición de la e.firma es correcta según el fragmento 3.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "La e.firma se compone de una contraseña y tres archivos",
+          "CER: Certificado",
+          "KEY: Llave privada",
+          "REQ: Requerimiento"
+        ],
+        "afirmaciones_sin_soporte": [
+          "se menciona en el documento 'El_ABC_personas_contribuyentes_v2.pdf', sección: introduccion, página: p.29"
+        ],
+        "razonamiento": "La composición de la e.firma está explícitamente mencionada en el fragmento 3, pero la referencia a la página y sección del documento no se encuentra en los fragmentos proporcionados. La información sobre la composición de la e.firma es correcta según el fragmento 3."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, mencionando los tres archivos que componen la e.firma y su función. La información proporcionada es precisa y útil.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "componentes de la e.firma",
+          "tipos de archivos incluidos"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente los puntos clave de la pregunta, mencionando los tres archivos que componen la e.firma y su función. La información proporcionada es precisa y útil."
+      },
+      "latencia_generacion_ms": 411,
+      "latencia_juez_ms": 8706
+    },
+    {
+      "pregunta": "¿Qué establece el criterio normativo 24/CFF/N?",
+      "dificultad": "baja",
+      "fuentes_esperadas": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "RMF_2026_Completa_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "89e2c7cfa39a3d7dadf7b58b9badd42c9c74222859050d644966bf5d6b9d6258",
+        "850ff365b55dd83a5e1a2a6850ad9d547e2879c810e82ef5986dbc089d2d8463",
+        "03877253a9af10b85d08d82dd65082f02bc754c609370c22aba287908c3ec83c",
+        "ddd29c957c907af418b68e0ee75c6226c53f5fab76a7bad8bc1f00346c2cc856",
+        "5f10b77ca1b1a92ceaadd86575c3a7a85e5c055687df9497503aa07f37ff2c43"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 304,
+      "respuesta_generada": "El contexto disponible no cubre esta pregunta.",
+      "respuesta_esperada": "Establece que cuando el retenedor no efectúa la retención y asume el adeudo o paga las contribuciones directamente con su patrimonio, puede obtener los beneficios legales propios de los contribuyentes.",
+      "tokens_entrada": 738,
+      "tokens_salida": 10,
+      "fidelidad_score": 1,
+      "fidelidad_razonamiento": "La respuesta indica que no hay información disponible, lo que es correcto ya que los fragmentos proporcionados no mencionan el criterio normativo 24/CFF/N, por lo que la respuesta no tiene soporte en los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 1,
+        "afirmaciones_soportadas": [],
+        "afirmaciones_sin_soporte": [
+          "El contexto disponible no cubre esta pregunta"
+        ],
+        "razonamiento": "La respuesta indica que no hay información disponible, lo que es correcto ya que los fragmentos proporcionados no mencionan el criterio normativo 24/CFF/N, por lo que la respuesta no tiene soporte en los fragmentos proporcionados."
+      },
+      "relevancia_score": 1,
+      "relevancia_razonamiento": "La respuesta generada no proporciona información relevante sobre el criterio normativo 24/CFF/N, por lo que no satisface la necesidad informativa expresada en la pregunta. La respuesta esperada proporciona detalles específicos sobre el criterio, lo que la respuesta generada no logra cubrir.",
+      "relevancia_detalle": {
+        "score": 1,
+        "aspectos_respondidos": [],
+        "aspectos_faltantes": [
+          "contenido del criterio normativo 24/CFF/N"
+        ],
+        "razonamiento": "La respuesta generada no proporciona información relevante sobre el criterio normativo 24/CFF/N, por lo que no satisface la necesidad informativa expresada en la pregunta. La respuesta esperada proporciona detalles específicos sobre el criterio, lo que la respuesta generada no logra cubrir."
+      },
+      "latencia_generacion_ms": 264,
+      "latencia_juez_ms": 6492
+    },
+    {
+      "pregunta": "¿Qué criterios aplican a las enajenaciones subsecuentes de alcohol o alcohol desnaturalizado?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "RMF_2026_Completa_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "0ab96b45630be63da7f5d04c550f689890dec40f7ceeba8a446be0288cbaf692",
+        "6bd6e8d3e410401f10f9aa1f59c7319ff5e97570370d9f804b5d805b1d3232bb",
+        "85e9a2161d4520d0ec7d05f80eccc6ec905a7d2c2638aa16d4f58e9fd7029146",
+        "026b9d74aa500a6e08d98d093f1739874e893085a74016b1e95336d9c9e5f827",
+        "f445d739a254a787839054aa184643637004bd3c5e1ea097c25a216f9ebc0e98"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 368,
+      "respuesta_generada": "Según el contexto proporcionado, específicamente en el [FRAGMENTO 2 | Anexo_7_RMF2026-09012026_limpio.pdf | Sección: introduccion | Página: p.128], se establece que las enajenaciones subsecuentes de alcohol o alcohol desnaturalizado causan el Impuesto Especial sobre Producción y Servicios (IEPS). Esto se fundamenta en los artículos 1o. y 2o., fracción I, inciso B) de la Ley del IEPS, que no limitan el gravamen a la primera enajenación de dichos productos.\n\nSin embargo, dichas enajenaciones pueden estar exentas si los contribuyentes cumplen con las obligaciones establecidas en el inciso e) de la fracción I del artículo 8o. de la Ley del IEPS que les resulten aplicables.\n\nPor lo tanto, los criterios que aplican a las enajenaciones subsecuentes de alcohol o alcohol desnaturalizado son:\n\n1. Causan IEPS, de acuerdo con los artículos 1o. y 2o., fracción I, inciso B) de la Ley del IEPS.\n2. Pueden estar exentas si se cumplen las obligaciones del inciso e) de la fracción I del artículo 8o. de la Ley del IEPS.\n\nFuente: [Anexo_7_RMF2026-09012026_limpio.pdf | Sección: introduccion | Página: p.128].",
+      "respuesta_esperada": "Establece que quienes efectúen enajenaciones subsecuentes de alcohol o alcohol desnaturalizado con fines de comercialización son contribuyentes del IEPS, ya que la Ley del IEPS no limita el impuesto únicamente a la primera enajenación. La tasa aplicable es del 50% conforme al artículo 2° de la Ley del IEPS.",
+      "tokens_entrada": 1115,
+      "tokens_salida": 295,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en el contenido del FRAGMENTO 2, que establece que las enajenaciones subsecuentes causan IEPS y pueden estar exentas bajo ciertas condiciones, aunque la referencia a la página específica no se encuentra en los fragmentos proporcionados.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Las enajenaciones subsecuentes de alcohol o alcohol desnaturalizado causan el Impuesto Especial sobre Producción y Servicios (IEPS)",
+          "Pueden estar exentas si se cumplen las obligaciones del inciso e) de la fracción I del artículo 8o. de la Ley del IEPS"
+        ],
+        "afirmaciones_sin_soporte": [
+          "La referencia a la página p.128 en el Anexo_7_RMF2026-09012026_limpio.pdf"
+        ],
+        "razonamiento": "La respuesta se basa en el contenido del FRAGMENTO 2, que establece que las enajenaciones subsecuentes causan IEPS y pueden estar exentas bajo ciertas condiciones, aunque la referencia a la página específica no se encuentra en los fragmentos proporcionados."
+      },
+      "relevancia_score": 4,
+      "relevancia_razonamiento": "La respuesta generada cubre los criterios de enajenaciones subsecuentes y la causación del IEPS, pero omite mencionar la tasa aplicable del 50% conforme al artículo 2° de la Ley del IEPS. Esto es un detalle secundario relevante que falta en la respuesta.",
+      "relevancia_detalle": {
+        "score": 4,
+        "aspectos_respondidos": [
+          "criterios de enajenaciones subsecuentes",
+          "causación del IEPS"
+        ],
+        "aspectos_faltantes": [
+          "tasa aplicable del 50%"
+        ],
+        "razonamiento": "La respuesta generada cubre los criterios de enajenaciones subsecuentes y la causación del IEPS, pero omite mencionar la tasa aplicable del 50% conforme al artículo 2° de la Ley del IEPS. Esto es un detalle secundario relevante que falta en la respuesta."
+      },
+      "latencia_generacion_ms": 981,
+      "latencia_juez_ms": 11054
+    },
+    {
+      "pregunta": "¿Cuándo un producto lácteo o lácteo combinado queda sujeto al IEPS aplicable a bebidas saborizadas?",
+      "dificultad": "media",
+      "fuentes_esperadas": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf"
+      ],
+      "filenames_recuperados": [
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "Anexo_7_RMF2026-09012026_limpio.pdf"
+      ],
+      "chunk_ids_recuperados": [
+        "c90d280da38cf4daad978346f2eed4dc5ac7f786fbd621839ff57bb5faf9634c",
+        "a1d4a7bfb165051a80f70d1fae8d187900934ffeb25a62903b0f4fb6660e44d7",
+        "fb1917e767501bc2716deb17f4778a96beec3964f0bf037edd68d987f9f88fcb",
+        "7caf3a27c70615a82679c7a8d5d24f54b6eeb6aeefcf7a497aa011a0c84e011e",
+        "a5e6666f5176698c43bbfdbc7ad9963c059de05bd244de561891dec8e4f6845c"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "hit_at_5": true,
+      "latencia_recuperacion_ms": 327,
+      "respuesta_generada": "Un producto lácteo o producto lácteo combinado queda sujeto al IEPS aplicable a bebidas saborizadas cuando en su proceso de elaboración se disuelvan azúcares o edulcorantes en agua. Esto se establece en el artículo 2o., fracción I, inciso G) de la Ley del IEPS y se menciona en los criterios normativos aprobados en los oficios 600-04-07-2014-87379 de 15 de diciembre de 2014 y 600-04-07-2014-87371 de 17 de diciembre de 2014.\n\nFuente: Anexo_7_RMF2026-09012026_limpio.pdf, Sección: introduccion, Página: p.131 y p.132. \n\nEs importante mencionar que si los productos lácteos o lácteos combinados tienen azúcares o edulcorantes añadidos disueltos en agua, pero cumplen con las especificaciones establecidas en las Normas Oficiales Mexicanas, pueden quedar comprendidos en la exención correspondiente. \n\nFuente: Anexo_7_RMF2026-09012026_limpio.pdf, Sección: introduccion, Página: p.131.",
+      "respuesta_esperada": "Los productos lácteos y productos lácteos combinados quedan afectos al IEPS aplicable a bebidas saborizadas cuando en su proceso de elaboración se disuelvan azúcares o edulcorantes en agua.",
+      "tokens_entrada": 1554,
+      "tokens_salida": 244,
+      "fidelidad_score": 4,
+      "fidelidad_razonamiento": "La respuesta se basa en los fragmentos proporcionados, que establecen claramente la condición para que un producto lácteo o lácteo combinado quede sujeto al IEPS aplicable a bebidas saborizadas, pero la afirmación sobre la exención por cumplir con Normas Oficiales Mexicanas no está explícitamente soportada por los fragmentos.",
+      "fidelidad_detalle": {
+        "score": 4,
+        "afirmaciones_soportadas": [
+          "Un producto lácteo o producto lácteo combinado queda sujeto al IEPS aplicable a bebidas saborizadas cuando en su proceso de elaboración se disuelvan azúcares o edulcorantes en agua",
+          "Esto se establece en el artículo 2o., fracción I, inciso G) de la Ley del IEPS y se menciona en los criterios normativos aprobados en los oficios 600-04-07-2014-87379 de 15 de diciembre de 2014 y 600-04-07-2014-87371 de 17 de diciembre de 2014"
+        ],
+        "afirmaciones_sin_soporte": [
+          "si los productos lácteos o lácteos combinados tienen azúcares o edulcorantes añadidos disueltos en agua, pero cumplen con las especificaciones establecidas en las Normas Oficiales Mexicanas, pueden quedar comprendidos en la exención correspondiente"
+        ],
+        "razonamiento": "La respuesta se basa en los fragmentos proporcionados, que establecen claramente la condición para que un producto lácteo o lácteo combinado quede sujeto al IEPS aplicable a bebidas saborizadas, pero la afirmación sobre la exención por cumplir con Normas Oficiales Mexicanas no está explícitamente soportada por los fragmentos."
+      },
+      "relevancia_score": 5,
+      "relevancia_razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la condición específica para que un producto lácteo quede sujeto al IEPS y mencionando la excepción para productos que cumplen con las Normas Oficiales Mexicanas. La información es precisa y útil.",
+      "relevancia_detalle": {
+        "score": 5,
+        "aspectos_respondidos": [
+          "condición para que un producto lácteo quede sujeto al IEPS",
+          "excepción para productos que cumplen con Normas Oficiales Mexicanas"
+        ],
+        "aspectos_faltantes": [],
+        "razonamiento": "La respuesta generada cubre completamente la pregunta, proporcionando la condición específica para que un producto lácteo quede sujeto al IEPS y mencionando la excepción para productos que cumplen con las Normas Oficiales Mexicanas. La información es precisa y útil."
+      },
+      "latencia_generacion_ms": 1045,
+      "latencia_juez_ms": 15366
+    }
+  ]
+}
