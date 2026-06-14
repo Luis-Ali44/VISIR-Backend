@@ -18,19 +18,16 @@ def _get_paddle_ocr():
     global _paddle_ocr_instance
     if _paddle_ocr_instance is None:
         os.environ["CUDA_VISIBLE_DEVICES"] = ""
-        os.environ["FLAGS_use_cuda"] = "0"  # noqa: SIM112
+        os.environ["FLAGS_USE_CUDA"] = "0"
         path_original = os.environ.get("PATH", "")
         partes_limpias = [
-            p
-            for p in path_original.split(os.pathsep)
+            p for p in path_original.split(os.pathsep)
             if "torch" not in p.lower() and "cuda" not in p.lower()
         ]
         os.environ["PATH"] = os.pathsep.join(partes_limpias)
         import paddle
-
         paddle.device.set_device("cpu")
         from paddleocr import PaddleOCR
-
         print("Cargando PaddleOCR...")
         _paddle_ocr_instance = PaddleOCR(
             use_doc_orientation_classify=False,
@@ -47,10 +44,8 @@ def _es_ticket(img_array: np.ndarray) -> bool:
     ratio = h / w
     es = ratio > 2.5 or w < 800
     if es:
-        print(
-            f"    [Ticket detectado] alto={h}px ancho={w}px ratio={ratio:.2f} "
-            f"({'ratio>2.5' if ratio > 2.5 else 'ancho<800'})"
-        )
+        print(f"    [Ticket detectado] alto={h}px ancho={w}px ratio={ratio:.2f} "
+              f"({'ratio>2.5' if ratio > 2.5 else 'ancho<800'})")
     else:
         print(f"    [Factura normal] alto={h}px ancho={w}px ratio={ratio:.2f}")
     return es
@@ -126,10 +121,10 @@ def _agrupar_en_lineas(
     return lineas
 
 
-_SCORE_MINIMO = 0.35
+_SCORE_MINIMO        = 0.35
 _SCORE_MINIMO_NATIVO = 0.25
 
-SCORE_MINIMO = _SCORE_MINIMO
+SCORE_MINIMO        = _SCORE_MINIMO
 SCORE_MINIMO_NATIVO = _SCORE_MINIMO_NATIVO
 
 
@@ -144,15 +139,10 @@ def _ocr_desde_array(
         for res in resultado:
             if res is None:
                 continue
-            rec_texts = res.get("rec_texts", []) or []
+            rec_texts  = res.get("rec_texts",  []) or []
             rec_scores = res.get("rec_scores", []) or []
-            rec_polys = res.get("rec_polys", []) or []
-
-            for texto, score, poly in zip(  # noqa: B905
-                rec_texts,
-                rec_scores,
-                rec_polys,
-            ):
+            rec_polys  = res.get("rec_polys",  []) or []
+            for texto, score, poly in zip(rec_texts, rec_scores, rec_polys, strict=False):
                 if score < score_minimo:
                     continue
                 texto_str = str(texto).strip()
@@ -168,8 +158,8 @@ def _ocr_desde_array(
 
 
 _DPI_ESCANEADO = 250
-_DPI_NATIVO = 300
-_DPI_TICKET = 200
+_DPI_NATIVO    = 300
+_DPI_TICKET    = 200
 
 
 def _es_pdf_nativo(pagina: fitz.Page) -> bool:
@@ -193,29 +183,31 @@ def extraer_texto_paddle(ruta_archivo: str) -> str:
                 nativo = _es_pdf_nativo(pagina)
 
             if es_ticket:
-                dpi = _DPI_TICKET
+                dpi       = _DPI_TICKET
                 score_min = _SCORE_MINIMO
-                tipo_str = "ticket"
+                tipo_str  = "ticket"
             elif nativo:
-                dpi = _DPI_NATIVO
+                dpi       = _DPI_NATIVO
                 score_min = _SCORE_MINIMO_NATIVO
-                tipo_str = "nativo"
+                tipo_str  = "nativo"
             else:
-                dpi = _DPI_ESCANEADO
+                dpi       = _DPI_ESCANEADO
                 score_min = _SCORE_MINIMO
-                tipo_str = "escaneado"
+                tipo_str  = "escaneado"
 
             escala = dpi / 72.0
             mat = fitz.Matrix(escala, escala)
             pix = pagina.get_pixmap(matrix=mat, colorspace=fitz.csRGB)
-            img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3)
+            img_array = np.frombuffer(pix.samples, dtype=np.uint8).reshape(
+                pix.height, pix.width, 3
+            )
             img_proc = _preprocesar_imagen(img_array, nativo=nativo)
             lineas = _ocr_desde_array(ocr, img_proc, score_minimo=score_min)
             paginas_texto.append("\n".join(lineas))
 
             print(
                 f"  Pagina {num + 1}/{len(doc)} "
-                f"({dpi} DPI, {tipo_str}, score>={score_min}) -- {len(lineas)} lineas"
+                f"({dpi} DPI, {tipo_str}, score>={score_min}) - {len(lineas)} lineas"
             )
         doc.close()
 
@@ -230,4 +222,4 @@ def extraer_texto_paddle(ruta_archivo: str) -> str:
         raise ValueError(f"Formato no soportado: {ruta.suffix}")
 
     print(f"  OCR completado en {time.time() - inicio:.2f}s")
-    return "\n\n---Inicio de Pagina---\n\n".join(paginas_texto)
+    return "\n\n_____Inicio de Pagina______\n\n".join(paginas_texto)

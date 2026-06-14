@@ -6,42 +6,140 @@ import re
 import time
 from typing import Any
 
-from app.services.Extraccion.catalogos import (
+from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
-    CATALOGO_USO_CFDI,
+    CATALOGO_MONEDA,
     normalizar_catalogo,
 )
 
 LLM_CONFIG = {
-    "ollama_url": "http://localhost:11434/api/generate",
+    "ollama_url":    "http://localhost:11434/api/generate",
     "mistral_model": "mistral-large-latest",
-    "ollama_model": "llama3.2:latest",
-    "timeout": 300,
-    "temperature": 0.0,
-    "max_tokens": 8192,
+    "ollama_model":  "llama3.2:latest",
+    "timeout":       300,
+    "temperature":   0.0,
+    "max_tokens":    8192,
 }
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 
+_PROMPT_CFDI = """\
+Eres un especialista en CFDIs e información fiscal mexicana.
+El texto puede contener UNO O VARIOS comprobantes fiscales (CFDIs).
+Devuelve ÚNICAMENTE objetos JSON válidos, uno por CFDI encontrado,
+separados por salto de línea. Sin explicaciones, sin markdown, sin texto extra.
+Si un campo no aparece en el texto usa null.
+{nota_uuid}
+
+REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
+
+1. VERSIÓN
+   La versión pre-detectada es "{version}". Úsala exactamente.
+   Si encuentras "||1.1|" en la cadena original → "4.0".
+   Si encuentras "||1.0|" en la cadena original → "3.3".
+
+2. EMISOR vs RECEPTOR
+   • EMISOR   → quien EXPIDE la factura. RFC y nombre aparecen en el ENCABEZADO,
+                ANTES del "FOLIO FISCAL" / UUID.
+   • RECEPTOR → quien RECIBE. Sus datos aparecen DESPUÉS del folio fiscal.
+   • NUNCA pongas el mismo RFC en emisor y receptor.
+
+3. folio_fiscal
+   Busca el UUID en TODO el documento, incluso dentro de la Cadena Original del SAT.
+   Formato obligatorio: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (32 hex + 4 guiones).
+   Copia los caracteres tal como aparecen, sin inventar ni completar.
+
+4. Fechas (fecha_emision)
+   Formato requerido: YYYY-MM-DDTHH:MM:SS (ISO 8601 sin zona horaria).
+   Si el texto trae otro formato, conviértelo. Si no hay hora, usa 00:00:00.
+
+5. metodo_pago → exactamente "PUE" o "PPD".
+6. forma_pago  → código de 2 dígitos ("01", "02", "03", "28", "99", etc.).
+   Solo extrae el código si aparece EXPLÍCITAMENTE en el texto como número.
+7. moneda      → código ISO de 3 letras ("MXN", "USD", "EUR", etc.).
+8. Campos numéricos → número sin símbolo de moneda ni comas (ej. 1234.56).
+9. RFCs        → sin espacios, sin guiones, en MAYÚSCULAS.
+10. NUNCA inventes datos. Si un campo no está visible en el texto → null.
+11. descripcion de cada concepto → copia el texto COMPLETO y LITERAL.
+    No resumir, no parafrasear.
+
+estructura JSON requerida por cada CFDI:
+
+{{
+    "version":       null,
+    "folio_fiscal":  null,
+    "fecha_emision": null,
+    "metodo_pago":   null,
+    "forma_pago":    null,
+    "moneda":        null,
+    "emisor": {{
+        "RFC":    null,
+        "nombre": null
+    }},
+    "receptor": {{
+        "RFC":    null,
+        "nombre": null
+    }},
+    "conceptos": [
+        {{
+            "descripcion":     null,
+            "clave_prod_serv": null,
+            "unidad":          null,
+            "cantidad":        null,
+            "valor_unitario":  null,
+            "descuento":       null,
+            "importe":         null,
+            "iva":             null
+        }}
+    ],
+    "subtotal":    null,
+    "descuento":   null,
+    "iva":         null,
+    "retenciones": null,
+    "total":       null
+}}
+
+TEXTO OCR:
+{texto}
+"""
+
+
+def construir_prompt(
+    texto_ocr: str,
+    version: str | None = None,
+    uuid_detectado: str | None = None,
+    max_chars: int = 6_000,
+) -> str:
+    nota_uuid = (
+        f'\nNOTA: El folio fiscal pre-extraído es "{uuid_detectado}". '
+        'Úsalo directamente en "folio_fiscal" sin modificarlo.\n'
+        if uuid_detectado else ""
+    )
+    return _PROMPT_CFDI.format(
+        version=version or "desconocida",
+        nota_uuid=nota_uuid,
+        texto=texto_ocr[:max_chars],
+    )
+
 
 def extraer_campos_regex(texto: str) -> dict[str, Any]:
     resultado: dict[str, Any] = {
-        "version": None,
-        "emisor_rfc": None,
-        "emisor_nombre": None,
-        "receptor_rfc": None,
-        "receptor_nombre": None,
-        "folio_fiscal": None,
+        "version":       None,
+        "emisor":        {"RFC": None, "nombre": None},
+        "receptor":      {"RFC": None, "nombre": None},
+        "folio_fiscal":  None,
         "fecha_emision": None,
-        "metodo_pago": None,
-        "forma_pago": None,
-        "moneda": None,
-        "subtotal": None,
-        "iva": None,
-        "total": None,
-        "conceptos": [],
+        "metodo_pago":   None,
+        "forma_pago":    None,
+        "moneda":        None,
+        "subtotal":      None,
+        "iva":           None,
+        "total":         None,
+        "descuento":     None,
+        "retenciones":   None,
+        "conceptos":     [],
     }
 
     if "||1.1|" in texto:
@@ -57,16 +155,16 @@ def extraer_campos_regex(texto: str) -> dict[str, Any]:
     rfc_pattern = r"[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}"
     rfc_list = re.findall(rfc_pattern, texto, re.IGNORECASE)
     if rfc_list:
-        resultado["emisor_rfc"] = rfc_list[0].upper()
+        resultado["emisor"]["RFC"] = rfc_list[0].upper()
         if len(rfc_list) > 1:
-            resultado["receptor_rfc"] = rfc_list[1].upper()
+            resultado["receptor"]["RFC"] = rfc_list[1].upper()
 
     m = re.search(r"Emisor.*?Nombre\s*:?\s*([^\n]+)", texto, re.IGNORECASE | re.DOTALL)
     if m:
-        resultado["emisor_nombre"] = m.group(1).strip()
+        resultado["emisor"]["nombre"] = m.group(1).strip()
     m = re.search(r"Receptor.*?Nombre\s*:?\s*([^\n]+)", texto, re.IGNORECASE | re.DOTALL)
     if m:
-        resultado["receptor_nombre"] = m.group(1).strip()
+        resultado["receptor"]["nombre"] = m.group(1).strip()
 
     m = re.search(
         r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}",
@@ -85,8 +183,7 @@ def extraer_campos_regex(texto: str) -> dict[str, Any]:
     m = re.search(
         r"\b\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}:\d{2})?\b"
         r"|\b\d{2}/\d{2}/\d{4}(?:\s+\d{2}:\d{2}:\d{2}(?:\s*[aApP]\.?\s*[mM]\.?)?)?\b",
-        texto,
-        re.IGNORECASE,
+        texto, re.IGNORECASE,
     )
     resultado["fecha_emision"] = m.group(0) if m else None
 
@@ -101,9 +198,8 @@ def extraer_campos_regex(texto: str) -> dict[str, Any]:
     m = re.search(r"SUBTOTAL\s*:?\s*\$?\s*([\d,]+(?:\.\d{1,2})?)", texto, re.IGNORECASE)
     if m:
         resultado["subtotal"] = float(m.group(1).replace(",", ""))
-    m = re.search(
-        r"(?:IVA|Impuesto trasladado)\s*:?\s*\$?\s*([\d,]+(?:\.\d{1,2})?)", texto, re.IGNORECASE
-    )
+    m = re.search(r"(?:IVA|Impuesto trasladado)\s*:?\s*\$?\s*([\d,]+(?:\.\d{1,2})?)",
+        texto, re.IGNORECASE)
     if m:
         resultado["iva"] = float(m.group(1).replace(",", ""))
     m = re.search(r"\bTOTAL\s*:?\s*\$?\s*([\d,]+(?:\.\d{1,2})?)", texto, re.IGNORECASE)
@@ -113,66 +209,34 @@ def extraer_campos_regex(texto: str) -> dict[str, Any]:
     return resultado
 
 
-_PROMPT_EXTRACCION = """Eres un extractor de datos para facturas CFDI mexicanas.
-Debes EXTRAER LITERALMENTE los valores tal como aparecen en el texto OCR.
-NO CORRIJAS, NO INTERPRETES, NO NORMALICES. Copia exactamente los caracteres.
+def _normalizar_fecha(fecha_str: str | None) -> str | None:
+    if not fecha_str or not isinstance(fecha_str, str):
+        return None
+    s = fecha_str.strip()
+    s = re.sub(r"\s+[aApP]\.?\s*[mM]\.?$", "", s).strip()
+    s = re.sub(r"[+-]\d{2}:\d{2}$", "", s).rstrip("Z").strip()
+    s = re.sub(r"\.\d+$", "", s)
+    s = re.sub(r"^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2})", r"\1T\2", s)
+    m = re.match(r"^(\d{2})/(\d{2})/(\d{4})(?:[T ](\d{2}:\d{2}(?::\d{2})?))?$", s)
+    if m:
+        hora = m.group(4) or "00:00:00"
+        if len(hora) == 5:
+            hora += ":00"
+        s = f"{m.group(3)}-{m.group(2)}-{m.group(1)}T{hora}"
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", s):
+        s = s + "T00:00:00"
+    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$", s):
+        s = s + ":00"
+    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$", s):
+        return s
+    return None
 
-Si un campo tiene formato diferente al esperado (ej. UUID sin guiones), cópialo tal cual.
-No añadas ni quites guiones, espacios, ni cambies mayúsculas/minúsculas.
 
-Devuelve SOLO un objeto JSON válido, sin texto adicional ni markdown.
-Si un campo no aparece, usa null.
-
-Esquema JSON requerido:
-{{
-    "version": "string ('3.3' o '4.0')",
-    "emisor_rfc": "string (sin guiones ni espacios)",
-    "emisor_nombre": "string",
-    "receptor_rfc": "string",
-    "receptor_nombre": "string",
-    "folio_fiscal": (
-    "string UUID con o sin guiones, tal cual aparece,
-    formato xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
-    "fecha_emision":
-    "string — copia la cadena COMPLETA tal como aparece,
-    incluyendo hora, 'a.m.', 'p.m.', 'T', etc.",
-    "metodo_pago": "string ('PUE' o 'PPD')",
-    "forma_pago": "string (código de 2 dígitos)",
-    "moneda": "string (código ISO: 'MXN', 'USD', 'EUR')",
-    "subtotal": "number",
-    "iva": "number",
-    "total": "number",
-    "conceptos": [
-        {{
-            "descripcion": "string — copia el texto COMPLETO y LITERAL tal como aparece.
-            NO resumir, NO parafrasear.",
-            "clave_prod_serv": "string (8 dígitos)",
-            "unidad": "string (clave SAT: 'H87', 'E48', 'KGM')",
-            "cantidad": "number",
-            "valor_unitario": "number",
-            "importe": "number"
-        }}
-    ]
-}}
-
-REGLAS CRÍTICAS:
-1. folio_fiscal: busca el UUID en TODO el documento, incluso dentro de la Cadena Original del SAT.
-2. fecha_emision:
-busca 'Fecha de emisión',
-'Fecha Expedicion',
-'FECHA Y HORA DE EMISIÓN DE CFDI'.
-COPIA la cadena exacta.
-3. version: si en la cadena original aparece '||1.1|' la versión es '4.0'.
-Si aparece '||1.0|' es '3.3'.
-4. NUNCA inventes datos. Si no está visible en el texto, usa null.
-
-TEXTO OCR:
-{texto}
-
-JSON:"""
+_UUID_PATRON = r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
 
 
 class LLMPipeline:
+
     def __init__(
         self,
         model: str | None = None,
@@ -197,7 +261,6 @@ class LLMPipeline:
 
     def _call_ollama(self, prompt: str) -> str:
         import requests
-
         payload = {
             "model": self.model,
             "prompt": prompt,
@@ -211,8 +274,7 @@ class LLMPipeline:
             resp = requests.post(LLM_CONFIG["ollama_url"], json=payload, timeout=self.timeout)
             resp.raise_for_status()
             return resp.json().get("response", "")
-        except Exception as e:
-            print(f"  [LLM Ollama] Error: {e}")
+        except Exception:
             return ""
 
     def _call_mistral(self, prompt: str) -> str:
@@ -220,7 +282,6 @@ class LLMPipeline:
             raise ValueError("MISTRAL_API_KEY no configurada. Usa: export MISTRAL_API_KEY=tu_clave")
         try:
             from mistralai import Mistral
-
             client = Mistral(api_key=MISTRAL_API_KEY)
             for intento in range(3):
                 try:
@@ -233,14 +294,12 @@ class LLMPipeline:
                     return response.choices[0].message.content.strip()
                 except Exception as e:
                     if intento < 2 and ("timeout" in str(e).lower() or "429" in str(e)):
-                        espera = 20 * (intento + 1)
-                        print(f"    Rate limit/error, reintento {intento + 1}/3 en {espera}s")
-                        time.sleep(espera)
+                        time.sleep(20 * (intento + 1))
                         continue
                     raise
-        except Exception as e:
-            print(f"  [LLM Mistral] Error: {e}")
+        except Exception:
             return ""
+        return ""
 
     def _call_llm(self, prompt: str) -> str:
         if self.provider == "mistral":
@@ -251,7 +310,7 @@ class LLMPipeline:
         cleaned = response.strip()
         for prefix in ("```json", "```"):
             if cleaned.startswith(prefix):
-                cleaned = cleaned[len(prefix) :]
+                cleaned = cleaned[len(prefix):]
         if cleaned.endswith("```"):
             cleaned = cleaned[:-3]
         cleaned = cleaned.strip()
@@ -264,26 +323,59 @@ class LLMPipeline:
                     return json.loads(m.group())
                 except json.JSONDecodeError:
                     pass
-            print("  [LLM] No se pudo parsear JSON — usando regex fallback")
             return {}
+
+    def _validar_uuid_contra_texto(self, uuid_llm: str | None, texto_ocr: str) -> str | None:
+        if not texto_ocr:
+            return uuid_llm
+        if uuid_llm and uuid_llm.upper() in texto_ocr.upper():
+            return uuid_llm
+        m = re.search(
+            r"FOLIO\s+FISCAL.*?(" + _UUID_PATRON + r")",
+            texto_ocr, re.IGNORECASE | re.DOTALL,
+        )
+        if m:
+            return m.group(1).upper()
+        m = re.search(r"\|(" + _UUID_PATRON + r")\|", texto_ocr)
+        if m:
+            return m.group(1).upper()
+        todos = re.findall(_UUID_PATRON, texto_ocr)
+        relacionados = {
+            u.upper()
+            for u in re.findall(r"[•\-]\s*(" + _UUID_PATRON + r")", texto_ocr)
+        }
+        candidatos = [u.upper() for u in todos if u.upper() not in relacionados]
+        if candidatos:
+            return candidatos[0]
+        return uuid_llm
 
     def _normalizar(self, resultado: dict, texto_ocr: str = "") -> dict:
         norm = resultado.copy()
 
         if self.use_regex_fallback and texto_ocr:
             regex_data = extraer_campos_regex(texto_ocr)
-            for key in norm:
+            for key in ("folio_fiscal", "fecha_emision", "metodo_pago",
+                        "forma_pago", "moneda", "subtotal", "iva", "total", "version"):
                 if norm.get(key) is None and regex_data.get(key) is not None:
                     norm[key] = regex_data[key]
-                    print(f"    [Fallback regex] {key}: {norm[key]}")
+
+            for entidad in ("emisor", "receptor"):
+                if not isinstance(norm.get(entidad), dict):
+                    norm[entidad] = {}
+                nodo_regex = regex_data.get(entidad, {})
+                for subcampo in ("RFC", "nombre"):
+                    if not norm[entidad].get(subcampo) and nodo_regex.get(subcampo):
+                        norm[entidad][subcampo] = nodo_regex[subcampo]
+
             if not norm.get("conceptos") and regex_data.get("conceptos"):
                 norm["conceptos"] = regex_data["conceptos"]
 
-        norm["metodo_pago"] = normalizar_catalogo(norm.get("metodo_pago"), CATALOGO_METODO_PAGO)
-        norm["forma_pago"] = normalizar_catalogo(norm.get("forma_pago"), CATALOGO_FORMA_PAGO)
-        norm["uso_cfdi"] = normalizar_catalogo(norm.get("uso_cfdi"), CATALOGO_USO_CFDI)
+        norm["metodo_pago"]   = normalizar_catalogo(norm.get("metodo_pago"), CATALOGO_METODO_PAGO)
+        norm["forma_pago"]    = normalizar_catalogo(norm.get("forma_pago"),  CATALOGO_FORMA_PAGO)
+        norm["moneda"]        = normalizar_catalogo(norm.get("moneda"),      CATALOGO_MONEDA)
+        norm["fecha_emision"] = _normalizar_fecha(norm.get("fecha_emision"))
 
-        for campo in ("subtotal", "iva", "total"):
+        for campo in ("subtotal", "iva", "total", "descuento", "retenciones"):
             v = norm.get(campo)
             if v is not None:
                 try:
@@ -291,9 +383,10 @@ class LLMPipeline:
                 except (ValueError, TypeError):
                     norm[campo] = None
 
-        for campo in ("emisor_rfc", "receptor_rfc"):
-            if norm.get(campo):
-                norm[campo] = re.sub(r"[\s\-_]", "", str(norm[campo]).upper())
+        for entidad in ("emisor", "receptor"):
+            nodo = norm.get(entidad)
+            if isinstance(nodo, dict) and nodo.get("RFC"):
+                nodo["RFC"] = re.sub(r"[\s\-_]", "", str(nodo["RFC"]).upper())
 
         if norm.get("folio_fiscal"):
             raw = re.sub(r"\s", "", str(norm["folio_fiscal"]).upper())
@@ -305,6 +398,11 @@ class LLMPipeline:
                 )
             else:
                 norm["folio_fiscal"] = raw
+
+        if texto_ocr:
+            norm["folio_fiscal"] = self._validar_uuid_contra_texto(
+                norm.get("folio_fiscal"), texto_ocr
+            )
 
         conceptos = norm.get("conceptos")
         if isinstance(conceptos, list):
@@ -325,17 +423,26 @@ class LLMPipeline:
 
         return norm
 
-    def extract(self, texto_ocr: str, use_cache: bool = True) -> dict[str, Any]:
+    def extract(
+        self,
+        texto_ocr: str,
+        version: str | None = None,
+        uuid_detectado: str | None = None,
+        use_cache: bool = True,
+    ) -> dict[str, Any]:
         cache_key = hash(texto_ocr[:2000])
         if use_cache and cache_key in self._cache:
             return self._cache[cache_key]
 
-        prompt = _PROMPT_EXTRACCION.format(texto=texto_ocr[:6000])
+        prompt = construir_prompt(
+            texto_ocr=texto_ocr,
+            version=version,
+            uuid_detectado=uuid_detectado,
+        )
         response = self._call_llm(prompt)
         resultado = self._parse_json(response)
 
         if not resultado:
-            print("  [LLM] Respuesta vacía — usando solo regex")
             resultado = extraer_campos_regex(texto_ocr)
 
         resultado = self._normalizar(resultado, texto_ocr)
