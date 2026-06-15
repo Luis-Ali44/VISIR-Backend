@@ -120,4 +120,4 @@ def normalizar_rfc(rfc: str) -> str:
 def normalizar_cp(cp: str) -> str:
     if not cp:
         return cp
-    return re.sub(r"\D", "", str(cp))[:5]
+    return str(cp).strip().replace(" ", "")[:5]

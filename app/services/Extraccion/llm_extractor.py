@@ -37,8 +37,7 @@ REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
 
 1. VERSIÓN
    La versión pre-detectada es "{version}". Úsala exactamente.
-   Si encuentras "||1.1|" en la cadena original → "4.0".
-   Si encuentras "||1.0|" en la cadena original → "3.3".
+   Si encuentras "||1.1|" o "||1.0|" en la cadena original es version "4.0".
 
 2. EMISOR vs RECEPTOR
    • EMISOR   → quien EXPIDE la factura. RFC y nombre aparecen en el ENCABEZADO,
@@ -142,10 +141,8 @@ def extraer_campos_regex(texto: str) -> dict[str, Any]:
         "conceptos":     [],
     }
 
-    if "||1.1|" in texto:
+    if "||1.1|" in texto or "||1.0|" in texto:
         resultado["version"] = "4.0"
-    elif "||1.0|" in texto:
-        resultado["version"] = "3.3"
     else:
         m = re.search(r"[Cc][Ff][Dd][Ii]\s*[:\-]?\s*[Vv](?:ersi[oó]n)?\s*(4\.0|3\.3)", texto)
         if not m:
