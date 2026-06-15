@@ -12,7 +12,14 @@ dependencies = [                    # Librerias necesarias para el proyecto
     "pydantic-settings>=2.14.1",    #
     "python-multipart>=0.0.29",
     "supabase>=2.30.0",             #
-    "uvicorn>=0.47.0",              #
+    "uvicorn>=0.47.0", 
+    "numpy==1.26.4",
+    "paddlepaddle==3.2.1",
+    "paddleocr==3.5.0",
+    "PyMuPDF==1.27.2.3",
+    "opencv-python==4.11.0.86",
+    "Pillow==11.1.0",
+    "mistralai==2.4.5",             #
 ]
 
 [dependency-groups]                 # Dependencias de desarrollo 

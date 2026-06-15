@@ -16,6 +16,7 @@ def parse_fecha(date_str: str) -> datetime:
     texto = texto.replace("am", "AM").replace("pm", "PM")
 
     formatos = (
+        "%Y-%m-%dT%H:%M:%S",
         "%d/%m/%Y %I:%M:%S %p",
         "%d/%m/%Y %H:%M:%S",
         "%Y-%m-%d %H:%M:%S",
