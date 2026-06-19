@@ -1,17 +1,3 @@
-"""
-reporte.py
-──────────
-Genera el reporte Markdown de evaluación del sistema RAG.
-
-El reporte incluye:
-  1. Encabezado con fecha y configuración
-  2. Resumen ejecutivo con todas las métricas
-  3. Tabla detallada por pregunta
-  4. Análisis por dificultad (si aplica)
-  5. Fragmentos de alucinación detectados (fidelidad < 3)
-  6. Pie con instrucciones de interpretación
-"""
-
 from __future__ import annotations
 
 from datetime import datetime
@@ -45,25 +31,8 @@ def generar_reporte(
     modelo_juez: str = "N/A",
     output_path: str | None = None,
 ) -> str:
-    """
-    Genera el reporte completo en formato Markdown.
-
-    Args:
-        resultados: Lista de dicts por pregunta con todos los resultados.
-        recall: ResultadoRecall global.
-        recall_por_dif: Recall segmentado por dificultad (opcional).
-        modo: "recall" (solo métricas de recuperación) | "completo" (incluye juez).
-        modelo_rag: Nombre del modelo usado para generación.
-        modelo_juez: Nombre del modelo juez.
-        output_path: Si se provee, escribe el archivo en esa ruta.
-
-    Returns:
-        Contenido del reporte como string Markdown.
-    """
     ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     lineas: list[str] = []
-
-    # ── Encabezado ─────────────────────────────────────────────────────────────
     lineas += [
         "# Reporte de Evaluación — Sistema RAG Fiscal",
         "",
@@ -77,7 +46,6 @@ def generar_reporte(
         "",
     ]
 
-    # ── Resumen ejecutivo ──────────────────────────────────────────────────────
     lineas += [
         "## Resumen Ejecutivo",
         "",
@@ -116,7 +84,7 @@ def generar_reporte(
             "",
         ]
 
-    # ── Recall por dificultad ──────────────────────────────────────────────────
+
     if recall_por_dif:
         lineas += [
             "### Recall@3 por Dificultad",
@@ -133,7 +101,7 @@ def generar_reporte(
 
     lineas += ["---", ""]
 
-    # ── Detalle por pregunta ───────────────────────────────────────────────────
+
     lineas += ["## Detalle por Pregunta", ""]
 
     for i, r in enumerate(resultados, 1):
@@ -170,7 +138,6 @@ def generar_reporte(
             if rel_razon:
                 lineas += [f"> **Relevancia:** {rel_razon}"]
 
-        # Fragmentos recuperados
         fragmentos_rec = r.get("fragmentos_recuperados", [])
         if fragmentos_rec:
             lineas += ["", "<details>", "<summary>Archivos recuperados (top-k)</summary>", ""]
@@ -180,7 +147,6 @@ def generar_reporte(
 
         lineas += ["", "---", ""]
 
-    # ── Pie de página ──────────────────────────────────────────────────────────
     lineas += [
         "## Cómo Interpretar Este Reporte",
         "",

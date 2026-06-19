@@ -31,7 +31,6 @@ import time
 from datetime import datetime
 from pathlib import Path
 
-# ── Ajuste de path para importar módulos del proyecto ─────────────────────────
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 sys.path.insert(0, str(_ROOT / "evaluaciones"))
@@ -53,22 +52,8 @@ from rag.config import load_config_from_env
 from rag.retriever import FiscalRAGRetriever
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Carga del dataset
-# ─────────────────────────────────────────────────────────────────────────────
 
 def cargar_dataset(path: str) -> list[dict]:
-    """
-    Carga el dataset de evaluación desde un archivo JSON.
-
-    Formato esperado de cada item:
-    {
-        "pregunta": "...",
-        "respuesta_esperada": "...",
-        "fragmentos_fuente": ["nombre_archivo.pdf", "otro.md"],
-        "dificultad": "baja|media|alta"   ← opcional, default "desconocida"
-    }
-    """
     p = Path(path)
     if not p.exists():
         print(f"[ERROR] Dataset no encontrado: {p}")
@@ -99,21 +84,12 @@ def cargar_dataset(path: str) -> list[dict]:
     return data
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Recuperación
-# ─────────────────────────────────────────────────────────────────────────────
 
 def recuperar_para_evaluacion(
     retriever: FiscalRAGRetriever,
     pregunta: str,
     top_k: int = 5,
 ) -> tuple[list[str], list[str], list[dict]]:
-    """
-    Recupera fragmentos de ChromaDB y devuelve:
-      - filenames_recuperados: para calcular Recall@k
-      - chunk_ids_recuperados: para trazabilidad en el JSON
-      - fragmentos_para_juez:  para FidelidadChain
-    """
     fragmentos = retriever.retrieve(query=pregunta, top_k=top_k)
 
     filenames_recuperados = [f.filename for f in fragmentos]
@@ -130,10 +106,6 @@ def recuperar_para_evaluacion(
     return filenames_recuperados, chunk_ids_recuperados, fragmentos_para_juez
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Generación (solo modo completo)
-# ─────────────────────────────────────────────────────────────────────────────
-
 def generar_respuesta_rag(
     api_key: str,
     model: str,
@@ -141,19 +113,12 @@ def generar_respuesta_rag(
     pregunta: str,
     fragmentos_raw,
 ) -> tuple[str, int, int]:
-    """
-    Genera una respuesta usando FiscalRAGChain.
-    Retorna (texto, tokens_entrada, tokens_salida).
-    """
     from rag.chain import FiscalRAGChain
     chain = FiscalRAGChain(api_key=api_key, model=model, base_url=base_url)
     resultado = chain.invoke(pregunta=pregunta, fragmentos=fragmentos_raw)
     return resultado.texto, resultado.tokens_entrada, resultado.tokens_salida
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Loop principal
-# ─────────────────────────────────────────────────────────────────────────────
 
 def ejecutar_evaluacion(args: argparse.Namespace) -> None:
     t_inicio = time.time()
@@ -167,7 +132,7 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
     print(f"  Matching: por nombre de archivo (fragmentos_fuente)")
     print(f"{'═'*65}\n")
 
-    # ── Configuración ──────────────────────────────────────────────────────────
+
     chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
     config = load_config_from_env(chroma_path=chroma_path)
     retriever = FiscalRAGRetriever(config)
@@ -181,10 +146,8 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
         print("[ERROR] GROQ_API_KEY no configurada en .env")
         sys.exit(1)
 
-    # ── Dataset ────────────────────────────────────────────────────────────────
     dataset = cargar_dataset(args.dataset)
 
-    # ── Juez (solo modo completo) ──────────────────────────────────────────────
     juez = None
     if modo == "completo":
         print(f"[JUEZ] Inicializando con modelo: {groq_judge_model}")
@@ -194,7 +157,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
             base_url=llm_base_url,
         )
 
-    # ── Loop de evaluación ─────────────────────────────────────────────────────
     resultados: list[dict] = []
     datos_recall: list[dict] = []
 
@@ -207,7 +169,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
         print(f"\n[{i:02d}/{len(dataset)}] {pregunta[:70]}...")
         print(f"         Fuentes esperadas: {fuentes_esperadas}")
 
-        # ── Recuperación ───────────────────────────────────────────────────────
         t0 = time.time()
         filenames_rec, chunk_ids_rec, fragmentos_para_juez = recuperar_para_evaluacion(
             retriever, pregunta, top_k=top_k
@@ -240,7 +201,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
             "latencia_recuperacion_ms": lat_rec,
         }
 
-        # ── Generación + Juez (solo modo completo) ─────────────────────────────
         if modo == "completo" and juez is not None:
             fragmentos_raw = retriever.retrieve(query=pregunta, top_k=top_k)
 
@@ -290,7 +250,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
 
         resultados.append(resultado_item)
 
-    # ── Métricas globales ──────────────────────────────────────────────────────
     recall_global = calcular_recall_global(datos_recall)
     recall_dif    = recall_por_dificultad(datos_recall)
 
@@ -317,7 +276,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
             print(f"  Relevancia media: {sum(scores_rel)/len(scores_rel):.2f}/5")
         print(f"  Tokens totales → entrada:{total_tokens_entrada}  salida:{total_tokens_salida}")
 
-    # ── Reporte Markdown ───────────────────────────────────────────────────────
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path = args.output or f"validation_results/eval_{modo}_{ts}.md"
 
@@ -331,7 +289,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
         output_path=output_path,
     )
 
-    # ── JSON de resultados completos ───────────────────────────────────────────
     json_path = Path(output_path).with_suffix(".json")
     json_path.write_text(
         json.dumps({
@@ -349,10 +306,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
     print(f"[JSON]    Guardado en {json_path}")
     print(f"{'═'*65}\n")
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# CLI
-# ─────────────────────────────────────────────────────────────────────────────
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluación del sistema RAG Fiscal")

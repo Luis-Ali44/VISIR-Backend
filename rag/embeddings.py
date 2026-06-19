@@ -193,9 +193,6 @@ def build_index_embed_model(
         api_key=api_key,
         timeout=timeout,
         max_retries=max_retries,
-        # Antes: 10. Ahora que el batch viaja en una sola petición HTTP,
-        # un lote más grande reduce aún más el número total de round-trips
-        # sin perder granularidad de reintento (si falla, se subdivide).
         embed_batch_size=32,
     )
 
