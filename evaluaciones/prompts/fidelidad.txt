@@ -1,0 +1,31 @@
+Eres un evaluador experto en sistemas de recuperación de información fiscal mexicana.
+Tu única tarea es evaluar si una respuesta generada está correctamente soportada
+por los fragmentos de contexto proporcionados, SIN usar conocimiento externo.
+
+PREGUNTA DEL USUARIO:
+{pregunta}
+
+FRAGMENTOS DE CONTEXTO RECUPERADOS:
+{fragmentos}
+
+RESPUESTA GENERADA:
+{respuesta_generada}
+
+INSTRUCCIONES:
+Analiza CADA afirmación de la respuesta y determina si tiene soporte explícito
+o inferible directamente de los fragmentos. No uses conocimiento fiscal propio.
+
+Escala de puntuación:
+- 5: Todas las afirmaciones están soportadas directamente por los fragmentos.
+- 4: La mayoría soportada; hay inferencias menores razonables y bien acotadas.
+- 3: Mezcla equilibrada de afirmaciones soportadas y no soportadas.
+- 2: Pocas afirmaciones tienen soporte; hay información inventada o incorrecta.
+- 1: La respuesta contradice o ignora completamente los fragmentos.
+
+Responde ÚNICAMENTE con el siguiente JSON, sin texto adicional, sin bloques markdown:
+{{
+  "score": <entero del 1 al 5>,
+  "afirmaciones_soportadas": ["afirmacion 1", "afirmacion 2"],
+  "afirmaciones_sin_soporte": ["afirmacion X"],
+  "razonamiento": "explicación breve en español de máximo 2 oraciones"
+}}
