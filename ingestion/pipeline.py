@@ -265,24 +265,40 @@ class RAGIngestionPipeline:
         print("      Fragmentando...")
         all_chunks = []
         section_titles: set[str] = set()
+
+        # Aquí actúa el chunker dinámico (agrupación por párrafos + regex
+        # de secciones fiscales). El tamaño de cada chunk sigue siendo
+        # variable — decidido por la estructura real del documento, no
+        # por un chunk_size fijo. Ver ingestion/chunker.py para el detalle.
         for page_doc in page_documents:
             chunks = self.chunker.chunk(page_doc)
             for chunk in chunks:
                 section_titles.add(chunk.metadata.get("section", ""))
                 all_chunks.append(chunk)
 
-        print(f"      {len(section_titles)} secciones | {len(all_chunks)} chunks generados")
+        print(f"      {len(section_titles)} secciones | {len(all_chunks)} chunks generados dinámicamente")
 
-        records = []
-        for chunk in all_chunks:
-            chunk_hash = compute_chunk_hash(chunk.text)
-            embedding = self.embed_model.get_text_embedding(chunk.text)
-            records.append(ChunkRecord(
-                chunk_hash=chunk_hash,
+        # ── Embeddings por lote ──────────────────────────────────────────────
+        # get_text_embedding_batch (heredado de BaseEmbedding) agrupa
+        # internamente en sub-lotes de tamaño embed_batch_size y delega en
+        # _get_text_embeddings, que ahora manda cada sub-lote en UNA SOLA
+        # petición HTTP (ver rag/embeddings.py). Ya no es necesario un loop
+        # manual de batching en este archivo — get_text_embedding_batch
+        # hace el trabajo de agrupación, y el backend HTTP real ya no
+        # itera texto por texto.
+        print("      Calculando embeddings (batch HTTP real)...")
+        texts = [chunk.text for chunk in all_chunks]
+        embeddings = self.embed_model.get_text_embedding_batch(texts, show_progress=False)
+
+        records = [
+            ChunkRecord(
+                chunk_hash=compute_chunk_hash(chunk.text),
                 text=chunk.text,
                 embedding=embedding,
                 metadata=chunk.metadata,
-            ))
+            )
+            for chunk, embedding in zip(all_chunks, embeddings)
+        ]
 
         print("      Indexando en ChromaDB...")
         batch_result = self.store.upsert_chunks_batch(records)

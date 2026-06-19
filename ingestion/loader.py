@@ -50,7 +50,7 @@ def load_pdf(
 
     return Document(text=md_text, metadata=metadata)
 
-
+"""
 def load_pdf_by_pages(
     pdf_path: str,
     doc_id: str,
@@ -92,6 +92,46 @@ def load_pdf_by_pages(
 
     return documents
 
+"""
+def load_pdf_by_pages(
+    pdf_path: str,
+    doc_id: str,
+    doc_hash: str,
+    importance: int = 3,
+    extra_metadata: dict | None = None,
+) -> list[Document]:
+    path = Path(pdf_path)
+    
+    # 1. Extraer TODO el documento a Markdown en UNA SOLA llamada
+    # Esto es mucho más eficiente que abrir el PDF página por página
+    full_md_text = pymupdf4llm.to_markdown(str(path), show_progress=False)
+    
+    # 2. Dividir por el separador de página que usa pymupdf4llm
+    # Por defecto, pymupdf4llm usa un salto de página consistente
+    pages_text = full_md_text.split("\n\n---") 
+    
+    total_pages = len(pages_text)
+    documents = []
+
+    for page_num, page_md in enumerate(pages_text):
+        if not page_md.strip():
+            continue  
+
+        metadata = {
+            "doc_id":            doc_id,
+            "source":            str(path.resolve()),
+            "filename":          path.name,
+            "doc_hash":          doc_hash,
+            "page_number":       page_num + 1,  
+            "total_pages":       total_pages,
+            "importance":        importance,
+            "importance_weight": round(importance / 5.0, 2),
+            **(extra_metadata or {}),
+        }
+
+        documents.append(Document(text=page_md, metadata=metadata))
+
+    return documents
 
 def load_markdown(
     md_path: str,

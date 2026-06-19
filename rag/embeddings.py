@@ -29,7 +29,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
         api_key:          str = "ollama",
         timeout:          int = 30,
         max_retries:      int = 3,
-        embed_batch_size: int = 10,
+        embed_batch_size: int = 32,
         **kwargs,
     ):
         super().__init__(
@@ -50,7 +50,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
 
 
     def _verify_connection(self) -> None:
-        
+
         for probe in ["/models", "/"]:
             try:
                 resp = self._session.get(f"{self.base_url}{probe}", timeout=5)
@@ -67,42 +67,59 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
             self.base_url,
         )
 
+    # ── Embedding individual (delega en el batch de tamaño 1) ────────────────
 
     def _embed_with_retry(self, text: str) -> list[float]:
+        return self._embed_batch_with_retry([text])[0]
+
+    # ── Embedding por lote — UNA sola petición HTTP para todo el lote ────────
+
+    def _embed_batch_with_retry(self, texts: list[str]) -> list[list[float]]:
+        """
+        Genera embeddings para una lista de textos en una sola petición HTTP.
+
+        El endpoint /embeddings estilo OpenAI acepta `input` como lista,
+        devolviendo un embedding por texto en el mismo orden (o con un
+        campo "index" que permite reordenar). Esto reemplaza el patrón
+        anterior de una petición HTTP por texto.
+        """
+        if not texts:
+            return []
+
         url = f"{self.base_url}/embeddings"
 
         for attempt in range(1, self.max_retries + 1):
             try:
                 resp = self._session.post(
                     url,
-                    json={"model": self.model_name, "input": text},
+                    json={"model": self.model_name, "input": texts},
                     timeout=self.timeout,
                 )
                 resp.raise_for_status()
                 data = resp.json()
 
                 if "data" in data and data["data"]:
-                    return data["data"][0]["embedding"]
+                    ordered = sorted(data["data"], key=lambda d: d.get("index", 0))
+                    return [d["embedding"] for d in ordered]
 
+                # Fallback: formato Ollama nativo /api/embed (batch real)
                 if "embeddings" in data:
-                    return data["embeddings"][0]
-                if "embedding" in data:
-                    return data["embedding"]
+                    return data["embeddings"]
 
                 raise ValueError(f"Respuesta inesperada del servidor: {list(data.keys())}")
 
             except requests.exceptions.Timeout:
                 wait = 2 ** attempt
                 logger.warning(
-                    "[Embeddings] Timeout en intento %d/%d. Reintentando en %ds...",
-                    attempt, self.max_retries, wait,
+                    "[Embeddings] Timeout en intento %d/%d (lote=%d). Reintentando en %ds...",
+                    attempt, self.max_retries, len(texts), wait,
                 )
                 if attempt == self.max_retries:
                     raise RuntimeError(
                         f"[ERROR] Servidor de embeddings no respondió en {self.timeout}s "
-                        f"tras {self.max_retries} intentos.\n"
+                        f"tras {self.max_retries} intentos (lote de {len(texts)} textos).\n"
                         f"  URL: {self.base_url}\n"
-                        f"  Aumenta EMBEDDING_TIMEOUT en .env o verifica el servidor."
+                        f"  Aumenta EMBEDDING_TIMEOUT en .env o reduce embed_batch_size."
                     )
                 time.sleep(wait)
 
@@ -121,6 +138,20 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
                         resp.status_code, attempt, self.max_retries, wait,
                     )
                     time.sleep(wait)
+                elif resp.status_code in (400, 413) and len(texts) > 1:
+                    # El servidor rechazó el lote completo (demasiado grande
+                    # para su límite interno) — se subdivide a la mitad en
+                    # vez de fallar.
+                    logger.warning(
+                        "[Embeddings] El servidor rechazó el lote de %d textos "
+                        "(HTTP %d). Dividiendo en lotes más pequeños...",
+                        len(texts), resp.status_code,
+                    )
+                    mid = len(texts) // 2
+                    return (
+                        self._embed_batch_with_retry(texts[:mid])
+                        + self._embed_batch_with_retry(texts[mid:])
+                    )
                 else:
                     raise RuntimeError(
                         f"[ERROR] HTTP {resp.status_code} del servidor de embeddings: {e}\n"
@@ -144,7 +175,9 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
         return self._embed_with_retry(query)
 
     def _get_text_embeddings(self, texts: list[str]) -> list[Embedding]:
-        return [self._embed_with_retry(t) for t in texts]
+        # Antes: [self._embed_with_retry(t) for t in texts]  → N peticiones HTTP
+        # Ahora: una sola petición HTTP para todo el sub-lote.
+        return self._embed_batch_with_retry(texts)
 
 
 def build_index_embed_model(
@@ -160,7 +193,10 @@ def build_index_embed_model(
         api_key=api_key,
         timeout=timeout,
         max_retries=max_retries,
-        embed_batch_size=10,
+        # Antes: 10. Ahora que el batch viaja en una sola petición HTTP,
+        # un lote más grande reduce aún más el número total de round-trips
+        # sin perder granularidad de reintento (si falla, se subdivide).
+        embed_batch_size=32,
     )
 
 
