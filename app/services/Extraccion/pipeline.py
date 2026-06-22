@@ -15,84 +15,29 @@ from .catalogos import (
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
     normalizar_catalogo,
-    validar_digito_rfc,
+    normalizar_rfc,
+    validar_formato_rfc,
 )
 from .llm_extractor import construir_prompt
+from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
+from .texto_utils import normalizar_fecha as _normalizar_fecha
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_MODEL   = "mistral-large-latest"
 MAX_REINTENTOS  = 4
 
 EXTENSIONES_PDF    = {".pdf"}
-EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp",".webp"}
+EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 EXTENSIONES_XML    = {".xml"}
-
-_UUID_PATRON = r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
 
 
 def _norm_rfc(rfc: str) -> str:
-    return re.sub(r"[\s\-_]", "", rfc.upper().strip())
+    return normalizar_rfc(rfc)
 
 
-def es_uuid_valido(cadena: str) -> bool:
-    return bool(re.fullmatch(_UUID_PATRON, cadena, re.IGNORECASE))
-
-def extraer_uuid_del_texto(texto: str) -> str | None:
-
-    m = re.search(
-        r"FOLIO\s+FISCAL.*?(" + _UUID_PATRON + r")",
-        texto, re.IGNORECASE | re.DOTALL,
-    )
-    if m:
-        return m.group(1).upper()
-
-    m = re.search(r"\|(" + _UUID_PATRON + r")\|", texto)
-    if m:
-        return m.group(1).upper()
-
-    relacionados = {
-        u.upper() for u in re.findall(r"[•\-]\s*(" + _UUID_PATRON + r")", texto)
-    }
-    for u in re.findall(_UUID_PATRON, texto):
-        if u.upper() not in relacionados:
-            return u.upper()
-
-    m = re.search(
-        r"[0-9A-Fa-f\s]{8,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{12,}",
-        texto)
-    if m:
-        limpio = re.sub(r"\s", "", m.group(0))
-        if re.fullmatch(_UUID_PATRON, limpio, re.IGNORECASE):
-            return limpio.upper()
-
-    return None
-
-def detectar_version(texto: str, ruta: Path | None = None) -> str | None:
-    if "||1.1|" in texto:
-        return "4.0"
-    if "||1.0|" in texto:
-        return "3.3"
-
-    for patron in (
-        r'[Vv]ersion\s*=\s*"?(4\.0|3\.3)"?',
-        r"[Cc][Ff][Dd][Ii]\s*:?\s*(4\.0|3\.3)",
-        r"VERSI[OÓ]N\s*[:\-]?\s*(4\.0|3\.3)",
-        r"\bV(4\.0|3\.3)\b",
-    ):
-        m = re.search(patron, texto, re.IGNORECASE)
-        if m:
-            return m.group(1).replace(",", ".")
-
+def detectar_version(ruta: Path | None) -> str | None:
     if ruta and ruta.suffix.lower() == ".pdf":
-        v = _version_desde_pdf_embebido(ruta)
-        if v:
-            return v
-
-    indicadores_40 = ["RegimenFiscalReceptor", "DomicilioFiscalReceptor",
-                      "REGIMEN FISCAL RECEPTOR", "DOMICILIO FISCAL RECEPTOR"]
-    if any(ind in texto for ind in indicadores_40):
-        return "4.0"
-
+        return _version_desde_pdf_embebido(ruta)
     return None
 
 
@@ -111,14 +56,6 @@ def _version_desde_pdf_embebido(ruta: Path) -> str | None:
                         return m.group(1)
             except Exception:
                 continue
-        for pagina in doc:
-            texto = pagina.get_text()
-            if "||1.1|" in texto:
-                doc.close()
-                return "4.0"
-            if "||1.0|" in texto:
-                doc.close()
-                return "3.3"
         doc.close()
     except Exception:
         pass
@@ -130,31 +67,7 @@ def _limpiar_nulos(obj: Any) -> Any:
         return {k: _limpiar_nulos(v) for k, v in obj.items()}
     if isinstance(obj, list):
         return [_limpiar_nulos(i) for i in obj]
-    return None if obj == "null" else obj
-
-
-def _normalizar_fecha(fecha_str: str | None) -> str | None:
-    if not fecha_str or not isinstance(fecha_str, str):
-        return None
-    s = fecha_str.strip()
-    s = re.sub(r"\s+[aApP]\.?\s*[mM]\.?$", "", s).strip()
-    s = re.sub(r"[+-]\d{2}:\d{2}$", "", s).rstrip("Z").strip()
-    s = re.sub(r"\.\d+$", "", s)
-    s = re.sub(r"[T ]", "T", s, count=1)
-    m = re.match(r"^(\d{2})/(\d{2})/(\d{4})(?:T(\d{2}:\d{2}(?::\d{2})?))?$", s)
-    if m:
-        hora = m.group(4) or "00:00:00"
-        if len(hora) == 5:
-            hora += ":00"
-        s = f"{m.group(3)}-{m.group(2)}-{m.group(1)}T{hora}"
-    if re.match(r"^\d{4}-\d{2}-\d{2}$", s):
-        s += "T00:00:00"
-    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$", s):
-        s += ":00"
-    if re.match(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$", s):
-        return s
-    print(f"  [Fecha] No se pudo normalizar: {fecha_str!r}")
-    return None
+    return None if es_valor_nulo(obj) else obj
 
 
 def _postprocesar(
@@ -177,13 +90,22 @@ def _postprocesar(
             rfc = nodo.get("RFC") or nodo.get("rfc")
             if rfc:
                 nodo["RFC"] = _norm_rfc(str(rfc))
-                if not validar_digito_rfc(nodo["RFC"]):
-                    print(f" RFC {entidad} '{nodo['RFC']}' no pasa dígito verificador")
+                if not validar_formato_rfc(nodo["RFC"]):
+                    print(f" RFC {entidad} '{nodo['RFC']}' no tiene un formato válido")
 
+    uuid_llm = str(datos.get("folio_fiscal") or "")
     if uuid_extraido and es_uuid_valido(uuid_extraido):
-        uuid_llm = datos.get("folio_fiscal", "")
-        if uuid_llm and uuid_llm.upper() != uuid_extraido.upper():
-            print(f"  [UUID] LLM dio '{uuid_llm}' → reemplazado por '{uuid_extraido}' (texto OCR)")
+        if uuid_llm and es_uuid_valido(uuid_llm) and uuid_llm.upper() != uuid_extraido.upper():
+            print(
+                f"  [UUID] AVISO: LLM ('{uuid_llm}') y OCR ('{uuid_extraido}') "
+                "no coinciden, ambos con formato válido. Se usa el de OCR; "
+                "revisar manualmente si el monto/folio resultante no cuadra."
+            )
+        elif uuid_llm and uuid_llm.upper() != uuid_extraido.upper():
+            print(
+                f"LLM dio '{uuid_llm}' UUID on formato invalido "
+                f"reemplazado por '{uuid_extraido}' del OCR"
+            )
         datos["folio_fiscal"] = uuid_extraido.upper()
     elif not datos.get("folio_fiscal"):
         pass
@@ -279,10 +201,7 @@ def _estructurar_con_mistral(
 
     datos_lista = _extraer_todos_los_json(respuesta)
     if not datos_lista:
-        print("  [Mistral] Sin JSON en la respuesta")
         return []
-
-    print(f"  {len(datos_lista)} CFDI(s) encontrado(s)")
 
     return [
         _postprocesar(d, version_detectada, uuid_extraido=uuid_extraido)
@@ -302,11 +221,10 @@ def _extraer_texto_ocr(ruta: Path) -> str:
 
     ocr = _get_paddle_ocr()
     bloques = []
-    for img_proc, tipo, dpi, num, total in paginas:
+    for img_proc, tipo, _dpi, _num, _total in paginas:
         score_min = SCORE_MINIMO_NATIVO if tipo == "nativo" else SCORE_MINIMO
         lineas = _ocr_desde_array(ocr, img_proc, score_minimo=score_min)
         bloques.append("\n".join(lineas))
-        print(f"  Pagina {num}/{total} ({dpi} DPI, {tipo}) — {len(lineas)} lineas")
 
     return "\n\n---Inicio de Pagina---\n\n".join(bloques)
 
@@ -315,58 +233,47 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     ruta = Path(ruta_archivo)
     ext  = ruta.suffix.lower()
 
-    print(f" Procesando: {ruta.name}")
-
-    # XML hermano tiene prioridad
     xml_hermano = ruta.with_suffix(".xml")
     if ext != ".xml" and xml_hermano.exists():
-        print(f"  [XML hermano] usando {xml_hermano.name} en lugar de OCR")
         return procesar(xml_hermano)
 
-    # Ruta XML directa
     if ext in EXTENSIONES_XML:
-        print("[XML] Parseando directamente...")
         from .xml_parser import extraer_desde_xml
         datos = extraer_desde_xml(ruta)
         valido, errores, _modelo = validar(datos)
-        print(f"[Validación] {'OK' if valido else 'ERRORES'}")
-        for e in errores:
-            print(f"  {e}")
         out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
         with open(out_json, "w", encoding="utf-8") as f:
             json.dump({"archivo": ruta.stem, "fuente": "xml", "datos": datos},
                       f, ensure_ascii=False, indent=2)
-        print(f"\n[OK] JSON guardado en: {out_json}")
         return {"archivo": ruta.stem, "fuente": "xml", "datos": datos,
                 "valido": valido, "errores": errores}
 
     if ext not in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN):
         raise ValueError(f"Formato no soportado: {ext}")
 
-    print("Extrayendo texto con PaddleOCR")
     texto_ocr = _extraer_texto_ocr(ruta)
 
     if guardar_txt:
         txt_path = ruta.parent / f"{ruta.stem}_ocr.txt"
         txt_path.write_text(texto_ocr, encoding="utf-8")
-        print(f"[OCR] Texto crudo → {txt_path.name}")
 
-    version_detectada = detectar_version(texto_ocr, ruta) or "4.0"
+    version_detectada = detectar_version(ruta)
     uuid_extraido     = extraer_uuid_del_texto(texto_ocr)
 
-    print(f"[Versión] {version_detectada}")
-    print(f"[UUID]    {uuid_extraido or 'no encontrado'}")
-
-    print(f"\n[Mistral] Estructurando con {MISTRAL_MODEL}")
     facturas = _estructurar_con_mistral(texto_ocr, uuid_extraido, version_detectada)
+
+    version_final = version_detectada or next(
+        (f.get("version") for f in facturas if f.get("version")), None
+    )
+
+    for factura in facturas:
+        if not factura.get("version"):
+            factura["version"] = version_final
 
     resultados_validados = []
     for i, factura in enumerate(facturas):
         factura["archivo"] = f"{ruta.stem}_cfdi_{i + 1:02d}"
         valido, errores, _ = validar(factura)
-        print(f"[Validación CFDI {i+1}] {'OK' if valido else 'ERRORES'}")
-        for e in errores:
-            print(f"  {e}")
         resultados_validados.append({
             "datos":   factura,
             "valido":  valido,
@@ -376,14 +283,13 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     resultado = {
         "archivo": ruta.stem,
         "fuente":  "ocr+llm",
-        "version": version_detectada,
+        "version": version_final,
         "cfdis":   resultados_validados,
     }
 
     out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
     with open(out_json, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
-    print(f"\n[OK] JSON guardado en: {out_json.name}")
 
     return resultado
 
@@ -395,22 +301,18 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
         if p.suffix.lower() in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN | EXTENSIONES_XML)
     )
     if not archivos:
-        print(f"No se encontraron archivos compatibles en {carpeta}")
         return []
 
-    print(f"Procesando {len(archivos)} archivo(s) en {carpeta}...")
     resultados = []
     for arch in archivos:
         try:
             xml_hermano = arch.with_suffix(".xml")
             if arch.suffix.lower() != ".xml" and xml_hermano.exists():
-                print(f"  [Skip] {arch.name} — existe XML hermano")
                 continue
             resultados.append(procesar(arch))
         except Exception as e:
             print(f"  ERROR procesando {arch.name}: {e}")
 
-    print(f"\nTotal procesados: {len(resultados)}/{len(archivos)}")
     return resultados
 
 
@@ -433,5 +335,4 @@ if __name__ == "__main__":
             print("ERROR: No se encontró ningún PDF.")
             print("Uso: python pipeline.py ruta/al/archivo.pdf")
             sys.exit(1)
-        print(f"[Auto] Usando: {candidatos[0]}\n")
         procesar(candidatos[0])

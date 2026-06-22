@@ -84,7 +84,7 @@ CATALOGO_CLAVE_UNIDAD: dict[str, str] = {
     "SET": "SET", "CONJUNTO": "SET",
     "XBX": "XBX", "CAJA": "XBX",
     "XPK": "XPK", "PAQUETE": "XPK",
-    "XUN": "XUN", "UNIDAD": "XUN",
+    "XUN": "XUN",
 }
 
 CATALOGO_MONEDA: dict[str, str] = {
@@ -108,16 +108,13 @@ def _norm_rfc(rfc: str) -> str:
     return re.sub(r"[\s\-_]", "", rfc.upper().strip())
 
 
-def validar_digito_rfc(rfc: str) -> bool:
+def validar_formato_rfc(rfc: str) -> bool:
     rfc = _norm_rfc(rfc)
     return bool(re.match(r"^[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}$", rfc))
 
 
+validar_digito_rfc = validar_formato_rfc
+
+
 def normalizar_rfc(rfc: str) -> str:
     return _norm_rfc(rfc)
-
-
-def normalizar_cp(cp: str) -> str:
-    if not cp:
-        return cp
-    return str(cp).strip().replace(" ", "")[:5]

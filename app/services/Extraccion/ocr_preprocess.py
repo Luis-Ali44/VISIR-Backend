@@ -7,7 +7,7 @@ import fitz
 import numpy as np
 from PIL import Image
 
-EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".tiff", ".tif", ".webp"}
+EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 
 _DPI_TICKET    = 200
 _DPI_NATIVO    = 300
@@ -46,7 +46,6 @@ def renderizar_pagina(pagina: fitz.Page, dpi: int) -> np.ndarray:
 
 
 def imagen_a_array(ruta: Path) -> np.ndarray:
-    """Abre una imagen suelta y la convierte a numpy RGB."""
     return np.array(Image.open(ruta).convert("RGB"))
 
 
@@ -69,14 +68,12 @@ def _preprocesar_escaneado(img: np.ndarray) -> np.ndarray:
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
     std  = float(np.std(gray))
     clip = 1.5 if std > 40 else 3.0
-    print(f"    [Preprocesamiento escaneado] std={std:.1f} clipLimit={clip}")
     clahe = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8, 8))
     gray  = clahe.apply(gray)
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
 
 def preprocesar(img: np.ndarray, tipo: str) -> np.ndarray:
-
     if tipo == "ticket":
         return _preprocesar_ticket(img)
     if tipo == "nativo":
@@ -88,7 +85,6 @@ def agrupar_en_lineas(
     items: list[tuple],
     tolerancia_y: float = 8.0,
 ) -> list[list[tuple]]:
-
     if not items:
         return []
 
@@ -117,15 +113,6 @@ def items_a_texto(lineas: list[list[tuple]]) -> list[str]:
     return [" ".join(item[0] for item in linea) for linea in lineas]
 
 
-def imprimir_texto_crudo(lineas: list[str], num_pagina: int, tag: str) -> None:
-    print(f"  --- TEXTO CRUDO PAGINA {num_pagina} [{tag}] ---")
-    for linea in lineas[:100]:
-        print(f"    {linea}")
-    if len(lineas) > 100:
-        print(f"    ... (truncado, {len(lineas)} líneas totales)")
-    print(f"  --- FIN PAGINA {num_pagina} ---")
-
-
 def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int]]:
     doc     = fitz.open(str(ruta))
     paginas = []
@@ -136,10 +123,6 @@ def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int]]:
         raw  = renderizar_pagina(pagina, dpi)
         proc = preprocesar(raw, tipo)
         paginas.append((proc, tipo, dpi, num + 1, len(doc)))
-        print(
-            f"  Pagina {num + 1}/{len(doc)} "
-            f"({dpi} DPI, {tipo})"
-        )
 
     doc.close()
     return paginas

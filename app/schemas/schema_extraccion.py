@@ -6,7 +6,7 @@ from datetime import datetime
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 from app.services.Extraccion.catalogos import (
     CATALOGO_FORMA_PAGO,
@@ -175,13 +175,13 @@ def validar(data: dict) -> tuple[bool, list[str], ExtractionResult | None]:
     try:
         modelo = ExtractionResult(**payload)
         return True, [], modelo
+    except ValidationError as e:
+        for err in e.errors():
+            loc = " → ".join(str(x) for x in err["loc"])
+            errores.append(f"{loc}: {err['msg']}")
+        return False, errores, None
     except Exception as e:
-        try:
-            for err in e.errors():
-                loc = " → ".join(str(x) for x in err["loc"])
-                errores.append(f"{loc}: {err['msg']}")
-        except AttributeError:
-            errores.append(str(e))
+        errores.append(str(e))
         return False, errores, None
 
 
