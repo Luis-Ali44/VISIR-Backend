@@ -1,59 +1,40 @@
-from pydantic import BaseModel, Field, field_validator
+# app/schemas/consulta_v2.py
+from typing import Any, Literal, TypedDict
+from pydantic import BaseModel, Field
 
 class ConsultaRequest(BaseModel):
-    pregunta: str = Field(..., min_length=1, description="Pregunta fiscal del usuario")
-    top_k: int = Field(5, ge=1, le=10, description="Número de fragmentos a recuperar")
+    pregunta: str = Field(..., min_length=3, max_length=2000, description="Pregunta fiscal del usuario")
+    top_k: int = Field(default=5, ge=1, le=20, description="Número de fragmentos a recuperar del RAG")
 
-    @field_validator("pregunta")
-    @classmethod
-    def pregunta_no_vacia(cls, v: str) -> str:
-        if not v.strip():
-            raise ValueError("La pregunta no puede contener solo espacios")
-        return v.strip()
-
-
-class ChunkInfo(BaseModel):
-    chunk_id: str
-    fuente: str
-    seccion: str
-    pagina: int | None = None
-    similitud: float
-
-
-class TokenUsage(BaseModel):
-    tokens_entrada: int = Field(..., ge=0, description="Tokens consumidos por pregunta + contexto")
-    tokens_salida: int  = Field(..., ge=0, description="Tokens consumidos por la respuesta del LLM")
-
+class DecisionEnrutamiento(BaseModel):
+    ruta: Literal["NORMATIVA", "CFDI_PROPIOS", "HIBRIDO"] = Field(..., description="Ruta final determinada.")
+    justificacion: str = Field(..., description="Razón técnica de la selección de ruta.")
+    confianza: float = Field(..., description="Nivel de certeza del enrutamiento.")
 
 class ConsultaResponse(BaseModel):
     solicitud_id: str
     respuesta: str
-    tiene_cobertura: bool = Field(..., description="El contexto cubría la pregunta")
-    fuentes_citadas: list[str] = Field(default_factory=list, description="Archivos citados por el LLM")
-    chunks_recuperados: list[ChunkInfo]
-    fuentes: list[str]
+    tiene_cobertura: bool
+    fuentes_citadas: list[str]
     latencias_ms: dict[str, float]
-    tokens: TokenUsage
 
-
-class EmbeddingRequest(BaseModel):
-    texto: str = Field(..., min_length=1, max_length=8000, description="Texto a vectorizar")
-
-
-class EmbeddingResponse(BaseModel):
-    texto: str
-    modelo: str
-    dimensiones: int
-    vector: list[float]
-
-
-class BusquedaSemanticaRequest(BaseModel):
-    texto: str = Field(..., min_length=1, description="Texto de consulta")
-    top_k: int = Field(5, ge=1, le=20, description="Número de resultados")
-    rerank: bool = Field(True, description="Aplicar reranking por importancia")
-
-
-class BusquedaSemanticaResponse(BaseModel):
-    texto_consulta: str
-    resultados: list[ChunkInfo]
-    total: int
+# --- ESTADO DE LA MÁQUINA DE ESTADOS (LANGGRAPH) ---
+class VisirState(TypedDict):
+    pregunta: str
+    usuario_id: str
+    id_organizacion: str
+    top_k: int
+    
+    # Variables de Control de la Máquina de Estados del Enrutador
+    ruta_seleccionada: Literal["NORMATIVA", "CFDI_PROPIOS", "HIBRIDO"] | None
+    confianza_lexica: float
+    palabras_clave_detectadas: list[str]
+    decision_enrutamiento: DecisionEnrutamiento | None
+    
+    # Datos de los Nodos de Recuperación
+    fragmentos_leyes: list[dict[str, Any]]
+    datos_cfdi: dict[str, Any]
+    estadisticas_cfdi: dict[str, Any]
+    
+    # Respuestas y Salida
+    respuesta_final: str | None
