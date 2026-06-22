@@ -11,23 +11,22 @@ _paddle_ocr_instance = None
 def _get_paddle_ocr():
     global _paddle_ocr_instance
     if _paddle_ocr_instance is None:
-        os.environ["CUDA_VISIBLE_DEVICES"] = ""
-        os.environ["FLAGS_USE_CUDA"] = "0"
-        path_original = os.environ.get("PATH", "")
-        partes_limpias = [
-            p for p in path_original.split(os.pathsep)
-            if "torch" not in p.lower() and "cuda" not in p.lower()
-        ]
-        os.environ["PATH"] = os.pathsep.join(partes_limpias)
         import paddle
-        paddle.device.set_device("cpu")
         from paddleocr import PaddleOCR
+
+        if paddle.is_compiled_with_cuda() and paddle.device.cuda.device_count() > 0:
+            paddle.device.set_device("gpu:0")
+            device = "gpu"
+        else:
+            paddle.device.set_device("cpu")
+            device = "cpu"
+
         _paddle_ocr_instance = PaddleOCR(
             use_doc_orientation_classify=False,
             use_doc_unwarping=False,
             lang="es",
+            device=device,
         )
-        os.environ["PATH"] = path_original
     return _paddle_ocr_instance
 
 

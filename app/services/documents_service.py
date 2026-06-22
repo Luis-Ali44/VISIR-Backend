@@ -2,7 +2,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 from uuid import UUID
-
+import asyncio
+from functools import partial
 from fastapi import HTTPException, UploadFile
 
 from app.repositories.documents_repository import (
@@ -117,7 +118,9 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             tmp_path = Path(tmp.name)
 
         try:
-            Data = procesar(ruta_archivo=tmp_path, guardar_txt=False)  # noqa: N806
+            Data = await asyncio.get_event_loop().run_in_executor(
+                None, partial(procesar, ruta_archivo=tmp_path, guardar_txt=False)
+            ) 
         except Exception as exc:
             raise HTTPException(
                 status_code=422, detail="No se pudo procesar el archivo con OCR"

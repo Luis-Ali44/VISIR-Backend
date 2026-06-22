@@ -67,14 +67,6 @@ indent-style = "space"              # Espacios y no tabs
 
 
 [tool.mypy]
-module=[
-    "app.service.Extraccion.*",
-]
-
-ignore_errors = true
-
-
-
 python_version = "3.12"
 ignore_missing_imports = true
 plugins = ["pydantic.mypy"]

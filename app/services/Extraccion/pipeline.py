@@ -183,10 +183,14 @@ def _estructurar_con_mistral(
             "MISTRAL_API_KEY no configurada.\n"
             "Ejecuta: export MISTRAL_API_KEY=tu_clave"
         )
+    print(f"Clave de Mistral detectada (longitud={len(MISTRAL_API_KEY)})")
+
     try:
         from mistralai.client import Mistral
     except ImportError as e:
         raise ImportError("Instala mistralai: pip install mistralai") from e
+
+    print("Validación de librería mistralai OK")
 
     client = Mistral(api_key=MISTRAL_API_KEY)
 
@@ -252,6 +256,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
         raise ValueError(f"Formato no soportado: {ext}")
 
     texto_ocr = _extraer_texto_ocr(ruta)
+    print(f"Extracción OCR completada ({len(texto_ocr)} caracteres extraídos)")
 
     if guardar_txt:
         txt_path = ruta.parent / f"{ruta.stem}_ocr.txt"
@@ -261,6 +266,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     uuid_extraido     = extraer_uuid_del_texto(texto_ocr)
 
     facturas = _estructurar_con_mistral(texto_ocr, uuid_extraido, version_detectada)
+    print(f"Estructuración con LLM completada ({len(facturas)} factura(s) detectada(s))")
 
     version_final = version_detectada or next(
         (f.get("version") for f in facturas if f.get("version")), None

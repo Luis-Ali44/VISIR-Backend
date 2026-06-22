@@ -1,10 +1,20 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 
 from app.routers.auth_router import router as auth_router
 from app.routers.documents_router import router as documents_router
 from app.routers.extracciones_router import router as extracciones_router
 
-app = FastAPI(title="VISIR API", version="0.1.0")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    from app.services.Extraccion.ocr_paddle import _get_paddle_ocr
+    _get_paddle_ocr()
+    yield
+
+
+app = FastAPI(title="VISIR API", version="0.1.0", lifespan=lifespan)
 
 
 @app.get("/health")
