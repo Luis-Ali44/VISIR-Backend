@@ -175,10 +175,11 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             }
         )
 
-    # Guardamos las extracciones en la base de datos
+     # Guardamos las extracciones en la base de datos
     try:
         save_extracciones_repository(rows)
     except Exception as exc:
+        traceback.print_exc()
         raise HTTPException(
             status_code=500, detail="No se pudieron guardar las extracciones"
         ) from exc
