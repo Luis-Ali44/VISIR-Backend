@@ -113,7 +113,7 @@ def items_a_texto(lineas: list[list[tuple]]) -> list[str]:
     return [" ".join(item[0] for item in linea) for linea in lineas]
 
 
-def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int]]:
+def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int, int, int]]:
     doc     = fitz.open(str(ruta))
     paginas = []
 

@@ -27,14 +27,14 @@ def extraer_uuid_del_texto(texto: str) -> str | None:
         if u.upper() not in relacionados
     ]
     if candidatos:
-        return candidatos[0]
+        return str(candidatos[0])
 
     m = re.search(
         r"[0-9A-Fa-f\s]{8,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{4,}-[0-9A-Fa-f\s]{12,}",
         texto,
     )
     if m:
-        limpio = re.sub(r"\s", "", m.group(0))
+        limpio: str = re.sub(r"\s", "", m.group(0))
         if re.fullmatch(UUID_PATRON, limpio, re.IGNORECASE):
             limpio_upper = limpio.upper()
             if limpio_upper not in relacionados:

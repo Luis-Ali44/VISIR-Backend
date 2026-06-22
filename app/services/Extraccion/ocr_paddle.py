@@ -1,14 +1,15 @@
 from __future__ import annotations
 
-import os
+from typing import Any
 
 import numpy as np
+
 from .ocr_preprocess import agrupar_en_lineas
 
-_paddle_ocr_instance = None
+_paddle_ocr_instance: Any = None
 
 
-def _get_paddle_ocr():
+def _get_paddle_ocr() -> Any:
     global _paddle_ocr_instance
     if _paddle_ocr_instance is None:
         import paddle
@@ -30,7 +31,7 @@ def _get_paddle_ocr():
     return _paddle_ocr_instance
 
 
-def _centroide_bbox(poly) -> tuple[float, float]:
+def _centroide_bbox(poly: Any) -> tuple[float, float]:
     try:
         poly_arr = np.array(poly, dtype=float)
         cx = float(poly_arr[:, 0].mean())
@@ -48,8 +49,8 @@ SCORE_MINIMO_NATIVO = 0.25
 
 
 def _ocr_desde_array(
-    ocr,
-    img_array: np.ndarray,
+    ocr: Any,
+    img_array: np.ndarray, 
     score_minimo: float = SCORE_MINIMO,
 ) -> list[str]:
     try:
@@ -57,7 +58,7 @@ def _ocr_desde_array(
     except Exception:
         return []
 
-    items: list[tuple] = []
+    items: list[tuple[str, float, float, float]] = []
     for res in resultado:
         if res is None:
             continue

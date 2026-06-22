@@ -8,9 +8,7 @@ def parse_fecha(date_str: str) -> datetime:
         raise ValueError("La fecha no puede estar vacía")
 
     texto = str(date_str).strip()
-
     texto = texto.replace(",", "")
-
     texto = texto.replace("a.m.", "AM").replace("p.m.", "PM")
     texto = texto.replace("a. m.", "AM").replace("p. m.", "PM")
     texto = texto.replace("am", "AM").replace("pm", "PM")
@@ -35,9 +33,9 @@ def parse_fecha(date_str: str) -> datetime:
     raise ValueError(f"Formato de fecha no soportado: {date_str!r}")
 
 
-def map_tipo_comprobante(tipo: str) -> str:
+def map_tipo_comprobante(tipo: str) -> str | None:
     return tipo_comprobante(tipo)
 
 
-def get_nombre_forma_pago(forma_pago: str) -> str:
+def get_nombre_forma_pago(forma_pago: str) -> str | None:
     return nombre_forma_pago(forma_pago)

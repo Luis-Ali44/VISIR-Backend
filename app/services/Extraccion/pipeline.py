@@ -151,7 +151,7 @@ def _extraer_todos_los_json(texto: str) -> list[dict]:
     return resultados
 
 
-def _llamar_mistral(client, prompt: str) -> str:
+def _llamar_mistral(client: Any, prompt: str) -> str:
     for intento in range(MAX_REINTENTOS):
         try:
             response = client.chat.complete(
@@ -159,7 +159,7 @@ def _llamar_mistral(client, prompt: str) -> str:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
             )
-            return response.choices[0].message.content.strip()
+            return str(response.choices[0].message.content).strip()
         except Exception as e:
             if "429" in str(e):
                 espera = 20 * (intento + 1)
@@ -279,7 +279,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     resultados_validados = []
     for i, factura in enumerate(facturas):
         factura["archivo"] = f"{ruta.stem}_cfdi_{i + 1:02d}"
-        valido, errores, _ = validar(factura)
+        valido, errores, _modelo = validar(factura)
         resultados_validados.append({
             "datos":   factura,
             "valido":  valido,

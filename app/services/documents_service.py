@@ -1,9 +1,10 @@
+import asyncio
 import tempfile
+from functools import partial
 from pathlib import Path
 from typing import Any
 from uuid import UUID
-import asyncio
-from functools import partial
+
 from fastapi import HTTPException, UploadFile
 
 from app.repositories.documents_repository import (
@@ -118,9 +119,9 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             tmp_path = Path(tmp.name)
 
         try:
-            Data = await asyncio.get_event_loop().run_in_executor(
+            data = await asyncio.get_event_loop().run_in_executor(
                 None, partial(procesar, ruta_archivo=tmp_path, guardar_txt=False)
-            ) 
+            )
         except Exception as exc:
             raise HTTPException(
                 status_code=422, detail="No se pudo procesar el archivo con OCR"
@@ -137,36 +138,40 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
     id_documento = resultado[0]["id"]
 
     if (
-        not isinstance(Data, dict)
-        or not isinstance(Data.get("cfdis"), list)
-        or not Data.get("cfdis")
+        not isinstance(data, dict)
+        or not isinstance(data.get("cfdis"), list)
+        or not data.get("cfdis")
     ):
         raise HTTPException(status_code=422, detail="No se encontraron CFDIs para extraer")
 
     rows = []
-    for item in Data.get("cfdis", []):
+    for item in data.get("cfdis", []):
         datos = item.get("datos", {}) if isinstance(item, dict) else {}
 
         forma_pago = datos.get("forma_pago")
+        fecha_emision_raw = datos.get("fecha_emision")
+        tipo_comprobante_raw = datos.get("tipo_de_comprobante")
 
-        rows.append(
-            {
-                "folio_fiscal": datos.get("folio_fiscal"),
-                "total": datos.get("total"),
-                "metadatos": datos,
-                "fecha_emision": parse_fecha(datos.get("fecha_emision")).isoformat()
-                if datos.get("fecha_emision")
-                else None,
-                "tipo_comprobante": map_tipo_comprobante(datos.get("tipo_de_comprobante")),
-                "metodo_pago": datos.get("metodo_pago"),
-                "estado": "procesado",
-                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
-                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
-                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
-                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
-                "id_documento": id_documento,
-                "id_organizacion": id_organizacion,
-                "forma_pago": get_nombre_forma_pago(int(forma_pago)) if forma_pago else None,
+    rows.append(
+        {
+            "folio_fiscal": datos.get("folio_fiscal"),
+            "total": datos.get("total"),
+            "metadatos": datos,
+            "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
+            if fecha_emision_raw is not None
+            else None,
+            "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
+            if tipo_comprobante_raw is not None
+            else None,
+            "metodo_pago": datos.get("metodo_pago"),
+            "estado": "procesado",
+            "rfc_emisor": datos.get("emisor", {}).get("RFC"),
+            "nombre_emisor": datos.get("emisor", {}).get("nombre"),
+            "rfc_receptor": datos.get("receptor", {}).get("RFC"),
+            "nombre_receptor": datos.get("receptor", {}).get("nombre"),
+            "id_documento": id_documento,
+            "id_organizacion": id_organizacion,
+            "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
             }
         )
 
