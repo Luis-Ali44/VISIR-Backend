@@ -1,18 +1,29 @@
 import asyncio
+import os
 import sys
 
-from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, status
 
-from app.core.config import get_settings
 from app.core.dependencies import get_user
 from app.core.logging import get_logger
 from app.schemas.ingest import IngestStatusResponse
 from app.schemas.user_schema import UsuarioActual
 
-router = APIRouter(dependencies=[Depends(get_user)])  
+router = APIRouter(prefix="/v1/ingest", tags=["ingesta"], dependencies=[Depends(get_user)])
 logger = get_logger()
 
 _ingest_running: bool = False
+
+
+def _get_chroma_env() -> tuple[str, str]:
+    """
+    Lee CHROMA_PATH / CHROMA_COLLECTION directo de variables de entorno,
+    igual que hace rag/config.py::load_config_from_env. app/core/config.py
+    no expone get_settings() ni estos campos, así que no se usa aquí.
+    """
+    chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
+    chroma_collection = os.getenv("CHROMA_COLLECTION", "documentos_fiscales")
+    return chroma_path, chroma_collection
 
 
 async def _run_ingestion_background(chroma_path: str, collection: str) -> None:
@@ -54,11 +65,11 @@ def run_ingest(
             status_code=status.HTTP_409_CONFLICT,
             detail="Ya hay una ingesta en curso. Espera a que termine.",
         )
-    settings = get_settings()
+    chroma_path, chroma_collection = _get_chroma_env()
     background_tasks.add_task(
         _run_ingestion_background,
-        chroma_path=settings.CHROMA_PATH,
-        collection=settings.CHROMA_COLLECTION,
+        chroma_path=chroma_path,
+        collection=chroma_collection,
     )
     logger.info("ingesta_iniciada")
     return IngestStatusResponse(status="iniciada", mensaje="Ingesta lanzada en background.")
@@ -71,11 +82,11 @@ def run_ingest(
 )
 def get_stats(_usuario: UsuarioActual = Depends(get_user)) -> dict:
     from rag.store import FiscalChromaStore
-    settings = get_settings()
+    chroma_path, chroma_collection = _get_chroma_env()
     try:
         store = FiscalChromaStore(
-            chroma_path=settings.CHROMA_PATH,
-            collection_name=settings.CHROMA_COLLECTION,
+            chroma_path=chroma_path,
+            collection_name=chroma_collection,
         )
         stats = store.stats()
         hashes = store.get_indexed_doc_hashes()
