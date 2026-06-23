@@ -7,6 +7,8 @@ services:
       - .env
     volumes:
       - ./app:/app/app
+      - ./rag:/app/rag
+      - ./ingestion:/app/ingestion
     depends_on:
       postgres:
         condition: service_healthy
