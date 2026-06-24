@@ -1,9 +1,12 @@
+from datetime import UTC, datetime
+from unittest.mock import AsyncMock, patch
+
 from fastapi.testclient import TestClient
 
 from app.main import app
+from app.schemas.documents_schema import DocumentResponse
 
 client = TestClient(app)
-
 
 # ── POST /v1/documentos/cargar ────────────────────────────────
 
@@ -11,12 +14,35 @@ client = TestClient(app)
 def test_cargar_documento_pdf_valido(tmp_path):
     archivo = tmp_path / "test.pdf"
     archivo.write_bytes(b"%PDF-1.4 test content")
-    with open(archivo, "rb") as f:
+
+    fake_response = DocumentResponse(
+        id="00000000-0000-0000-0000-000000000001",
+        nombre="test.pdf",
+        tipo="application/pdf",
+        tamaño=21,
+        link="https://fake.supabase.co/storage/test.pdf",
+        id_usuario="83bfd116-2276-43d7-9c17-25d7bd6700d3",
+        id_organizacion="22222222-2222-2222-2222-222222222222",
+        id_categorias=None,
+        created_at=datetime.now(UTC),
+    )
+
+    with (
+        patch(
+            "app.routers.documents_router.subir_documento_service",
+            new=AsyncMock(return_value=fake_response),
+        ),
+        open(archivo, "rb") as f,
+    ):
         response = client.post(
             "/v1/documentos/cargar",
             files={"file": ("test.pdf", f, "application/pdf")},
         )
+
     assert response.status_code == 200
+    data = response.json()
+    assert data["nombre"] == "test.pdf"
+    assert data["tipo"] == "application/pdf"
 
 
 def test_cargar_documento_tipo_invalido(tmp_path):
