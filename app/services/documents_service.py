@@ -1,5 +1,6 @@
 import asyncio
 import tempfile
+import traceback
 from functools import partial
 from pathlib import Path
 from typing import Any
@@ -24,7 +25,15 @@ from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, par
 
 MAX_FILE_SIZE = 5 * 1024 * 1024
 
-ALLOWED_TYPES = ["application/pdf", "text/xml", "application/xml"]
+ALLOWED_TYPES = {
+    "application/pdf": ".pdf",
+    "text/xml": ".xml",
+    "image/jpeg": ".jpeg",
+    "image/jpg": ".jpg",
+    "image/png": ".png",
+    "image/bmp": ".bmp",
+    "image/webp": ".webp",
+}
 
 
 async def validate_document(file: UploadFile) -> bytes:
@@ -172,10 +181,10 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             "id_documento": id_documento,
             "id_organizacion": id_organizacion,
             "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
-            }
-        )
+        }
+    )
 
-     # Guardamos las extracciones en la base de datos
+    # Guardamos las extracciones en la base de datos
     try:
         save_extracciones_repository(rows)
     except Exception as exc:
@@ -232,3 +241,21 @@ def get_my_documents_service(
     if documentos:
         next_cursor = documentos[-1]["created_at"]
     return {"data": documentos, "next_cursor": next_cursor}
+
+
+async def subir_lote_service(
+    files: list[UploadFile], user: UsuarioActual
+) -> list[DocumentResponse]:
+    response = []
+    for file in files:
+        try:
+            result = await subir_documento_service(file, user)
+            response.append(result)
+            print(f"Archivo {file.filename} procesado exitosamente.")
+
+        except HTTPException as exc:
+            raise HTTPException(
+                status_code=exc.status_code,
+                detail=f"Error al procesar el archivo {file.filename}: {exc.detail}",
+            ) from exc
+    return response
