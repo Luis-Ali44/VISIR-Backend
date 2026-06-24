@@ -17,14 +17,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v4
+      - name: despliegue en render
+        run: curl -f "${{ secrets.RENDER_DEPLOY_HOOK }}"
 
-      - name: Instalar Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Deploy a Railway
-        run: railway up --service ${{ secrets.RAILWAY_SERVICE_ID }}
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+#      - name: Clonar repositorio
+#        uses: actions/checkout@v4
+#
+#      - name: Instalar Railway CLI
+#        run: npm install -g @railway/cli
+#
+#      - name: Deploy a Railway
+#        run: railway up --service ${{ secrets.RAILWAY_SERVICE_ID }}
+#        env:
+#          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
           
