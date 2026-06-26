@@ -21,6 +21,13 @@ class RAGConfig:
     collection_name:  str = "documentos_fiscales"
     topic_seed_path:  str = "./data/topic_seed.md"
 
+    # NUEVO: colección compartida para documentos subidos por organizaciones
+    # (CFDIs propios + documentos generales). Es UNA sola colección para
+    # todas las orgs, aislada por filtro de metadata `id_organizacion` en
+    # cada query — no una colección por organización. Esto escala mejor
+    # a miles de orgs sin crear una colección de Chroma por cada una.
+    org_collection_name: str = "documentos_organizacion"
+
     embedding_base_url:   str = "http://localhost:11434/v1"
     embedding_api_key:    str = "ollama"           # "ollama" para Ollama (valor ignorado)
     embedding_model_name: str = "embeddinggemma:latest"
@@ -54,6 +61,7 @@ def load_config_from_env(chroma_path: str = "./chroma_db") -> RAGConfig:
     return RAGConfig(
         chroma_path=chroma_path,
         collection_name=os.getenv("CHROMA_COLLECTION", "documentos_fiscales"),
+        org_collection_name=os.getenv("CHROMA_ORG_COLLECTION", "documentos_organizacion"),
         topic_seed_path=os.getenv("TOPIC_SEED_PATH", "./data/topic_seed.md"),
 
         # Embeddings
