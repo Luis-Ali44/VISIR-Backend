@@ -26,6 +26,17 @@ def _get_chroma_env() -> tuple[str, str]:
     return chroma_path, chroma_collection
 
 
+def _get_chroma_org_env() -> tuple[str, str]:
+    """
+    Igual que _get_chroma_env(), pero para la colección compartida de
+    documentos/CFDIs de organización (CHROMA_ORG_COLLECTION), separada
+    de la normativa SAT (CHROMA_COLLECTION). Ver rag/config.py.
+    """
+    chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
+    chroma_org_collection = os.getenv("CHROMA_ORG_COLLECTION", "documentos_organizacion")
+    return chroma_path, chroma_org_collection
+
+
 async def _run_ingestion_background(chroma_path: str, collection: str) -> None:
     global _ingest_running
     _ingest_running = True
@@ -77,8 +88,14 @@ def run_ingest(
 
 @router.get(
     "/stats",
-    summary="Estadísticas de ChromaDB",
-    description="Devuelve chunks indexados y documentos únicos. **Requiere token JWT.**",
+    summary="Estadísticas de ChromaDB — normativa SAT",
+    description=(
+        "Devuelve chunks indexados y documentos únicos de la colección "
+        "de normativa SAT (CHROMA_COLLECTION), compartida entre todas las "
+        "organizaciones. NO incluye los CFDIs/documentos subidos por "
+        "ninguna organización — para eso, ver /v1/ingest/org-stats. "
+        "**Requiere token JWT.**"
+    ),
 )
 def get_stats(_usuario: UsuarioActual = Depends(get_user)) -> dict:
     from rag.store import FiscalChromaStore
@@ -95,6 +112,40 @@ def get_stats(_usuario: UsuarioActual = Depends(get_user)) -> dict:
             "total_chunks": stats["total_chunks"],
             "documentos_unicos": len(hashes),
         }
+    except Exception as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=f"No se pudo conectar a ChromaDB: {exc}",
+        ) from exc
+
+
+@router.get(
+    "/org-stats",
+    summary="Estadísticas de ChromaDB — documentos de tu organización",
+    description=(
+        "Devuelve chunks indexados y documentos únicos de la colección "
+        "compartida de organización (CHROMA_ORG_COLLECTION), acotado "
+        "SOLO a la organización del usuario autenticado — nunca al total "
+        "de todas las organizaciones. Incluye CFDIs y documentos "
+        "generales subidos vía /v1/documentos/cargar. **Requiere token JWT.**"
+    ),
+)
+def get_org_stats(usuario: UsuarioActual = Depends(get_user)) -> dict:
+    from rag.store import FiscalChromaStore
+
+    if not usuario.id_organizacion:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="El usuario actual no está vinculado a ninguna organización.",
+        )
+
+    chroma_path, chroma_org_collection = _get_chroma_org_env()
+    try:
+        store = FiscalChromaStore(
+            chroma_path=chroma_path,
+            collection_name=chroma_org_collection,
+        )
+        return store.stats_by_org(id_organizacion=usuario.id_organizacion)
     except Exception as exc:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,

@@ -1,8 +1,9 @@
 # VISIR API
 
-Backend del sistema VISIR — ERP inteligente con asistente fiscal RAG.
+Backend del sistema VISIR — ERP inteligente con asistente fiscal RAG y
+extracción automática de CFDIs (PDF, imagen y XML).
 
-**Stack:** FastAPI · Supabase · ChromaDB · Ollama · LangChain · uv
+**Stack:** FastAPI · Supabase · ChromaDB · Ollama · LangChain / LangGraph · PaddleOCR · Mistral · uv
 
 ---
 
@@ -37,7 +38,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 git clone https://github.com/Luis-Ali44/VISIR-Backend.git
 cd VISIR-Backend
 cp .env.example .env
-# Editar .env con tus credenciales de Supabase y API key de Groq
+# Editar .env con tus credenciales de Supabase, Groq y Mistral
 ```
 
 ### 2 — Verificar Ollama
@@ -77,12 +78,17 @@ La API queda disponible en:
 - `http://localhost:8000` — API
 - `http://localhost:8000/docs` — Swagger UI interactivo
 
-### 3 — Alternativa sin Docker (solo desarrollo local)
+### Alternativa sin Docker (solo desarrollo local)
 
 ```bash
 uv sync
 uv run uvicorn app.main:app --reload
 ```
+
+> **Nota:** la primera vez que `uv sync` instale PaddleOCR/PaddlePaddle puede tardar varios
+> minutos por el tamaño de los paquetes. Si vienes de una instalación manual previa con
+> pip (entorno solo para el módulo de extracción), revisa que no tengas dos entornos
+> virtuales distintos activos a la vez.
 
 ---
 
@@ -99,14 +105,23 @@ cp .env.example .env
 | `SUPABASE_URL` | URL del proyecto Supabase | `https://xxxx.supabase.co` |
 | `SUPABASE_PUBLIC_KEY` | Clave anon/public de Supabase | `eyJ...` |
 | `SUPABASE_SECRET_KEY` | Clave service_role de Supabase | `eyJ...` |
-| `GROQ_API_KEY` | API key de Groq para el LLM | `gsk_...` |
-| `GROQ_MODEL` | Modelo LLM para generación | `meta-llama/llama-4-scout-17b-16e-instruct` |
-| `GROQ_JUDGE_MODEL` | Modelo para evaluaciones | `llama-3.3-70b-versatile` |
+| `LLM_API_KEY` | API key del proveedor LLM (p. ej. Groq) | `gsk_...` |
+| `LLM_MODEL` | Modelo LLM para generación y enrutamiento | `llama-3.3-70b-versatile` |
 | `LLM_BASE_URL` | URL base del proveedor LLM | `https://api.groq.com/openai/v1` |
+| `LLM_TEMPERATURE` | Temperatura de generación del LLM | `0.2` |
+| `LLM_MAX_TOKENS` | Máximo de tokens de salida del LLM | `1024` |
 | `EMBEDDING_BASE_URL` | URL de Ollama para embeddings | `http://host.docker.internal:11434/v1` |
 | `EMBEDDING_MODEL` | Modelo de embeddings | `embeddinggemma:latest` |
 | `CHROMA_PATH` | Ruta a la base vectorial | `./chroma_db` |
-| `CHROMA_COLLECTION` | Nombre de la colección | `documentos_fiscales` |
+| `CHROMA_COLLECTION` | Colección de normativa SAT (compartida, solo lectura) | `documentos_fiscales` |
+| `CHROMA_ORG_COLLECTION` | Colección de documentos/CFDIs por organización | `documentos_organizacion` |
+| `MISTRAL_API_KEY` | API key de Mistral, usada por el extractor de CFDIs | `tu_clave_aqui` |
+
+> `CHROMA_COLLECTION` y `CHROMA_ORG_COLLECTION` son colecciones **separadas** dentro del
+> mismo ChromaDB: la primera es normativa SAT compartida entre todas las organizaciones
+> (solo se llena vía la ingesta administrativa, ver más abajo); la segunda es donde
+> caen los CFDIs y documentos que cada organización sube, aislados entre sí por un
+> filtro obligatorio de metadata `id_organizacion` en cada consulta.
 
 ---
 
@@ -119,6 +134,7 @@ migrations/20260519140000_create_organizaciones.sql
 migrations/20260519140001_create_roles.sql
 migrations/20260519140002_create_categorias.sql
 migrations/20260519140003_create_usuarios.sql
+migrations/20260519140005_create_categorias.sql
 migrations/20260519140007_create_formas_pago.sql
 migrations/20260519140008_create_documentos.sql
 migrations/20260519140009_create_conversaciones.sql
@@ -126,22 +142,79 @@ migrations/20260519140010_create_extracciones.sql
 migrations/20260519140011_rls_policies.sql
 migrations/20260519140012_seed_data.sql
 migrations/20260604230000_trigger_user.sql
+migrations/20260610100001_create_tipos_comprobantes.sql
 ```
 
 ---
 
-## Ingesta de documentos
+## Flujo general del sistema
 
-El sistema RAG lee PDFs y los indexa en ChromaDB con embeddings de Ollama.
-Este paso es necesario una sola vez (o cuando agregues documentos nuevos).
+```
+                    ┌─────────────────────────────────────┐
+                    │   POST /v1/documentos/cargar         │
+                    │   (PDF, imagen o XML)                │
+                    └──────────────┬────────────────────────┘
+                                   │
+                 1. Guarda archivo en Storage + metadata en `documentos`
+                                   │
+                 2. Extrae el CFDI (OCR+Mistral para PDF/imagen,
+                    parseo directo para XML) → guarda en `extracciones`
+                                   │
+                 3. En background: genera embeddings del CFDI y los
+                    indexa en la colección de organización (Chroma),
+                    aislados por id_organizacion
+                                   │
+                    ┌──────────────▼────────────────────────┐
+                    │   POST /v1/consultas/preguntar         │
+                    │   (pregunta en lenguaje natural)        │
+                    └──────────────┬────────────────────────┘
+                                   │
+                 Enrutador léxico + LLM clasifica la pregunta en:
+                   - NORMATIVA     → recupera de documentos_fiscales (SAT)
+                   - CFDI_PROPIOS  → recupera de `extracciones` (SQL) +
+                                      documentos_organizacion (Chroma)
+                   - HIBRIDO       → ambas fuentes, en paralelo
+                                   │
+                          Respuesta generada por el LLM
+```
+
+### Extracción de CFDIs (OCR + LLM + parser XML)
+
+El módulo `app/services/Extraccion/` procesa cualquier archivo subido vía
+`/v1/documentos/cargar` y, si reconoce un CFDI, lo estructura y valida:
+
+```
+PDF/Imagen → ocr_preprocess (clasifica página) → ocr_paddle (extrae texto)
+           → pipeline (detecta versión/UUID) → Mistral (estructura JSON)
+           → schema_extraccion (valida Pydantic) → fila en `extracciones`
+
+XML        → xml_parser → schema_extraccion (valida Pydantic) → fila en `extracciones`
+```
+
+Si el archivo subido no es un CFDI reconocible (p. ej. un PDF normativo o una
+imagen no fiscal), el documento se guarda normalmente y la extracción simplemente
+se omite — no se considera un error.
+
+Requiere una API key de [Mistral AI](https://console.mistral.ai/) configurada en
+`MISTRAL_API_KEY`.
+
+---
+
+## Ingesta de normativa SAT al RAG general
+
+El sistema RAG lee PDFs normativos del SAT y los indexa en la colección
+compartida `documentos_fiscales` con embeddings de Ollama. Este paso es
+administrativo, manual, y necesario una sola vez (o cuando agregues
+documentos normativos nuevos) — es independiente de la ingesta automática
+de CFDIs por organización, que ocurre sola al subir un documento.
 
 ### 1 — Colocar los PDFs en la carpeta `data/`
 
 ```
 VISIR-Backend/
 └── data/
-    ├── guia_cfdi_4.pdf
-    ├── regimenes_fiscales.pdf
+    ├── Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf
+    ├── RMF_2026_Completa_limpio.pdf
     └── ...
 ```
 
@@ -212,8 +285,20 @@ Respuesta:
 
 | Método | Ruta | Auth | Descripción |
 |---|---|---|---|
-| `GET` | `/v1/documentos` | ✅ JWT | Listar documentos del usuario |
-| `POST` | `/v1/documentos/cargar` | ✅ JWT | Subir un documento |
+| `POST` | `/v1/documentos/cargar` | ✅ JWT | Subir un documento (PDF, imagen o XML). Extrae el CFDI si aplica e ingesta al RAG de organización en background. |
+| `POST` | `/v1/documentos/lote` | ✅ JWT | Subir varios documentos a la vez |
+| `GET` | `/v1/documentos` | ✅ JWT | Listar todos los documentos (paginado) |
+| `GET` | `/v1/documentos/MyDocuments` | ✅ JWT | Listar documentos del usuario autenticado en su organización |
+| `GET` | `/v1/documentos/{document_id}` | ✅ JWT | Obtener un documento por ID |
+
+---
+
+### Extracciones (CFDIs procesados)
+
+| Método | Ruta | Auth | Descripción |
+|---|---|---|---|
+| `GET` | `/v1/Extracciones` | ✅ JWT | Listar extracciones de la organización del usuario autenticado (paginado) |
+| `GET` | `/v1/Extracciones/{extraccion_id}` | ✅ JWT | Obtener una extracción por ID, solo si pertenece a la organización del usuario |
 
 ---
 
@@ -221,13 +306,11 @@ Respuesta:
 
 | Método | Ruta | Auth | Descripción |
 |---|---|---|---|
-| `POST` | `/v1/ia/preguntar` | ✅ JWT | Consulta RAG — recupera fragmentos y genera respuesta |
-| `POST` | `/v1/ia/embeddings` | ✅ JWT | Vectorizar un texto con el modelo de embeddings |
-| `POST` | `/v1/ia/embeddings/buscar` | ✅ JWT | Búsqueda semántica directa en ChromaDB (sin LLM) |
+| `POST` | `/v1/consultas/preguntar` | ✅ JWT | Consulta RAG — clasifica la pregunta (normativa / CFDIs propios / híbrida), recupera contexto y genera respuesta |
 
-**Ejemplo — consulta RAG:**
+**Ejemplo — consulta normativa:**
 ```bash
-curl -X POST http://localhost:8000/v1/ia/preguntar \
+curl -X POST http://localhost:8000/v1/consultas/preguntar \
   -H "Authorization: Bearer <tu_jwt>" \
   -H "Content-Type: application/json" \
   -d '{"pregunta": "¿Qué RFC genérico se usa para facturar a extranjeros?", "top_k": 5}'
@@ -239,28 +322,27 @@ Respuesta:
   "solicitud_id": "abc-123",
   "respuesta": "Para facturar a extranjeros sin RFC, se utiliza el RFC genérico XEXX010101000...",
   "tiene_cobertura": true,
-  "fuentes_citadas": ["Anexo_20_Guia_Llenado_CFDI.pdf"],
-  "chunks_recuperados": [...],
-  "fuentes": ["Anexo_20_Guia_Llenado_CFDI.pdf"],
-  "latencias_ms": {"recuperacion": 120.3, "generacion": 843.1},
-  "tokens": {
-    "tokens_entrada": 1842,
-    "tokens_salida": 213
-  }
+  "fuentes_citadas": ["sat", "rfc"],
+  "latencias_ms": {"grafo_total": 843.1}
 }
 ```
 
-> `tiene_cobertura: false` indica que ningún fragmento en ChromaDB cubre la pregunta.
-> En ese caso la respuesta es siempre: `"El contexto disponible no cubre esta pregunta."`
+**Ejemplo — consulta sobre facturas propias:**
+```bash
+curl -X POST http://localhost:8000/v1/consultas/preguntar \
+  -H "Authorization: Bearer <tu_jwt>" \
+  -H "Content-Type: application/json" \
+  -d '{"pregunta": "¿Cuánto gasté el mes pasado en total?", "top_k": 5}'
+```
 
 ---
 
-### Ingesta
+### Ingesta (normativa SAT)
 
 | Método | Ruta | Auth | Descripción |
 |---|---|---|---|
-| `POST` | `/v1/ingest/run` | ✅ JWT | Lanzar pipeline de ingesta de PDFs |
-| `GET` | `/v1/ingest/stats` | ✅ JWT | Estadísticas actuales de ChromaDB |
+| `POST` | `/v1/ingest/run` | ✅ JWT | Lanzar pipeline de ingesta de PDFs normativos |
+| `GET` | `/v1/ingest/stats` | ✅ JWT | Estadísticas actuales de ChromaDB (colección de normativa) |
 
 ---
 
@@ -268,16 +350,8 @@ Respuesta:
 
 | Método | Ruta | Auth | Descripción |
 |---|---|---|---|
-| `GET` | `/health` | No | Estado del sistema y disponibilidad del RAG |
-
-Respuesta de `/health`:
-```json
-{
-  "status": "ok",
-  "version": "0.2.0",
-  "rag_disponible": true
-}
-```
+| `GET` | `/health` | No | Estado del sistema |
+| `GET` | `/` | No | Mensaje de bienvenida |
 
 ---
 
@@ -339,40 +413,37 @@ uv run pre-commit run --all-files
 ```
 VISIR-Backend/
 ├── app/
-│   ├── core/           # config, database, dependencies, logging
-│   ├── routers/        # auth, documentos, ia, ingest
-│   ├── services/       # auth_service, documents_service, rag_service
-│   ├── repositories/   # auth_repository, documents_repository
-│   ├── schemas/        # auth, documentos, consulta, ingest, user
-│   └── main.py         # punto de entrada FastAPI
+│   ├── core/                  # config, database, dependencies, logging
+│   ├── routers/                # auth, documentos, extracciones, ia, ingest
+│   ├── services/
+│   │   ├── auth_service.py
+│   │   ├── documents_service.py
+│   │   ├── extracciones_service.py
+│   │   ├── rag_service.py         # grafo LangGraph del asistente fiscal
+│   │   ├── org_ingestion_service.py  # ingesta CFDIs/documentos → RAG de organización
+│   │   └── Extraccion/             # OCR + Mistral + parser XML de CFDIs
+│   ├── repositories/           # documents, extracciones, auth
+│   ├── schemas/                # auth, documentos, extraccion, consulta, ingest, user
+│   └── main.py                 # punto de entrada FastAPI
 ├── rag/
-│   ├── chain.py        # cadena LangChain + validaciones Pydantic
-│   ├── retriever.py    # recuperación semántica con reranking
-│   ├── store.py        # wrapper ChromaDB
-│   ├── embeddings.py   # cliente embeddings OpenAI-compatible
-│   ├── config.py       # RAGConfig
-│   └── hasher.py       # deduplicación por hash SHA-256
+│   ├── chain.py                # cadena LangChain + validaciones Pydantic
+│   ├── retriever.py             # FiscalRAGRetriever (normativa) + OrgRAGRetriever (organización)
+│   ├── store.py                 # wrapper ChromaDB
+│   ├── embeddings.py            # cliente embeddings OpenAI-compatible
+│   ├── config.py                # RAGConfig (colección de normativa Y de organización)
+│   └── hasher.py                # deduplicación por hash SHA-256
 ├── ingestion/
-│   ├── run.py          # CLI: uv run python -m ingestion.run
-│   ├── pipeline.py     # pipeline principal
-│   ├── chunker.py      # chunking semántico
-│   └── loader.py       # carga de PDFs y Markdown
-├── evaluaciones/
-│   ├── run_eval.py     # CLI de evaluación (recall / completo)
-│   ├── juez.py         # cadenas LangChain para fidelidad y relevancia
-│   ├── metricas.py     # cálculo de Recall@k
-│   ├── reporte.py      # generador de reporte Markdown
-│   ├── data/
-│   │   └── eval_dataset.json   # 30 preguntas fiscales con respuesta esperada
-│   └── prompts/        # plantillas para el juez LLM
-├── migrations/         # SQL para Supabase en orden numérico
-├── data/               # ← coloca aquí los PDFs a ingestar
-├── chroma_db/          # base vectorial (generada por la ingesta, no versionar)
+│   ├── run.py                   # CLI: uv run python -m ingestion.run
+│   ├── pipeline.py               # pipeline principal (normativa SAT y organización)
+│   ├── chunker.py                # chunking semántico
+│   └── loader.py                 # carga de PDFs y Markdown
+├── evaluaciones/                 # evaluación del RAG (recall, fidelidad, relevancia)
+├── migrations/                   # SQL para Supabase en orden numérico
+├── data/                         # ← coloca aquí los PDFs normativos a ingestar
+├── chroma_db/                    # base vectorial (generada por la ingesta, no versionar)
 ├── scripts/
-│   ├── ingestar.sh     # atajo para ingesta vía Docker
-│   └── pull_ollama_model.sh
 ├── tests/
-├── docs/               # documentación técnica detallada
+├── docs/                         # documentación técnica detallada
 ├── docker-compose.yml
 ├── pyproject.toml
 └── .env.example
@@ -399,17 +470,27 @@ docker compose exec api curl http://172.17.0.1:11434/api/tags
 OLLAMA_HOST=0.0.0.0 ollama serve
 ```
 
-**RAG devuelve 503 o `rag_disponible: false`**
-El API arranca aunque Ollama no esté disponible. Verificar:
-1. Que Ollama esté corriendo: `curl http://localhost:11434/api/tags`
-2. Que el modelo esté descargado: `ollama list`
-3. Que `EMBEDDING_BASE_URL` en `.env` apunte a Ollama correctamente
+**`/v1/consultas/preguntar` devuelve 500 "RAGService no inicializado"**
+El `lifespan` de `app/main.py` no construyó `app.state.rag_service`. Verificar:
+1. Que solo exista UNA función `lifespan` en `app/main.py` (si hay dos definiciones
+   con el mismo nombre, la segunda pisa silenciosamente a la primera sin error).
+2. Que `LLM_API_KEY`, `LLM_BASE_URL` y `LLM_MODEL` estén configurados en `.env`.
+3. Los logs de arranque del contenedor/proceso por si `FiscalRAGRetriever` o
+   `FiscalRAGChain` lanzaron una excepción durante la inicialización.
 
-**El endpoint `/v1/ia/preguntar` devuelve "El contexto disponible no cubre esta pregunta."**
-El RAG no encontró fragmentos relevantes. Verificar:
-1. Que la ingesta se ejecutó correctamente: `uv run python -m ingestion.run --stats`
-2. Que ChromaDB tiene chunks: el conteo debe ser mayor a 0
-3. Que el volumen de Docker está montado correctamente (`./chroma_db:/app/chroma_db` en `docker-compose.yml`)
+**El endpoint de consultas responde pero no cita ningún documento**
+1. Que la ingesta de normativa se ejecutó correctamente: `uv run python -m ingestion.run --stats`.
+2. Que ChromaDB tiene chunks en la colección `documentos_fiscales`: el conteo debe ser mayor a 0.
+3. Para preguntas sobre facturas propias, que el documento ya se haya subido y
+   procesado vía `/v1/documentos/cargar` (revisar `GET /v1/Extracciones` para confirmar
+   que la extracción se guardó).
+
+**MISTRAL_API_KEY no configurada (al subir un PDF/imagen)**
+La extracción de CFDIs vía OCR necesita una API key de Mistral. Configúrala en `.env`:
+```bash
+MISTRAL_API_KEY=tu_clave_aqui
+```
+Si el archivo es XML, no se necesita Mistral — el parseo es directo.
 
 **Puerto 8000 ocupado**
 ```yaml

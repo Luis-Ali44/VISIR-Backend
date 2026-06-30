@@ -190,6 +190,30 @@ class FiscalChromaStore:
             "indexed_doc_hashes": len(self.get_indexed_doc_hashes()),
         }
 
+    def stats_by_org(self, id_organizacion: str) -> dict:
+        """
+        Igual que stats(), pero acotado a los chunks de una sola
+        organización vía filtro de metadata. Pensado para la colección
+        compartida `documentos_organizacion`, donde stats() sin filtro
+        devolvería el conteo de TODAS las organizaciones mezcladas —
+        un dato que un usuario normal no debería poder ver.
+        """
+        where = {"id_organizacion": {"$eq": id_organizacion}}
+
+        results = self.collection.get(
+            where=where,
+            include=["metadatas"],
+        )
+        metadatas = results["metadatas"]
+
+        doc_ids = {m.get("id_documento", "") for m in metadatas} - {""}
+
+        return {
+            "collection": self.collection_name,
+            "total_chunks": len(metadatas),
+            "documentos_unicos": len(doc_ids),
+        }
+
     def reset(self) -> None:
         self.client.delete_collection(self.collection_name)
         self.collection = self.client.get_or_create_collection(

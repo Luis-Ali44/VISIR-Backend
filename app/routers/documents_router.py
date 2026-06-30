@@ -1,6 +1,6 @@
 from typing import Any
 
-from fastapi import APIRouter, Depends, File, Query, UploadFile
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Query, UploadFile
 
 from app.core.dependencies import get_user
 from app.schemas.documents_schema import DocumentResponse
@@ -10,6 +10,7 @@ from app.services.documents_service import (
     get_documents_service,
     get_my_documents_service,
     subir_documento_service,
+    subir_lote_service,
 )
 
 router = APIRouter(prefix="/v1/documentos", tags=["Documentos"], dependencies=[Depends(get_user)])
@@ -17,12 +18,15 @@ router = APIRouter(prefix="/v1/documentos", tags=["Documentos"], dependencies=[D
 
 @router.post("/cargar", response_model=DocumentResponse)
 async def upload_document(
-    file: UploadFile = File(...), user: UsuarioActual = Depends(get_user)
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    user: UsuarioActual = Depends(get_user),
 ) -> DocumentResponse:
-    return await subir_documento_service(file, user)
+    
+    return await subir_documento_service(file, user, background_tasks=background_tasks)
 
 
-@router.get("/id", response_model=list[DocumentResponse])
+@router.get("/{document_id}", response_model=list[DocumentResponse])
 async def get_document(document_id: str) -> list[Any]:
     return get_document_id(document_id)
 
@@ -42,3 +46,12 @@ async def get_my_documents_router(
     user: UsuarioActual = Depends(get_user),
 ) -> dict[str, object]:
     return get_my_documents_service(limit=limit, cursor=cursor, usuario_actual=user)
+
+
+@router.post("/lote", response_model=list[DocumentResponse])
+async def subir_carpeta(
+    background_tasks: BackgroundTasks,
+    files: list[UploadFile] = File(...),
+    user: UsuarioActual = Depends(get_user),
+) -> list[DocumentResponse]:
+    return await subir_lote_service(files, user, background_tasks=background_tasks)

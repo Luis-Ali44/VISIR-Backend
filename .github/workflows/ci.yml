@@ -40,6 +40,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_PUBLIC_KEY: ${{ secrets.SUPABASE_PUBLIC_KEY }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+          MISTRAL_API_KEY: "api_for_test"
 
       - name: Docker — compilar imagen
         run: docker build -t visir-api .
