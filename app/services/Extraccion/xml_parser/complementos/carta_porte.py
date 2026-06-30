@@ -103,7 +103,11 @@ def _extraer_regimenes_aduaneros(cp: ET.Element) -> list[str]:
     nodo = cp.find("./{*}RegimenesAduaneros")
     if nodo is None:
         return []
-    return [r.get("RegimenAduanero") for r in nodo.findall("./{*}RegimenAduaneroCCP")]
+    return [
+        regimen
+        for r in nodo.findall("./{*}RegimenAduaneroCCP")
+        if (regimen := r.get("RegimenAduanero")) is not None
+    ]
 
 
 def _extraer_remolques(autotransporte: ET.Element) -> list[dict]:
@@ -176,7 +180,11 @@ def _extraer_transporte_ferroviario(nodo_mercancias: ET.Element) -> dict | None:
 
 
 def _extraer_partes_transporte(figura: ET.Element) -> list[str]:
-    return [pt.get("ParteTransporte") for pt in figura.findall("./{*}PartesTransporte")]
+    return [
+        parte
+        for pt in figura.findall("./{*}PartesTransporte")
+        if (parte := pt.get("ParteTransporte")) is not None
+    ]
 
 
 def _extraer_figura_transporte(cp: ET.Element) -> list[dict]:

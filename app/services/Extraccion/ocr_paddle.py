@@ -50,7 +50,7 @@ SCORE_MINIMO_NATIVO = 0.25
 
 def _ocr_desde_array(
     ocr: Any,
-    img_array: np.ndarray, 
+    img_array: np.ndarray,
     score_minimo: float = SCORE_MINIMO,
 ) -> list[str]:
     try:

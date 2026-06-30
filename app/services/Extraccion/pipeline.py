@@ -7,10 +7,9 @@ import re
 import sys
 import time
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
-from ...schemas.schema_extraccion import validar
-from .catalogos import (
+from catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
@@ -18,9 +17,11 @@ from .catalogos import (
     normalizar_rfc,
     validar_formato_rfc,
 )
-from .llm_extractor import construir_prompt
-from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
-from .texto_utils import normalizar_fecha as _normalizar_fecha
+from llm_extractor import construir_prompt
+from precision import medir_precision
+from schema import validar_ocr, validar_xml
+from texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
+from texto_utils import normalizar_fecha as _normalizar_fecha
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_MODEL   = "mistral-large-latest"
@@ -32,7 +33,7 @@ EXTENSIONES_XML    = {".xml"}
 
 
 def _norm_rfc(rfc: str) -> str:
-    return normalizar_rfc(rfc)
+    return cast(str, normalizar_rfc(rfc))
 
 
 def detectar_version(ruta: Path | None) -> str | None:
@@ -159,7 +160,9 @@ def _llamar_mistral(client: Any, prompt: str) -> str:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
             )
-            return str(response.choices[0].message.content).strip()
+            # cast: el SDK de mistralai se importa sin stubs de tipos (import
+            # condicional), por lo que response/.content es Any para mypy.
+            return cast(str, response.choices[0].message.content.strip())
         except Exception as e:
             if "429" in str(e):
                 espera = 20 * (intento + 1)
@@ -183,14 +186,10 @@ def _estructurar_con_mistral(
             "MISTRAL_API_KEY no configurada.\n"
             "Ejecuta: export MISTRAL_API_KEY=tu_clave"
         )
-    print(f"Clave de Mistral detectada (longitud={len(MISTRAL_API_KEY)})")
-
     try:
         from mistralai.client import Mistral
     except ImportError as e:
         raise ImportError("Instala mistralai: pip install mistralai") from e
-
-    print("Validación de librería mistralai OK")
 
     client = Mistral(api_key=MISTRAL_API_KEY)
 
@@ -214,8 +213,8 @@ def _estructurar_con_mistral(
 
 
 def _extraer_texto_ocr(ruta: Path) -> str:
-    from .ocr_paddle import SCORE_MINIMO, SCORE_MINIMO_NATIVO, _get_paddle_ocr, _ocr_desde_array
-    from .ocr_preprocess import extraer_imagen_suelta, extraer_paginas_pdf
+    from ocr_paddle import SCORE_MINIMO, SCORE_MINIMO_NATIVO, _get_paddle_ocr, _ocr_desde_array
+    from ocr_preprocess import extraer_imagen_suelta, extraer_paginas_pdf
 
     paginas = (
         extraer_paginas_pdf(ruta)
@@ -242,21 +241,32 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
         return procesar(xml_hermano)
 
     if ext in EXTENSIONES_XML:
-        from .xml_parser import extraer_desde_xml
+        from xml_parser.xml_parser import extraer_desde_xml
         datos = extraer_desde_xml(ruta)
-        valido, errores, _modelo = validar(datos)
+        valido, errores, _modelo = validar_xml(datos)
+
+        if not valido:
+            print(f"\n  [VALIDACIÓN XML] {ruta.name} — {len(errores)} error(es):")
+            for e in errores:
+                print(f"    • {e}")
+            raise ValueError(
+                f"CFDI '{ruta.name}' no pasó la validación:\n" +
+                "\n".join(f"  • {e}" for e in errores)
+            )
+
         out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
         with open(out_json, "w", encoding="utf-8") as f:
-            json.dump({"archivo": ruta.stem, "fuente": "xml", "datos": datos},
-                      f, ensure_ascii=False, indent=2)
+            json.dump(
+                {"archivo": ruta.stem, "fuente": "xml", "datos": datos},
+                f, ensure_ascii=False, indent=2,
+            )
         return {"archivo": ruta.stem, "fuente": "xml", "datos": datos,
-                "valido": valido, "errores": errores}
+                "valido": True, "errores": []}
 
     if ext not in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN):
         raise ValueError(f"Formato no soportado: {ext}")
 
     texto_ocr = _extraer_texto_ocr(ruta)
-    print(f"Extracción OCR completada ({len(texto_ocr)} caracteres extraídos)")
 
     if guardar_txt:
         txt_path = ruta.parent / f"{ruta.stem}_ocr.txt"
@@ -266,7 +276,6 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     uuid_extraido     = extraer_uuid_del_texto(texto_ocr)
 
     facturas = _estructurar_con_mistral(texto_ocr, uuid_extraido, version_detectada)
-    print(f"Estructuración con LLM completada ({len(facturas)} factura(s) detectada(s))")
 
     version_final = version_detectada or next(
         (f.get("version") for f in facturas if f.get("version")), None
@@ -279,11 +288,24 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     resultados_validados = []
     for i, factura in enumerate(facturas):
         factura["archivo"] = f"{ruta.stem}_cfdi_{i + 1:02d}"
-        valido, errores, _modelo = validar(factura)
+        valido, errores, _ = validar_ocr(factura)
+
+        if not valido:
+            print(
+                f"\n  CFDI #{i + 1} de '{ruta.name}' "
+                f"— {len(errores)} errores:"
+            )
+            for e in errores:
+                print(f"    • {e}")
+            raise ValueError(
+                f"CFDI #{i + 1} de '{ruta.name}' no pasó la validación:\n" +
+                "\n".join(f"  • {e}" for e in errores)
+            )
+
         resultados_validados.append({
             "datos":   factura,
-            "valido":  valido,
-            "errores": errores,
+            "valido":  True,
+            "errores": [],
         })
 
     resultado = {
@@ -307,17 +329,61 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
         if p.suffix.lower() in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN | EXTENSIONES_XML)
     )
     if not archivos:
+        print("No se encontraron archivos para procesar.")
         return []
 
+    total    = len(archivos)
+    exitosos = 0
     resultados = []
-    for arch in archivos:
+
+    for i, arch in enumerate(archivos, 1):
+        print(f"[{i}/{total}] {arch.name}")
         try:
             xml_hermano = arch.with_suffix(".xml")
             if arch.suffix.lower() != ".xml" and xml_hermano.exists():
+                print(" se usara el XML encontrado")
                 continue
-            resultados.append(procesar(arch))
+            resultado = procesar(arch)
+            resultados.append(resultado)
+            exitosos += 1
+            print("  -> OK")
         except Exception as e:
-            print(f"  ERROR procesando {arch.name}: {e}")
+            print(f"  -> ERROR: {e}")
+            resultados.append({
+                "archivo": arch.name,
+                "fuente":  arch.suffix.lower().lstrip("."),
+                "valido":  False,
+                "errores": [str(e)],
+            })
+
+    fallidos = [r for r in resultados if not r.get("valido", True)]
+
+    print(f"\n{'─' * 50}")
+    print(f"Procesados : {total}")
+    print(f"Exitosos   : {exitosos}")
+    print(f"Con errores: {len(fallidos)}")
+
+    if fallidos:
+        print("\nArchivos con errores:")
+        for r in fallidos:
+            print(f"  * {r['archivo']}")
+            for err in r.get("errores", []):
+                print(f"      {err}")
+
+    resumen_path = carpeta / "_resumen_procesamiento.json"
+    with open(resumen_path, "w", encoding="utf-8") as f:
+        json.dump(
+            {
+                "total":      total,
+                "exitosos":   exitosos,
+                "fallidos":   len(fallidos),
+                "resultados": resultados,
+            },
+            f, ensure_ascii=False, indent=2,
+        )
+    print(f"\nResumen guardado en: {resumen_path}")
+
+    medir_precision(carpeta)
 
     return resultados
 
