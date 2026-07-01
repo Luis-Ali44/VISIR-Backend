@@ -11,6 +11,7 @@ from app.routers.extracciones_router import router as extracciones_router
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     from app.services.Extraccion.ocr_paddle import _get_paddle_ocr
+
     _get_paddle_ocr()
     yield
 

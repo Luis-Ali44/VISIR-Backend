@@ -10,6 +10,7 @@ from app.services.documents_service import (
     get_documents_service,
     get_my_documents_service,
     subir_documento_service,
+    subir_lote_service,
 )
 
 router = APIRouter(prefix="/v1/documentos", tags=["Documentos"], dependencies=[Depends(get_user)])
@@ -42,3 +43,10 @@ async def get_my_documents_router(
     user: UsuarioActual = Depends(get_user),
 ) -> dict[str, object]:
     return get_my_documents_service(limit=limit, cursor=cursor, usuario_actual=user)
+
+
+@router.post("/lote", response_model=list[DocumentResponse])
+async def subir_carpeta(
+    files: list[UploadFile] = File(...), user: UsuarioActual = Depends(get_user)
+) -> list:
+    return await subir_lote_service(files, user)

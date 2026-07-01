@@ -44,7 +44,7 @@ def _centroide_bbox(poly: Any) -> tuple[float, float]:
             return 0.0, 0.0
 
 
-SCORE_MINIMO        = 0.35
+SCORE_MINIMO = 0.35
 SCORE_MINIMO_NATIVO = 0.25
 
 
@@ -62,9 +62,9 @@ def _ocr_desde_array(
     for res in resultado:
         if res is None:
             continue
-        rec_texts  = res.get("rec_texts",  []) or []
+        rec_texts = res.get("rec_texts", []) or []
         rec_scores = res.get("rec_scores", []) or []
-        rec_polys  = res.get("rec_polys",  []) or []
+        rec_polys = res.get("rec_polys", []) or []
         for texto, score, poly in zip(rec_texts, rec_scores, rec_polys, strict=False):
             if score < score_minimo:
                 continue

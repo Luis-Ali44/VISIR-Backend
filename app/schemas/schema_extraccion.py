@@ -8,8 +8,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import cast
 
-from campos_cfdi import CAMPOS_OBLIGATORIOS_4_0, CAMPOS_OBLIGATORIOS_CFDI
-from catalogos import (
+from .campos_cfdi import CAMPOS_OBLIGATORIOS_4_0, CAMPOS_OBLIGATORIOS_CFDI
+from app.services.Extraccion.catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,

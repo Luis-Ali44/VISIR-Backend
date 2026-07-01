@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 from typing import Any, cast
 
-from catalogos import (
+from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
@@ -17,19 +17,18 @@ from catalogos import (
     normalizar_rfc,
     validar_formato_rfc,
 )
-from llm_extractor import construir_prompt
-from precision import medir_precision
-from schema import validar_ocr, validar_xml
-from texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
-from texto_utils import normalizar_fecha as _normalizar_fecha
+from .llm_extractor import construir_prompt
+from app.schemas.schema_extraccion import validar_ocr, validar_xml
+from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
+from .texto_utils import normalizar_fecha as _normalizar_fecha
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
-MISTRAL_MODEL   = "mistral-large-latest"
-MAX_REINTENTOS  = 4
+MISTRAL_MODEL = "mistral-large-latest"
+MAX_REINTENTOS = 4
 
-EXTENSIONES_PDF    = {".pdf"}
+EXTENSIONES_PDF = {".pdf"}
 EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
-EXTENSIONES_XML    = {".xml"}
+EXTENSIONES_XML = {".xml"}
 
 
 def _norm_rfc(rfc: str) -> str:
@@ -45,6 +44,7 @@ def detectar_version(ruta: Path | None) -> str | None:
 def _version_desde_pdf_embebido(ruta: Path) -> str | None:
     try:
         import fitz
+
         doc = fitz.open(str(ruta))
         for i in range(doc.embfile_count()):
             try:
@@ -80,7 +80,7 @@ def _postprocesar(
     datos = _limpiar_nulos(datos)
 
     datos["metodo_pago"] = normalizar_catalogo(datos.get("metodo_pago"), CATALOGO_METODO_PAGO)
-    datos["forma_pago"]  = normalizar_catalogo(datos.get("forma_pago"),  CATALOGO_FORMA_PAGO)
+    datos["forma_pago"] = normalizar_catalogo(datos.get("forma_pago"), CATALOGO_FORMA_PAGO)
     for concepto in datos.get("conceptos", []):
         if isinstance(concepto, dict):
             concepto["unidad"] = normalizar_catalogo(concepto.get("unidad"), CATALOGO_CLAVE_UNIDAD)
@@ -160,15 +160,13 @@ def _llamar_mistral(client: Any, prompt: str) -> str:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
             )
-            # cast: el SDK de mistralai se importa sin stubs de tipos (import
-            # condicional), por lo que response/.content es Any para mypy.
+           
             return cast(str, response.choices[0].message.content.strip())
         except Exception as e:
             if "429" in str(e):
                 espera = 20 * (intento + 1)
                 print(
-                    f"  Rate limit — esperando {espera}s "
-                    f"(intento {intento + 1}/{MAX_REINTENTOS})"
+                    f"  Rate limit — esperando {espera}s (intento {intento + 1}/{MAX_REINTENTOS})"
                 )
                 time.sleep(espera)
             else:
@@ -183,8 +181,7 @@ def _estructurar_con_mistral(
 ) -> list[dict]:
     if not MISTRAL_API_KEY:
         raise ValueError(
-            "MISTRAL_API_KEY no configurada.\n"
-            "Ejecuta: export MISTRAL_API_KEY=tu_clave"
+            "MISTRAL_API_KEY no configurada.\nEjecuta: export MISTRAL_API_KEY=tu_clave"
         )
     try:
         from mistralai.client import Mistral
@@ -206,20 +203,15 @@ def _estructurar_con_mistral(
     if not datos_lista:
         return []
 
-    return [
-        _postprocesar(d, version_detectada, uuid_extraido=uuid_extraido)
-        for d in datos_lista
-    ]
+    return [_postprocesar(d, version_detectada, uuid_extraido=uuid_extraido) for d in datos_lista]
 
 
 def _extraer_texto_ocr(ruta: Path) -> str:
-    from ocr_paddle import SCORE_MINIMO, SCORE_MINIMO_NATIVO, _get_paddle_ocr, _ocr_desde_array
-    from ocr_preprocess import extraer_imagen_suelta, extraer_paginas_pdf
+    from .ocr_paddle import SCORE_MINIMO, SCORE_MINIMO_NATIVO, _get_paddle_ocr, _ocr_desde_array
+    from .ocr_preprocess import extraer_imagen_suelta, extraer_paginas_pdf
 
     paginas = (
-        extraer_paginas_pdf(ruta)
-        if ruta.suffix.lower() == ".pdf"
-        else extraer_imagen_suelta(ruta)
+        extraer_paginas_pdf(ruta) if ruta.suffix.lower() == ".pdf" else extraer_imagen_suelta(ruta)
     )
 
     ocr = _get_paddle_ocr()
@@ -234,14 +226,14 @@ def _extraer_texto_ocr(ruta: Path) -> str:
 
 def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
     ruta = Path(ruta_archivo)
-    ext  = ruta.suffix.lower()
+    ext = ruta.suffix.lower()
 
     xml_hermano = ruta.with_suffix(".xml")
     if ext != ".xml" and xml_hermano.exists():
         return procesar(xml_hermano)
 
     if ext in EXTENSIONES_XML:
-        from xml_parser.xml_parser import extraer_desde_xml
+        from .xml_parser.xml_parser import extraer_desde_xml
         datos = extraer_desde_xml(ruta)
         valido, errores, _modelo = validar_xml(datos)
 
@@ -254,14 +246,26 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
                 "\n".join(f"  • {e}" for e in errores)
             )
 
+        datos["archivo"] = ruta.stem
+
+        resultado = {
+            "archivo": ruta.stem,
+            "fuente": "xml",
+            "version": datos.get("version"),
+            "cfdis": [
+                {
+                    "datos": datos,
+                    "valido": True,
+                    "errores": [],
+                }
+            ],
+        }
+
         out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
         with open(out_json, "w", encoding="utf-8") as f:
-            json.dump(
-                {"archivo": ruta.stem, "fuente": "xml", "datos": datos},
-                f, ensure_ascii=False, indent=2,
-            )
-        return {"archivo": ruta.stem, "fuente": "xml", "datos": datos,
-                "valido": True, "errores": []}
+            json.dump(resultado, f, ensure_ascii=False, indent=2)
+
+        return resultado
 
     if ext not in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN):
         raise ValueError(f"Formato no soportado: {ext}")
@@ -273,7 +277,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
         txt_path.write_text(texto_ocr, encoding="utf-8")
 
     version_detectada = detectar_version(ruta)
-    uuid_extraido     = extraer_uuid_del_texto(texto_ocr)
+    uuid_extraido = extraer_uuid_del_texto(texto_ocr)
 
     facturas = _estructurar_con_mistral(texto_ocr, uuid_extraido, version_detectada)
 
@@ -310,9 +314,9 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
 
     resultado = {
         "archivo": ruta.stem,
-        "fuente":  "ocr+llm",
+        "fuente": "ocr+llm",
         "version": version_final,
-        "cfdis":   resultados_validados,
+        "cfdis": resultados_validados,
     }
 
     out_json = ruta.parent / f"{ruta.stem}_cfdis.json"
@@ -323,9 +327,10 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
 
 
 def procesar_carpeta(carpeta: str | Path) -> list[dict]:
-    carpeta  = Path(carpeta)
+    carpeta = Path(carpeta)
     archivos = sorted(
-        p for p in carpeta.rglob("*")
+        p
+        for p in carpeta.rglob("*")
         if p.suffix.lower() in (EXTENSIONES_PDF | EXTENSIONES_IMAGEN | EXTENSIONES_XML)
     )
     if not archivos:
@@ -383,15 +388,13 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
         )
     print(f"\nResumen guardado en: {resumen_path}")
 
-    medir_precision(carpeta)
-
     return resultados
 
 
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="CFDI Pipeline — PaddleOCR + Mistral")
+    parser = argparse.ArgumentParser(description="CFDI Pipeline PaddleOCR + Mistral")
     parser.add_argument("ruta", nargs="?", help="PDF, imagen, XML o carpeta")
     args = parser.parse_args()
 
@@ -404,7 +407,6 @@ if __name__ == "__main__":
     else:
         candidatos = sorted(Path(".").glob("*.pdf"))
         if not candidatos:
-            print("ERROR: No se encontró ningún PDF.")
-            print("Uso: python pipeline.py ruta/al/archivo.pdf")
+            print("No se encontró ningún PDF.")
             sys.exit(1)
         procesar(candidatos[0])
