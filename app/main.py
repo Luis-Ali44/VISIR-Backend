@@ -47,6 +47,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         llm_api_key=rag_config.llm_api_key,
         llm_base_url=rag_config.llm_base_url,
         llm_model=rag_config.llm_model,
+        rag_config=rag_config,
     )
 
     from app.services.Extraccion.ocr_paddle import _get_paddle_ocr

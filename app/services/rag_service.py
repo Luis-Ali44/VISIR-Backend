@@ -9,8 +9,9 @@ from langchain_core.prompts import ChatPromptTemplate
 from langgraph.graph import StateGraph, END
 from langgraph.types import Send
 
-from rag.retriever import FiscalRAGRetriever
+from rag.retriever import FiscalRAGRetriever, OrgRAGRetriever
 from rag.chain import FiscalRAGChain, ChainResult
+from rag.config import RAGConfig, load_config_from_env
 from app.schemas.consulta import VisirState, DecisionEnrutamiento
 from app.repositories.extracciones_repository import get_extracciones_by_org, get_estadisticas_basicas
 
@@ -39,6 +40,7 @@ class RAGServiceLangGraph:
         llm_api_key: str,
         llm_base_url: str,
         llm_model: str,
+        rag_config: RAGConfig | None = None,
     ) -> None:
         # NOTA: FiscalRAGChain (rag/chain.py) NO expone api_key/base_url/model
         # como atributos de instancia, solo los usa internamente para construir
@@ -46,6 +48,15 @@ class RAGServiceLangGraph:
         # esos valores por separado, en vez de leerlos de `chain`.
         self.chain = chain
         self.retriever = retriever
+
+        # OrgRAGRetriever: usa el mismo RAGConfig que el resto del sistema
+        # (pasado desde lifespan via load_config_from_env), que ya tiene
+        # EMBEDDING_BASE_URL correcta (host.docker.internal en Docker,
+        # localhost en local). DEFAULT_CONFIG hardcodea localhost y falla
+        # dentro del contenedor.
+        config = rag_config or load_config_from_env()
+        self.org_retriever = OrgRAGRetriever(config)
+
         self.llm_api_key = llm_api_key
         self.llm_base_url = llm_base_url
         self.llm_model = llm_model
@@ -102,18 +113,42 @@ class RAGServiceLangGraph:
 
     def _nodo_recuperar_leyes(self, state: VisirState) -> dict[str, Any]:
         fragmentos = self.retriever.retrieve(query=state["pregunta"], top_k=state["top_k"])
-        # Serializamos los objetos RetrievalContext a diccionarios simples para mantener compatibilidad pura con TypedDict
-        fragmentos_dict = [{"filename": f.filename, "text": f.text, "similarity": getattr(f, 'similarity', 0.9)} for f in fragmentos]
+        fragmentos_dict = [
+            {"filename": f.filename, "text": f.text, "similarity": getattr(f, "similarity", 0.9)}
+            for f in fragmentos
+        ]
         return {"fragmentos_leyes": fragmentos_dict}
 
     def _nodo_recuperar_cfdis(self, state: VisirState) -> dict[str, Any]:
-        # Tarea V-05: Filtro mandatorio por organización para aislamiento seguro de datos
-        # NOTA (Gap 1, documentado, sin tocar): este filtro es solo por id_organizacion.
-        # La tabla `extracciones` no tiene columna id_usuario en su migración actual,
-        # así que no se puede filtrar también por usuario sin antes alterar el esquema.
-        datos = get_extracciones_by_org(id_organizacion=state["id_organizacion"], limit=50)
+        """
+        V-05.2: Recupera CFDIs del usuario vía búsqueda semántica (embeddings) usando
+        OrgRAGRetriever. El filtro obligatorio por id_organizacion garantiza aislamiento
+        de datos entre organizaciones — mismo principio que get_extracciones_by_org a nivel SQL.
+
+        Las estadísticas básicas (SQL) se siguen calculando como contexto numérico de
+        apoyo (totales, promedios, periodos) para los nodos de respuesta que las necesiten.
+        """
+        fragmentos = self.org_retriever.retrieve(
+            query=state["pregunta"],
+            id_organizacion=state["id_organizacion"],
+            top_k=state["top_k"],
+            tipo_documento="cfdi",
+        )
+
+        fragmentos_dict = [
+            {"filename": f.filename, "text": f.text, "similarity": f.similarity}
+            for f in fragmentos
+        ]
+
+        # Las estadísticas SQL siguen siendo útiles como fallback y como contexto
+        # numérico preciso (suma de totales, conteo de facturas) cuando el fragmento
+        # semántico no es suficiente para responder una pregunta de tipo "¿cuánto gasté?".
         stats = get_estadisticas_basicas(id_organizacion=state["id_organizacion"])
-        return {"datos_cfdi": {"facturas": datos}, "estadisticas_cfdi": stats}
+
+        return {
+            "datos_cfdi": {"fragmentos_cfdis": fragmentos_dict},
+            "estadisticas_cfdi": stats,
+        }
 
     # ============================================================================
     # NODOS DE GENERACIÓN DE RESPUESTA (LLM CHAINS)
@@ -128,19 +163,65 @@ class RAGServiceLangGraph:
         return {"respuesta_final": res.content}
 
     def _nodo_respuesta_cfdis(self, state: VisirState) -> dict[str, Any]:
-        prompt = f"Genera un informe analítico ejecutivo con base en estos datos numéricos reales del negocio:\n{json.dumps(state['estadisticas_cfdi'])}\n\nPregunta: {state['pregunta']}"
+        """
+        V-05.2: Usa fragmentos semánticos como contexto principal. Si no hay fragmentos
+        (org sin CFDIs indexados o colección vacía), cae a las estadísticas SQL para
+        no dejar al usuario sin respuesta.
+        """
+        fragmentos_cfdis = state["datos_cfdi"].get("fragmentos_cfdis", [])
+
+        if fragmentos_cfdis:
+            cfdis_contexto = "\n\n".join([f"[CFDI {i+1}]: {f['text']}" for i, f in enumerate(fragmentos_cfdis)])
+            prompt = (
+                f"Genera un informe analítico ejecutivo basado en los siguientes CFDIs "
+                f"del negocio del usuario (recuperados por relevancia semántica):\n\n"
+                f"{cfdis_contexto}\n\n"
+                f"Pregunta: {state['pregunta']}"
+            )
+        else:
+            # Fallback a estadísticas SQL cuando no hay fragmentos indexados
+            logger.warning(
+                "No se encontraron fragmentos semánticos para org=%s, usando estadísticas SQL como fallback",
+                state["id_organizacion"],
+            )
+            prompt = (
+                f"Genera un informe analítico ejecutivo con base en estos datos numéricos reales del negocio:\n"
+                f"{json.dumps(state['estadisticas_cfdi'])}\n\n"
+                f"Pregunta: {state['pregunta']}"
+            )
+
         llm = ChatOpenAI(model=self.llm_model, temperature=0.0, api_key=self.llm_api_key, base_url=self.llm_base_url)
         res = llm.invoke(prompt)
         return {"respuesta_final": res.content}
 
     def _nodo_sintesis_hibrida(self, state: VisirState) -> dict[str, Any]:
-        contexto_txt = "\n\n".join([f"[{f['filename']}]: {f['text']}" for f in state["fragmentos_leyes"]])
+        """
+        V-05.2: Cruza fragmentos semánticos de los CFDIs propios del usuario con la
+        normativa SAT. Si no hay fragmentos semánticos disponibles, usa estadísticas
+        SQL como fallback para el contexto de CFDIs.
+        """
+        contexto_leyes = "\n\n".join([f"[{f['filename']}]: {f['text']}" for f in state["fragmentos_leyes"]])
+
+        fragmentos_cfdis = state["datos_cfdi"].get("fragmentos_cfdis", [])
+        if fragmentos_cfdis:
+            cfdis_contexto = "\n\n".join([f"[CFDI {i+1}]: {f['text']}" for i, f in enumerate(fragmentos_cfdis)])
+        else:
+            # Fallback: estadísticas SQL cuando la colección aún no tiene embeddings
+            logger.warning(
+                "Síntesis híbrida sin fragmentos semánticos para org=%s, usando estadísticas SQL",
+                state["id_organizacion"],
+            )
+            cfdis_contexto = json.dumps(state["estadisticas_cfdi"])
+
         prompt = f"""Cruza los datos de facturación del usuario con las leyes fiscales mexicanas vigentes.
 
-        Datos numéricos del usuario: {json.dumps(state['estadisticas_cfdi'])}
-        Leyes del SAT asociadas: {contexto_txt}
+CFDIs del usuario (búsqueda semántica por relevancia):
+{cfdis_contexto}
 
-        Pregunta: {state['pregunta']}"""
+Leyes del SAT asociadas:
+{contexto_leyes}
+
+Pregunta: {state['pregunta']}"""
 
         llm = ChatOpenAI(model=self.llm_model, temperature=0.2, api_key=self.llm_api_key, base_url=self.llm_base_url)
         res = llm.invoke(prompt)
@@ -225,7 +306,7 @@ class RAGServiceLangGraph:
         )
 
         # Tras recuperar leyes: a síntesis híbrida SOLO si la ruta es HIBRIDO,
-        # si no, a la respuesta normativa normal (ya no hay edge incondicional duplicado).
+        # si no, a la respuesta normativa normal.
         workflow.add_conditional_edges(
             "recuperar_leyes",
             self._post_recuperar_leyes,
@@ -272,7 +353,7 @@ class RAGServiceLangGraph:
             "ruta_ejecutada": estado_final["ruta_seleccionada"],
             "confianza_lexica": estado_final["confianza_lexica"],
             "palabras_clave": estado_final["palabras_clave_detectadas"],
-            "latencia_ms": latencia
+            "latencia_ms": latencia,
         }
 
         return estado_final["respuesta_final"], estado_final["ruta_seleccionada"], metadata

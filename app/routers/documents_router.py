@@ -22,13 +22,7 @@ async def upload_document(
     file: UploadFile = File(...),
     user: UsuarioActual = Depends(get_user),
 ) -> DocumentResponse:
-    
     return await subir_documento_service(file, user, background_tasks=background_tasks)
-
-
-@router.get("/{document_id}", response_model=list[DocumentResponse])
-async def get_document(document_id: str) -> list[Any]:
-    return get_document_id(document_id)
 
 
 @router.get("", response_model=dict[str, object])
@@ -55,3 +49,8 @@ async def subir_carpeta(
     user: UsuarioActual = Depends(get_user),
 ) -> list[DocumentResponse]:
     return await subir_lote_service(files, user, background_tasks=background_tasks)
+
+
+@router.get("/{document_id}", response_model=list[DocumentResponse])
+async def get_document(document_id: str) -> list[Any]:
+    return get_document_id(document_id)
