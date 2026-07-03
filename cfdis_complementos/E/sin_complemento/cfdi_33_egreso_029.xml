@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd"
+  Version="3.3"
+  Serie="B"
+  Folio="25085"
+  Fecha="2026-05-11T09:26:14"
+  NoCertificado="02488319370624920032"
+  Certificado="ca5AL4AtxKS2TvPNn5/0DZDj4E6lGdTsX/oYKng/NATNWR1+AXT5C1XzBNtOhmVVEWJmYdzT1MeynBbj5FOxBUg0da93YdO15ucswkH7l6M="
+  Sello="M9K8mKa4OuVtQeZ7Wni11J6wqTdUAtDWvVFJ4UveYDmib1EppZlMEX/hZhsSn22YNMu3sORO6s95xTc5tPemaobC1crrrIvOvd4cMdluLzFzPvcIC9S0wjWuTebvDACmvE+ozOiqHMEpWLzXogrMO6PmUtyfjG1dY2i48NNdjUZawBp+3zSzwqewWEddvyDKKG/u+W3qKTfvMvZimjdK/fwU5XxR127zY0N7Qs2u4llJR9VW7gyjcxV2/Mve23AgdOKJK3ys/4PiRlH7VESxtK8/b3BhllpMy8HjrE7plzRWpZCnM5Cq41Y3a1z2y4tWTyzyXfjtEzPZLFWl89WJpg=="
+  SubTotal="158377.26"
+  
+  Moneda="MXN"
+  Total="183717.62"
+  TipoDeComprobante="E"
+  FormaPago="99"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="5826E598-C943-4D5D-AE9B-6ABE51FE025A"/>
+  </cfdi:CfdiRelacionados>
+
+  <cfdi:Emisor
+    Rfc="TIE141002DH7"
+    Nombre="CALDERÓN-GIL AC"
+    RegimenFiscal="601"/>
+
+  
+  <cfdi:Receptor
+    Rfc="RVC070707CE4"
+    Nombre="MAYORGA, MAYA Y SALAS SAS DE CV"
+    UsoCFDI="G02"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      
+      Cantidad="3"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="52792.42"
+      Importe="158377.26"
+      >
+      
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="158377.26" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="25340.36"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="25340.36">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="158377.26" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="25340.36"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="3D1800B6-F1E1-4E47-8545-254A6525FEEE"
+      FechaTimbrado="2026-05-11T09:26:48"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000358623666"
+      SelloCFDI="M9K8mKa4OuVtQeZ7Wni11J6wqTdUAtDWvVFJ4UveYDmib1EppZlMEX/hZhsSn22YNMu3sORO6s95xTc5tPemaobC1crrrIvOvd4cMdluLzFzPvcIC9S0wjWuTebvDACmvE+ozOiqHMEpWLzXogrMO6PmUtyfjG1dY2i48NNdjUZawBp+3zSzwqewWEddvyDKKG/u+W3qKTfvMvZimjdK/fwU5XxR127zY0N7Qs2u4llJR9VW7gyjcxV2/Mve23AgdOKJK3ys/4PiRlH7VESxtK8/b3BhllpMy8HjrE7plzRWpZCnM5Cq41Y3a1z2y4tWTyzyXfjtEzPZLFWl89WJpg=="
+      SelloSAT="IWtdFzwbKVonoPYhbSLzQ43nuhyPyA+OpXwdt4J+ENDXiJr3tyhjg73sT3uSvNCiqyglBh2+JaJTIPGT8956MLZU5oiP6wNTmnfWIPu1bsOmXo62rjhJozzOW6sP0o3YFGX3FTXbOC1IDmKLOBRWbTP+HREZbqpr3jGb5gqry7ti/1qlq7LJqxL/T7kPiEkJYYvcsZQx0NquFVH/5Rq+YOknNlsEWrfzPROASNyHKwHftarFKyv+h2urgbMgoMVbhb0yPWcfXZ/SE4cuFiIaViAkQvL0uDGmEPhhgsejpzbK55dtnQhfu81Cg1w7BZzGX9o+lYQTaipFTTiWKc70OQ=="/>
+    
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

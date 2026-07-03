@@ -1,0 +1,130 @@
+{
+  "archivo": "cfdi_v40_nomina_039",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "NOM",
+    "folio": "32480",
+    "tipo_comprobante": "N",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "82094734497803612902",
+    "folio_fiscal": "D933B1BF-5D6A-4EAF-88A7-2FB7CECF8A17",
+    "fecha_emision": "2026-05-13T19:26:15",
+    "fecha_timbrado": "2026-05-13T19:27:21",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000181625949",
+    "metodo_pago": "PUE",
+    "forma_pago": "03",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "INDUSTRIAS GUEVARA Y GOLLUM AC",
+      "RFC": "MYX240418GP6",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "APODACA CONTRERAS JACINTO",
+      "RFC": "AMCJ661127YK4",
+      "uso_cfdi": "CN01",
+      "regimen_fiscal": "605",
+      "domicilio_fiscal": "46155"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago de nómina",
+        "clave_prod_serv": "84111505",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 17564.7,
+        "descuento": null,
+        "importe": 17564.7,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 17564.7,
+    "descuento": 2195.59,
+    "iva": null,
+    "retenciones": null,
+    "total": 15369.11,
+    "complemento_nomina": {
+      "version": "1.2",
+      "tipo_nomina": "O",
+      "fecha_pago": "2026-05-12",
+      "fecha_inicial_pago": "2026-04-11",
+      "fecha_final_pago": "2026-05-10",
+      "num_dias_pagados": 30.0,
+      "total_percepciones": 17564.7,
+      "total_deducciones": 2195.59,
+      "total_otros_pagos": null,
+      "emisor": {
+        "curp": null,
+        "registro_patronal": "Z0030663116",
+        "rfc_patron_origen": null,
+        "entidad_sncf": null
+      },
+      "receptor": {
+        "curp": "ACCJ661127MTCLWAA0",
+        "tipo_contrato": "02",
+        "tipo_regimen": "03",
+        "num_empleado": "EMP7965",
+        "departamento": "Tecnología",
+        "puesto": "Analista",
+        "tipo_jornada": "02",
+        "periodicidad_pago": "03",
+        "banco": "044",
+        "cuenta_bancaria": "112092292769931305",
+        "salario_base_cot_apor": 585.49,
+        "salario_diario_integrado": 731.86,
+        "clave_ent_fed": "NL",
+        "num_seguridad_social": "27027195802",
+        "fecha_inicio_rel_laboral": "2020-07-15",
+        "antiguedad": "P304W",
+        "riesgo_puesto": "5",
+        "sindicalizado": "No",
+        "sub_contratacion": []
+      },
+      "percepciones": {
+        "total_sueldos": 17564.7,
+        "total_separacion_indemniz": null,
+        "total_jubilacion_pen_ret": null,
+        "total_gravado": 16159.52,
+        "total_exento": 1405.18,
+        "percepciones": [
+          {
+            "tipo_percepcion": "001",
+            "clave": "001",
+            "concepto": "Sueldos, Salarios Rayas y Jornales",
+            "importe_gravado": 16159.52,
+            "importe_exento": 1405.18,
+            "horas_extra": [],
+            "jubilacion_pension_retiro": null,
+            "separacion_indemnizacion": null
+          }
+        ]
+      },
+      "deducciones": {
+        "total_otras_deducciones": 439.12,
+        "total_impuestos_retenidos": 1756.47,
+        "deducciones": [
+          {
+            "tipo_deduccion": "001",
+            "clave": "001",
+            "concepto": "Seguridad Social",
+            "importe": 439.12
+          },
+          {
+            "tipo_deduccion": "002",
+            "clave": "002",
+            "concepto": "ISR",
+            "importe": 1756.47
+          }
+        ]
+      },
+      "otros_pagos": [],
+      "incapacidades": []
+    }
+  }
+}

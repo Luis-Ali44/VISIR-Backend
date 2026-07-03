@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cce20="http://www.sat.gob.mx/ComercioExterior20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd"
+  Version="4.0"
+  Serie="CE"
+  Folio="3851"
+  Fecha="2026-05-12T03:26:14"
+  FormaPago="99"
+  NoCertificado="29125307612655401509"
+  Certificado="P2L6zYZKlSo7taQIG0/gC4EVyUmHb/gAydAQIuKqOZmtNI/s2SZ3a23vyWwLzjT/vnFDHnBy912jtaiTf+gXkYda5EQbos5R4s3kUJHpZjk="
+  Sello="roWZ3MfEGUGoCBB5aOYrsQADGZDN2J7sGhvaZlZvVYNZvicViwciBcoGnp0q8mg8s4db9RaUoUstsMcvK3V6fmNj7BDPUhL5Ds7Dw5afKPF3TyjJV4lGRj7QBzhCDY7G/4c0cV69LhhghsUxJU68pCqAqaydoMZMnqKGhJigIzsBpneF4P3E07V+q4s1Q6794Xwy3MsHP6YQqSpuWqGtUgDHio1Urawi2aoey/mm54ZUA5G6GuxcKR3YBRwWAGD9pcNO/XZ+kLkPH5ldJm7u778e2PpA272WolsxhIb3C9ptoJBQ7p7yy4VK2vdGDHErQpbXqZWtKL2sB22fBSvwkA=="
+  SubTotal="56869.20"
+  Descuento="5686.92"
+  Moneda="USD"
+  TipoCambio="17.9709"
+  Total="59371.44"
+  TipoDeComprobante="I"
+  Exportacion="02"
+  MetodoPago="PPD"
+  LugarExpedicion="06600">
+  
+
+  <cfdi:Emisor
+    Rfc="RWD211227RD1"
+    Nombre="PROYECTOS MURO, LONGORIA Y MONTAÑO SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="XEXX010101000"
+    Nombre="ÁVILA S DE RL DE CV"
+    DomicilioFiscalReceptor="39400"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="S01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="4"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="14217.30"
+      Importe="56869.20"
+      Descuento="5686.92"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="51182.28" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="8189.16"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosTrasladados="8189.16">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="51182.28" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="8189.16"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <cce20:ComercioExterior
+      Version="2.0"
+      MotivoTraslado="A"
+      ClaveDePedimento="A1"
+      CertificadoOrigen="0"
+      Incoterm="FCA"
+      Subdivision="0"
+      TipoCambioUSD="17.9709"
+      TotalUSD="56869.20">
+
+      <cce20:Emisor>
+        <cce20:Domicilio
+          Calle="Periférico Castro"
+          NumeroExterior="5595"
+          Colonia="Col. Centro"
+          Localidad="San Rodolfo los bajos"
+          Municipio="Nueva República Democrática Po"
+          Estado="SON"
+          Pais="MEX"
+          CodigoPostal="22702"/>
+      </cce20:Emisor>
+
+      <cce20:Receptor
+        NumRegIdTrib="29-7934625"
+        Residencia="CAN">
+        <cce20:Domicilio
+          Calle="538 Scott Park"
+          NumeroExterior="5545"
+          Localidad="Barneston"
+          Estado="NA"
+          Pais="CAN"
+          CodigoPostal="43736"/>
+      </cce20:Receptor>
+
+      <cce20:Mercancias>
+        
+        <cce20:Mercancia
+          NoIdentificacion="SKU-02694"
+          DescripcionAduana="Licencia de software"
+          FraccionArancelaria="29321990"
+          CantidadAduana="4"
+          UnidadAduana="11"
+          ValorUnitarioAduana="14217.30"
+          ValorDolares="56869.20"/>
+        
+      </cce20:Mercancias>
+
+    </cce20:ComercioExterior>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="075738A5-264D-41E8-8570-28BE4E7A6F73"
+      FechaTimbrado="2026-05-12T03:27:03"
+      RfcProvCertif="MIS141016RX2"
+      NoCertificadoSAT="00001000000457269209"
+      SelloCFDI="roWZ3MfEGUGoCBB5aOYrsQADGZDN2J7sGhvaZlZvVYNZvicViwciBcoGnp0q8mg8s4db9RaUoUstsMcvK3V6fmNj7BDPUhL5Ds7Dw5afKPF3TyjJV4lGRj7QBzhCDY7G/4c0cV69LhhghsUxJU68pCqAqaydoMZMnqKGhJigIzsBpneF4P3E07V+q4s1Q6794Xwy3MsHP6YQqSpuWqGtUgDHio1Urawi2aoey/mm54ZUA5G6GuxcKR3YBRwWAGD9pcNO/XZ+kLkPH5ldJm7u778e2PpA272WolsxhIb3C9ptoJBQ7p7yy4VK2vdGDHErQpbXqZWtKL2sB22fBSvwkA=="
+      SelloSAT="6cZRg9DPyPOIrZthJuUcn+HpSxsUFgwcLSKh2oXHBZVvJ0g01QYumAeJAzpAzyvmrp3OZoF/meR/YoxRtPsdxZL/RqNGgRypZ7Ut7aVWQkqab+WMeOoGvD0EWLBzUUY0OZHhM+wawfNSbjilUEEdd36wlGLZfwVQu6zf+SorhJ3Slm6m2QCgeXYb8OvyK6ZGWxjEFcff5pEjeHjVjnInNrBHVSL+tTqo8lYU1GvUnqrniOxOvCJQCfzU7wfjijulvfFHm9DkWibX5eJr2VdY48/OItghFa8vDwwGADSIRjfSO+x2iN3fbX4o+4lWLMVVkgcdRJuwUHGXQ9qWMb9mhw=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

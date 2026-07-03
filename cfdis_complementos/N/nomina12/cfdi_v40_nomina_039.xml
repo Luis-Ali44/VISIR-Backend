@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+  Version="4.0"
+  Serie="NOM"
+  Folio="32480"
+  Fecha="2026-05-13T19:26:15"
+  NoCertificado="82094734497803612902"
+  Certificado="b+32nYi5jcV7Xs8MU/8NRlNkEhhIxUyzcCOvaxNTBvQty9cMVRHlmW2Qt+BcI/NXuSjg8wOCc9T+sWZmRHwDJr0hBQ0V5piW57rKZAiRcEY="
+  Sello="o7OvGMiKzj+48s2yJeJnsnuG9ZjD29EdyljzkLESQouBRsErashvftIYNEwQZpsevzvbO7f0INw06R34hx1cPPbGSokIQ06GoRlTVI8oroxFBUJCx79jcEC2yOGgllOfLPXacYcXdAOECNHG260LxTaHfASLzrrVNbsjKxCXZ4RLvoceCSr08fejxrYYsqHF+V+EoTvE3vBN4K1r4hIyKQPQ+zUJkqvN58yevcYvR+f/rdSPtqMz5RI7a9368Jkmg4k7SYq+gl4GzJNhhbaFEgz7ERQpDa/DFZND03449APfZM9cdJzQpSI573dToxIXXav/+8jDycTEsWk+Ls8u5A=="
+  SubTotal="17564.70"
+  Moneda="MXN"
+  
+  Descuento="2195.59"
+  Total="15369.11"
+  TipoDeComprobante="N"
+  Exportacion="01"
+  FormaPago="03"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+  
+
+  <cfdi:Emisor
+    Rfc="MYX240418GP6"
+    Nombre="INDUSTRIAS GUEVARA Y GOLLUM AC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="AMCJ661127YK4"
+    Nombre="APODACA CONTRERAS JACINTO"
+    DomicilioFiscalReceptor="46155"
+    RegimenFiscalReceptor="605"
+    UsoCFDI="CN01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111505"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago de nómina"
+      ValorUnitario="17564.70"
+      Importe="17564.70"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  
+
+  <cfdi:Complemento>
+    <nomina12:Nomina
+      Version="1.2"
+      TipoNomina="O"
+      FechaPago="2026-05-12"
+      FechaInicialPago="2026-04-11"
+      FechaFinalPago="2026-05-10"
+      NumDiasPagados="30"
+      TotalPercepciones="17564.70"
+      TotalDeducciones="2195.59"
+      >
+
+      <nomina12:Emisor
+        RegistroPatronal="Z0030663116"
+        />
+
+      <nomina12:Receptor
+        Curp="ACCJ661127MTCLWAA0"
+        NumSeguridadSocial="27027195802"
+        FechaInicioRelLaboral="2020-07-15"
+        Antigüedad="P304W"
+        TipoContrato="02"
+        Sindicalizado="No"
+        TipoJornada="02"
+        TipoRegimen="03"
+        NumEmpleado="EMP7965"
+        Departamento="Tecnología"
+        Puesto="Analista"
+        RiesgoPuesto="5"
+        PeriodicidadPago="03"
+        Banco="044"
+        CuentaBancaria="112092292769931305"
+        SalarioBaseCotApor="585.49"
+        SalarioDiarioIntegrado="731.86"
+        ClaveEntFed="NL"/>
+
+      <nomina12:Percepciones
+        TotalSueldos="17564.70"
+        TotalGravado="16159.52"
+        TotalExento="1405.18">
+        
+        <nomina12:Percepcion
+          TipoPercepcion="001"
+          Clave="001"
+          Concepto="Sueldos, Salarios Rayas y Jornales"
+          ImporteGravado="16159.52"
+          ImporteExento="1405.18"/>
+        
+      </nomina12:Percepciones>
+
+      <nomina12:Deducciones
+        TotalOtrasDeducciones="439.12"
+        TotalImpuestosRetenidos="1756.47">
+        
+        <nomina12:Deduccion
+          TipoDeduccion="001"
+          Clave="001"
+          Concepto="Seguridad Social"
+          Importe="439.12"/>
+        
+        <nomina12:Deduccion
+          TipoDeduccion="002"
+          Clave="002"
+          Concepto="ISR"
+          Importe="1756.47"/>
+        
+      </nomina12:Deducciones>
+
+      
+
+    </nomina12:Nomina>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="D933B1BF-5D6A-4EAF-88A7-2FB7CECF8A17"
+      FechaTimbrado="2026-05-13T19:27:21"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000181625949"
+      SelloCFDI="o7OvGMiKzj+48s2yJeJnsnuG9ZjD29EdyljzkLESQouBRsErashvftIYNEwQZpsevzvbO7f0INw06R34hx1cPPbGSokIQ06GoRlTVI8oroxFBUJCx79jcEC2yOGgllOfLPXacYcXdAOECNHG260LxTaHfASLzrrVNbsjKxCXZ4RLvoceCSr08fejxrYYsqHF+V+EoTvE3vBN4K1r4hIyKQPQ+zUJkqvN58yevcYvR+f/rdSPtqMz5RI7a9368Jkmg4k7SYq+gl4GzJNhhbaFEgz7ERQpDa/DFZND03449APfZM9cdJzQpSI573dToxIXXav/+8jDycTEsWk+Ls8u5A=="
+      SelloSAT="2/imxqsj28k2DEDhK/7iZ7L6aOWnr0ay8i6evsA0EuV0n557XnisSTWUU4d/ieXJDj0W9J+vmBJPfcrTBVRyHqD7SDZ3HcAisoPJBzu4YIx7tNRbB8PNc7h+2HK+9IlDSTqIq+1tYmrrMyMUfDSr+HFShyRN69JFoevHIWAFac1ITy0q4lkAU0xGVdbgpsn60w7mNx1Yx/UmeQiLS3DQ4lRonEZeRp3EFh45R01zrhVacHLZYLyJ2VCDtFD3og1uKlcncUFv6TD5CMtncxkEA0cRpHPiYptWCBu3/A0z93M/F5JJB0E2rxFfD7CyUh6ROvmaD1FL26CVV6iKSOlH/A=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

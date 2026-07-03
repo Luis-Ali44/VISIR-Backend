@@ -1,0 +1,130 @@
+{
+  "archivo": "cfdi_v40_nomina_040",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "NOM",
+    "folio": "24762",
+    "tipo_comprobante": "N",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "27624783058094833011",
+    "folio_fiscal": "A80AD34B-4811-49BD-B96A-5AE42FBB319E",
+    "fecha_emision": "2026-06-27T07:26:15",
+    "fecha_timbrado": "2026-06-27T07:28:04",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000510846916",
+    "metodo_pago": "PUE",
+    "forma_pago": "03",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "BERMÚDEZ-ARIAS SC",
+      "RFC": "IQQ960723KT4",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "CONCEPCIÓN MARROQUÍN NANCY",
+      "RFC": "CJMN890105OI4",
+      "uso_cfdi": "CN01",
+      "regimen_fiscal": "605",
+      "domicilio_fiscal": "37046"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago de nómina",
+        "clave_prod_serv": "84111505",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 19157.46,
+        "descuento": null,
+        "importe": 19157.46,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 19157.46,
+    "descuento": 2394.69,
+    "iva": null,
+    "retenciones": null,
+    "total": 16762.77,
+    "complemento_nomina": {
+      "version": "1.2",
+      "tipo_nomina": "E",
+      "fecha_pago": "2026-06-28",
+      "fecha_inicial_pago": "2026-06-13",
+      "fecha_final_pago": "2026-06-26",
+      "num_dias_pagados": 14.0,
+      "total_percepciones": 19157.46,
+      "total_deducciones": 2394.69,
+      "total_otros_pagos": null,
+      "emisor": {
+        "curp": null,
+        "registro_patronal": "X1877792859",
+        "rfc_patron_origen": null,
+        "entidad_sncf": null
+      },
+      "receptor": {
+        "curp": "CPMN890105HVZLNWA0",
+        "tipo_contrato": "03",
+        "tipo_regimen": "02",
+        "num_empleado": "EMP9807",
+        "departamento": "Logística",
+        "puesto": "Analista",
+        "tipo_jornada": "01",
+        "periodicidad_pago": "99",
+        "banco": "009",
+        "cuenta_bancaria": "421619250535457699",
+        "salario_base_cot_apor": 1368.39,
+        "salario_diario_integrado": 1710.49,
+        "clave_ent_fed": "BC",
+        "num_seguridad_social": "59967673885",
+        "fecha_inicio_rel_laboral": "2022-01-05",
+        "antiguedad": "P233W",
+        "riesgo_puesto": "1",
+        "sindicalizado": "No",
+        "sub_contratacion": []
+      },
+      "percepciones": {
+        "total_sueldos": 19157.46,
+        "total_separacion_indemniz": null,
+        "total_jubilacion_pen_ret": null,
+        "total_gravado": 17624.86,
+        "total_exento": 1532.6,
+        "percepciones": [
+          {
+            "tipo_percepcion": "001",
+            "clave": "001",
+            "concepto": "Sueldos, Salarios Rayas y Jornales",
+            "importe_gravado": 17624.86,
+            "importe_exento": 1532.6,
+            "horas_extra": [],
+            "jubilacion_pension_retiro": null,
+            "separacion_indemnizacion": null
+          }
+        ]
+      },
+      "deducciones": {
+        "total_otras_deducciones": 478.94,
+        "total_impuestos_retenidos": 1915.75,
+        "deducciones": [
+          {
+            "tipo_deduccion": "001",
+            "clave": "001",
+            "concepto": "Seguridad Social",
+            "importe": 478.94
+          },
+          {
+            "tipo_deduccion": "002",
+            "clave": "002",
+            "concepto": "ISR",
+            "importe": 1915.75
+          }
+        ]
+      },
+      "otros_pagos": [],
+      "incapacidades": []
+    }
+  }
+}

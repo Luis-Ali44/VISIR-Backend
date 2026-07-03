@@ -1,0 +1,108 @@
+{
+  "archivo": "cfdi_v40_comercio_ext_usd_016",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "CE",
+    "folio": "96233",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "02",
+    "no_certificado": "07412339136807037848",
+    "folio_fiscal": "F88A4F23-8CA8-4CA2-9DDF-23AC6265EDE2",
+    "fecha_emision": "2026-05-19T16:26:14",
+    "fecha_timbrado": "2026-05-19T16:27:41",
+    "rfc_proveedor_certificacion": "SAT970701NN3",
+    "no_certificado_sat": "00001000000159718482",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "USD",
+    "tipo_cambio": 18.1465,
+    "emisor": {
+      "nombre": "ESQUIVEL S DE RL DE CV",
+      "RFC": "XHJ011224UO8",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "GRUPO GURULE Y CEDILLO AC",
+      "RFC": "XEXX010101000",
+      "uso_cfdi": "S01",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "53720"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 3.0,
+        "valor_unitario": 18531.19,
+        "descuento": 2779.68,
+        "importe": 55593.57,
+        "iva": 8450.22,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 55593.57,
+    "descuento": 2779.68,
+    "iva": 8450.22,
+    "retenciones": null,
+    "total": 61264.11,
+    "complemento_comercio_exterior": {
+      "version": "2.0",
+      "motivo_traslado": "A",
+      "clave_de_pedimento": "A1",
+      "certificado_origen": "0",
+      "num_certificado_origen": null,
+      "numero_exportador_confiable": null,
+      "incoterm": "FCA",
+      "observaciones": null,
+      "tipo_cambio_usd": 18.1465,
+      "total_usd": 55593.57,
+      "emisor": {
+        "curp": null,
+        "domicilio": {
+          "calle": "Calle Bolivia",
+          "numero_exterior": "020",
+          "numero_interior": null,
+          "colonia": "Col. Centro",
+          "localidad": "San Eugenio los altos",
+          "municipio": "San Ernesto los altos",
+          "estado": "SON",
+          "pais": "MEX",
+          "codigo_postal": "14378",
+          "referencia": null
+        }
+      },
+      "propietarios": [],
+      "receptor": {
+        "num_reg_id_trib": "24-7154931",
+        "domicilio": {
+          "calle": "006 Burgess Bridge",
+          "numero_exterior": "0464",
+          "numero_interior": null,
+          "colonia": null,
+          "localidad": "East Ryan",
+          "municipio": null,
+          "estado": "NA",
+          "pais": "JPN",
+          "codigo_postal": "62824",
+          "referencia": null
+        }
+      },
+      "destinatarios": [],
+      "mercancias": [
+        {
+          "no_identificacion": "SKU-24491",
+          "fraccion_arancelaria": "90318090",
+          "cantidad_aduana": 3.0,
+          "unidad_aduana": "18",
+          "valor_unitario_aduana": 18531.19,
+          "valor_dolares": 55593.57,
+          "descripciones_especificas": []
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4007 @@
+{
+  "total": 40,
+  "exitosos": 40,
+  "fallidos": 0,
+  "resultados": [
+    {
+      "archivo": "cfdi_33_egreso_029",
+      "fuente": "xml",
+      "datos": {
+        "version": "3.3",
+        "serie": "B",
+        "folio": "25085",
+        "tipo_comprobante": "E",
+        "lugar_expedicion": "44100",
+        "exportacion": null,
+        "no_certificado": "02488319370624920032",
+        "folio_fiscal": "3D1800B6-F1E1-4E47-8545-254A6525FEEE",
+        "fecha_emision": "2026-05-11T09:26:14",
+        "fecha_timbrado": "2026-05-11T09:26:48",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000358623666",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CALDERÓN-GIL AC",
+          "RFC": "TIE141002DH7",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "MAYORGA, MAYA Y SALAS SAS DE CV",
+          "RFC": "RVC070707CE4",
+          "uso_cfdi": "G02",
+          "regimen_fiscal": null,
+          "domicilio_fiscal": null
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 3.0,
+            "valor_unitario": 52792.42,
+            "descuento": null,
+            "importe": 158377.26,
+            "iva": 25340.36,
+            "objeto_imp": null
+          }
+        ],
+        "subtotal": 158377.26,
+        "descuento": null,
+        "iva": 25340.36,
+        "retenciones": null,
+        "total": 183717.62
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_33_egreso_030",
+      "fuente": "xml",
+      "datos": {
+        "version": "3.3",
+        "serie": "C",
+        "folio": "9963",
+        "tipo_comprobante": "E",
+        "lugar_expedicion": "64000",
+        "exportacion": null,
+        "no_certificado": "12132734393813233092",
+        "folio_fiscal": "E0D3D9B6-EEEB-4ED3-B05C-6A6B7C661513",
+        "fecha_emision": "2026-01-31T09:26:14",
+        "fecha_timbrado": "2026-01-31T09:26:20",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000312270752",
+        "metodo_pago": "PUE",
+        "forma_pago": "28",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "VALENTÍN, BUSTAMANTE Y ESTÉVEZ SAS DE CV",
+          "RFC": "HSC100417MF3",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "DESPHO GARRIDO, VILLEGAS Y RAZO AC",
+          "RFC": "PPY040827AO0",
+          "uso_cfdi": "G02",
+          "regimen_fiscal": null,
+          "domicilio_fiscal": null
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 3.0,
+            "valor_unitario": 53060.48,
+            "descuento": null,
+            "importe": 159181.44,
+            "iva": 25469.03,
+            "objeto_imp": null
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 5.0,
+            "valor_unitario": 18145.78,
+            "descuento": 4536.45,
+            "importe": 90728.9,
+            "iva": 13790.79,
+            "objeto_imp": null
+          }
+        ],
+        "subtotal": 249910.34,
+        "descuento": 4536.45,
+        "iva": 39259.82,
+        "retenciones": null,
+        "total": 284633.71
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_egreso_026",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "C",
+        "folio": "48547",
+        "tipo_comprobante": "E",
+        "lugar_expedicion": "75700",
+        "exportacion": "01",
+        "no_certificado": "29806760920172165462",
+        "folio_fiscal": "F3EFCB34-5D74-4E06-B8F7-AA7DAC69375B",
+        "fecha_emision": "2026-05-11T17:26:14",
+        "fecha_timbrado": "2026-05-11T17:27:11",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000024491353",
+        "metodo_pago": "PUE",
+        "forma_pago": "17",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CARRERO Y GRIJALVA SA DE CV",
+          "RFC": "FLA090104OM5",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "BARRERA-PRECIADO Y ASOCIADOS SA DE CV",
+          "RFC": "EPA120418GJ3",
+          "uso_cfdi": "G02",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "50976"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 28940.32,
+            "descuento": null,
+            "importe": 86820.96,
+            "iva": 13891.35,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 86820.96,
+        "descuento": null,
+        "iva": 13891.35,
+        "retenciones": null,
+        "total": 100712.31
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_egreso_027",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "46505",
+        "tipo_comprobante": "E",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "89113737360305742084",
+        "folio_fiscal": "8C8F1BB3-92EB-44AE-ACCB-97C9089F04B9",
+        "fecha_emision": "2026-02-15T16:26:14",
+        "fecha_timbrado": "2026-02-15T16:27:17",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000956828165",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "GUERRA SA DE CV",
+          "RFC": "MQF990131LC0",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "GONZÁLEZ S DE RL DE CV",
+          "RFC": "HTV950923WD2",
+          "uso_cfdi": "G02",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "32442"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 1.0,
+            "valor_unitario": 18353.6,
+            "descuento": 1835.36,
+            "importe": 18353.6,
+            "iva": 2642.92,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 49773.34,
+            "descuento": null,
+            "importe": 99546.68,
+            "iva": 15927.47,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 117900.28,
+        "descuento": 1835.36,
+        "iva": 18570.39,
+        "retenciones": null,
+        "total": 134635.31
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_egreso_028",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "C",
+        "folio": "28945",
+        "tipo_comprobante": "E",
+        "lugar_expedicion": "20000",
+        "exportacion": "01",
+        "no_certificado": "22654122130294433827",
+        "folio_fiscal": "DACE54C6-B3E9-49E7-91AE-C024E42DCBDB",
+        "fecha_emision": "2026-05-17T05:26:14",
+        "fecha_timbrado": "2026-05-17T05:27:41",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000243543807",
+        "metodo_pago": "PUE",
+        "forma_pago": "29",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CARREÓN-OCHOA S DE RL DE CV",
+          "RFC": "WXY100117LW1",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "VÉLIZ-CANALES S. R.L. DE C.V. SA DE CV",
+          "RFC": "NEU230921XA5",
+          "uso_cfdi": "G02",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "94296"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 75281.35,
+            "descuento": 7528.14,
+            "importe": 75281.35,
+            "iva": 10840.51,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 5.0,
+            "valor_unitario": 21020.36,
+            "descuento": 10510.18,
+            "importe": 105101.8,
+            "iva": 15134.66,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 180383.15,
+        "descuento": 18038.32,
+        "iva": 25975.17,
+        "retenciones": null,
+        "total": 188320.0
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_addenda_021",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "38489",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "20000",
+        "exportacion": "01",
+        "no_certificado": "23663414290462044864",
+        "folio_fiscal": "C88BDBDF-155F-415E-9F6B-F95D986A5500",
+        "fecha_emision": "2026-01-09T10:26:14",
+        "fecha_timbrado": "2026-01-09T10:27:08",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000163557909",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "DESPHO CARREÓN Y SALDAÑA SA DE CV",
+          "RFC": "QGU221005BM3",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "MARROQUÍN-LUCIO SC",
+          "RFC": "YKG160103LG6",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "59648"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 4.0,
+            "valor_unitario": 23080.25,
+            "descuento": null,
+            "importe": 92321.0,
+            "iva": 14771.36,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 92321.0,
+        "descuento": null,
+        "iva": 14771.36,
+        "retenciones": null,
+        "total": 107092.36,
+        "addenda": {
+          "presente": true,
+          "contenido": [
+            {
+              "hijos": {
+                "OrdenCompra": {
+                  "texto": "38489"
+                },
+                "Tienda": {
+                  "texto": "T8548"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_addenda_022",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "54804",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "87396275856040995742",
+        "folio_fiscal": "DD7AC2AE-B985-465E-A993-BA3A39241F75",
+        "fecha_emision": "2026-03-29T07:26:14",
+        "fecha_timbrado": "2026-03-29T07:26:51",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000224353387",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "LOZADA ONTIVEROS DOLORES",
+          "RFC": "KAQP740602VV3",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "ALEMÁN-ROYBAL SC",
+          "RFC": "KZH961116FW7",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "48275"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 6380.77,
+            "descuento": null,
+            "importe": 19142.31,
+            "iva": 3062.77,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 62390.15,
+            "descuento": null,
+            "importe": 124780.3,
+            "iva": 19964.85,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 143922.61,
+        "descuento": null,
+        "iva": 23027.62,
+        "retenciones": 12478.03,
+        "total": 154472.2,
+        "addenda": {
+          "presente": true,
+          "contenido": [
+            {
+              "hijos": {
+                "OrdenCompra": {
+                  "texto": "54804"
+                },
+                "Tienda": {
+                  "texto": "T0552"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_addenda_023",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "60424",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "84883929889143992625",
+        "folio_fiscal": "1AA6DB96-DD95-486D-AC75-99669CC56321",
+        "fecha_emision": "2026-04-21T11:26:14",
+        "fecha_timbrado": "2026-04-21T11:26:46",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000132294614",
+        "metodo_pago": "PUE",
+        "forma_pago": "28",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "ROLÓN RUELAS JUANA",
+          "RFC": "PJFE940815WZ9",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "TAMAYO-ARANDA AC",
+          "RFC": "SBP240130KB8",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "39188"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 21328.83,
+            "descuento": null,
+            "importe": 42657.66,
+            "iva": 6825.23,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 4.0,
+            "valor_unitario": 4280.75,
+            "descuento": 1712.3,
+            "importe": 17123.0,
+            "iva": 2465.71,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 59780.66,
+        "descuento": 1712.3,
+        "iva": 9290.94,
+        "retenciones": 4265.77,
+        "total": 63093.53,
+        "addenda": {
+          "presente": true,
+          "contenido": [
+            {
+              "hijos": {
+                "NumOrden": {
+                  "texto": "60424"
+                },
+                "Almacen": {
+                  "texto": "ALM523"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_addenda_024",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "11807",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "22881004033170203450",
+        "folio_fiscal": "8C7BE886-F294-4B07-BA83-3A4ED930360D",
+        "fecha_emision": "2026-02-04T16:26:14",
+        "fecha_timbrado": "2026-02-04T16:26:31",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000567779628",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "BUSTAMANTE CAMARILLO ARMANDO",
+          "RFC": "IYOH010427LM1",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "MENA Y CASARES E HIJOS SAS DE CV",
+          "RFC": "YGE111126PT9",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "17165"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 3.0,
+            "valor_unitario": 8272.13,
+            "descuento": 1240.82,
+            "importe": 24816.39,
+            "iva": 3772.09,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 12996.28,
+            "descuento": null,
+            "importe": 38988.84,
+            "iva": 6238.21,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 55026.86,
+            "descuento": null,
+            "importe": 110053.72,
+            "iva": 17608.6,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 173858.95,
+        "descuento": 1240.82,
+        "iva": 27618.9,
+        "retenciones": 11005.37,
+        "total": 189231.66,
+        "addenda": {
+          "presente": true,
+          "contenido": [
+            {
+              "hijos": {
+                "NumProveedor": {
+                  "texto": "P985363"
+                },
+                "CentroDistribucion": {
+                  "texto": "CD297"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_addenda_025",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "A",
+        "folio": "17236",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "72626898822816038312",
+        "folio_fiscal": "7C98D98F-7F5F-4974-B6B6-8D373485A40D",
+        "fecha_emision": "2026-04-29T14:26:14",
+        "fecha_timbrado": "2026-04-29T14:27:07",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000287817416",
+        "metodo_pago": "PUE",
+        "forma_pago": "02",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "SANTACRUZ ZARAGOZA LOURDES",
+          "RFC": "FPBC920824YP3",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "DESPHO SERRATO, SOTO Y ALMONTE AC",
+          "RFC": "UUC030929HH4",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "85366"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 37684.87,
+            "descuento": null,
+            "importe": 75369.74,
+            "iva": 12059.16,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 75369.74,
+        "descuento": null,
+        "iva": 12059.16,
+        "retenciones": 7536.97,
+        "total": 79891.93,
+        "addenda": {
+          "presente": true,
+          "contenido": [
+            {
+              "hijos": {
+                "NumOrden": {
+                  "texto": "17236"
+                },
+                "Almacen": {
+                  "texto": "ALM962"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_transporte_013",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "A",
+        "folio": "56437",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "97109007147803347542",
+        "folio_fiscal": "1BA66087-B191-4927-8707-8F5E9F2E8548",
+        "fecha_emision": "2026-03-17T19:26:14",
+        "fecha_timbrado": "2026-03-17T19:26:43",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000780249990",
+        "metodo_pago": "PUE",
+        "forma_pago": "05",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CORPORIN BARRIOS, HIDALGO Y ALVAREZ SAS DE CV",
+          "RFC": "PKU221029DH1",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "PATIÑO Y PADRÓN Y ASOCIADOS SA DE CV",
+          "RFC": "BBS170218RC8",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "77227"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de transporte de carga terrestre en área local",
+            "clave_prod_serv": "78101801",
+            "clave_unidad": "E48",
+            "unidad": "Viaje",
+            "cantidad": 4.0,
+            "valor_unitario": 3384.98,
+            "descuento": 1353.99,
+            "importe": 13539.92,
+            "iva": 1949.75,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de transporte de carga por carretera a nivel regional y nacional",
+            "clave_prod_serv": "78101802",
+            "clave_unidad": "E48",
+            "unidad": "Viaje",
+            "cantidad": 5.0,
+            "valor_unitario": 9377.71,
+            "descuento": null,
+            "importe": 46888.55,
+            "iva": 7502.17,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 60428.47,
+        "descuento": 1353.99,
+        "iva": 9451.92,
+        "retenciones": null,
+        "total": 68526.4,
+        "complemento_carta_porte": {
+          "version": "3.1",
+          "id_ccp": null,
+          "transporte_internacional": "No",
+          "pais_origen_destino": null,
+          "via_entrada_salida": null,
+          "entrada_salida_merc": null,
+          "registro_istmo": null,
+          "ubicacion_polo_origen": null,
+          "ubicacion_polo_destino": null,
+          "total_dist_recorrida": 241.0,
+          "regimenes_aduaneros": [],
+          "ubicaciones": [
+            {
+              "tipo_ubicacion": "Origen",
+              "id_ubicacion": "OR000001",
+              "rfc_remitente_destinatario": "PKU221029DH1",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-03-17T19:26:14",
+              "distancia_recorrida": null,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "NLE",
+                "pais": "MEX",
+                "codigo_postal": "64000",
+                "referencia": null
+              }
+            },
+            {
+              "tipo_ubicacion": "Destino",
+              "id_ubicacion": "DE000001",
+              "rfc_remitente_destinatario": "BBS170218RC8",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-03-18T04:26:14",
+              "distancia_recorrida": 241.0,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "AGU",
+                "pais": "MEX",
+                "codigo_postal": "20000",
+                "referencia": null
+              }
+            }
+          ],
+          "mercancias": {
+            "peso_bruto_total": 4280.0,
+            "unidad_peso": "KGM",
+            "peso_neto_total": null,
+            "num_total_mercancias": 1.0,
+            "cargo_por_tasacion": null,
+            "logistica_inversa": null,
+            "mercancias": [
+              {
+                "bienes_transp": "24131510",
+                "clave_stcc": null,
+                "descripcion": "Refrigeradores de mostrador (carga general)",
+                "cantidad": 9.0,
+                "clave_unidad": "KGM",
+                "unidad": null,
+                "dimensiones": null,
+                "material_peligroso": null,
+                "cve_material_peligroso": null,
+                "embalaje": null,
+                "descrip_embalaje": null,
+                "sector_cofepris": null,
+                "peso_en_kg": 4280.0,
+                "valor_mercancia": null,
+                "moneda": null,
+                "fraccion_arancelaria": null,
+                "uuid_comercio_ext": null,
+                "tipo_materia": null,
+                "descripcion_materia": null,
+                "documentacion_aduanera": [],
+                "guias_identificacion": [],
+                "cantidad_transporta": [],
+                "detalle_mercancia": null
+              }
+            ],
+            "autotransporte": {
+              "perm_sct": "TPAF03",
+              "num_permiso_sct": "PERM/5383/7049",
+              "identificacion_vehicular": {
+                "config_vehicular": "C2",
+                "peso_bruto_vehicular": 12280.0,
+                "placa_vm": "YAF032",
+                "anio_modelo_vm": 2021.0
+              },
+              "seguros": {
+                "asegura_resp_civil": "CRESPO Y MAGAÑA Y ASOCIADOS S DE RL DE CV",
+                "poliza_resp_civil": "POL-7612-PPEZ",
+                "asegura_med_ambiente": null,
+                "poliza_med_ambiente": null,
+                "asegura_carga": null,
+                "poliza_carga": null,
+                "prima_seguro": null
+              },
+              "remolques": []
+            },
+            "transporte_maritimo": null,
+            "transporte_aereo": null,
+            "transporte_ferroviario": null
+          },
+          "figura_transporte": [
+            {
+              "tipo_figura": "01",
+              "rfc_figura": "PAGU951222PC0",
+              "num_licencia": "LIC73091638",
+              "nombre_figura": null,
+              "num_reg_id_trib_figura": null,
+              "residencia_fiscal_figura": null,
+              "partes_transporte": [],
+              "domicilio": null
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_transporte_014",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "F",
+        "folio": "64655",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "06268735016092329018",
+        "folio_fiscal": "8B63F029-8D62-4319-B08C-DE46568D5D58",
+        "fecha_emision": "2026-03-14T02:26:14",
+        "fecha_timbrado": "2026-03-14T02:26:19",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000725692115",
+        "metodo_pago": "PUE",
+        "forma_pago": "27",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "PROYECTOS GASTÉLUM-CORNEJO SC",
+          "RFC": "WXY131120ZI1",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "SAUCEDO-CAVAZOS SAS DE CV",
+          "RFC": "ODI951031TT3",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "03965"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicios de entrega postal y paquetería nacional",
+            "clave_prod_serv": "78102201",
+            "clave_unidad": "E48",
+            "unidad": "Envío",
+            "cantidad": 32.0,
+            "valor_unitario": 712.66,
+            "descuento": 1140.26,
+            "importe": 22805.12,
+            "iva": 3466.38,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 22805.12,
+        "descuento": 1140.26,
+        "iva": 3466.38,
+        "retenciones": null,
+        "total": 25131.24,
+        "complemento_carta_porte": {
+          "version": "3.1",
+          "id_ccp": null,
+          "transporte_internacional": "No",
+          "pais_origen_destino": null,
+          "via_entrada_salida": null,
+          "entrada_salida_merc": null,
+          "registro_istmo": null,
+          "ubicacion_polo_origen": null,
+          "ubicacion_polo_destino": null,
+          "total_dist_recorrida": 398.0,
+          "regimenes_aduaneros": [],
+          "ubicaciones": [
+            {
+              "tipo_ubicacion": "Origen",
+              "id_ubicacion": "OR000001",
+              "rfc_remitente_destinatario": "WXY131120ZI1",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-03-14T02:26:14",
+              "distancia_recorrida": null,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "CDMX",
+                "pais": "MEX",
+                "codigo_postal": "06600",
+                "referencia": null
+              }
+            },
+            {
+              "tipo_ubicacion": "Destino",
+              "id_ubicacion": "DE000001",
+              "rfc_remitente_destinatario": "ODI951031TT3",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-03-14T07:26:14",
+              "distancia_recorrida": 398.0,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "JAL",
+                "pais": "MEX",
+                "codigo_postal": "44100",
+                "referencia": null
+              }
+            }
+          ],
+          "mercancias": {
+            "peso_bruto_total": 10679.0,
+            "unidad_peso": "KGM",
+            "peso_neto_total": null,
+            "num_total_mercancias": 1.0,
+            "cargo_por_tasacion": null,
+            "logistica_inversa": null,
+            "mercancias": [
+              {
+                "bienes_transp": "24131510",
+                "clave_stcc": null,
+                "descripcion": "Paquetería y mercancía general",
+                "cantidad": 32.0,
+                "clave_unidad": "KGM",
+                "unidad": null,
+                "dimensiones": null,
+                "material_peligroso": null,
+                "cve_material_peligroso": null,
+                "embalaje": null,
+                "descrip_embalaje": null,
+                "sector_cofepris": null,
+                "peso_en_kg": 10679.0,
+                "valor_mercancia": null,
+                "moneda": null,
+                "fraccion_arancelaria": null,
+                "uuid_comercio_ext": null,
+                "tipo_materia": null,
+                "descripcion_materia": null,
+                "documentacion_aduanera": [],
+                "guias_identificacion": [],
+                "cantidad_transporta": [],
+                "detalle_mercancia": null
+              }
+            ],
+            "autotransporte": {
+              "perm_sct": "TPAF03",
+              "num_permiso_sct": "PERM/0447/8527",
+              "identificacion_vehicular": {
+                "config_vehicular": "C2",
+                "peso_bruto_vehicular": 18679.0,
+                "placa_vm": "RCU999",
+                "anio_modelo_vm": 2023.0
+              },
+              "seguros": {
+                "asegura_resp_civil": "GRUPO VA-TERÁN S DE RL DE CV",
+                "poliza_resp_civil": "POL-6888-PICB",
+                "asegura_med_ambiente": null,
+                "poliza_med_ambiente": null,
+                "asegura_carga": null,
+                "poliza_carga": null,
+                "prima_seguro": null
+              },
+              "remolques": []
+            },
+            "transporte_maritimo": null,
+            "transporte_aereo": null,
+            "transporte_ferroviario": null
+          },
+          "figura_transporte": [
+            {
+              "tipo_figura": "01",
+              "rfc_figura": "WYVO720718VF6",
+              "num_licencia": "LIC89124851",
+              "nombre_figura": null,
+              "num_reg_id_trib_figura": null,
+              "residencia_fiscal_figura": null,
+              "partes_transporte": [],
+              "domicilio": null
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_transporte_015",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "A",
+        "folio": "33627",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "48254910710191542406",
+        "folio_fiscal": "CA8AF2C7-FC9A-4CCA-A7A9-74764A9176C7",
+        "fecha_emision": "2026-01-07T20:26:14",
+        "fecha_timbrado": "2026-01-07T20:26:29",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000395872624",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "INDUSTRIAS OLIVARES-SANDOVAL AC",
+          "RFC": "JYD060320SJ9",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "GONZÁLEZ S DE RL DE CV",
+          "RFC": "UQY041223UE7",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "44267"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicios de entrega postal y paquetería nacional",
+            "clave_prod_serv": "78102201",
+            "clave_unidad": "E48",
+            "unidad": "Envío",
+            "cantidad": 30.0,
+            "valor_unitario": 806.84,
+            "descuento": null,
+            "importe": 24205.2,
+            "iva": 3872.83,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de transporte de carga por carretera a nivel regional y nacional",
+            "clave_prod_serv": "78101802",
+            "clave_unidad": "E48",
+            "unidad": "Viaje",
+            "cantidad": 2.0,
+            "valor_unitario": 30294.58,
+            "descuento": null,
+            "importe": 60589.16,
+            "iva": 9694.27,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 84794.36,
+        "descuento": null,
+        "iva": 13567.1,
+        "retenciones": null,
+        "total": 98361.46,
+        "complemento_carta_porte": {
+          "version": "3.1",
+          "id_ccp": null,
+          "transporte_internacional": "No",
+          "pais_origen_destino": null,
+          "via_entrada_salida": null,
+          "entrada_salida_merc": null,
+          "registro_istmo": null,
+          "ubicacion_polo_origen": null,
+          "ubicacion_polo_destino": null,
+          "total_dist_recorrida": 426.0,
+          "regimenes_aduaneros": [],
+          "ubicaciones": [
+            {
+              "tipo_ubicacion": "Origen",
+              "id_ubicacion": "OR000001",
+              "rfc_remitente_destinatario": "JYD060320SJ9",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-01-07T20:26:14",
+              "distancia_recorrida": null,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "NLE",
+                "pais": "MEX",
+                "codigo_postal": "64000",
+                "referencia": null
+              }
+            },
+            {
+              "tipo_ubicacion": "Destino",
+              "id_ubicacion": "DE000001",
+              "rfc_remitente_destinatario": "UQY041223UE7",
+              "nombre_remitente_destinatario": null,
+              "num_reg_id_trib": null,
+              "residencia_fiscal": null,
+              "fecha_hora_salida_llegada": "2026-01-08T03:26:14",
+              "distancia_recorrida": 426.0,
+              "domicilio": {
+                "calle": null,
+                "numero_exterior": null,
+                "numero_interior": null,
+                "colonia": null,
+                "localidad": null,
+                "municipio": null,
+                "estado": "CDMX",
+                "pais": "MEX",
+                "codigo_postal": "06600",
+                "referencia": null
+              }
+            }
+          ],
+          "mercancias": {
+            "peso_bruto_total": 8606.0,
+            "unidad_peso": "KGM",
+            "peso_neto_total": null,
+            "num_total_mercancias": 1.0,
+            "cargo_por_tasacion": null,
+            "logistica_inversa": null,
+            "mercancias": [
+              {
+                "bienes_transp": "24131510",
+                "clave_stcc": null,
+                "descripcion": "Paquetería y mercancía general",
+                "cantidad": 32.0,
+                "clave_unidad": "KGM",
+                "unidad": null,
+                "dimensiones": null,
+                "material_peligroso": null,
+                "cve_material_peligroso": null,
+                "embalaje": null,
+                "descrip_embalaje": null,
+                "sector_cofepris": null,
+                "peso_en_kg": 8606.0,
+                "valor_mercancia": null,
+                "moneda": null,
+                "fraccion_arancelaria": null,
+                "uuid_comercio_ext": null,
+                "tipo_materia": null,
+                "descripcion_materia": null,
+                "documentacion_aduanera": [],
+                "guias_identificacion": [],
+                "cantidad_transporta": [],
+                "detalle_mercancia": null
+              }
+            ],
+            "autotransporte": {
+              "perm_sct": "TPAF03",
+              "num_permiso_sct": "PERM/0244/8091",
+              "identificacion_vehicular": {
+                "config_vehicular": "C2",
+                "peso_bruto_vehicular": 16606.0,
+                "placa_vm": "EZR058",
+                "anio_modelo_vm": 2022.0
+              },
+              "seguros": {
+                "asegura_resp_civil": "LINARES SC",
+                "poliza_resp_civil": "POL-0722-SNQI",
+                "asegura_med_ambiente": null,
+                "poliza_med_ambiente": null,
+                "asegura_carga": null,
+                "poliza_carga": null,
+                "prima_seguro": null
+              },
+              "remolques": []
+            },
+            "transporte_maritimo": null,
+            "transporte_aereo": null,
+            "transporte_ferroviario": null
+          },
+          "figura_transporte": [
+            {
+              "tipo_figura": "01",
+              "rfc_figura": "HDUE910724YB4",
+              "num_licencia": "LIC77066255",
+              "nombre_figura": null,
+              "num_reg_id_trib_figura": null,
+              "residencia_fiscal_figura": null,
+              "partes_transporte": [],
+              "domicilio": null
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_comercio_ext_usd_016",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "CE",
+        "folio": "96233",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "02",
+        "no_certificado": "07412339136807037848",
+        "folio_fiscal": "F88A4F23-8CA8-4CA2-9DDF-23AC6265EDE2",
+        "fecha_emision": "2026-05-19T16:26:14",
+        "fecha_timbrado": "2026-05-19T16:27:41",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000159718482",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "USD",
+        "tipo_cambio": 18.1465,
+        "emisor": {
+          "nombre": "ESQUIVEL S DE RL DE CV",
+          "RFC": "XHJ011224UO8",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "GRUPO GURULE Y CEDILLO AC",
+          "RFC": "XEXX010101000",
+          "uso_cfdi": "S01",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "53720"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 18531.19,
+            "descuento": 2779.68,
+            "importe": 55593.57,
+            "iva": 8450.22,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 55593.57,
+        "descuento": 2779.68,
+        "iva": 8450.22,
+        "retenciones": null,
+        "total": 61264.11,
+        "complemento_comercio_exterior": {
+          "version": "2.0",
+          "motivo_traslado": "A",
+          "clave_de_pedimento": "A1",
+          "certificado_origen": "0",
+          "num_certificado_origen": null,
+          "numero_exportador_confiable": null,
+          "incoterm": "FCA",
+          "observaciones": null,
+          "tipo_cambio_usd": 18.1465,
+          "total_usd": 55593.57,
+          "emisor": {
+            "curp": null,
+            "domicilio": {
+              "calle": "Calle Bolivia",
+              "numero_exterior": "020",
+              "numero_interior": null,
+              "colonia": "Col. Centro",
+              "localidad": "San Eugenio los altos",
+              "municipio": "San Ernesto los altos",
+              "estado": "SON",
+              "pais": "MEX",
+              "codigo_postal": "14378",
+              "referencia": null
+            }
+          },
+          "propietarios": [],
+          "receptor": {
+            "num_reg_id_trib": "24-7154931",
+            "domicilio": {
+              "calle": "006 Burgess Bridge",
+              "numero_exterior": "0464",
+              "numero_interior": null,
+              "colonia": null,
+              "localidad": "East Ryan",
+              "municipio": null,
+              "estado": "NA",
+              "pais": "JPN",
+              "codigo_postal": "62824",
+              "referencia": null
+            }
+          },
+          "destinatarios": [],
+          "mercancias": [
+            {
+              "no_identificacion": "SKU-24491",
+              "fraccion_arancelaria": "90318090",
+              "cantidad_aduana": 3.0,
+              "unidad_aduana": "18",
+              "valor_unitario_aduana": 18531.19,
+              "valor_dolares": 55593.57,
+              "descripciones_especificas": []
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_comercio_ext_usd_017",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "CE",
+        "folio": "70973",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "02",
+        "no_certificado": "07193373741361458373",
+        "folio_fiscal": "D363DF3E-ABA1-4CAF-884F-53C65F7EF497",
+        "fecha_emision": "2026-06-19T01:26:14",
+        "fecha_timbrado": "2026-06-19T01:27:04",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000563684882",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "USD",
+        "tipo_cambio": 17.424,
+        "emisor": {
+          "nombre": "DESPHO BÁEZ-DE LA TORRE S DE RL DE CV",
+          "RFC": "JXI971127JX8",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "DESPHO BERMÚDEZ, PIÑA Y MONTOYA S DE RL DE CV",
+          "RFC": "XEXX010101000",
+          "uso_cfdi": "S01",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "89528"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 5.0,
+            "valor_unitario": 18350.84,
+            "descuento": 9175.42,
+            "importe": 91754.2,
+            "iva": 13212.6,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 91754.2,
+        "descuento": 9175.42,
+        "iva": 13212.6,
+        "retenciones": null,
+        "total": 95791.38,
+        "complemento_comercio_exterior": {
+          "version": "2.0",
+          "motivo_traslado": "A",
+          "clave_de_pedimento": "A1",
+          "certificado_origen": "0",
+          "num_certificado_origen": null,
+          "numero_exportador_confiable": null,
+          "incoterm": "EXW",
+          "observaciones": null,
+          "tipo_cambio_usd": 17.424,
+          "total_usd": 91754.2,
+          "emisor": {
+            "curp": null,
+            "domicilio": {
+              "calle": "Pasaje Arreola",
+              "numero_exterior": "55801",
+              "numero_interior": null,
+              "colonia": "Col. Centro",
+              "localidad": "Nueva Reino Unido de Gran Bret",
+              "municipio": "Vieja Venezuela",
+              "estado": "JAL",
+              "pais": "MEX",
+              "codigo_postal": "20693",
+              "referencia": null
+            }
+          },
+          "propietarios": [],
+          "receptor": {
+            "num_reg_id_trib": "10-8849837",
+            "domicilio": {
+              "calle": "783 Carol Extension",
+              "numero_exterior": "816",
+              "numero_interior": null,
+              "colonia": null,
+              "localidad": "West Michaelchester",
+              "municipio": null,
+              "estado": "NA",
+              "pais": "DEU",
+              "codigo_postal": "28259",
+              "referencia": null
+            }
+          },
+          "destinatarios": [],
+          "mercancias": [
+            {
+              "no_identificacion": "SKU-18940",
+              "fraccion_arancelaria": "29321990",
+              "cantidad_aduana": 5.0,
+              "unidad_aduana": "15",
+              "valor_unitario_aduana": 18350.84,
+              "valor_dolares": 91754.2,
+              "descripciones_especificas": []
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_comercio_ext_usd_018",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "CE",
+        "folio": "3851",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "06600",
+        "exportacion": "02",
+        "no_certificado": "29125307612655401509",
+        "folio_fiscal": "075738A5-264D-41E8-8570-28BE4E7A6F73",
+        "fecha_emision": "2026-05-12T03:26:14",
+        "fecha_timbrado": "2026-05-12T03:27:03",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000457269209",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "USD",
+        "tipo_cambio": 17.9709,
+        "emisor": {
+          "nombre": "PROYECTOS MURO, LONGORIA Y MONTAÑO SC",
+          "RFC": "RWD211227RD1",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "ÁVILA S DE RL DE CV",
+          "RFC": "XEXX010101000",
+          "uso_cfdi": "S01",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "39400"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 4.0,
+            "valor_unitario": 14217.3,
+            "descuento": 5686.92,
+            "importe": 56869.2,
+            "iva": 8189.16,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 56869.2,
+        "descuento": 5686.92,
+        "iva": 8189.16,
+        "retenciones": null,
+        "total": 59371.44,
+        "complemento_comercio_exterior": {
+          "version": "2.0",
+          "motivo_traslado": "A",
+          "clave_de_pedimento": "A1",
+          "certificado_origen": "0",
+          "num_certificado_origen": null,
+          "numero_exportador_confiable": null,
+          "incoterm": "FCA",
+          "observaciones": null,
+          "tipo_cambio_usd": 17.9709,
+          "total_usd": 56869.2,
+          "emisor": {
+            "curp": null,
+            "domicilio": {
+              "calle": "Periférico Castro",
+              "numero_exterior": "5595",
+              "numero_interior": null,
+              "colonia": "Col. Centro",
+              "localidad": "San Rodolfo los bajos",
+              "municipio": "Nueva República Democrática Po",
+              "estado": "SON",
+              "pais": "MEX",
+              "codigo_postal": "22702",
+              "referencia": null
+            }
+          },
+          "propietarios": [],
+          "receptor": {
+            "num_reg_id_trib": "29-7934625",
+            "domicilio": {
+              "calle": "538 Scott Park",
+              "numero_exterior": "5545",
+              "numero_interior": null,
+              "colonia": null,
+              "localidad": "Barneston",
+              "municipio": null,
+              "estado": "NA",
+              "pais": "CAN",
+              "codigo_postal": "43736",
+              "referencia": null
+            }
+          },
+          "destinatarios": [],
+          "mercancias": [
+            {
+              "no_identificacion": "SKU-02694",
+              "fraccion_arancelaria": "29321990",
+              "cantidad_aduana": 4.0,
+              "unidad_aduana": "11",
+              "valor_unitario_aduana": 14217.3,
+              "valor_dolares": 56869.2,
+              "descripciones_especificas": []
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_comercio_ext_usd_019",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "EX",
+        "folio": "82070",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "20000",
+        "exportacion": "02",
+        "no_certificado": "94924359715418215618",
+        "folio_fiscal": "7FED2CD2-CB4C-4D2A-86F5-1655178B83E1",
+        "fecha_emision": "2026-06-26T01:26:14",
+        "fecha_timbrado": "2026-06-26T01:28:07",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000657545159",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "USD",
+        "tipo_cambio": 17.1322,
+        "emisor": {
+          "nombre": "LABORATORIOS QUESADA-BARRIOS AC",
+          "RFC": "BAJ101224GA4",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "PÉREZ-SALINAS Y ASOCIADOS SAS DE CV",
+          "RFC": "XEXX010101000",
+          "uso_cfdi": "S01",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "41295"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 5.0,
+            "valor_unitario": 15726.17,
+            "descuento": null,
+            "importe": 78630.85,
+            "iva": 12580.94,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 78630.85,
+        "descuento": null,
+        "iva": 12580.94,
+        "retenciones": null,
+        "total": 91211.79,
+        "complemento_comercio_exterior": {
+          "version": "2.0",
+          "motivo_traslado": "A",
+          "clave_de_pedimento": "A1",
+          "certificado_origen": "0",
+          "num_certificado_origen": null,
+          "numero_exportador_confiable": null,
+          "incoterm": "CFR",
+          "observaciones": null,
+          "tipo_cambio_usd": 17.1322,
+          "total_usd": 78630.85,
+          "emisor": {
+            "curp": null,
+            "domicilio": {
+              "calle": "Pasaje Norte Gastélum",
+              "numero_exterior": "676",
+              "numero_interior": null,
+              "colonia": "Col. Centro",
+              "localidad": "San Esparta los bajos",
+              "municipio": "Vieja Belice",
+              "estado": "MC",
+              "pais": "MEX",
+              "codigo_postal": "41681",
+              "referencia": null
+            }
+          },
+          "propietarios": [],
+          "receptor": {
+            "num_reg_id_trib": "10-5134740",
+            "domicilio": {
+              "calle": "02889 Latoya Greens",
+              "numero_exterior": "6278",
+              "numero_interior": null,
+              "colonia": null,
+              "localidad": "North Robynton",
+              "municipio": null,
+              "estado": "NA",
+              "pais": "JPN",
+              "codigo_postal": "45234",
+              "referencia": null
+            }
+          },
+          "destinatarios": [],
+          "mercancias": [
+            {
+              "no_identificacion": "SKU-91807",
+              "fraccion_arancelaria": "29321990",
+              "cantidad_aduana": 5.0,
+              "unidad_aduana": "27",
+              "valor_unitario_aduana": 15726.17,
+              "valor_dolares": 78630.85,
+              "descripciones_especificas": []
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_comercio_ext_usd_020",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "EX",
+        "folio": "18066",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "75700",
+        "exportacion": "02",
+        "no_certificado": "18824630582443449552",
+        "folio_fiscal": "9AAA7D3B-2447-4E11-9F1F-75F7C30051F4",
+        "fecha_emision": "2026-02-17T02:26:14",
+        "fecha_timbrado": "2026-02-17T02:27:49",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000023464235",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "USD",
+        "tipo_cambio": 17.7102,
+        "emisor": {
+          "nombre": "MENDOZA-CARRERO SC",
+          "RFC": "MPN180113EN3",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "GÓMEZ-EALANTE SC",
+          "RFC": "XEXX010101000",
+          "uso_cfdi": "S01",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "67269"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 1.0,
+            "valor_unitario": 7290.09,
+            "descuento": null,
+            "importe": 7290.09,
+            "iva": 1166.41,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 7290.09,
+        "descuento": null,
+        "iva": 1166.41,
+        "retenciones": null,
+        "total": 8456.5,
+        "complemento_comercio_exterior": {
+          "version": "2.0",
+          "motivo_traslado": "A",
+          "clave_de_pedimento": "A1",
+          "certificado_origen": "0",
+          "num_certificado_origen": null,
+          "numero_exportador_confiable": null,
+          "incoterm": "EXW",
+          "observaciones": null,
+          "tipo_cambio_usd": 17.7102,
+          "total_usd": 7290.09,
+          "emisor": {
+            "curp": null,
+            "domicilio": {
+              "calle": "Continuación Salas",
+              "numero_exterior": "3199",
+              "numero_interior": null,
+              "colonia": "Col. Centro",
+              "localidad": "San María Elena de la Montaña",
+              "municipio": "Vieja Bolivia",
+              "estado": "JAL",
+              "pais": "MEX",
+              "codigo_postal": "65605",
+              "referencia": null
+            }
+          },
+          "propietarios": [],
+          "receptor": {
+            "num_reg_id_trib": "11-6025345",
+            "domicilio": {
+              "calle": "2638 Edward Greens Apt. 201",
+              "numero_exterior": "3900",
+              "numero_interior": null,
+              "colonia": null,
+              "localidad": "Petersenstad",
+              "municipio": null,
+              "estado": "UT",
+              "pais": "USA",
+              "codigo_postal": "29225",
+              "referencia": null
+            }
+          },
+          "destinatarios": [],
+          "mercancias": [
+            {
+              "no_identificacion": "SKU-95635",
+              "fraccion_arancelaria": "61091000",
+              "cantidad_aduana": 1.0,
+              "unidad_aduana": "25",
+              "valor_unitario_aduana": 7290.09,
+              "valor_dolares": 7290.09,
+              "descripciones_especificas": []
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_construccion_009",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "C",
+        "folio": "21873",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "90644022508642359396",
+        "folio_fiscal": "B6F8A9AB-B603-4CC4-B951-2D029F007668",
+        "fecha_emision": "2026-06-02T09:26:14",
+        "fecha_timbrado": "2026-06-02T09:27:58",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000094358613",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "TERRAZAS-POSADA AC",
+          "RFC": "KTZ131005JD8",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "CORPORIN NÚÑEZ-GARCÍA AC",
+          "RFC": "GIV060717TV0",
+          "uso_cfdi": "I01",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "86332"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de construcción de casas unifamiliares nuevas",
+            "clave_prod_serv": "72111006",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 591010.18,
+            "descuento": null,
+            "importe": 591010.18,
+            "iva": 94561.63,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Construcción de edificaciones residenciales",
+            "clave_prod_serv": "80131501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 212221.25,
+            "descuento": 21222.13,
+            "importe": 212221.25,
+            "iva": 30559.86,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 803231.43,
+        "descuento": 21222.13,
+        "iva": 125121.49,
+        "retenciones": null,
+        "total": 907130.79
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_construccion_010",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "95819",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "72000",
+        "exportacion": "01",
+        "no_certificado": "26756625500100507844",
+        "folio_fiscal": "32B799A2-87EF-45A5-A7A8-D9CAAA53E78B",
+        "fecha_emision": "2026-04-13T14:26:14",
+        "fecha_timbrado": "2026-04-13T14:27:11",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000819600293",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "DEL VALLE Y LOZANO SAS DE CV",
+          "RFC": "UGO050612UN1",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "PROYECTOS MIRANDA, SOLIZ Y CHÁVEZ SAS DE CV",
+          "RFC": "NKN031027WA6",
+          "uso_cfdi": "I01",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "23390"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de construcción de casas unifamiliares nuevas",
+            "clave_prod_serv": "72111006",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 722629.06,
+            "descuento": null,
+            "importe": 722629.06,
+            "iva": 115620.65,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 722629.06,
+        "descuento": null,
+        "iva": 115620.65,
+        "retenciones": null,
+        "total": 838249.71
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_restaurante_007",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "A",
+        "folio": "20311",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "95505235412180627948",
+        "folio_fiscal": "565413D3-4CC2-4184-AF6B-C557EF2E5209",
+        "fecha_emision": "2026-01-29T21:26:14",
+        "fecha_timbrado": "2026-01-29T21:27:42",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000733414127",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CARRIÓN-ARELLANO S DE RL DE CV",
+          "RFC": "ZSG001029KW6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "MALDONADO Y RODARTE SC",
+          "RFC": "JWI161209HH0",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "62495"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Restaurantes y catering, servicios de cafetería",
+            "clave_prod_serv": "90101701",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 6.0,
+            "valor_unitario": 240.33,
+            "descuento": null,
+            "importe": 1441.98,
+            "iva": 230.72,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de hospedaje en hotel, habitación sencilla",
+            "clave_prod_serv": "90111801",
+            "clave_unidad": "E48",
+            "unidad": "Noche",
+            "cantidad": 1.0,
+            "valor_unitario": 2461.81,
+            "descuento": 246.18,
+            "importe": 2461.81,
+            "iva": 354.5,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 3903.79,
+        "descuento": 246.18,
+        "iva": 585.22,
+        "retenciones": null,
+        "total": 4242.83
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_restaurante_008",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "F",
+        "folio": "41682",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "76100",
+        "exportacion": "01",
+        "no_certificado": "59828544634813982537",
+        "folio_fiscal": "3448FF24-5E42-4539-BC64-B2799307A66A",
+        "fecha_emision": "2026-05-24T21:26:14",
+        "fecha_timbrado": "2026-05-24T21:27:08",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000749473842",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CLUB ULLOA-RODARTE SC",
+          "RFC": "IRX190126ZN6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "CLUB LEYVA Y JAIME SA DE CV",
+          "RFC": "QBY061105SV0",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "601",
+          "domicilio_fiscal": "63466"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Venta de alimentos preparados para llevar",
+            "clave_prod_serv": "90101801",
+            "clave_unidad": "H87",
+            "unidad": "Pieza",
+            "cantidad": 19.0,
+            "valor_unitario": 277.47,
+            "descuento": null,
+            "importe": 5271.93,
+            "iva": 843.51,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 5271.93,
+        "descuento": null,
+        "iva": 843.51,
+        "retenciones": null,
+        "total": 6115.44
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_salud_011",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "F",
+        "folio": "10501",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "52190836140784411286",
+        "folio_fiscal": "723F0EB0-9780-432C-9C79-2C382D371202",
+        "fecha_emision": "2026-05-08T06:26:14",
+        "fecha_timbrado": "2026-05-08T06:27:37",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000209080537",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "MEJÍA Y HINOJOSA S DE RL DE CV",
+          "RFC": "XDW130925RH8",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "ESPINOZA Y HERNÁNDEZ SAS DE CV",
+          "RFC": "QML961006KM1",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "82534"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Consulta médica en consultorio",
+            "clave_prod_serv": "85101503",
+            "clave_unidad": "E48",
+            "unidad": "Consulta",
+            "cantidad": 2.0,
+            "valor_unitario": 828.7,
+            "descuento": null,
+            "importe": 1657.4,
+            "iva": 265.18,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicios de enfermería y cuidados médicos",
+            "clave_prod_serv": "85101601",
+            "clave_unidad": "E48",
+            "unidad": "Hora",
+            "cantidad": 1.0,
+            "valor_unitario": 229.43,
+            "descuento": 22.94,
+            "importe": 229.43,
+            "iva": 33.04,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 1886.83,
+        "descuento": 22.94,
+        "iva": 298.22,
+        "retenciones": null,
+        "total": 2162.11
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_salud_012",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "F",
+        "folio": "20370",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "54773314321893047702",
+        "folio_fiscal": "E9483A61-7E19-4689-A16B-E87051EB60E6",
+        "fecha_emision": "2026-05-26T07:26:14",
+        "fecha_timbrado": "2026-05-26T07:28:08",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000300745565",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "BUSTAMANTE, UREÑA Y OQUENDO AC",
+          "RFC": "MNL960223MT3",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "GALLARDO, VALLADARES Y SALCIDO S DE RL DE CV",
+          "RFC": "RMO171229ZR8",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "19937"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Consulta médica en consultorio",
+            "clave_prod_serv": "85101503",
+            "clave_unidad": "E48",
+            "unidad": "Consulta",
+            "cantidad": 2.0,
+            "valor_unitario": 665.5,
+            "descuento": null,
+            "importe": 1331.0,
+            "iva": 212.96,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicios de enfermería y cuidados médicos",
+            "clave_prod_serv": "85101601",
+            "clave_unidad": "E48",
+            "unidad": "Hora",
+            "cantidad": 4.0,
+            "valor_unitario": 422.67,
+            "descuento": null,
+            "importe": 1690.68,
+            "iva": 270.51,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 3021.68,
+        "descuento": null,
+        "iva": 483.47,
+        "retenciones": null,
+        "total": 3505.15
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_eur_ingreso_005",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "55100",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "90371693101045939038",
+        "folio_fiscal": "19FA1E8C-2AAF-45B6-8D27-301C0766C9E7",
+        "fecha_emision": "2026-05-01T23:26:14",
+        "fecha_timbrado": "2026-05-01T23:26:51",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000951583614",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "MÍAS AC",
+          "RFC": "HYB120520YD9",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "LOMELI Y CASTILLO S DE RL DE CV",
+          "RFC": "XCR101224VY7",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "38240"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 5.0,
+            "valor_unitario": 23129.03,
+            "descuento": null,
+            "importe": 115645.15,
+            "iva": 18503.22,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 3.0,
+            "valor_unitario": 5428.65,
+            "descuento": null,
+            "importe": 16285.95,
+            "iva": 2605.75,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 131931.1,
+        "descuento": null,
+        "iva": 21108.97,
+        "retenciones": null,
+        "total": 153040.07
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_eur_ingreso_006",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "12405",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "07891230892114481297",
+        "folio_fiscal": "3099266E-B263-4A2A-B15E-5E7E78D1B02C",
+        "fecha_emision": "2026-05-30T17:26:14",
+        "fecha_timbrado": "2026-05-30T17:26:33",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000008947865",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "ACUÑA ANAYA MÓNICA",
+          "RFC": "WYDQ951218JJ1",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "ORTIZ SC",
+          "RFC": "BFG080612BI2",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "612",
+          "domicilio_fiscal": "14467"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 87184.5,
+            "descuento": 17436.9,
+            "importe": 174369.0,
+            "iva": 25109.14,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 1.0,
+            "valor_unitario": 4202.33,
+            "descuento": 420.23,
+            "importe": 4202.33,
+            "iva": 605.14,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 3.0,
+            "valor_unitario": 51473.81,
+            "descuento": null,
+            "importe": 154421.43,
+            "iva": 24707.43,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 332992.76,
+        "descuento": 17857.13,
+        "iva": 50421.71,
+        "retenciones": 15693.21,
+        "total": 349864.13
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_001",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "C",
+        "folio": "7261",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "05210911673931754470",
+        "folio_fiscal": "5CC40979-ADD1-4FA7-AECF-199EEA82518E",
+        "fecha_emision": "2026-04-16T07:26:14",
+        "fecha_timbrado": "2026-04-16T07:28:10",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000788590510",
+        "metodo_pago": "PUE",
+        "forma_pago": "08",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "DEL RÍO ALONSO JONÁS",
+          "RFC": "ZOCI950728OE5",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "NAVA, ROBLES Y AGUAYO AC",
+          "RFC": "JDQ980904ZY2",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "83643"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 8569.41,
+            "descuento": null,
+            "importe": 25708.23,
+            "iva": 4113.32,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 72053.85,
+            "descuento": null,
+            "importe": 72053.85,
+            "iva": 11528.62,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 93308.68,
+            "descuento": null,
+            "importe": 186617.36,
+            "iva": 29858.78,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 284379.44,
+        "descuento": null,
+        "iva": 45500.72,
+        "retenciones": 18661.74,
+        "total": 311218.42
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_mxn_ingreso_002",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "A",
+        "folio": "66579",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "28191800862924825739",
+        "folio_fiscal": "05C5AAFC-75A1-4E02-A117-B0E8DB11671F",
+        "fecha_emision": "2026-02-19T01:26:14",
+        "fecha_timbrado": "2026-02-19T01:27:20",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000481340504",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "VALENTÍN OCAMPO TEODORO",
+          "RFC": "CDDG000908SZ7",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "CASILLAS-TAMEZ SA DE CV",
+          "RFC": "UEQ121003RM2",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "81976"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 20683.38,
+            "descuento": null,
+            "importe": 20683.38,
+            "iva": 3309.34,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 6769.17,
+            "descuento": 2030.75,
+            "importe": 20307.51,
+            "iva": 2924.28,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 56753.67,
+            "descuento": null,
+            "importe": 113507.34,
+            "iva": 18161.17,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 154498.23,
+        "descuento": 2030.75,
+        "iva": 24394.79,
+        "retenciones": 11350.73,
+        "total": 165511.54
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_usd_ingreso_003",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "F",
+        "folio": "61041",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "44100",
+        "exportacion": "01",
+        "no_certificado": "43549801414560654106",
+        "folio_fiscal": "57EBD042-01FE-4C1A-BD80-622DB1DF37AA",
+        "fecha_emision": "2026-02-27T10:26:14",
+        "fecha_timbrado": "2026-02-27T10:26:59",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000253463879",
+        "metodo_pago": "PPD",
+        "forma_pago": "99",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "OROO-ARANDA SC",
+          "RFC": "HQA000926HS6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "DELGADILLO S DE RL DE CV",
+          "RFC": "OXO111123FD8",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "74795"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 2.0,
+            "valor_unitario": 10730.97,
+            "descuento": 1073.1,
+            "importe": 21461.94,
+            "iva": 3262.21,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 75778.82,
+            "descuento": 7577.88,
+            "importe": 75778.82,
+            "iva": 10912.15,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 97240.76,
+        "descuento": 8650.98,
+        "iva": 14174.36,
+        "retenciones": null,
+        "total": 102764.14
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_40_usd_ingreso_004",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "B",
+        "folio": "8226",
+        "tipo_comprobante": "I",
+        "lugar_expedicion": "20000",
+        "exportacion": "01",
+        "no_certificado": "20222695345797320757",
+        "folio_fiscal": "04566F06-C3B5-495C-A639-85E381D66DC6",
+        "fecha_emision": "2026-03-18T07:26:14",
+        "fecha_timbrado": "2026-03-18T07:27:41",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000806163770",
+        "metodo_pago": "PUE",
+        "forma_pago": "12",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "ZAPATA MESA ANTONIA",
+          "RFC": "OVSF821101NF6",
+          "regimen_fiscal": "612"
+        },
+        "receptor": {
+          "nombre": "CLUB MÍAS-DUARTE SC",
+          "RFC": "QFH110414EH4",
+          "uso_cfdi": "G03",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "10030"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Servicio de consultoría",
+            "clave_prod_serv": "81112501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 2.0,
+            "valor_unitario": 12284.56,
+            "descuento": null,
+            "importe": 24569.12,
+            "iva": 3931.06,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Licencia de software",
+            "clave_prod_serv": "43211507",
+            "clave_unidad": "H87",
+            "unidad": "Licencia",
+            "cantidad": 3.0,
+            "valor_unitario": 7892.31,
+            "descuento": null,
+            "importe": 23676.93,
+            "iva": 3788.31,
+            "objeto_imp": "02"
+          },
+          {
+            "descripcion": "Honorarios profesionales",
+            "clave_prod_serv": "80111501",
+            "clave_unidad": "E48",
+            "unidad": "Servicio",
+            "cantidad": 1.0,
+            "valor_unitario": 47130.05,
+            "descuento": null,
+            "importe": 47130.05,
+            "iva": 7540.81,
+            "objeto_imp": "02"
+          }
+        ],
+        "subtotal": 95376.1,
+        "descuento": null,
+        "iva": 15260.18,
+        "retenciones": 4713.01,
+        "total": 105923.27
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_nomina_036",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "NOM",
+        "folio": "1939",
+        "tipo_comprobante": "N",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "00706628377527559101",
+        "folio_fiscal": "8F3E6B82-9021-489E-BA20-F75372B9E465",
+        "fecha_emision": "2026-05-03T03:26:14",
+        "fecha_timbrado": "2026-05-03T03:27:50",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000060884155",
+        "metodo_pago": "PUE",
+        "forma_pago": "04",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "LUCERO SC",
+          "RFC": "DVH080326DZ3",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "NAZARIO HIDALGO DARÍO",
+          "RFC": "NDHD620823FE2",
+          "uso_cfdi": "CN01",
+          "regimen_fiscal": "605",
+          "domicilio_fiscal": "95467"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago de nómina",
+            "clave_prod_serv": "84111505",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 32653.05,
+            "descuento": null,
+            "importe": 32653.05,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 32653.05,
+        "descuento": 4081.64,
+        "iva": null,
+        "retenciones": null,
+        "total": 28571.41,
+        "complemento_nomina": {
+          "version": "1.2",
+          "tipo_nomina": "O",
+          "fecha_pago": "2026-05-02",
+          "fecha_inicial_pago": "2026-04-16",
+          "fecha_final_pago": "2026-04-30",
+          "num_dias_pagados": 15.0,
+          "total_percepciones": 32653.05,
+          "total_deducciones": 4081.64,
+          "total_otros_pagos": null,
+          "emisor": {
+            "curp": null,
+            "registro_patronal": "A1909986074",
+            "rfc_patron_origen": null,
+            "entidad_sncf": null
+          },
+          "receptor": {
+            "curp": "NLHD620823HMNQITA0",
+            "tipo_contrato": "03",
+            "tipo_regimen": "10",
+            "num_empleado": "EMP1809",
+            "departamento": "Tecnología",
+            "puesto": "Gerente",
+            "tipo_jornada": "04",
+            "periodicidad_pago": "03",
+            "banco": "002",
+            "cuenta_bancaria": "952750938940840073",
+            "salario_base_cot_apor": 2176.87,
+            "salario_diario_integrado": 2721.09,
+            "clave_ent_fed": "JAL",
+            "num_seguridad_social": "61827457882",
+            "fecha_inicio_rel_laboral": "2022-03-01",
+            "antiguedad": "P217W",
+            "riesgo_puesto": "1",
+            "sindicalizado": "No",
+            "sub_contratacion": []
+          },
+          "percepciones": {
+            "total_sueldos": 32653.05,
+            "total_separacion_indemniz": null,
+            "total_jubilacion_pen_ret": null,
+            "total_gravado": 30040.81,
+            "total_exento": 2612.24,
+            "percepciones": [
+              {
+                "tipo_percepcion": "001",
+                "clave": "001",
+                "concepto": "Sueldos, Salarios Rayas y Jornales",
+                "importe_gravado": 30040.81,
+                "importe_exento": 2612.24,
+                "horas_extra": [],
+                "jubilacion_pension_retiro": null,
+                "separacion_indemnizacion": null
+              }
+            ]
+          },
+          "deducciones": {
+            "total_otras_deducciones": 816.33,
+            "total_impuestos_retenidos": 3265.31,
+            "deducciones": [
+              {
+                "tipo_deduccion": "001",
+                "clave": "001",
+                "concepto": "Seguridad Social",
+                "importe": 816.33
+              },
+              {
+                "tipo_deduccion": "002",
+                "clave": "002",
+                "concepto": "ISR",
+                "importe": 3265.31
+              }
+            ]
+          },
+          "otros_pagos": [],
+          "incapacidades": []
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_nomina_037",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "NOM",
+        "folio": "98573",
+        "tipo_comprobante": "N",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "38421266940430453779",
+        "folio_fiscal": "3CB87A04-F832-4CD5-A16E-BFED8962D144",
+        "fecha_emision": "2026-06-20T23:26:15",
+        "fecha_timbrado": "2026-06-20T23:26:20",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000106161881",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "URÍAS, CORRALES Y ROBLES AC",
+          "RFC": "BEY230428MT6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "DOMÍNGUEZ ULIBARRI MARISELA",
+          "RFC": "DTUM041210FW8",
+          "uso_cfdi": "CN01",
+          "regimen_fiscal": "605",
+          "domicilio_fiscal": "71307"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago de nómina",
+            "clave_prod_serv": "84111505",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 69195.9,
+            "descuento": null,
+            "importe": 69195.9,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 69195.9,
+        "descuento": 8649.49,
+        "iva": null,
+        "retenciones": null,
+        "total": 60546.41,
+        "complemento_nomina": {
+          "version": "1.2",
+          "tipo_nomina": "O",
+          "fecha_pago": "2026-06-20",
+          "fecha_inicial_pago": "2026-05-20",
+          "fecha_final_pago": "2026-06-18",
+          "num_dias_pagados": 30.0,
+          "total_percepciones": 69195.9,
+          "total_deducciones": 8649.49,
+          "total_otros_pagos": null,
+          "emisor": {
+            "curp": null,
+            "registro_patronal": "M9581103066",
+            "rfc_patron_origen": null,
+            "entidad_sncf": null
+          },
+          "receptor": {
+            "curp": "DBUM041210HDFWLFA0",
+            "tipo_contrato": "01",
+            "tipo_regimen": "10",
+            "num_empleado": "EMP5632",
+            "departamento": "Tecnología",
+            "puesto": "Supervisor",
+            "tipo_jornada": "01",
+            "periodicidad_pago": "04",
+            "banco": "006",
+            "cuenta_bancaria": "005910005946879371",
+            "salario_base_cot_apor": 2306.53,
+            "salario_diario_integrado": 2883.16,
+            "clave_ent_fed": "MC",
+            "num_seguridad_social": "73503412400",
+            "fecha_inicio_rel_laboral": "2023-08-20",
+            "antiguedad": "P147W",
+            "riesgo_puesto": "1",
+            "sindicalizado": "No",
+            "sub_contratacion": []
+          },
+          "percepciones": {
+            "total_sueldos": 69195.9,
+            "total_separacion_indemniz": null,
+            "total_jubilacion_pen_ret": null,
+            "total_gravado": 63660.23,
+            "total_exento": 5535.67,
+            "percepciones": [
+              {
+                "tipo_percepcion": "001",
+                "clave": "001",
+                "concepto": "Sueldos, Salarios Rayas y Jornales",
+                "importe_gravado": 63660.23,
+                "importe_exento": 5535.67,
+                "horas_extra": [],
+                "jubilacion_pension_retiro": null,
+                "separacion_indemnizacion": null
+              }
+            ]
+          },
+          "deducciones": {
+            "total_otras_deducciones": 1729.9,
+            "total_impuestos_retenidos": 6919.59,
+            "deducciones": [
+              {
+                "tipo_deduccion": "001",
+                "clave": "001",
+                "concepto": "Seguridad Social",
+                "importe": 1729.9
+              },
+              {
+                "tipo_deduccion": "002",
+                "clave": "002",
+                "concepto": "ISR",
+                "importe": 6919.59
+              }
+            ]
+          },
+          "otros_pagos": [],
+          "incapacidades": []
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_nomina_038",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "NOM",
+        "folio": "49587",
+        "tipo_comprobante": "N",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "16698754383787961073",
+        "folio_fiscal": "02E5CE5D-B598-483D-B307-F6617F135E71",
+        "fecha_emision": "2026-05-14T20:26:15",
+        "fecha_timbrado": "2026-05-14T20:27:33",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000548543492",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "GRUPO GUARDADO-ULLOA AC",
+          "RFC": "SEH970401YZ2",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "MATÍAS TAPIA FRIDA",
+          "RFC": "MATF940701VS6",
+          "uso_cfdi": "CN01",
+          "regimen_fiscal": "605",
+          "domicilio_fiscal": "31828"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago de nómina",
+            "clave_prod_serv": "84111505",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 5342.05,
+            "descuento": null,
+            "importe": 5342.05,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 5342.05,
+        "descuento": 667.76,
+        "iva": null,
+        "retenciones": null,
+        "total": 4674.29,
+        "complemento_nomina": {
+          "version": "1.2",
+          "tipo_nomina": "O",
+          "fecha_pago": "2026-05-14",
+          "fecha_inicial_pago": "2026-05-06",
+          "fecha_final_pago": "2026-05-12",
+          "num_dias_pagados": 7.0,
+          "total_percepciones": 5342.05,
+          "total_deducciones": 667.76,
+          "total_otros_pagos": null,
+          "emisor": {
+            "curp": null,
+            "registro_patronal": "R6931250294",
+            "rfc_patron_origen": null,
+            "entidad_sncf": null
+          },
+          "receptor": {
+            "curp": "MLTF940701MHGFXVA0",
+            "tipo_contrato": "05",
+            "tipo_regimen": "04",
+            "num_empleado": "EMP2950",
+            "departamento": "Compras",
+            "puesto": "Desarrollador",
+            "tipo_jornada": "01",
+            "periodicidad_pago": "05",
+            "banco": "012",
+            "cuenta_bancaria": "765720467675302024",
+            "salario_base_cot_apor": 763.15,
+            "salario_diario_integrado": 953.94,
+            "clave_ent_fed": "MC",
+            "num_seguridad_social": "79432531398",
+            "fecha_inicio_rel_laboral": "2018-09-19",
+            "antiguedad": "P399W",
+            "riesgo_puesto": "2",
+            "sindicalizado": "No",
+            "sub_contratacion": []
+          },
+          "percepciones": {
+            "total_sueldos": 5342.05,
+            "total_separacion_indemniz": null,
+            "total_jubilacion_pen_ret": null,
+            "total_gravado": 4914.69,
+            "total_exento": 427.36,
+            "percepciones": [
+              {
+                "tipo_percepcion": "001",
+                "clave": "001",
+                "concepto": "Sueldos, Salarios Rayas y Jornales",
+                "importe_gravado": 4914.69,
+                "importe_exento": 427.36,
+                "horas_extra": [],
+                "jubilacion_pension_retiro": null,
+                "separacion_indemnizacion": null
+              }
+            ]
+          },
+          "deducciones": {
+            "total_otras_deducciones": 133.55,
+            "total_impuestos_retenidos": 534.21,
+            "deducciones": [
+              {
+                "tipo_deduccion": "001",
+                "clave": "001",
+                "concepto": "Seguridad Social",
+                "importe": 133.55
+              },
+              {
+                "tipo_deduccion": "002",
+                "clave": "002",
+                "concepto": "ISR",
+                "importe": 534.21
+              }
+            ]
+          },
+          "otros_pagos": [],
+          "incapacidades": []
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_nomina_039",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "NOM",
+        "folio": "32480",
+        "tipo_comprobante": "N",
+        "lugar_expedicion": "64000",
+        "exportacion": "01",
+        "no_certificado": "82094734497803612902",
+        "folio_fiscal": "D933B1BF-5D6A-4EAF-88A7-2FB7CECF8A17",
+        "fecha_emision": "2026-05-13T19:26:15",
+        "fecha_timbrado": "2026-05-13T19:27:21",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000181625949",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "INDUSTRIAS GUEVARA Y GOLLUM AC",
+          "RFC": "MYX240418GP6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "APODACA CONTRERAS JACINTO",
+          "RFC": "AMCJ661127YK4",
+          "uso_cfdi": "CN01",
+          "regimen_fiscal": "605",
+          "domicilio_fiscal": "46155"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago de nómina",
+            "clave_prod_serv": "84111505",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 17564.7,
+            "descuento": null,
+            "importe": 17564.7,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 17564.7,
+        "descuento": 2195.59,
+        "iva": null,
+        "retenciones": null,
+        "total": 15369.11,
+        "complemento_nomina": {
+          "version": "1.2",
+          "tipo_nomina": "O",
+          "fecha_pago": "2026-05-12",
+          "fecha_inicial_pago": "2026-04-11",
+          "fecha_final_pago": "2026-05-10",
+          "num_dias_pagados": 30.0,
+          "total_percepciones": 17564.7,
+          "total_deducciones": 2195.59,
+          "total_otros_pagos": null,
+          "emisor": {
+            "curp": null,
+            "registro_patronal": "Z0030663116",
+            "rfc_patron_origen": null,
+            "entidad_sncf": null
+          },
+          "receptor": {
+            "curp": "ACCJ661127MTCLWAA0",
+            "tipo_contrato": "02",
+            "tipo_regimen": "03",
+            "num_empleado": "EMP7965",
+            "departamento": "Tecnología",
+            "puesto": "Analista",
+            "tipo_jornada": "02",
+            "periodicidad_pago": "03",
+            "banco": "044",
+            "cuenta_bancaria": "112092292769931305",
+            "salario_base_cot_apor": 585.49,
+            "salario_diario_integrado": 731.86,
+            "clave_ent_fed": "NL",
+            "num_seguridad_social": "27027195802",
+            "fecha_inicio_rel_laboral": "2020-07-15",
+            "antiguedad": "P304W",
+            "riesgo_puesto": "5",
+            "sindicalizado": "No",
+            "sub_contratacion": []
+          },
+          "percepciones": {
+            "total_sueldos": 17564.7,
+            "total_separacion_indemniz": null,
+            "total_jubilacion_pen_ret": null,
+            "total_gravado": 16159.52,
+            "total_exento": 1405.18,
+            "percepciones": [
+              {
+                "tipo_percepcion": "001",
+                "clave": "001",
+                "concepto": "Sueldos, Salarios Rayas y Jornales",
+                "importe_gravado": 16159.52,
+                "importe_exento": 1405.18,
+                "horas_extra": [],
+                "jubilacion_pension_retiro": null,
+                "separacion_indemnizacion": null
+              }
+            ]
+          },
+          "deducciones": {
+            "total_otras_deducciones": 439.12,
+            "total_impuestos_retenidos": 1756.47,
+            "deducciones": [
+              {
+                "tipo_deduccion": "001",
+                "clave": "001",
+                "concepto": "Seguridad Social",
+                "importe": 439.12
+              },
+              {
+                "tipo_deduccion": "002",
+                "clave": "002",
+                "concepto": "ISR",
+                "importe": 1756.47
+              }
+            ]
+          },
+          "otros_pagos": [],
+          "incapacidades": []
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_nomina_040",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "NOM",
+        "folio": "24762",
+        "tipo_comprobante": "N",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "27624783058094833011",
+        "folio_fiscal": "A80AD34B-4811-49BD-B96A-5AE42FBB319E",
+        "fecha_emision": "2026-06-27T07:26:15",
+        "fecha_timbrado": "2026-06-27T07:28:04",
+        "rfc_proveedor_certificacion": "CSM160201TU5",
+        "no_certificado_sat": "00001000000510846916",
+        "metodo_pago": "PUE",
+        "forma_pago": "03",
+        "moneda": "MXN",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "BERMÚDEZ-ARIAS SC",
+          "RFC": "IQQ960723KT4",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "CONCEPCIÓN MARROQUÍN NANCY",
+          "RFC": "CJMN890105OI4",
+          "uso_cfdi": "CN01",
+          "regimen_fiscal": "605",
+          "domicilio_fiscal": "37046"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago de nómina",
+            "clave_prod_serv": "84111505",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 19157.46,
+            "descuento": null,
+            "importe": 19157.46,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 19157.46,
+        "descuento": 2394.69,
+        "iva": null,
+        "retenciones": null,
+        "total": 16762.77,
+        "complemento_nomina": {
+          "version": "1.2",
+          "tipo_nomina": "E",
+          "fecha_pago": "2026-06-28",
+          "fecha_inicial_pago": "2026-06-13",
+          "fecha_final_pago": "2026-06-26",
+          "num_dias_pagados": 14.0,
+          "total_percepciones": 19157.46,
+          "total_deducciones": 2394.69,
+          "total_otros_pagos": null,
+          "emisor": {
+            "curp": null,
+            "registro_patronal": "X1877792859",
+            "rfc_patron_origen": null,
+            "entidad_sncf": null
+          },
+          "receptor": {
+            "curp": "CPMN890105HVZLNWA0",
+            "tipo_contrato": "03",
+            "tipo_regimen": "02",
+            "num_empleado": "EMP9807",
+            "departamento": "Logística",
+            "puesto": "Analista",
+            "tipo_jornada": "01",
+            "periodicidad_pago": "99",
+            "banco": "009",
+            "cuenta_bancaria": "421619250535457699",
+            "salario_base_cot_apor": 1368.39,
+            "salario_diario_integrado": 1710.49,
+            "clave_ent_fed": "BC",
+            "num_seguridad_social": "59967673885",
+            "fecha_inicio_rel_laboral": "2022-01-05",
+            "antiguedad": "P233W",
+            "riesgo_puesto": "1",
+            "sindicalizado": "No",
+            "sub_contratacion": []
+          },
+          "percepciones": {
+            "total_sueldos": 19157.46,
+            "total_separacion_indemniz": null,
+            "total_jubilacion_pen_ret": null,
+            "total_gravado": 17624.86,
+            "total_exento": 1532.6,
+            "percepciones": [
+              {
+                "tipo_percepcion": "001",
+                "clave": "001",
+                "concepto": "Sueldos, Salarios Rayas y Jornales",
+                "importe_gravado": 17624.86,
+                "importe_exento": 1532.6,
+                "horas_extra": [],
+                "jubilacion_pension_retiro": null,
+                "separacion_indemnizacion": null
+              }
+            ]
+          },
+          "deducciones": {
+            "total_otras_deducciones": 478.94,
+            "total_impuestos_retenidos": 1915.75,
+            "deducciones": [
+              {
+                "tipo_deduccion": "001",
+                "clave": "001",
+                "concepto": "Seguridad Social",
+                "importe": 478.94
+              },
+              {
+                "tipo_deduccion": "002",
+                "clave": "002",
+                "concepto": "ISR",
+                "importe": 1915.75
+              }
+            ]
+          },
+          "otros_pagos": [],
+          "incapacidades": []
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_pago_031",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "RP",
+        "folio": "40681",
+        "tipo_comprobante": "P",
+        "lugar_expedicion": "06600",
+        "exportacion": "01",
+        "no_certificado": "98639877901560907757",
+        "folio_fiscal": "87417FFA-9195-436C-94FF-E0CB0522A9FF",
+        "fecha_emision": "2026-06-24T14:26:14",
+        "fecha_timbrado": "2026-06-24T14:27:43",
+        "rfc_proveedor_certificacion": "MIS141016RX2",
+        "no_certificado_sat": "00001000000752317369",
+        "metodo_pago": null,
+        "forma_pago": null,
+        "moneda": "XXX",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "DESPHO GAMEZ, VELÁSQUEZ Y COLLAZO SAS DE CV",
+          "RFC": "KNG180823YH8",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "RAMÍREZ Y LIRA Y ASOCIADOS SAS DE CV",
+          "RFC": "FHU120515ZH5",
+          "uso_cfdi": "CP01",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "77594"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago",
+            "clave_prod_serv": "84111506",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 0.0,
+            "descuento": null,
+            "importe": 0.0,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 0.0,
+        "descuento": null,
+        "iva": null,
+        "retenciones": null,
+        "total": 0.0,
+        "complemento_pagos": {
+          "version": "2.0",
+          "totales": {
+            "total_retenciones_iva": null,
+            "total_retenciones_isr": null,
+            "total_retenciones_ieps": null,
+            "total_traslados_base_iva16": 18595.4,
+            "total_traslados_impuesto_iva16": 2975.26,
+            "total_traslados_base_iva8": null,
+            "total_traslados_impuesto_iva8": null,
+            "total_traslados_base_iva0": null,
+            "total_traslados_impuesto_iva0": null,
+            "total_traslados_base_iva_exento": null,
+            "monto_total_pagos": 21570.66
+          },
+          "pagos": [
+            {
+              "fecha_pago": "2026-06-13T14:26:14",
+              "forma_de_pago_p": "02",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 21570.66,
+              "num_operacion": "OP5807484691",
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "32EF9B43-C1CB-48B6-A1B1-265DDB0DDD10",
+                  "serie": "A",
+                  "folio": "61909",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 1.0,
+                  "imp_saldo_ant": 21570.66,
+                  "imp_pagado": 21570.66,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 18595.4,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 2975.26
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 18595.4,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 2975.26
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_pago_032",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "RP",
+        "folio": "14362",
+        "tipo_comprobante": "P",
+        "lugar_expedicion": "20000",
+        "exportacion": "01",
+        "no_certificado": "83494310891682991482",
+        "folio_fiscal": "E1B06FA2-2EE5-4583-BB04-9076A2A091C0",
+        "fecha_emision": "2026-06-29T10:26:14",
+        "fecha_timbrado": "2026-06-29T10:27:11",
+        "rfc_proveedor_certificacion": "FEL150316IY4",
+        "no_certificado_sat": "00001000000896920008",
+        "metodo_pago": null,
+        "forma_pago": null,
+        "moneda": "XXX",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "QUINTANA, MONTALVO Y BARRAZA SC",
+          "RFC": "EAG210501KD9",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "AYALA-MONTES AC",
+          "RFC": "NQT020624JV6",
+          "uso_cfdi": "CP01",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "98596"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago",
+            "clave_prod_serv": "84111506",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 0.0,
+            "descuento": null,
+            "importe": 0.0,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 0.0,
+        "descuento": null,
+        "iva": null,
+        "retenciones": null,
+        "total": 0.0,
+        "complemento_pagos": {
+          "version": "2.0",
+          "totales": {
+            "total_retenciones_iva": null,
+            "total_retenciones_isr": null,
+            "total_retenciones_ieps": null,
+            "total_traslados_base_iva16": 12712.76,
+            "total_traslados_impuesto_iva16": 2034.04,
+            "total_traslados_base_iva8": null,
+            "total_traslados_impuesto_iva8": null,
+            "total_traslados_base_iva0": null,
+            "total_traslados_impuesto_iva0": null,
+            "total_traslados_base_iva_exento": null,
+            "monto_total_pagos": 14746.8
+          },
+          "pagos": [
+            {
+              "fecha_pago": "2026-06-16T10:26:14",
+              "forma_de_pago_p": "03",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 14746.8,
+              "num_operacion": "OP5906380763",
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "879BF87B-161C-43DE-94A4-0DEE852B9384",
+                  "serie": "F",
+                  "folio": "75939",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 1.0,
+                  "imp_saldo_ant": 14746.8,
+                  "imp_pagado": 14746.8,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 12712.76,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 2034.04
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 12712.76,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 2034.04
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_pago_033",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "RP",
+        "folio": "2873",
+        "tipo_comprobante": "P",
+        "lugar_expedicion": "20000",
+        "exportacion": "01",
+        "no_certificado": "52112298695280097712",
+        "folio_fiscal": "BC96DD82-A37B-4F2E-AD3B-59B09857AEDC",
+        "fecha_emision": "2026-06-09T17:26:14",
+        "fecha_timbrado": "2026-06-09T17:27:58",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000387324224",
+        "metodo_pago": null,
+        "forma_pago": null,
+        "moneda": "XXX",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "CASTILLO-QUIROZ S. R.L. DE C.V. SC",
+          "RFC": "QVK160930EP3",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "DESPHO MARES Y GUILLEN SA DE CV",
+          "RFC": "FQW200119LU4",
+          "uso_cfdi": "CP01",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "11452"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago",
+            "clave_prod_serv": "84111506",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 0.0,
+            "descuento": null,
+            "importe": 0.0,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 0.0,
+        "descuento": null,
+        "iva": null,
+        "retenciones": null,
+        "total": 0.0,
+        "complemento_pagos": {
+          "version": "2.0",
+          "totales": {
+            "total_retenciones_iva": null,
+            "total_retenciones_isr": null,
+            "total_retenciones_ieps": null,
+            "total_traslados_base_iva16": 47571.69,
+            "total_traslados_impuesto_iva16": 7611.47,
+            "total_traslados_base_iva8": null,
+            "total_traslados_impuesto_iva8": null,
+            "total_traslados_base_iva0": null,
+            "total_traslados_impuesto_iva0": null,
+            "total_traslados_base_iva_exento": null,
+            "monto_total_pagos": 55183.16
+          },
+          "pagos": [
+            {
+              "fecha_pago": "2026-05-12T17:26:14",
+              "forma_de_pago_p": "06",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 55183.16,
+              "num_operacion": null,
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "A7F69FE1-388D-468D-942F-E6A71635282E",
+                  "serie": "F",
+                  "folio": "12173",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 1.0,
+                  "imp_saldo_ant": 55183.16,
+                  "imp_pagado": 55183.16,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 47571.69,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 7611.47
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 47571.69,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 7611.47
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_pago_034",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "RP",
+        "folio": "24971",
+        "tipo_comprobante": "P",
+        "lugar_expedicion": "75700",
+        "exportacion": "01",
+        "no_certificado": "24329856653144244287",
+        "folio_fiscal": "CB600212-F2C4-445F-8847-9726D6A49382",
+        "fecha_emision": "2026-06-12T22:26:14",
+        "fecha_timbrado": "2026-06-12T22:27:58",
+        "rfc_proveedor_certificacion": "INT020124V62",
+        "no_certificado_sat": "00001000000111823003",
+        "metodo_pago": null,
+        "forma_pago": null,
+        "moneda": "XXX",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "ULLOA-MOLINA S. R.L. DE C.V. SC",
+          "RFC": "WKK190815HL6",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "BONILLA Y CAVAZOS SAS DE CV",
+          "RFC": "JRX250224TY6",
+          "uso_cfdi": "CP01",
+          "regimen_fiscal": "626",
+          "domicilio_fiscal": "55791"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago",
+            "clave_prod_serv": "84111506",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 0.0,
+            "descuento": null,
+            "importe": 0.0,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 0.0,
+        "descuento": null,
+        "iva": null,
+        "retenciones": null,
+        "total": 0.0,
+        "complemento_pagos": {
+          "version": "2.0",
+          "totales": {
+            "total_retenciones_iva": null,
+            "total_retenciones_isr": null,
+            "total_retenciones_ieps": null,
+            "total_traslados_base_iva16": 45898.47,
+            "total_traslados_impuesto_iva16": 7343.76,
+            "total_traslados_base_iva8": null,
+            "total_traslados_impuesto_iva8": null,
+            "total_traslados_base_iva0": null,
+            "total_traslados_impuesto_iva0": null,
+            "total_traslados_base_iva_exento": null,
+            "monto_total_pagos": 53242.23
+          },
+          "pagos": [
+            {
+              "fecha_pago": "2026-06-03T22:26:14",
+              "forma_de_pago_p": "28",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 53242.23,
+              "num_operacion": null,
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "3D2CFD3B-8667-4057-8DB3-BB88AB443EC7",
+                  "serie": "F",
+                  "folio": "99956",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 1.0,
+                  "imp_saldo_ant": 53242.23,
+                  "imp_pagado": 53242.23,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 45898.47,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 7343.76
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 45898.47,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 7343.76
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    },
+    {
+      "archivo": "cfdi_v40_pago_035",
+      "fuente": "xml",
+      "datos": {
+        "version": "4.0",
+        "serie": "RP",
+        "folio": "57003",
+        "tipo_comprobante": "P",
+        "lugar_expedicion": "75700",
+        "exportacion": "01",
+        "no_certificado": "14405584833394746252",
+        "folio_fiscal": "84AE1BA8-B76E-4517-89CC-B81FC17C59A1",
+        "fecha_emision": "2026-06-21T06:26:14",
+        "fecha_timbrado": "2026-06-21T06:26:31",
+        "rfc_proveedor_certificacion": "SAT970701NN3",
+        "no_certificado_sat": "00001000000225412883",
+        "metodo_pago": null,
+        "forma_pago": null,
+        "moneda": "XXX",
+        "tipo_cambio": null,
+        "emisor": {
+          "nombre": "GALLARDO-GUEVARA S. R.L. DE C.V. SC",
+          "RFC": "RHL250106BH2",
+          "regimen_fiscal": "601"
+        },
+        "receptor": {
+          "nombre": "BECERRA, LARA Y NIETO SAS DE CV",
+          "RFC": "NKG030501WN8",
+          "uso_cfdi": "CP01",
+          "regimen_fiscal": "603",
+          "domicilio_fiscal": "18615"
+        },
+        "conceptos": [
+          {
+            "descripcion": "Pago",
+            "clave_prod_serv": "84111506",
+            "clave_unidad": "ACT",
+            "unidad": "Actividad",
+            "cantidad": 1.0,
+            "valor_unitario": 0.0,
+            "descuento": null,
+            "importe": 0.0,
+            "iva": null,
+            "objeto_imp": "01"
+          }
+        ],
+        "subtotal": 0.0,
+        "descuento": null,
+        "iva": null,
+        "retenciones": null,
+        "total": 0.0,
+        "complemento_pagos": {
+          "version": "2.0",
+          "totales": {
+            "total_retenciones_iva": null,
+            "total_retenciones_isr": null,
+            "total_retenciones_ieps": null,
+            "total_traslados_base_iva16": 41261.14,
+            "total_traslados_impuesto_iva16": 6601.79,
+            "total_traslados_base_iva8": null,
+            "total_traslados_impuesto_iva8": null,
+            "total_traslados_base_iva0": null,
+            "total_traslados_impuesto_iva0": null,
+            "total_traslados_base_iva_exento": null,
+            "monto_total_pagos": 47862.93
+          },
+          "pagos": [
+            {
+              "fecha_pago": "2026-06-02T06:26:14",
+              "forma_de_pago_p": "28",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 41765.55,
+              "num_operacion": "OP0944924062",
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "2A1F30F4-850B-4B47-8E4F-EB926ED64AE6",
+                  "serie": "A",
+                  "folio": "63352",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 1.0,
+                  "imp_saldo_ant": 41765.55,
+                  "imp_pagado": 41765.55,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 36004.78,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 5760.77
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 36004.78,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 5760.77
+                  }
+                ],
+                "retenciones": []
+              }
+            },
+            {
+              "fecha_pago": "2026-05-27T06:26:14",
+              "forma_de_pago_p": "02",
+              "moneda_p": "MXN",
+              "tipo_cambio_p": 1.0,
+              "monto": 6097.38,
+              "num_operacion": "OP9213370329",
+              "rfc_emisor_cta_ord": null,
+              "nom_banco_ord_ext": null,
+              "cta_ordenante": null,
+              "rfc_emisor_cta_ben": null,
+              "cta_beneficiario": null,
+              "tipo_cad_pago": null,
+              "doctos_relacionados": [
+                {
+                  "id_documento": "989BCE3A-89BB-4429-A3FD-CF24A193E94F",
+                  "serie": "F",
+                  "folio": "33929",
+                  "moneda_dr": "MXN",
+                  "equivalencia_dr": 1.0,
+                  "num_parcialidad": 2.0,
+                  "imp_saldo_ant": 6097.38,
+                  "imp_pagado": 6097.38,
+                  "imp_saldo_insoluto": 0.0,
+                  "objeto_imp_dr": "02",
+                  "impuestos_dr": {
+                    "traslados": [
+                      {
+                        "base_dr": 5256.36,
+                        "impuesto_dr": "002",
+                        "tipo_factor_dr": "Tasa",
+                        "tasa_o_cuota_dr": 0.16,
+                        "importe_dr": 841.02
+                      }
+                    ],
+                    "retenciones": []
+                  }
+                }
+              ],
+              "impuestos_p": {
+                "traslados": [
+                  {
+                    "base_p": 5256.36,
+                    "impuesto_p": "002",
+                    "tipo_factor_p": "Tasa",
+                    "tasa_o_cuota_p": 0.16,
+                    "importe_p": 841.02
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ]
+        }
+      },
+      "valido": true,
+      "errores": []
+    }
+  ]
+}

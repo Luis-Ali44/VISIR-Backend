@@ -1,0 +1,194 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_transporte_013",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "A",
+    "folio": "56437",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "97109007147803347542",
+    "folio_fiscal": "1BA66087-B191-4927-8707-8F5E9F2E8548",
+    "fecha_emision": "2026-03-17T19:26:14",
+    "fecha_timbrado": "2026-03-17T19:26:43",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000780249990",
+    "metodo_pago": "PUE",
+    "forma_pago": "05",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "CORPORIN BARRIOS, HIDALGO Y ALVAREZ SAS DE CV",
+      "RFC": "PKU221029DH1",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "PATIÑO Y PADRÓN Y ASOCIADOS SA DE CV",
+      "RFC": "BBS170218RC8",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "77227"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de transporte de carga terrestre en área local",
+        "clave_prod_serv": "78101801",
+        "clave_unidad": "E48",
+        "unidad": "Viaje",
+        "cantidad": 4.0,
+        "valor_unitario": 3384.98,
+        "descuento": 1353.99,
+        "importe": 13539.92,
+        "iva": 1949.75,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicio de transporte de carga por carretera a nivel regional y nacional",
+        "clave_prod_serv": "78101802",
+        "clave_unidad": "E48",
+        "unidad": "Viaje",
+        "cantidad": 5.0,
+        "valor_unitario": 9377.71,
+        "descuento": null,
+        "importe": 46888.55,
+        "iva": 7502.17,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 60428.47,
+    "descuento": 1353.99,
+    "iva": 9451.92,
+    "retenciones": null,
+    "total": 68526.4,
+    "complemento_carta_porte": {
+      "version": "3.1",
+      "id_ccp": null,
+      "transporte_internacional": "No",
+      "pais_origen_destino": null,
+      "via_entrada_salida": null,
+      "entrada_salida_merc": null,
+      "registro_istmo": null,
+      "ubicacion_polo_origen": null,
+      "ubicacion_polo_destino": null,
+      "total_dist_recorrida": 241.0,
+      "regimenes_aduaneros": [],
+      "ubicaciones": [
+        {
+          "tipo_ubicacion": "Origen",
+          "id_ubicacion": "OR000001",
+          "rfc_remitente_destinatario": "PKU221029DH1",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-03-17T19:26:14",
+          "distancia_recorrida": null,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "NLE",
+            "pais": "MEX",
+            "codigo_postal": "64000",
+            "referencia": null
+          }
+        },
+        {
+          "tipo_ubicacion": "Destino",
+          "id_ubicacion": "DE000001",
+          "rfc_remitente_destinatario": "BBS170218RC8",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-03-18T04:26:14",
+          "distancia_recorrida": 241.0,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "AGU",
+            "pais": "MEX",
+            "codigo_postal": "20000",
+            "referencia": null
+          }
+        }
+      ],
+      "mercancias": {
+        "peso_bruto_total": 4280.0,
+        "unidad_peso": "KGM",
+        "peso_neto_total": null,
+        "num_total_mercancias": 1.0,
+        "cargo_por_tasacion": null,
+        "logistica_inversa": null,
+        "mercancias": [
+          {
+            "bienes_transp": "24131510",
+            "clave_stcc": null,
+            "descripcion": "Refrigeradores de mostrador (carga general)",
+            "cantidad": 9.0,
+            "clave_unidad": "KGM",
+            "unidad": null,
+            "dimensiones": null,
+            "material_peligroso": null,
+            "cve_material_peligroso": null,
+            "embalaje": null,
+            "descrip_embalaje": null,
+            "sector_cofepris": null,
+            "peso_en_kg": 4280.0,
+            "valor_mercancia": null,
+            "moneda": null,
+            "fraccion_arancelaria": null,
+            "uuid_comercio_ext": null,
+            "tipo_materia": null,
+            "descripcion_materia": null,
+            "documentacion_aduanera": [],
+            "guias_identificacion": [],
+            "cantidad_transporta": [],
+            "detalle_mercancia": null
+          }
+        ],
+        "autotransporte": {
+          "perm_sct": "TPAF03",
+          "num_permiso_sct": "PERM/5383/7049",
+          "identificacion_vehicular": {
+            "config_vehicular": "C2",
+            "peso_bruto_vehicular": 12280.0,
+            "placa_vm": "YAF032",
+            "anio_modelo_vm": 2021.0
+          },
+          "seguros": {
+            "asegura_resp_civil": "CRESPO Y MAGAÑA Y ASOCIADOS S DE RL DE CV",
+            "poliza_resp_civil": "POL-7612-PPEZ",
+            "asegura_med_ambiente": null,
+            "poliza_med_ambiente": null,
+            "asegura_carga": null,
+            "poliza_carga": null,
+            "prima_seguro": null
+          },
+          "remolques": []
+        },
+        "transporte_maritimo": null,
+        "transporte_aereo": null,
+        "transporte_ferroviario": null
+      },
+      "figura_transporte": [
+        {
+          "tipo_figura": "01",
+          "rfc_figura": "PAGU951222PC0",
+          "num_licencia": "LIC73091638",
+          "nombre_figura": null,
+          "num_reg_id_trib_figura": null,
+          "residencia_fiscal_figura": null,
+          "partes_transporte": [],
+          "domicilio": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cce20="http://www.sat.gob.mx/ComercioExterior20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd"
+  Version="4.0"
+  Serie="EX"
+  Folio="82070"
+  Fecha="2026-06-26T01:26:14"
+  FormaPago="99"
+  NoCertificado="94924359715418215618"
+  Certificado="gKEHtIKdfx4raOKxQD/VG4uUF5bR0bu8/qhpr4l/TIWKIa3ELoSsE28lwHV7BqTeHzQYwsgtYwn0sW0lLUCEwm8/CTAKw5fWohFUupZ1674="
+  Sello="SDJyegYE4f/qNIMIfNp/dV6XVae3XRakonRfT45tmJDXON844LroeD0t7yfC68ytPVlOh96361ijFBGYtiN8yl07txgp6avIntaOR9bd9ToDYSL8QpwzPwYAc7ZxngOMAzy6oZLh3pBuZ6jBfBsWjKFKlTwFFJ4E6KODAIyUgWzNzETJT2PfVorsSxXjpz24FgSfwnrC0HHfzPHGIpQeyHdPPoAyKAJdueYl5VxDVtGLolUc/VbzDoaaVKv17nk/+Fom1DWhw2X7gvwExkF+f/bwMa+n3SseA8dP6ncmh00wF20kkCeez6tSYpFkwyNTd/sDjjiUMyYHAdDwghxfCA=="
+  SubTotal="78630.85"
+  
+  Moneda="USD"
+  TipoCambio="17.1322"
+  Total="91211.79"
+  TipoDeComprobante="I"
+  Exportacion="02"
+  MetodoPago="PPD"
+  LugarExpedicion="20000">
+  
+
+  <cfdi:Emisor
+    Rfc="BAJ101224GA4"
+    Nombre="LABORATORIOS QUESADA-BARRIOS AC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="XEXX010101000"
+    Nombre="PÉREZ-SALINAS Y ASOCIADOS SAS DE CV"
+    DomicilioFiscalReceptor="41295"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="S01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="5"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="15726.17"
+      Importe="78630.85"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="78630.85" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="12580.94"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosTrasladados="12580.94">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="78630.85" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="12580.94"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <cce20:ComercioExterior
+      Version="2.0"
+      MotivoTraslado="A"
+      ClaveDePedimento="A1"
+      CertificadoOrigen="0"
+      Incoterm="CFR"
+      Subdivision="0"
+      TipoCambioUSD="17.1322"
+      TotalUSD="78630.85">
+
+      <cce20:Emisor>
+        <cce20:Domicilio
+          Calle="Pasaje Norte Gastélum"
+          NumeroExterior="676"
+          Colonia="Col. Centro"
+          Localidad="San Esparta los bajos"
+          Municipio="Vieja Belice"
+          Estado="MC"
+          Pais="MEX"
+          CodigoPostal="41681"/>
+      </cce20:Emisor>
+
+      <cce20:Receptor
+        NumRegIdTrib="10-5134740"
+        Residencia="JPN">
+        <cce20:Domicilio
+          Calle="02889 Latoya Greens"
+          NumeroExterior="6278"
+          Localidad="North Robynton"
+          Estado="NA"
+          Pais="JPN"
+          CodigoPostal="45234"/>
+      </cce20:Receptor>
+
+      <cce20:Mercancias>
+        
+        <cce20:Mercancia
+          NoIdentificacion="SKU-91807"
+          DescripcionAduana="Licencia de software"
+          FraccionArancelaria="29321990"
+          CantidadAduana="5"
+          UnidadAduana="27"
+          ValorUnitarioAduana="15726.17"
+          ValorDolares="78630.85"/>
+        
+      </cce20:Mercancias>
+
+    </cce20:ComercioExterior>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="7FED2CD2-CB4C-4D2A-86F5-1655178B83E1"
+      FechaTimbrado="2026-06-26T01:28:07"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000657545159"
+      SelloCFDI="SDJyegYE4f/qNIMIfNp/dV6XVae3XRakonRfT45tmJDXON844LroeD0t7yfC68ytPVlOh96361ijFBGYtiN8yl07txgp6avIntaOR9bd9ToDYSL8QpwzPwYAc7ZxngOMAzy6oZLh3pBuZ6jBfBsWjKFKlTwFFJ4E6KODAIyUgWzNzETJT2PfVorsSxXjpz24FgSfwnrC0HHfzPHGIpQeyHdPPoAyKAJdueYl5VxDVtGLolUc/VbzDoaaVKv17nk/+Fom1DWhw2X7gvwExkF+f/bwMa+n3SseA8dP6ncmh00wF20kkCeez6tSYpFkwyNTd/sDjjiUMyYHAdDwghxfCA=="
+      SelloSAT="RwR0q3fi1Os2lNzoTdWdsNJRSJ7BqwHVnghELgLxY3+3o098c2sdDFsyRwyGwkMsuD61S8xQZJcZ/p1TtzcCdAAijRpwdafFmfoHnkdRZpgnFpllgPmnKkF1l1H7qkFsF16Q3T9FPfAaSDmh8EUDeiFpQzjIb8RjAlvxzSG14k4RMFnJcj1ec7W46oVNsr0B9vAxVjCW0f+Ez2ZuWP1NZaxL+8FTTl7WLTxPIypU1eliFUBEpZfWp6tK6oHZw5ndo+MqeVb6dmjmNchyzM5Yqm4yMReS1GvNGSToKyC21Kag38UR5btPt1a71OLtKDAlmceVv07yoBQJp/Q4yI8qsA=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import cast
 
 from .campos_cfdi import CAMPOS_OBLIGATORIOS_4_0, CAMPOS_OBLIGATORIOS_CFDI
-from app.services.Extraccion.catalogos import (
+from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
@@ -136,8 +136,6 @@ class ExtractionResultBase(BaseModel):
     @field_validator("metodo_pago", mode="before")
     @classmethod
     def _normalizar_metodo_pago(cls, v: str | None) -> str | None:
-        # cast: normalizar_catalogo() puede no tener anotación de retorno en
-        # catalogos.py, lo que hace que mypy infiera Any en vez de str | None.
         return cast("str | None", normalizar_catalogo(v, CATALOGO_METODO_PAGO))
 
     @field_validator("forma_pago", mode="before")
@@ -242,12 +240,15 @@ class ExtractionResultXML(ExtractionResultBase):
 
         for campo, etiqueta in CAMPOS_OBLIGATORIOS_CFDI.items():
             if getattr(self, campo) in (None, ""):
-                if es_pago and campo in ["forma_pago", "metodo_pago"]:
+                tipo = self.tipo_comprobante
+                if tipo in ("P", "T") and campo in ("forma_pago", "metodo_pago"):
+                    continue
+                if tipo == "N" and campo == "forma_pago":
                     continue
                 ausentes.append(etiqueta)
 
         if not self.conceptos:
-            ausentes.append("Conceptos (al menos 1)")
+            ausentes.append("Conceptos")
 
         if self.version == "4.0":
             for campo, etiqueta in CAMPOS_OBLIGATORIOS_4_0.items():
@@ -256,7 +257,7 @@ class ExtractionResultXML(ExtractionResultBase):
 
             for i, conc in enumerate(self.conceptos):
                 if not getattr(conc, "objeto_imp", None):
-                    ausentes.append(f"Concepto #{i+1} → ObjetoImp [4.0]")
+                    ausentes.append(f"Concepto #{i+1} ObjetoImp [4.0]")
 
         if ausentes:
             raise ValueError(
@@ -344,17 +345,17 @@ def campos_obligatorios_ausentes(data: dict) -> list[str]:
     conceptos = payload.get("conceptos", [])
     for i, conc in enumerate(conceptos):
         if not conc.get("descripcion"):
-            ausentes.append(f"Concepto #{i+1} → Descripción")
+            ausentes.append(f"Concepto #{i+1} Descripción")
         if conc.get("clave_prod_serv") is None:
-            ausentes.append(f"Concepto #{i+1} → ClaveProdServ")
+            ausentes.append(f"Concepto #{i+1} ClaveProdServ")
         if conc.get("cantidad") is None:
-            ausentes.append(f"Concepto #{i+1} → Cantidad")
+            ausentes.append(f"Concepto #{i+1} Cantidad")
         if conc.get("valor_unitario") is None:
-            ausentes.append(f"Concepto #{i+1} → ValorUnitario")
+            ausentes.append(f"Concepto #{i+1} ValorUnitario")
         if conc.get("importe") is None:
-            ausentes.append(f"Concepto #{i+1} → Importe")
+            ausentes.append(f"Concepto #{i+1} Importe")
         if payload.get("version") == "4.0" and not conc.get("objeto_imp"):
-            ausentes.append(f"Concepto #{i+1} → ObjetoImp [4.0]")
+            ausentes.append(f"Concepto #{i+1} ObjetoImp [4.0]")
 
     return ausentes
 

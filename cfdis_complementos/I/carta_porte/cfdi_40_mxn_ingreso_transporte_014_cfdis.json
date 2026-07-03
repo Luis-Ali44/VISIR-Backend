@@ -1,0 +1,182 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_transporte_014",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "F",
+    "folio": "64655",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "06268735016092329018",
+    "folio_fiscal": "8B63F029-8D62-4319-B08C-DE46568D5D58",
+    "fecha_emision": "2026-03-14T02:26:14",
+    "fecha_timbrado": "2026-03-14T02:26:19",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000725692115",
+    "metodo_pago": "PUE",
+    "forma_pago": "27",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "PROYECTOS GASTÉLUM-CORNEJO SC",
+      "RFC": "WXY131120ZI1",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "SAUCEDO-CAVAZOS SAS DE CV",
+      "RFC": "ODI951031TT3",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "603",
+      "domicilio_fiscal": "03965"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicios de entrega postal y paquetería nacional",
+        "clave_prod_serv": "78102201",
+        "clave_unidad": "E48",
+        "unidad": "Envío",
+        "cantidad": 32.0,
+        "valor_unitario": 712.66,
+        "descuento": 1140.26,
+        "importe": 22805.12,
+        "iva": 3466.38,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 22805.12,
+    "descuento": 1140.26,
+    "iva": 3466.38,
+    "retenciones": null,
+    "total": 25131.24,
+    "complemento_carta_porte": {
+      "version": "3.1",
+      "id_ccp": null,
+      "transporte_internacional": "No",
+      "pais_origen_destino": null,
+      "via_entrada_salida": null,
+      "entrada_salida_merc": null,
+      "registro_istmo": null,
+      "ubicacion_polo_origen": null,
+      "ubicacion_polo_destino": null,
+      "total_dist_recorrida": 398.0,
+      "regimenes_aduaneros": [],
+      "ubicaciones": [
+        {
+          "tipo_ubicacion": "Origen",
+          "id_ubicacion": "OR000001",
+          "rfc_remitente_destinatario": "WXY131120ZI1",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-03-14T02:26:14",
+          "distancia_recorrida": null,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "CDMX",
+            "pais": "MEX",
+            "codigo_postal": "06600",
+            "referencia": null
+          }
+        },
+        {
+          "tipo_ubicacion": "Destino",
+          "id_ubicacion": "DE000001",
+          "rfc_remitente_destinatario": "ODI951031TT3",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-03-14T07:26:14",
+          "distancia_recorrida": 398.0,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "JAL",
+            "pais": "MEX",
+            "codigo_postal": "44100",
+            "referencia": null
+          }
+        }
+      ],
+      "mercancias": {
+        "peso_bruto_total": 10679.0,
+        "unidad_peso": "KGM",
+        "peso_neto_total": null,
+        "num_total_mercancias": 1.0,
+        "cargo_por_tasacion": null,
+        "logistica_inversa": null,
+        "mercancias": [
+          {
+            "bienes_transp": "24131510",
+            "clave_stcc": null,
+            "descripcion": "Paquetería y mercancía general",
+            "cantidad": 32.0,
+            "clave_unidad": "KGM",
+            "unidad": null,
+            "dimensiones": null,
+            "material_peligroso": null,
+            "cve_material_peligroso": null,
+            "embalaje": null,
+            "descrip_embalaje": null,
+            "sector_cofepris": null,
+            "peso_en_kg": 10679.0,
+            "valor_mercancia": null,
+            "moneda": null,
+            "fraccion_arancelaria": null,
+            "uuid_comercio_ext": null,
+            "tipo_materia": null,
+            "descripcion_materia": null,
+            "documentacion_aduanera": [],
+            "guias_identificacion": [],
+            "cantidad_transporta": [],
+            "detalle_mercancia": null
+          }
+        ],
+        "autotransporte": {
+          "perm_sct": "TPAF03",
+          "num_permiso_sct": "PERM/0447/8527",
+          "identificacion_vehicular": {
+            "config_vehicular": "C2",
+            "peso_bruto_vehicular": 18679.0,
+            "placa_vm": "RCU999",
+            "anio_modelo_vm": 2023.0
+          },
+          "seguros": {
+            "asegura_resp_civil": "GRUPO VA-TERÁN S DE RL DE CV",
+            "poliza_resp_civil": "POL-6888-PICB",
+            "asegura_med_ambiente": null,
+            "poliza_med_ambiente": null,
+            "asegura_carga": null,
+            "poliza_carga": null,
+            "prima_seguro": null
+          },
+          "remolques": []
+        },
+        "transporte_maritimo": null,
+        "transporte_aereo": null,
+        "transporte_ferroviario": null
+      },
+      "figura_transporte": [
+        {
+          "tipo_figura": "01",
+          "rfc_figura": "WYVO720718VF6",
+          "num_licencia": "LIC89124851",
+          "nombre_figura": null,
+          "num_reg_id_trib_figura": null,
+          "residencia_fiscal_figura": null,
+          "partes_transporte": [],
+          "domicilio": null
+        }
+      ]
+    }
+  }
+}

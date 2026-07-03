@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="A"
+  Folio="17236"
+  Fecha="2026-04-29T14:26:14"
+  FormaPago="02"
+  NoCertificado="72626898822816038312"
+  Certificado="XqnVZQd2nsXAFBY6oh4r9VDouM0Wx/lz9ZwHWqcp5PUlCJXvxdwjaXsA55LR1wJXV0VwbaGUk8iqDmHTREceQ5mHcassKzN4vWBT6zuXGTk="
+  Sello="Hl14dP9xI3/ZsBMHvkaFoUZMI17gyy1L8r0El/CFqzNnzge+jxEzBsNy058ajl29EXfVbhDIzU43/pQNwBq5N22iB2Awno8cEOUXDyaAxFadVnFZmTMakuybEiLmWvIJNFQltUfQjFRKYIqmsi3/7BOr58aeIHOhe77SodhYvUs/X9A0fpYK18mEIqVnIWShtKL/ITLDu8ZHFqpsoybkzZqLOavaxDz3dhK09PQ8fhoYiQaFY/GBPSjM7A9tfE5xkRSzmCCAws86/d9euAi8x5md5aSj8JEdgM3IUH0E4AGp03bgSwJsEWTpBIlimVSGtlkFGKwmBQAMPSyF9Hoj/Q=="
+  SubTotal="75369.74"
+  
+  Moneda="MXN"
+  Total="79891.93"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor
+    Rfc="FPBC920824YP3"
+    Nombre="SANTACRUZ ZARAGOZA LOURDES"
+    RegimenFiscal="612"/>
+
+  <cfdi:Receptor
+    Rfc="UUC030929HH4"
+    Nombre="DESPHO SERRATO, SOTO Y ALMONTE AC"
+    DomicilioFiscalReceptor="85366"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      NoIdentificacion="SKU-68889"
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="37684.87"
+      Importe="75369.74"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="75369.74" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="12059.16"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="75369.74" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="7536.97"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="7536.97"
+    TotalImpuestosTrasladados="12059.16">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="7536.97"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="75369.74" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="12059.16"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="7C98D98F-7F5F-4974-B6B6-8D373485A40D"
+      FechaTimbrado="2026-04-29T14:27:07"
+      RfcProvCertif="MIS141016RX2"
+      NoCertificadoSAT="00001000000287817416"
+      SelloCFDI="Hl14dP9xI3/ZsBMHvkaFoUZMI17gyy1L8r0El/CFqzNnzge+jxEzBsNy058ajl29EXfVbhDIzU43/pQNwBq5N22iB2Awno8cEOUXDyaAxFadVnFZmTMakuybEiLmWvIJNFQltUfQjFRKYIqmsi3/7BOr58aeIHOhe77SodhYvUs/X9A0fpYK18mEIqVnIWShtKL/ITLDu8ZHFqpsoybkzZqLOavaxDz3dhK09PQ8fhoYiQaFY/GBPSjM7A9tfE5xkRSzmCCAws86/d9euAi8x5md5aSj8JEdgM3IUH0E4AGp03bgSwJsEWTpBIlimVSGtlkFGKwmBQAMPSyF9Hoj/Q=="
+      SelloSAT="xN7gCv1oFUIfaJLRYoizW++RuYJ2hNQmn+APqyKW3SbGOy3I0I2iUxzolcXfmLmkqXzZ815ktnqBmCpfnlDGskMOsQs6BR8omHFYaNybq8IPbl5iBGzAR9rn3T1yDt+JCP4Lhka60Uc+fYlqg08O5vis3nyEpYrL9TFC1qL/OFqeQWAZUKgvW5qDjKh6ovc5SB+vPyV6WT6oMtGlp+4mkuIQkUxryHrd27YYaj7Q0ULWkZlCn7TsMq6IDqvLvKMWuAp+k3dBBSiMue2FYJmJSfSnSojcMdaFggnpgya+lqPe8nB1+duWZBdCdkRiO7eX/CEEF6ZlfMinYSjdtFh6Xg=="/>
+  </cfdi:Complemento>
+
+  
+  <cfdi:Addenda>
+    <liverpool:DatosFactura xmlns:liverpool="http://www.liverpool.com.mx/addenda"><liverpool:NumOrden>17236</liverpool:NumOrden><liverpool:Almacen>ALM962</liverpool:Almacen></liverpool:DatosFactura>
+  </cfdi:Addenda>
+
+</cfdi:Comprobante>

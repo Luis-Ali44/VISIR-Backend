@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="C"
+  Folio="48547"
+  Fecha="2026-05-11T17:26:14"
+  NoCertificado="29806760920172165462"
+  Certificado="NaXJKlBB8DJe+DBgGxmVZQGPU6rGoNzj5mZfnygDJ1/hq2ffRGSaWbJ+ey9zz7Exahm1FZ4MxCfX2M6CabiPdwq9c3umZDiC+mIj7Uyl7OY="
+  Sello="jLKErJnTfzbsnYB3iBAxWkPGkWayFXgJvu3aLurD6DOEWFjr7MdyezpMGZfEy0avFJXONAILi60dVwNWrzHzmGJ4j5pgkNzRVHzWXGpyfiSIKub6J9KBicawLX8wlnZYyYtjX61JqQCQnWLgNOwgwRcQLR6ElzaNfbyt/lUb6iRFrEP0GvUeIS265HQmPhVateU5yAro/INuYxI9F8ga+NfRuJuIx/vPBdAcqm4MR72wGyEPcvnC307lLPtqgEuqva9g1tQoYO2BmQGrXoDF6c3VUOxKhcYDdEUArI9ie1bFy8mqtY/SultYpGtfMkVp8oPT1DF2C53NoIJsSutCew=="
+  SubTotal="86820.96"
+  
+  Moneda="MXN"
+  Total="100712.31"
+  TipoDeComprobante="E"
+  Exportacion="01"
+  FormaPago="17"
+  MetodoPago="PUE"
+  LugarExpedicion="75700">
+
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="4F0B53DC-126C-424D-BD52-64B896B27E73"/>
+  </cfdi:CfdiRelacionados>
+
+  <cfdi:Emisor Rfc="FLA090104OM5" Nombre="CARRERO Y GRIJALVA SA DE CV" RegimenFiscal="601"/>
+  
+  <cfdi:Receptor
+    Rfc="EPA120418GJ3"
+    Nombre="BARRERA-PRECIADO Y ASOCIADOS SA DE CV"
+    DomicilioFiscalReceptor="50976"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G02"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="28940.32"
+      Importe="86820.96"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="86820.96" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13891.35"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="13891.35">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="86820.96" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13891.35"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="F3EFCB34-5D74-4E06-B8F7-AA7DAC69375B"
+      FechaTimbrado="2026-05-11T17:27:11"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000024491353"
+      SelloCFDI="jLKErJnTfzbsnYB3iBAxWkPGkWayFXgJvu3aLurD6DOEWFjr7MdyezpMGZfEy0avFJXONAILi60dVwNWrzHzmGJ4j5pgkNzRVHzWXGpyfiSIKub6J9KBicawLX8wlnZYyYtjX61JqQCQnWLgNOwgwRcQLR6ElzaNfbyt/lUb6iRFrEP0GvUeIS265HQmPhVateU5yAro/INuYxI9F8ga+NfRuJuIx/vPBdAcqm4MR72wGyEPcvnC307lLPtqgEuqva9g1tQoYO2BmQGrXoDF6c3VUOxKhcYDdEUArI9ie1bFy8mqtY/SultYpGtfMkVp8oPT1DF2C53NoIJsSutCew=="
+      SelloSAT="rlLLwGKNZoU680OS4xlqgTwYCRWA4sbWTB5DhuQhNVg7ZE+MPRdIxkrteRiRlxjF7vCsGLkUg1rIcSf77Luz1PjXnfyCY7gKJkWMsutjbud3C18Xoy0IGSKR5upN083V+PR5E8Eq2ELVFAzcJDGE7zNaS9zcpk4hrwUeVlRdHCFBObM5MLT2MPUTm1ocnG6Bf5G1eFLtnSgynOjOFk7LP0DbT4lDFKPLJIbFwrD/Ul0aldibYhvNq4WOTlxoftItT0Q002Br0GMSWlcYO75MP6l35SGbpLMLNFeP8bIuhRIdPBdN1GBpbdrdc2KK5s0JC4GSaUfBjlgQGPzY9b0Yyg=="/>
+    
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

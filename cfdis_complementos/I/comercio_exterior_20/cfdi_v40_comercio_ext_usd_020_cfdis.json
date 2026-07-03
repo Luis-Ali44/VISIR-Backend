@@ -1,0 +1,108 @@
+{
+  "archivo": "cfdi_v40_comercio_ext_usd_020",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "EX",
+    "folio": "18066",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "75700",
+    "exportacion": "02",
+    "no_certificado": "18824630582443449552",
+    "folio_fiscal": "9AAA7D3B-2447-4E11-9F1F-75F7C30051F4",
+    "fecha_emision": "2026-02-17T02:26:14",
+    "fecha_timbrado": "2026-02-17T02:27:49",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000023464235",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "USD",
+    "tipo_cambio": 17.7102,
+    "emisor": {
+      "nombre": "MENDOZA-CARRERO SC",
+      "RFC": "MPN180113EN3",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "GÓMEZ-EALANTE SC",
+      "RFC": "XEXX010101000",
+      "uso_cfdi": "S01",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "67269"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 1.0,
+        "valor_unitario": 7290.09,
+        "descuento": null,
+        "importe": 7290.09,
+        "iva": 1166.41,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 7290.09,
+    "descuento": null,
+    "iva": 1166.41,
+    "retenciones": null,
+    "total": 8456.5,
+    "complemento_comercio_exterior": {
+      "version": "2.0",
+      "motivo_traslado": "A",
+      "clave_de_pedimento": "A1",
+      "certificado_origen": "0",
+      "num_certificado_origen": null,
+      "numero_exportador_confiable": null,
+      "incoterm": "EXW",
+      "observaciones": null,
+      "tipo_cambio_usd": 17.7102,
+      "total_usd": 7290.09,
+      "emisor": {
+        "curp": null,
+        "domicilio": {
+          "calle": "Continuación Salas",
+          "numero_exterior": "3199",
+          "numero_interior": null,
+          "colonia": "Col. Centro",
+          "localidad": "San María Elena de la Montaña",
+          "municipio": "Vieja Bolivia",
+          "estado": "JAL",
+          "pais": "MEX",
+          "codigo_postal": "65605",
+          "referencia": null
+        }
+      },
+      "propietarios": [],
+      "receptor": {
+        "num_reg_id_trib": "11-6025345",
+        "domicilio": {
+          "calle": "2638 Edward Greens Apt. 201",
+          "numero_exterior": "3900",
+          "numero_interior": null,
+          "colonia": null,
+          "localidad": "Petersenstad",
+          "municipio": null,
+          "estado": "UT",
+          "pais": "USA",
+          "codigo_postal": "29225",
+          "referencia": null
+        }
+      },
+      "destinatarios": [],
+      "mercancias": [
+        {
+          "no_identificacion": "SKU-95635",
+          "fraccion_arancelaria": "61091000",
+          "cantidad_aduana": 1.0,
+          "unidad_aduana": "25",
+          "valor_unitario_aduana": 7290.09,
+          "valor_dolares": 7290.09,
+          "descripciones_especificas": []
+        }
+      ]
+    }
+  }
+}

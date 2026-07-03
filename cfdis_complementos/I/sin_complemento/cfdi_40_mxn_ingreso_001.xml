@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="C"
+  Folio="7261"
+  Fecha="2026-04-16T07:26:14"
+  FormaPago="08"
+  NoCertificado="05210911673931754470"
+  Certificado="oLjf/Z+BdYbCbrqAg/CYfZ6hYHtsLKfJvE7Xnp2KaaGGEBeJ3NKass4l0m+h9meVwOxhq7psksJyYi0231kbklZR08xtH/VhSpfsVT4Vtus="
+  Sello="DM7HcU5wclD04WQQv0f+ZPxzcYXy/wAxmE8ES9tdEWP0EezEndgWj0TGMqJxIljtDV2n6OXiMhN4m157VBNeq40G8KSdy8th/5VOqmDGOjSd9N4shwvU9f5gvk5GgqVsSmJEw/W6M/rY4ZmJjBWQUpnxx8ZwBEzGEeQvERIP/7u1fZgOjGYwEjEnHx+mBwY8rEAVd44Fow6Ekq8Shg2vc97Zom//9dKRP7OZAP7x8fiQyqSfICqpAQa17aBEQsMzJfXc+jxeCmgfOZQx3Ga9ANxkytsL/WkmtX+qBsMx02tYARGEnWlrX/NRxwAcv9LoIQwma/kvOLxo1qDEu8VnWQ=="
+  SubTotal="284379.44"
+  
+  Moneda="MXN"
+  Total="311218.42"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor Rfc="ZOCI950728OE5" Nombre="DEL RÍO ALONSO JONÁS" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="JDQ980904ZY2"
+    Nombre="NAVA, ROBLES Y AGUAYO AC"
+    DomicilioFiscalReceptor="83643"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-50588"
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="8569.41"
+      Importe="25708.23"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="25708.23" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="4113.32"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      NoIdentificacion="SKU-91207"
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="72053.85"
+      Importe="72053.85"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="72053.85" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="11528.62"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      NoIdentificacion="SKU-83213"
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="93308.68"
+      Importe="186617.36"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="186617.36" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="29858.78"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="186617.36" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="18661.74"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="18661.74"
+    TotalImpuestosTrasladados="45500.72">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="18661.74"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="284379.44" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="45500.72"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="5CC40979-ADD1-4FA7-AECF-199EEA82518E"
+      FechaTimbrado="2026-04-16T07:28:10"
+      RfcProvCertif="MIS141016RX2"
+      NoCertificadoSAT="00001000000788590510"
+      SelloCFDI="DM7HcU5wclD04WQQv0f+ZPxzcYXy/wAxmE8ES9tdEWP0EezEndgWj0TGMqJxIljtDV2n6OXiMhN4m157VBNeq40G8KSdy8th/5VOqmDGOjSd9N4shwvU9f5gvk5GgqVsSmJEw/W6M/rY4ZmJjBWQUpnxx8ZwBEzGEeQvERIP/7u1fZgOjGYwEjEnHx+mBwY8rEAVd44Fow6Ekq8Shg2vc97Zom//9dKRP7OZAP7x8fiQyqSfICqpAQa17aBEQsMzJfXc+jxeCmgfOZQx3Ga9ANxkytsL/WkmtX+qBsMx02tYARGEnWlrX/NRxwAcv9LoIQwma/kvOLxo1qDEu8VnWQ=="
+      SelloSAT="MzuSNcEViaWdgrfmYybsUKZJetI5PE3VcM/iCHLqOijB9FGwJWq5hsxsZwOf6IPSio3D0KvK4oHNb8FqlVSBbfJPuf4r4gPNHS70gYsNy3OnVMAkpxS5paEyleVLr5PmUGWp2VNLDLltz6SwW6bGSs1JxinwVRF4q2LbSG0+wbcj6zGlOsI30kF2QLhk0InrsSpdtjwdh5opJWfFknZZzgQZ4Wl4pd5fg520CUKqR/b3qZ3Z18XpgTjy/zjgaRJVGaJXbrYg87Em4mAMOX5VZhA5+xEi6s5bj889BH4ByK9cdfKJW07Bc37/bcy0fra4L14uGMIXKmI0lCEOOC1+5g=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

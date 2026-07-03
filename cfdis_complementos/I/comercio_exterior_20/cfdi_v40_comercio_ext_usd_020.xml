@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cce20="http://www.sat.gob.mx/ComercioExterior20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd"
+  Version="4.0"
+  Serie="EX"
+  Folio="18066"
+  Fecha="2026-02-17T02:26:14"
+  FormaPago="99"
+  NoCertificado="18824630582443449552"
+  Certificado="vsqdvDc7hgKdW2wzPzDNHcGtrJLV2yomzPTfVZT+ed+t/8s5VOByj9iAHaEuzZMOIaG33UX03kzox6cubWhlMrSWTpkNVki+49s118TapP0="
+  Sello="WBzPUYMCACHu6qQDNXBMj/RmsmjJBjQP4lHJdXxI2UnQO3hfcRf4oxavibltdQDc83xT1nJOxwR0EcIKw1MFkJIttDi8kVhrw9QssHcnrMHv/indyxMH7k6u+8bupg5j1pEjXq/BFG51ucG+nA8o48ne7SaThFo6chMt+/0UoztZylVTp4kLG+gMUVI0VPTKLqmWGOqhG2OXe6mIu3u6/qonZ62xkkfdragzUC8sJR19gUvuOjeqrTlYdzNTGM9qSE5AzfuaJn5oQquPeWYLnC2M5aQN4uk1224iC1ZMMkgONa9OJXVtls2w6U5MScl4vfCESYfGrhuVbqZtMaQMVQ=="
+  SubTotal="7290.09"
+  
+  Moneda="USD"
+  TipoCambio="17.7102"
+  Total="8456.50"
+  TipoDeComprobante="I"
+  Exportacion="02"
+  MetodoPago="PPD"
+  LugarExpedicion="75700">
+  
+
+  <cfdi:Emisor
+    Rfc="MPN180113EN3"
+    Nombre="MENDOZA-CARRERO SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="XEXX010101000"
+    Nombre="GÓMEZ-EALANTE SC"
+    DomicilioFiscalReceptor="67269"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="S01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-95635"
+      Cantidad="1"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="7290.09"
+      Importe="7290.09"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="7290.09" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1166.41"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosTrasladados="1166.41">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="7290.09" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1166.41"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <cce20:ComercioExterior
+      Version="2.0"
+      MotivoTraslado="A"
+      ClaveDePedimento="A1"
+      CertificadoOrigen="0"
+      Incoterm="EXW"
+      Subdivision="0"
+      TipoCambioUSD="17.7102"
+      TotalUSD="7290.09">
+
+      <cce20:Emisor>
+        <cce20:Domicilio
+          Calle="Continuación Salas"
+          NumeroExterior="3199"
+          Colonia="Col. Centro"
+          Localidad="San María Elena de la Montaña"
+          Municipio="Vieja Bolivia"
+          Estado="JAL"
+          Pais="MEX"
+          CodigoPostal="65605"/>
+      </cce20:Emisor>
+
+      <cce20:Receptor
+        NumRegIdTrib="11-6025345"
+        Residencia="USA">
+        <cce20:Domicilio
+          Calle="2638 Edward Greens Apt. 201"
+          NumeroExterior="3900"
+          Localidad="Petersenstad"
+          Estado="UT"
+          Pais="USA"
+          CodigoPostal="29225"/>
+      </cce20:Receptor>
+
+      <cce20:Mercancias>
+        
+        <cce20:Mercancia
+          NoIdentificacion="SKU-95635"
+          DescripcionAduana="Licencia de software"
+          FraccionArancelaria="61091000"
+          CantidadAduana="1"
+          UnidadAduana="25"
+          ValorUnitarioAduana="7290.09"
+          ValorDolares="7290.09"/>
+        
+      </cce20:Mercancias>
+
+    </cce20:ComercioExterior>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="9AAA7D3B-2447-4E11-9F1F-75F7C30051F4"
+      FechaTimbrado="2026-02-17T02:27:49"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000023464235"
+      SelloCFDI="WBzPUYMCACHu6qQDNXBMj/RmsmjJBjQP4lHJdXxI2UnQO3hfcRf4oxavibltdQDc83xT1nJOxwR0EcIKw1MFkJIttDi8kVhrw9QssHcnrMHv/indyxMH7k6u+8bupg5j1pEjXq/BFG51ucG+nA8o48ne7SaThFo6chMt+/0UoztZylVTp4kLG+gMUVI0VPTKLqmWGOqhG2OXe6mIu3u6/qonZ62xkkfdragzUC8sJR19gUvuOjeqrTlYdzNTGM9qSE5AzfuaJn5oQquPeWYLnC2M5aQN4uk1224iC1ZMMkgONa9OJXVtls2w6U5MScl4vfCESYfGrhuVbqZtMaQMVQ=="
+      SelloSAT="PtBdEHwRnRUZaD3nqb5vqXGzyolSgNM9aeAGmiGftSsfDZYTh+hH7Vvzb5DdvoTMPUc0R55tH08T70kEEnWJoGHafLf3HZBTZNaSXlNaPGlMWXOE52q47i8HAoWzt7noZ8PAyyKQUO0qoStG8rjx2Ea/m6GoLxBsQJ+qDJ+65yTA9JvHv+jxtiKH3cDHbiJv3Xz6W/EabXYV/6DiODQhmugg/fA08o1LsV3dGB2l9iAbUmQ+09CfldieSNtWvWw1eXfrZpi2XI0JWxijz5bgENyOlcD9vG3+qsE6nHnTKFCy7WadDTNp3JDA6Vpd/ZbwlDjei1Y+A3lj8AfFgXqoDQ=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

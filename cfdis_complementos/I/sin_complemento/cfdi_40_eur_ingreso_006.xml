@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="12405"
+  Fecha="2026-05-30T17:26:14"
+  FormaPago="99"
+  NoCertificado="07891230892114481297"
+  Certificado="fwkyqXpcsYI54LF0SFupyaV487FXsmqUwhpj8hHTgjqG1EroXC/BWpISgFvOdNOQTujmDbtkje+xtvmhaXKitrECa7fgMBf7l9ZnQnORf40="
+  Sello="TQSEuQ45HHrIMs5mX8da1LucRZDZ5QP71ZD/AFl2qMQ4yAXUL8UHx1n1zV4+4MB3TRp+kmYe171DWvLDBzAUkzPD0htikQxn08pK1JU+pDt8PBnbf0ASjM5jiBLpS82xiDua32qiexMc58KhkaiD5CUGwO6+5UrOjn8zC1ZiQ72lHmsTZ+gHuuVl4CcJyMpzFZvUUAi8AG20WwOlgOhiCovXpZbqdeWdA1qGxj45S0dYKDhZqjDw3VKoFuho5ZI8bht0wf1s2zXAXWiHUnSZHSDbPtWsxk1Ttlq+l52FgGvHwbm9azu/NIUcfpYL+SAsSrKEs8wzmHZ44gDiV2djBg=="
+  SubTotal="332992.76"
+  Descuento="17857.13"
+  Moneda="MXN"
+  Total="349864.13"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="06600">
+
+  <cfdi:Emisor Rfc="WYDQ951218JJ1" Nombre="ACUÑA ANAYA MÓNICA" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="BFG080612BI2"
+    Nombre="ORTIZ SC"
+    DomicilioFiscalReceptor="14467"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="87184.50"
+      Importe="174369.00"
+      Descuento="17436.90"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="156932.10" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="25109.14"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="156932.10" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="15693.21"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="1"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="4202.33"
+      Importe="4202.33"
+      Descuento="420.23"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="3782.10" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="605.14"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      
+      Cantidad="3"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="51473.81"
+      Importe="154421.43"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="154421.43" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="24707.43"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="15693.21"
+    TotalImpuestosTrasladados="50421.71">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="15693.21"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="315135.63" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="50421.71"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="3099266E-B263-4A2A-B15E-5E7E78D1B02C"
+      FechaTimbrado="2026-05-30T17:26:33"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000008947865"
+      SelloCFDI="TQSEuQ45HHrIMs5mX8da1LucRZDZ5QP71ZD/AFl2qMQ4yAXUL8UHx1n1zV4+4MB3TRp+kmYe171DWvLDBzAUkzPD0htikQxn08pK1JU+pDt8PBnbf0ASjM5jiBLpS82xiDua32qiexMc58KhkaiD5CUGwO6+5UrOjn8zC1ZiQ72lHmsTZ+gHuuVl4CcJyMpzFZvUUAi8AG20WwOlgOhiCovXpZbqdeWdA1qGxj45S0dYKDhZqjDw3VKoFuho5ZI8bht0wf1s2zXAXWiHUnSZHSDbPtWsxk1Ttlq+l52FgGvHwbm9azu/NIUcfpYL+SAsSrKEs8wzmHZ44gDiV2djBg=="
+      SelloSAT="yvIP0yOiDfeB4hhs4uEErhYRB9bTfogLM1zDO3zqo1cSKTq24fyQMNhwWEtI2C8EChFmAYmovRBgul4K0bMkEir4lD8Y6OwccAzlEq/iyD2N6vcUVXZGY4RdRExqxsOPivld10V05sYwKBIolH2LOUYSfIczqFkdDOCqT1ZSsh2Q+5zMHAi/XtvhMC6mCe/uFsfnevnZFXsKMKk6HvkHWSb6q5aadnSzL4f3uLddHBt8RMm1Wx7/l6PHP2YA5Ptjl27muI6qVb+junDAJTIoLKlU1oZdRRPIk/kucaf6kfLOEJhlamg+WbBCOPF0U2UYUv3hCyTAGZJsNPVWNOuVCg=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

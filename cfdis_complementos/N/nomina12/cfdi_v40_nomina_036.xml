@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+  Version="4.0"
+  Serie="NOM"
+  Folio="1939"
+  Fecha="2026-05-03T03:26:14"
+  NoCertificado="00706628377527559101"
+  Certificado="zOfiDxRwe4OWtd7bx4HOzvbCgQDeL8yLeFVn6RcOxWGgiqWY3tbsR1AuKvNNz+vJFyypRqB6vYD5DF/FCkgJvBdSw/J/QtlwEzoxwHZgqLE="
+  Sello="xdfmC+6Ij1BbX0IuelKmw9n7n5WtXgp60fxpsm5Xk6e9nkRhReEwzeBRt29oEuMtUV/FnBYkNmQ8l3xfkLTcnBJstaCvloDWuN4JQbxCZYUrH3I62TUgW+fRcFPjVdu3He2XTF8Sk+fF9zxqgheSZYaWDNz0v4s9DkfvG+ppzZX9WPsEfIuhZWc91FXPDtNyj0Q2y51qFBfljoxpVTyFtJEbyMGRiea0IVR6myBRNue7rdwaeuhuQaDQhUZjppp/eDMkZw/pT7o2sYvdy1mpTqceBBxbvermkZFOdddPjbsXN6PGnWhBd/Zrn3FQaRUlZhdZjqEL3X22NFAEKySH3A=="
+  SubTotal="32653.05"
+  Moneda="MXN"
+  
+  Descuento="4081.64"
+  Total="28571.41"
+  TipoDeComprobante="N"
+  Exportacion="01"
+  FormaPago="04"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+  
+
+  <cfdi:Emisor
+    Rfc="DVH080326DZ3"
+    Nombre="LUCERO SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="NDHD620823FE2"
+    Nombre="NAZARIO HIDALGO DARÍO"
+    DomicilioFiscalReceptor="95467"
+    RegimenFiscalReceptor="605"
+    UsoCFDI="CN01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111505"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago de nómina"
+      ValorUnitario="32653.05"
+      Importe="32653.05"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  
+
+  <cfdi:Complemento>
+    <nomina12:Nomina
+      Version="1.2"
+      TipoNomina="O"
+      FechaPago="2026-05-02"
+      FechaInicialPago="2026-04-16"
+      FechaFinalPago="2026-04-30"
+      NumDiasPagados="15"
+      TotalPercepciones="32653.05"
+      TotalDeducciones="4081.64"
+      >
+
+      <nomina12:Emisor
+        RegistroPatronal="A1909986074"
+        />
+
+      <nomina12:Receptor
+        Curp="NLHD620823HMNQITA0"
+        NumSeguridadSocial="61827457882"
+        FechaInicioRelLaboral="2022-03-01"
+        Antigüedad="P217W"
+        TipoContrato="03"
+        Sindicalizado="No"
+        TipoJornada="04"
+        TipoRegimen="10"
+        NumEmpleado="EMP1809"
+        Departamento="Tecnología"
+        Puesto="Gerente"
+        RiesgoPuesto="1"
+        PeriodicidadPago="03"
+        Banco="002"
+        CuentaBancaria="952750938940840073"
+        SalarioBaseCotApor="2176.87"
+        SalarioDiarioIntegrado="2721.09"
+        ClaveEntFed="JAL"/>
+
+      <nomina12:Percepciones
+        TotalSueldos="32653.05"
+        TotalGravado="30040.81"
+        TotalExento="2612.24">
+        
+        <nomina12:Percepcion
+          TipoPercepcion="001"
+          Clave="001"
+          Concepto="Sueldos, Salarios Rayas y Jornales"
+          ImporteGravado="30040.81"
+          ImporteExento="2612.24"/>
+        
+      </nomina12:Percepciones>
+
+      <nomina12:Deducciones
+        TotalOtrasDeducciones="816.33"
+        TotalImpuestosRetenidos="3265.31">
+        
+        <nomina12:Deduccion
+          TipoDeduccion="001"
+          Clave="001"
+          Concepto="Seguridad Social"
+          Importe="816.33"/>
+        
+        <nomina12:Deduccion
+          TipoDeduccion="002"
+          Clave="002"
+          Concepto="ISR"
+          Importe="3265.31"/>
+        
+      </nomina12:Deducciones>
+
+      
+
+    </nomina12:Nomina>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="8F3E6B82-9021-489E-BA20-F75372B9E465"
+      FechaTimbrado="2026-05-03T03:27:50"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000060884155"
+      SelloCFDI="xdfmC+6Ij1BbX0IuelKmw9n7n5WtXgp60fxpsm5Xk6e9nkRhReEwzeBRt29oEuMtUV/FnBYkNmQ8l3xfkLTcnBJstaCvloDWuN4JQbxCZYUrH3I62TUgW+fRcFPjVdu3He2XTF8Sk+fF9zxqgheSZYaWDNz0v4s9DkfvG+ppzZX9WPsEfIuhZWc91FXPDtNyj0Q2y51qFBfljoxpVTyFtJEbyMGRiea0IVR6myBRNue7rdwaeuhuQaDQhUZjppp/eDMkZw/pT7o2sYvdy1mpTqceBBxbvermkZFOdddPjbsXN6PGnWhBd/Zrn3FQaRUlZhdZjqEL3X22NFAEKySH3A=="
+      SelloSAT="z/L5I5bgAhZ1lejqx+v6D4yP2XZqy7lz76liEVJ49wwBiY8DYhY5z76OaBwry+DyJjuuVuR+7ZQQv47l445B5T2Am9UQCQJ91KGUPL5Rk/Iblm/iVDn8J+Tu6hP9imueEfOuLfQ1JIuo60qIlolX5KBJ9ZjmdLdS4B7XopNiMq0uqFkGvAdjzWZrnnx0rPWIE0z6ygzuxBZfv1tHKed/5YwbnVU9MoCiPF/WxhYu7KbuM9lOuM+rE8gWu52+Umb1O9ZJXM79ubzW+D+EkijFSnbwn8B13z03yn2Q0RGZjSllhHj8nJFbGN+cZiGLS7sncJ4saJnoQBKvlcsabYBe+Q=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

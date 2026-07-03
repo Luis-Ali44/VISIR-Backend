@@ -1,0 +1,80 @@
+{
+  "archivo": "cfdi_v40_addenda_022",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "54804",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "87396275856040995742",
+    "folio_fiscal": "DD7AC2AE-B985-465E-A993-BA3A39241F75",
+    "fecha_emision": "2026-03-29T07:26:14",
+    "fecha_timbrado": "2026-03-29T07:26:51",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000224353387",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "LOZADA ONTIVEROS DOLORES",
+      "RFC": "KAQP740602VV3",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "ALEMÁN-ROYBAL SC",
+      "RFC": "KZH961116FW7",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "48275"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 3.0,
+        "valor_unitario": 6380.77,
+        "descuento": null,
+        "importe": 19142.31,
+        "iva": 3062.77,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Honorarios profesionales",
+        "clave_prod_serv": "80111501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 62390.15,
+        "descuento": null,
+        "importe": 124780.3,
+        "iva": 19964.85,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 143922.61,
+    "descuento": null,
+    "iva": 23027.62,
+    "retenciones": 12478.03,
+    "total": 154472.2,
+    "addenda": {
+      "presente": true,
+      "contenido": [
+        {
+          "hijos": {
+            "OrdenCompra": {
+              "texto": "54804"
+            },
+            "Tienda": {
+              "texto": "T0552"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

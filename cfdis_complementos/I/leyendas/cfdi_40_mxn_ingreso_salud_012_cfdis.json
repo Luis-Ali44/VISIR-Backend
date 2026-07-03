@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_salud_012",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "F",
+    "folio": "20370",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "54773314321893047702",
+    "folio_fiscal": "E9483A61-7E19-4689-A16B-E87051EB60E6",
+    "fecha_emision": "2026-05-26T07:26:14",
+    "fecha_timbrado": "2026-05-26T07:28:08",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000300745565",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "BUSTAMANTE, UREÑA Y OQUENDO AC",
+      "RFC": "MNL960223MT3",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "GALLARDO, VALLADARES Y SALCIDO S DE RL DE CV",
+      "RFC": "RMO171229ZR8",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "603",
+      "domicilio_fiscal": "19937"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Consulta médica en consultorio",
+        "clave_prod_serv": "85101503",
+        "clave_unidad": "E48",
+        "unidad": "Consulta",
+        "cantidad": 2.0,
+        "valor_unitario": 665.5,
+        "descuento": null,
+        "importe": 1331.0,
+        "iva": 212.96,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicios de enfermería y cuidados médicos",
+        "clave_prod_serv": "85101601",
+        "clave_unidad": "E48",
+        "unidad": "Hora",
+        "cantidad": 4.0,
+        "valor_unitario": 422.67,
+        "descuento": null,
+        "importe": 1690.68,
+        "iva": 270.51,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 3021.68,
+    "descuento": null,
+    "iva": 483.47,
+    "retenciones": null,
+    "total": 3505.15
+  }
+}
