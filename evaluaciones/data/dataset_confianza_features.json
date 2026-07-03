@@ -1,0 +1,911 @@
+[
+  {
+    "id": "cfdi_original_01",
+    "pregunta": "¿Cuánto gasté el mes pasado en total?",
+    "respuesta_esperada": "El total gastado el mes pasado, según tus CFDIs.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.2611,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "## Informe Analítico Ejecutivo – Gastos del Mes Pasado (Enero 2026)\n\n| Concepto | Importe (MXN) |\n|----------|---------------|\n| **Subtotal** | 6 628,15 |\n| **IVA (16 %)** | 1 060,50 |\n| **Total** | **7 688,65** |\n\n### Resumen de la Factura (CFDI 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119)\n\n| Servicio | Clave SAT | Cantidad | Importe |\n|----------|-----------|----------|---------|\n| Hospedaje – habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering – cafetería | 90101701 | 14 | 4 481,57 |\n| **Subtotal** | | | 6 628,15 |\n| **IVA (16 %)** | | | 1 060,50 |\n| **Total** | | | **7 688,65** |\n\n> **Conclusión**  \n> El gasto total registrado en el mes de enero de 2026 fue de **7 688,65 MXN**. Este monto incluye el IVA correspondiente y se compone de dos rubros principales: hospedaje y servicios de catering.\n\n### Observaciones y Recomendaciones\n\n1. **Control de Gastos**  \n   - La factura muestra una distribución clara entre hospedaje y catering. Si el objetivo es optimizar costos, se recomienda revisar la frecuencia y el número de habitaciones reservadas, así como negociar tarifas corporativas con el hotel.\n\n2. **Seguimiento de Retenciones**  \n   - En esta factura no se aplicaron retenciones. Para futuras compras, verificar si existen obligaciones fiscales de retención que puedan afectar el flujo de caja.\n\n3. **Registro y Consolidación**  \n   - Si existen más CFDIs para el mismo período, se debe consolidar el total sumando los “Total” de cada documento.  \n   - Se sugiere mantener un registro en una hoja de cálculo o software contable que permita filtrar por mes y categoría de gasto.\n\n4. **Análisis de Tendencias**  \n   - Comparar el gasto de enero con el de meses anteriores puede revelar tendencias de aumento o disminución.  \n   - Identificar los proveedores que generan la mayor parte del gasto puede abrir oportunidades de renegociación de contratos.\n\n### Próximos Pasos\n\n- **Revisar** los CFDIs de los meses anteriores y posteriores para obtener una visión completa de la evolución de los gastos.  \n- **Implementar** un sistema de alertas para gastos que superen ciertos umbrales (por ejemplo, > 5 000 MXN).  \n- **Evaluar** la posibilidad de consolidar servicios de hospedaje y catering con un único proveedor para obtener descuentos por volumen.\n\n---\n\n**Respuesta directa a la pregunta:**  \n> **Gasto total en enero 2026:** **7 688,65 MXN**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2611,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 2323.7
+  },
+  {
+    "id": "cfdi_original_02",
+    "pregunta": "¿Cuáles fueron mis facturas de mayor monto en julio?",
+    "respuesta_esperada": "Las facturas de mayor monto registradas en julio.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.2821,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Facturación del Usuario (Datos Semánticamente Recuperados)**  \n*Fecha del informe: 2026‑07‑03*  \n\n---\n\n## 1. Resumen Ejecutivo  \nEl objetivo de este informe es identificar las facturas de mayor monto emitidas por el usuario durante el mes de **julio**. Los datos disponibles provienen de la búsqueda semántica de CFDIs y, hasta la fecha, **solo se ha recuperado un CFDI** correspondiente al 23 de enero de 2026.  \n\n**Conclusión inmediata:**  \n- **No existen registros de facturas emitidas en julio** dentro del conjunto de datos analizado.  \n- Se requiere ampliar la base de datos o revisar la fuente de extracción para obtener los CFDIs de julio.\n\n---\n\n## 2. Visión General de los CFDIs Recuperados  \n\n| # | Folio Fiscal | Fecha de Emisión | Emisor | Receptor | Total (MXN) |\n|---|--------------|------------------|--------|----------|-------------|\n| 1 | 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119 | 2026‑01‑23 | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 | VALLEJO‑FELICIANO SA SA DE CV | 7 688,65 |\n\n### Detalle de Conceptos (CFDI 1)\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 |\n\n---\n\n## 3. Hallazgos Clave\n\n| Hallazgo | Detalle |\n|----------|---------|\n| **Ausencia de facturas en julio** | El único CFDI recuperado corresponde a enero; no hay registros de facturación en julio. |\n| **Estructura de la factura de enero** | La factura incluye dos conceptos con un total de 7 688,65 MXN, sin retenciones. |\n| **Método de pago** | Pago único (PUE) en moneda MXN. |\n\n---\n\n## 4. Recomendaciones\n\n1. **Revisar la fuente de extracción**  \n   - Verificar que la búsqueda semántica incluya el rango de fechas correcto (julio 2026).  \n   - Confirmar que no haya filtros que excluyan CFDIs de julio.\n\n2. **Ampliar la consulta**  \n   - Incluir parámetros de búsqueda por rango de fechas, RFC del emisor o receptor, y monto mínimo para capturar facturas relevantes.\n\n3. **Validar la integridad de los datos**  \n   - Asegurarse de que los CFDIs de julio estén disponibles en el repositorio o en la plataforma de facturación electrónica (e‑fiscal).\n\n4. **Automatizar la extracción**  \n   - Implementar un proceso de extracción periódica (por ejemplo, semanal) que incluya un reporte de “facturas sin datos” para detectar brechas de información.\n\n---\n\n## 5. Próximos Pasos\n\n| Acción | Responsable | Plazo | Comentario |\n|--------|-------------|-------|------------|\n| Solicitar acceso a la base de datos de CFDIs de julio | Equipo de TI / Facturación | 5 días | Necesario para completar el análisis. |\n| Ejecutar nueva búsqueda semántica con filtros de fecha | Analista de Datos | 2 días | Confirmar la presencia de facturas de julio. |\n| Generar reporte actualizado | Analista de Datos | 3 días | Incluir comparativa de montos y tendencias. |\n\n---\n\n### Conclusión Final  \nHasta el momento, **no se dispone de facturas de julio** en el conjunto de datos analizado. Se recomienda ampliar la búsqueda y verificar la disponibilidad de los CFDIs correspondientes a ese mes para poder identificar las facturas de mayor monto y realizar un análisis más completo.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2821,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 1605.3
+  },
+  {
+    "id": "cfdi_original_03",
+    "pregunta": "¿Cuánto le he pagado al proveedor Grupo Ravan este año?",
+    "respuesta_esperada": "El total pagado al proveedor Grupo Ravan en lo que va del año.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3611,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Pagos a Proveedores (2026)**  \n*Basado en los CFDIs recuperados por relevancia semántica.*\n\n---\n\n### 1. Visión General del CFDI Analizado  \n| Elemento | Detalle |\n|----------|---------|\n| **Folio Fiscal** | 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119 |\n| **Fecha de Emisión** | 23‑ene‑2026 11:23:34 |\n| **Emisor** | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3) |\n| **Receptor** | VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8) |\n| **Método de Pago** | PUE (Pago en una sola exhibición) |\n| **Moneda** | MXN |\n| **Subtotal** | MXN 6 628,15 |\n| **IVA (16 %)** | MXN 1 060,50 |\n| **Total** | MXN 7 688,65 |\n| **Conceptos** | 1. Hospedaje (2 habitaciones) – MXN 2 146,58<br>2. Restaurantes y catering (14 unidades) – MXN 4 481,57 |\n\n> **Nota:** El CFDI corresponde a una factura de servicios de hospedaje y catering, no a una compra de bienes.\n\n---\n\n### 2. Respuesta a la Pregunta Específica  \n**Pregunta:** *“¿Cuánto le he pagado al proveedor Grupo Ravan este año?”*  \n\n- **Resultado:** No se encontró ningún CFDI en la muestra analizada que indique una transacción con el proveedor **Grupo Ravan**.  \n- **Conclusión:** Con la información disponible, no se puede determinar el monto pagado a Grupo Ravan en 2026. Se recomienda revisar los CFDIs adicionales del año para identificar cualquier factura emitida por ese proveedor.\n\n---\n\n### 3. Recomendaciones para el Seguimiento  \n| Acción | Descripción | Prioridad |\n|--------|-------------|-----------|\n| **Revisión de CFDIs adicionales** | Analizar todas las facturas del año 2026 para localizar el RFC de Grupo Ravan y sumar los montos pagados. | Alta |\n| **Verificación de RFC** | Confirmar que el RFC de Grupo Ravan esté correctamente registrado en el sistema contable. | Media |\n| **Automatización de consultas** | Implementar un filtro automático por nombre de proveedor o RFC en la herramienta de gestión de CFDIs. | Media |\n| **Auditoría de pagos** | Revisar los registros bancarios y conciliaciones para asegurar que los pagos a Grupo Ravan se reflejen correctamente. | Alta |\n\n---\n\n### 4. Próximos Pasos  \n1. **Solicitar** al usuario la lista completa de CFDIs del año 2026 (o al menos los que incluyan a Grupo Ravan).  \n2. **Ejecutar** un análisis de esos documentos para extraer el total pagado.  \n3. **Actualizar** el informe con los resultados y, si es necesario, generar un resumen ejecutivo más amplio que incluya comparativas de pagos por proveedor.\n\n---\n\n**Resumen Ejecutivo**  \nEl CFDI analizado muestra un gasto de MXN 7 688,65 por servicios de hospedaje y catering. No se detecta ninguna transacción con el proveedor Grupo Ravan en la muestra disponible. Para responder con precisión a la pregunta del usuario, se requiere revisar los CFDIs completos del año 2026.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3611,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 1540.2
+  },
+  {
+    "id": "cfdi_original_04",
+    "pregunta": "Dame el total de mis ingresos de junio",
+    "respuesta_esperada": "El total de ingresos registrados en junio.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.2115,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.3,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119**\n\n| Elemento | Valor |\n|----------|-------|\n| **Fecha de emisión** | 23 de enero 2026 |\n| **Emisor** | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3) |\n| **Receptor** | VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8) |\n| **Método de pago** | PUE (Pago en una sola exhibición) |\n| **Moneda** | MXN |\n| **Subtotal** | 6 628,15 MXN |\n| **IVA (16 %)** | 1 060,50 MXN |\n| **Retenciones** | Ninguna |\n| **Total** | 7 688,65 MXN |\n\n### Conceptos facturados\n| Concepto | Clave SAT | Cantidad | Importe |\n|----------|-----------|----------|---------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 MXN |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 MXN |\n\n---\n\n## Respuesta a la solicitud\n\n**Total de ingresos de junio**\n\n> **No se dispone de CFDIs correspondientes al mes de junio.**  \n> El único comprobante recuperado por relevancia semántica corresponde a la emisión del 23 de enero 2026, por lo que no es posible calcular el total de ingresos de junio con la información disponible.\n\n### Qué hacer a continuación\n1. **Revisar la base de datos**: Verifique si existen CFDIs emitidos en junio que no hayan sido capturados por la búsqueda semántica actual.\n2. **Actualizar la consulta**: Si dispone de los folios de los CFDIs de junio, envíelos para que podamos incluirlos en el análisis.\n3. **Análisis comparativo**: Una vez que tengamos los datos de junio, podremos comparar el rendimiento con enero y con otros periodos, identificando tendencias de ingresos, variaciones por concepto y posibles áreas de optimización.\n\n---\n\n### Resumen ejecutivo\n- **Ingresos enero 2026**: 7 688,65 MXN (sin retenciones).\n- **Conceptos principales**: Hospedaje y catering, con un total de 6 628,15 MXN antes de IVA.\n- **Observaciones**: El CFDI no muestra retenciones, lo que indica que el ingreso se registra íntegramente como ingreso bruto.\n\nSi necesita el total de ingresos de junio, por favor proporcione los CFDIs correspondientes a ese mes o confirme si hay algún error en la fecha de los documentos disponibles.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2115,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 1476.2
+  },
+  {
+    "id": "cfdi_original_05",
+    "pregunta": "¿Los gastos que tuve este mes son deducibles según la ley?",
+    "respuesta_esperada": "Análisis de deducibilidad de los gastos del mes según la normativa SAT.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "RMF_2026"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.5067,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Respuesta a la pregunta: “¿Los gastos que tuve este mes son deducibles según la ley?”**\n\n| Concepto | Importe | Código SAT | Deducibilidad",
+    "fragmentos_recuperados": [
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "9c138b33b3d15091f3ab1784b4f80aa4dfa4a04f1dae9bd0667f31edb0326aa1",
+        "section": "II. Cuando una sociedad residente en el extranjero haya pagado el ISR en términos del",
+        "page_number": 1,
+        "similarity": 0.5677,
+        "origen": "ley"
+      },
+      {
+        "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+        "chunk_id": "6c7f960be8d21cf2febd6ee54fa3a41baff484d47bbdc74f18975a0724dfb09f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5542,
+        "origen": "ley"
+      },
+      {
+        "filename": "libro_regimen_limpio.pdf",
+        "chunk_id": "37bda9c6bfc070beb40baf1b97ff8170b32caaa64be35194942980ba6355947d",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5467,
+        "origen": "ley"
+      },
+      {
+        "filename": "libro_regimen_limpio.pdf",
+        "chunk_id": "2a7587da1ab4f72099dd94a6afa58ee5a8e1ffed533250a3f667b80cef405413",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.535,
+        "origen": "ley"
+      },
+      {
+        "filename": "Preguntas_frecuentes_VF_12012025_REV_1a8b1a706f_limpio.pdf",
+        "chunk_id": "c3cfaa980935cd8d475f5d6ea4bfc708a4c6993fbbf5ebde36c316b5be222f7f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.529,
+        "origen": "ley"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3074,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "HIBRIDO",
+    "latencia_ms": 2743.9
+  },
+  {
+    "id": "cfdi_original_06",
+    "pregunta": "¿Mi régimen fiscal me permite deducir lo que gasté en julio?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos de julio según tu régimen fiscal.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "RMF_2026"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.5559,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Respuesta de un profesor experto en el SAT**\n\nPara determinar si puedes deducir los gastos que realizaste en julio, debes analizar primero bajo qué régimen fiscal te encuentras y luego verificar que los requisitos de la Ley del Impuesto sobre la Renta (LISR) se cumplan. A continuación, te explico los puntos clave que debes revisar:\n\n| Régimen | Requisitos de deducción | Pasos a seguir | Comentario adicional |\n|---------|------------------------|----------------|----------------------|\n| **Régimen General de Ley** | 1. Los gastos deben estar amparados por un CFDI (Comprobante Fiscal Digital por Internet). <br>2. El CFDI debe haber sido expedido **en el mismo ejercicio fiscal** en que se realiza la deducción. <br>3. Los montos deben coincidir con los que aparecen en tus papeles de trabajo. | 1. En la sección “Deducciones” de tu declaración, ubica el apartado **“Gastos”** y el campo **“Devoluciones, descuentos y bonificaciones”**. <br>2. Revisa la precarga de los CFDI de tipo Ingreso y Egreso que expediste. <br>3. Si encuentras diferencias con tus registros, modifica el importe en la declaración y ajusta el CFDI correspondiente (por ejemplo, corrigiendo el timbrado o el número de folio). | Si el gasto fue en julio y el CFDI corresponde a ese mismo año, **sí** puedes deducirlo, siempre y cuando cumpla con los criterios anteriores. |\n| **Régimen Simplificado de Confianza** | 1. Los pagos provisionales deben estar amparados por CFDI emitidos bajo este régimen. <br>2. Si necesitas hacer cambios, debes ajustar el timbrado de los comprobantes y presentar declaraciones complementarias de los pagos provisionales. | 1. En la sección “Deducciones” de tu declaración, ubica el apartado **“Gastos”** y el campo **“Devoluciones, descuentos y bonificaciones”**. <br>2. Verifica la precarga de los pagos provisionales. <br>3. Si hay diferencias, realiza los ajustes en el timbrado y presenta la declaración complementaria. | En este régimen, la deducción se basa en los pagos provisionales, no en gastos personales. Si el gasto de julio no está reflejado en un pago provisional, no será deducible. |\n| **Deducciones personales (art. 151 LISR)** | 1. El gasto debe estar amparado por un CFDI. <br>2. El pago debe realizarse mediante cheque nominativo, transferencia electrónica, cuenta abierta a nombre del contribuyente o tarjeta de crédito/débito. <br>3. El beneficiario (tú, tu cónyuge, concubino, ascendientes o descendientes en línea recta) **no debe haber percibido ingresos iguales o superiores al salario mínimo general** del área geográfica del contribuyente durante el año. | 1. Verifica que el CFDI esté emitido a tu nombre (o al nombre del beneficiario que cumpla con el requisito). <br>2. Confirma que el pago se realizó con uno de los medios aceptados. <br>3. Revisa tu situación de ingresos para asegurarte de que no superas el umbral del salario mínimo. | Si el gasto de julio cumple con estos requisitos, sí puedes deducirlo como gasto personal. |\n| **Gastos de inversión (activos fijos, etc.)** | 1. Se deducen hasta **una tercera parte** del monto erogado en cada ejercicio. <br>2. Se aplican los porcentajes máximos autorizados según la Sección II, Capítulo II, Título II de la LISR. <br>3. Se excluye el IVA, pero se incluyen impuestos pagados por la adquisición o importación. | 1. Calcula el monto total erogado en julio. <br>2. Aplica el 33 % máximo (o el porcentaje que corresponda según la inversión). <br>3. Incluye en la declaración el importe deducible. | Si el gasto de julio corresponde a una inversión (por ejemplo, compra de maquinaria), puedes deducir hasta el 33 % de ese monto, siempre que el CFDI esté correcto y el gasto sea en el mismo ejercicio. |\n\n---\n\n### Resumen rápido\n\n1. **¿Estás en el Régimen General o Simplificado?**  \n   - **General**: Si el CFDI de julio está emitido en el mismo año, puedes deducirlo.  \n   - **Simplificado**: Solo se deducen los pagos provisionales; los gastos personales no se deducen de la misma forma.\n\n2. **¿El CFDI está correcto?**  \n   - Debe estar timbrado, con el número de folio correcto y reflejar el monto exacto del gasto.\n\n3. **¿Cumples con los requisitos de deducción personal?**  \n   - Si el gasto es personal (educación, salud, etc.), verifica que el beneficiario no haya superado el salario mínimo y que el pago se haya hecho con los medios aceptados.\n\n4. **¿Es una inversión?**  \n   - Si el gasto corresponde a activos fijos, puedes deducir hasta el 33 % del monto erogado, excluyendo el IVA.\n\n---\n\n### Pasos concretos a seguir\n\n1. **Revisa tu declaración**: En la sección “Deducciones” → “Gastos” → “Devoluciones, descuentos y bonificaciones”.  \n2. **Compara con tus papeles de trabajo**: Asegúrate de que los importes coincidan.  \n3. **Corrige si es necesario**:  \n   - En el Régimen General, ajusta el importe y, si es necesario, corrige el CFDI (por ejemplo, cambiando el número de folio o el timbrado).  \n   - En el Régimen Simplificado, ajusta el timbrado y presenta la declaración complementaria.  \n4. **Guarda la documentación**: Conserva el CFDI y los comprobantes de pago (cheque, transferencia, tarjeta) como respaldo.\n\n---\n\n### Conclusión\n\n**Sí, tu régimen fiscal te permite deducir lo que gastaste en julio, siempre y cuando:**\n\n- El gasto esté amparado por un CFDI emitido en el mismo ejercicio fiscal.  \n- El CFDI sea correcto y coincida con tus registros.  \n- Si es un gasto personal, el beneficiario cumpla con los requisitos del art. 151 LISR.  \n- Si es una inversión, se aplique el porcentaje máximo permitido (33 % en la mayoría de los casos).\n\nSi tienes dudas específicas sobre el tipo de gasto (personal, inversión, pago provisional), revisa la sección correspondiente y, si es necesario, consulta con tu contador o con el SAT para confirmar que la deducción se realiza correctamente.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "Preguntas_frecuentes_VF_12012025_REV_1a8b1a706f_limpio.pdf",
+        "chunk_id": "c3cfaa980935cd8d475f5d6ea4bfc708a4c6993fbbf5ebde36c316b5be222f7f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5883,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "9c138b33b3d15091f3ab1784b4f80aa4dfa4a04f1dae9bd0667f31edb0326aa1",
+        "section": "II. Cuando una sociedad residente en el extranjero haya pagado el ISR en términos del",
+        "page_number": 1,
+        "similarity": 0.5681,
+        "origen": "ley"
+      },
+      {
+        "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+        "chunk_id": "6c7f960be8d21cf2febd6ee54fa3a41baff484d47bbdc74f18975a0724dfb09f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5448,
+        "origen": "ley"
+      },
+      {
+        "filename": "libro_regimen_limpio.pdf",
+        "chunk_id": "37bda9c6bfc070beb40baf1b97ff8170b32caaa64be35194942980ba6355947d",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.54,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "bf90cdc2af0fbde6d707f1566fe06d5c5a9df2db168000c753e0482c4c637f40",
+        "section": "IV. Que la enajenación por parte de la institución de crédito o de los fideicomisos a",
+        "page_number": 1,
+        "similarity": 0.5382,
+        "origen": "ley"
+      }
+    ],
+    "ruta_seleccionada": "NORMATIVA",
+    "latencia_ms": 22640.4
+  },
+  {
+    "id": "cfdi_original_07",
+    "pregunta": "De mis facturas de este mes, ¿cuáles cumplen los requisitos del SAT para ser deducibles?",
+    "respuesta_esperada": "Lista de facturas del mes que cumplen requisitos de deducibilidad SAT.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "Anexo_20"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.5561,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Resumen rápido**\n\n| Concepto | Código SAT | Importe | ¿Cumple requisitos de deducción? | Comentario breve |\n|----------|------------|---------|----------------------------------|------------------|\n| Hospedaje hotel | 90111801 | $2 146,58 | **Sí** | Servicio de hospedaje necesario para la actividad. |\n| Restaurantes y catering | 90101701 | $4 481,57 | **Sí** | Servicio de alimentación para reuniones/entregas. |\n| **Total** | – | **$6 628,15** | **Sí** | El CFDI cumple con los requisitos de deducción. |\n\n---\n\n## 1. ¿Qué exige la ley para que un gasto sea deducible?\n\n| Requisito | Detalle | Cómo verificarlo con tu CFDI |\n|-----------|---------|------------------------------|\n| **CFDI válido** | Debe estar emitido con sello digital, folio fiscal, RFC del emisor y receptor, fecha, concepto, importe, etc. | El CFDI 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119 cumple con todos estos datos. |\n| **Concepto correcto** | El código SAT debe corresponder al servicio o bien. | 90111801 (hospedaje) y 90101701 (restaurantes) son códigos válidos para gastos de viaje y alimentación. |\n| **Relación con la actividad** | El gasto debe ser necesario, habitual y directamente relacionado con la generación de ingresos. | Hospedaje y catering son típicos para reuniones, viajes de negocio, etc. |\n| **Monto y forma de pago** | Se debe pagar con medios aceptados (transferencia, cheque, efectivo, etc.) y reflejarse en el CFDI. | Método de pago “PUE” (pago en una sola exhibición) y forma de pago “01” (efectivo, cheque, transferencia) están correctos. |\n| **No estar en listas de sanción** | El emisor y receptor no pueden estar en listas de contribuyentes con riesgo fiscal (art. 69‑B CFF). | No se indica que ninguno esté en dichas listas. |\n| **Concordancia con declaraciones** | Los importes deben coincidir con los que se reportan en tus declaraciones de pagos provisionales, definitivos o anuales. | No se detecta discrepancia; el total de $6 628,15 se refleja en el CFDI. |\n| **Buzón tributario activo** | El receptor debe contar con buzón tributario activo para recibir el CFDI. | Se asume que VALLEJO‑FELICIANO SA SA DE CV tiene buzón activo. |\n| **No hay retenciones indebidas** | Si el CFDI incluye retenciones, deben estar justificadas y reflejadas. | No hay retenciones en este CFDI. |\n\n---\n\n## 2. ¿Qué debes hacer para confirmar la deducibilidad?\n\n1. **Revisa la información del CFDI**  \n   - Verifica que el RFC del emisor y receptor coincidan con los que tienes en tu contabilidad.  \n   - Asegúrate de que la fecha de emisión sea la correcta y que el importe total sea el que registraste.\n\n2. **Comprueba la relación con tu actividad**  \n   - Si el hospedaje y la comida fueron para reuniones con clientes, viajes de negocio o eventos relacionados con tu actividad, están considerados gastos necesarios.\n\n3. **Verifica la concordancia con tus declaraciones**  \n   - Al preparar tu declaración anual o provisional, incluye estos importes en la sección de “Gastos deducibles” bajo “Servicios de hospedaje” y “Servicios de alimentación”.\n\n4. **Mantén la documentación**  \n   - Guarda el PDF del CFDI y cualquier comprobante adicional (recibos de hotel, facturas de catering, itinerario de viaje, agenda de reuniones, etc.) para respaldar la deducción en caso de auditoría.\n\n5. **Buzón tributario**  \n   - Confirma que el receptor (VALLEJO‑FELICIANO SA SA DE CV) tiene buzón tributario activo. Si no lo tiene, el CFDI no será válido para deducción.\n\n---\n\n## 3. Resumen de cumplimiento\n\n- **CFDI 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119**:  \n  - Cumple con todos los requisitos de validez y formato.  \n  - Los conceptos están correctamente codificados y son gastos típicamente deducibles.  \n  - No hay retenciones ni errores de forma.  \n  - No se indica que el emisor o receptor esté en listas de riesgo fiscal.  \n  - El importe total ($6 628,15) coincide con el subtotal del CFDI y puede ser incluido en tu declaración.\n\n**Conclusión:** *Todas las facturas de este mes (el único CFDI que has proporcionado) cumplen con los requisitos del SAT para ser deducibles.*  \n\nSi en el futuro recibes más CFDI, simplemente repite el mismo proceso de verificación. ¡Listo!",
+    "fragmentos_recuperados": [
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "f7d44f5552caa58edf76a66d44c1a3bb4483503ce387b6461504fdc980204d2c",
+        "section": "VIII. Cuando el SAT detecte que el proveedor no cuenta en sus sistemas con la infraestr",
+        "page_number": 1,
+        "similarity": 0.5857,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "chunk_id": "f388238052f45275050142bb5db31e60670e2492e71c09e303fef319b9a97d1c",
+        "section": "I. En el apartado Descripción del Servicio, en la pestaña Trámite selecciona la opci",
+        "page_number": 1,
+        "similarity": 0.5845,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "chunk_id": "2d3a5268a9944e2c7f15f40e04ec73309b4d26d1d01024d523e5a5cbea7634dd",
+        "section": "I. Para acreditar el régimen de propiedad de la unidad de producción",
+        "page_number": 1,
+        "similarity": 0.5839,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "468b2c2693beb452ed0ebc492e9d00537c97586d12869a87dc514efd68f92d35",
+        "section": "IX. Cuando el SAT detecte que el proveedor no proporciona los servicios de certificac",
+        "page_number": 1,
+        "similarity": 0.5787,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "chunk_id": "3beb898cbda8118da70055f1f39556e9d5fcc3c1fc04bd828c2ad62698b64c29",
+        "section": "I. Para acreditar el régimen de propiedad de la unidad de producción",
+        "page_number": 1,
+        "similarity": 0.5782,
+        "origen": "ley"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4256,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "HIBRIDO",
+    "latencia_ms": 23634.4
+  },
+  {
+    "id": "cfdi_original_08",
+    "pregunta": "¿Puedo deducir el total de mis compras a proveedores según mi régimen?",
+    "respuesta_esperada": "Análisis de deducibilidad de compras a proveedores según tu régimen.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "RMF_2026"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.5015,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "",
+    "fragmentos_recuperados": [
+      {
+        "filename": "Preguntas_frecuentes_VF_12012025_REV_1a8b1a706f_limpio.pdf",
+        "chunk_id": "c3cfaa980935cd8d475f5d6ea4bfc708a4c6993fbbf5ebde36c316b5be222f7f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5566,
+        "origen": "ley"
+      },
+      {
+        "filename": "Preguntas_frecuentes_VF_12012025_REV_1a8b1a706f_limpio.pdf",
+        "chunk_id": "6b225345b44c2986b0f632a29c5eb8a98de04c8c1c8d600de4b93cb3ba5eb770",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5513,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "4449714b6b9cde8b4803af1b87563b2c775949c4dba3ecfb78ce63bd88eb4cdf",
+        "section": "IV. Al resultado obtenido conforme a la fracción II se disminuirán los gastos diarios",
+        "page_number": 1,
+        "similarity": 0.5391,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "05d615b15381676e3b98d28c3b54abb3b0d4b092062817cd7d311b58fe55c985",
+        "section": "X. En enajenaciones con el público en general, se deberán expedir CFDI por la venta",
+        "page_number": 1,
+        "similarity": 0.5353,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "chunk_id": "5c5fca63525f878c1aab6349560eba0396c7572d3cac9ae1a329c5e26248c248",
+        "section": "Apéndice 6 Procedimiento para la emisión de los CFDI en el caso de anticipos recibidos Los",
+        "page_number": 1,
+        "similarity": 0.4846,
+        "origen": "ley"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3422,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "HIBRIDO",
+    "latencia_ms": 19230.7
+  },
+  {
+    "id": "cfdi_original_09",
+    "pregunta": "¿En qué mes gasté más dinero?",
+    "respuesta_esperada": "El mes con mayor gasto según tus CFDIs registrados.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.1171,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Gastos por Mes (Datos Recuperados)**  \n\n| Mes | Total Gastado (MXN) |\n|-----|---------------------|\n| **Enero 2026** | **$7 688,65** |\n\n### Resumen Ejecutivo\n- **Mes con mayor gasto:** **Enero 2026**.  \n- **Detalle del gasto:** El CFDI emitido el 23 de enero de 2026 por *Industria Olivo Tovar y Muro IAP F 64335* a *Vallejo‑Feliciano SA SA de CV* muestra un total de **$7 688,65 MXN**.  \n- **Conceptos principales:**  \n  - Hospedaje en hotel (2 habitaciones) – $2 146,58 MXN.  \n  - Servicios de cafetería – $4 481,57 MXN.  \n\n### Observaciones\n- **Un solo CFDI disponible**: El análisis se basa únicamente en el documento proporcionado. Si existen otros CFDIs de otros meses, el resultado podría cambiar.  \n- **Recomendación**: Revisar la base de datos completa de CFDIs para confirmar la tendencia de gasto mensual y detectar posibles anomalías o picos de gasto.\n\n### Conclusión\nCon la información actual, **Enero 2026** es el mes en el que se registró el mayor gasto, con un total de **$7 688,65 MXN**. Para una visión más completa, se sugiere analizar los CFDIs de los demás meses del año.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.1171,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 17811.1
+  },
+  {
+    "id": "cfdi_original_10",
+    "pregunta": "¿Cuánto gasté en total a Proveedor Integral SA?",
+    "respuesta_esperada": "El total gastado al proveedor Proveedor Integral SA.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3571,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119**  \n*(Recuperado por relevancia semántica – 1 CFDI disponible)*  \n\n| Elemento | Detalle |\n|----------|---------|\n| **Fecha de emisión** | 23 de enero 2026 11:23:34 |\n| **Emisor** | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3) |\n| **Receptor** | VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8) |\n| **Método de pago** | PUE (Pago en una sola exhibición) |\n| **Forma de pago** | 01 (Transferencia electrónica de fondos) |\n| **Moneda** | MXN |\n| **Subtotal** | 6 628,15 MXN |\n| **IVA (16 %)** | 1 060,50 MXN |\n| **Retenciones** | Ninguna |\n| **Total** | 7 688,65 MXN |\n\n### Conceptos facturados\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 |\n\n> **Observaciones clave**  \n> - El CFDI refleja una factura de servicios de hospedaje y catering, con un total de 7 688,65 MXN.  \n> - No se registran retenciones fiscales ni descuentos.  \n> - El pago se realizó mediante transferencia electrónica (código 01).  \n\n---\n\n## Respuesta a la pregunta específica\n\n**¿Cuánto gasté en total a Proveedor Integral SA?**\n\nNo se encuentra ninguna referencia a **Proveedor Integral SA** en el CFDI analizado. El único emisor presente es **INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335**. Por lo tanto:\n\n- **Gasto total a Proveedor Integral SA:** **0 MXN** (no se realizó ninguna transacción con ese proveedor en el CFDI recuperado).\n\nSi necesitas revisar otros CFDIs o confirmar si existen facturas pendientes con Proveedor Integral SA, por favor proporciona los folios correspondientes o accede a la base de datos de facturación para una búsqueda más amplia.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3571,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 3489.6
+  },
+  {
+    "id": "cfdi_original_11",
+    "pregunta": "¿Cuánto IVA me han cobrado mis proveedores este trimestre?",
+    "respuesta_esperada": "El total de IVA cobrado por tus proveedores en el trimestre actual.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3479,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "## Informe Analítico Ejecutivo  \n**Período analizado:** 1.º trimestre de 2026 (01‑Mar)  \n**Fuente de datos:** CFDI(s) recuperados por relevancia semántica – *solo CFDI 1* disponible en la solicitud.\n\n| # | Folio Fiscal | Fecha de emisión | Emisor | Receptor | IVA (MXN) |\n|---|--------------|------------------|--------|----------|-----------|\n| 1 | 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119 | 23‑ene‑2026 | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 | VALLEJO‑FELICIANO SA SA DE CV | **1 060,50** |\n\n### Cálculo del IVA\n- **Subtotal:** 6 628,15 MXN  \n- **Tasa de IVA aplicada:** 16 % (típica en México)  \n- **IVA calculado:** 6 628,15 × 0,16 = **1 060,50 MXN**  \n- **Total facturado:** 7 688,65 MXN (Subtotal + IVA)\n\n### Respuesta a la pregunta\n> **¿Cuánto IVA me han cobrado mis proveedores este trimestre?**  \n> **Respuesta:** Con la información disponible (único CFDI 1), el IVA cobrado por los proveedores en el 1.º trimestre de 2026 es **1 060,50 MXN**.\n\n> **Nota:** Este valor corresponde únicamente al CFDI presentado. Si existen otros comprobantes de pago emitidos por proveedores durante el trimestre, el total de IVA será la suma de todos esos valores. Se recomienda revisar el archivo de CFDIs completo para obtener el monto exacto.\n\n### Recomendaciones rápidas\n\n| Acción | Por qué es importante | Herramienta sugerida |\n|--------|-----------------------|----------------------|\n| **Reunir todos los CFDIs del trimestre** | Garantiza que el cálculo del IVA sea completo y preciso. | Sistema ERP, portal del SAT, o una hoja de cálculo consolidada. |\n| **Automatizar la extracción de datos** | Reduce errores manuales y acelera el proceso de reporte. | Software de gestión contable (e.g., Facturapi, Alegra, QuickBooks). |\n| **Verificar la tasa de IVA aplicada** | Asegura que la tasa correcta (16 %) se haya usado en cada factura. | Revisión de la normativa fiscal vigente. |\n| **Comparar con el periodo anterior** | Identifica variaciones significativas en el gasto de IVA. | Análisis comparativo en Excel o Power BI. |\n\n### Conclusión\nEl único CFDI analizado indica que el IVA cobrado por los proveedores en enero de 2026 fue de **1 060,50 MXN**. Para obtener una cifra definitiva del trimestre, es imprescindible consolidar todos los comprobantes de pago emitidos durante los meses de enero, febrero y marzo. Una vez reunidos, el proceso de suma y verificación puede automatizarse para futuros reportes trimestrales.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3479,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 9028.2
+  },
+  {
+    "id": "cfdi_original_12",
+    "pregunta": "Dame un reporte de gastos de enero a marzo de 2025",
+    "respuesta_esperada": "Reporte detallado de gastos del primer trimestre de 2025.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3159,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe analítico ejecutivo – Gastos de enero a marzo de 2025**\n\n> **Nota:** En la información que me has proporcionado sólo aparece un CFDI con fecha de emisión **23‑01‑2026**.  \n> No dispongo de ningún comprobante fiscal (CFDI) ni de datos de gasto correspondientes a los meses de **enero, febrero y marzo de 2025**.  \n> Para elaborar el informe solicitado necesito los CFDIs de ese período (o al menos los totales de gasto por concepto).  \n\n---\n\n### 1. Plantilla de informe (ejemplo)\n\n| Mes | Concepto | Subtotal (MXN) | IVA (MXN) | Total (MXN) | Observaciones |\n|-----|----------|----------------|-----------|-------------|---------------|\n| Enero | Hospedaje | 2 146,58 | 0,00 | 2 146,58 | 2 habitaciones |\n| Enero | Restaurantes | 4 481,57 | 0,00 | 4 481,57 | 14 servicios |\n| Febrero | ... | ... | ... | ... | ... |\n| Marzo | ... | ... | ... | ... | ... |\n| **Total** | | | | | |\n\n**Resumen ejecutivo (ejemplo)**  \n- **Gasto total enero‑marzo 2025:** MXN X,XXX,XXX.XX  \n- **Mayor gasto por concepto:** X (porcentaje del total)  \n- **Tendencia de gasto:** ↑/↓ respecto al mismo período del año anterior (si se dispone de datos)  \n- **Recomendaciones:** Optimizar contratos de hospedaje, renegociar tarifas de catering, etc.\n\n---\n\n### 2. Pasos a seguir\n\n1. **Reúne los CFDIs** de enero, febrero y marzo de 2025 (pueden estar en PDF, XML o en tu sistema contable).  \n2. **Exporta los datos** (subtotal, IVA, total, concepto, fecha, RFC del emisor y receptor).  \n3. **Envíame la lista** (puedes copiar los datos en un archivo CSV o en un mensaje).  \n4. Con esa información, generaré el informe completo con análisis de tendencias, comparativas y recomendaciones.\n\n---\n\n#### ¿Necesitas ayuda para extraer los datos de tus CFDIs?\n\n- Si usas **Facturación electrónica** (XML), puedo guiarte para extraer los campos clave.  \n- Si los tienes en **PDF**, podemos usar OCR o herramientas de extracción de datos.  \n- Si ya están en tu ERP, podrías exportar un reporte de “Gastos por concepto” para los meses indicados.\n\n---\n\nQuedo atento a los datos adicionales para poder entregarte el informe solicitado. ¡Gracias!",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3159,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 11158.7
+  },
+  {
+    "id": "cfdi_variante_01",
+    "pregunta": "¿Cuánto gasté en total?",
+    "respuesta_esperada": "El total de gastos registrados en tus CFDIs.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.2926,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119**  \n*Fecha de emisión: 23 de enero de 2026*  \n\n| Concepto | Importe (MXN) |\n|----------|---------------|\n| Subtotal (servicios de hospedaje + catering) | 6 628,15 |\n| IVA (16 %) | 1 060,50 |\n| **Total a pagar** | **7 688,65** |\n\n### Resumen ejecutivo\n- **Emisor:** INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3)  \n- **Receptor:** VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8)  \n- **Método de pago:** PUE (Pago en una sola exhibición)  \n- **Conceptos facturados:**  \n  - Hospedaje en hotel (2 habitaciones) – 2 146,58 MXN  \n  - Servicios de cafetería – 4 481,57 MXN  \n\nEl total gastado en esta operación, incluyendo el IVA, es **7 688,65 MXN**.  \n\n> **Respuesta a la pregunta:**  \n> **Gasto total:** **7 688,65 MXN**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2926,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 9346.3
+  },
+  {
+    "id": "cfdi_variante_02",
+    "pregunta": "¿Cuáles fueron mis facturas de mayor monto?",
+    "respuesta_esperada": "Las facturas de mayor monto registradas.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.292,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.6,
+    "campo_periodo_faltante": 0,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "## Informe Analítico Ejecutivo  \n**Período de análisis:** 2026‑01‑23  \n**Fuente de datos:** CFDI 77BDAEFD‑A8EE‑4E77‑97CA‑5BF06E57F119 (relevancia semántica)\n\n---\n\n### 1. Resumen Ejecutivo  \n- **Número de CFDIs analizados:** 1  \n- **Monto total de la factura:** **$7 688,65 MXN**  \n- **Conceptos principales:**  \n  - Hospedaje (2 habitaciones) – $2 146,58 MXN  \n  - Servicios de cafetería – $4 481,57 MXN  \n\n> **Conclusión:** Con la información disponible, la única factura registrada es la de mayor monto. No existen otras facturas para comparar, por lo que no se puede identificar una “segunda” o “tercera” factura de mayor valor.\n\n---\n\n### 2. Detalle de la Factura de Mayor Monto  \n\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Hospedaje – habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering – cafetería | 90101701 | 14 | 4 481,57 |\n| **Subtotal** | – | – | **6 628,15** |\n| **IVA (16%)** | – | – | **1 060,50** |\n| **Total** | – | – | **7 688,65** |\n\n- **Método de pago:** PUE (Pago en una sola exhibición)  \n- **Moneda:** MXN  \n- **Retenciones:** Ninguna\n\n---\n\n### 3. Observaciones y Recomendaciones  \n\n| Área | Observación | Recomendación |\n|------|-------------|---------------|\n| **Control de gastos** | La factura representa un gasto significativo (≈ $7.7k). | Revisar la necesidad de cada concepto y evaluar alternativas de costo (por ejemplo, negociar tarifas de hospedaje o buscar proveedores de catering con precios competitivos). |\n| **Gestión de pagos** | Pago en una sola exhibición. | Considerar la posibilidad de pagos parciales o plazos para mejorar el flujo de caja, siempre que el proveedor lo permita. |\n| **Documentación** | No se registran retenciones. | Verificar si existen obligaciones fiscales de retención que pudieran aplicarse a servicios de hospedaje o catering. |\n| **Análisis comparativo** | Solo una factura disponible. | Mantener un registro sistemático de todas las facturas para futuros análisis comparativos y detectar tendencias de gasto. |\n\n---\n\n### 4. Próximos Pasos  \n\n1. **Recolección de datos adicionales**  \n   - Obtener los CFDIs de los últimos 3‑6 meses para comparar montos y detectar patrones de gasto.  \n2. **Análisis de proveedores**  \n   - Evaluar la relación costo‑beneficio de los proveedores de hospedaje y catering.  \n3. **Optimización de procesos**  \n   - Implementar un sistema de aprobación de gastos que incluya límites de monto y revisión de conceptos.  \n\n---\n\n#### Respuesta a la Pregunta  \n> **¿Cuáles fueron mis facturas de mayor monto?**  \n> Con la información disponible, la única factura registrada es la de **$7 688,65 MXN**, por lo que constituye la factura de mayor monto en el período analizado.  \n\nSi necesitas un análisis más profundo, por favor proporciona los CFDIs adicionales que desees incluir.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.292,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 6932.7
+  },
+  {
+    "id": "cfdi_variante_03",
+    "pregunta": "¿Cuánto le he pagado al proveedor Grupo Ravan?",
+    "respuesta_esperada": "El total pagado al proveedor Grupo Ravan.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.3676,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119**  \n*Fecha de emisión: 23 enero 2026 – 11:23:34*  \n\n| Elemento | Detalle |\n|----------|---------|\n| **Emisor** | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3) |\n| **Receptor** | VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8) |\n| **Método de pago** | PUE (Pago en una sola exhibición) |\n| **Forma de pago** | 01 (Transferencia electrónica de fondos) |\n| **Moneda** | MXN |\n| **Subtotal** | 6 628,15 MXN |\n| **IVA (16 %)** | 1 060,50 MXN |\n| **Retenciones** | Ninguna |\n| **Total pagado** | 7 688,65 MXN |\n\n### Conceptos facturados\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 |\n\n> **Observación**: Los dos conceptos suman 6 628,15 MXN, que corresponde al subtotal antes de IVA.\n\n---\n\n## Respuesta a la pregunta\n\n> **¿Cuánto le he pagado al proveedor Grupo Ravan?**\n\nEn el CFDI analizado no aparece ningún proveedor llamado **Grupo Ravan**. El único emisor presente es **INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335**. Por lo tanto:\n\n- **No se ha pagado a Grupo Ravan** en esta transacción.\n- El monto pagado a **INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335** es **7 688,65 MXN** (incluye IVA).\n\nSi necesitas verificar pagos a Grupo Ravan, te sugiero revisar los CFDIs con el RFC de ese proveedor o consultar el historial de pagos en tu sistema contable.  \n\n---\n\n## Recomendaciones rápidas\n\n1. **Verificación de proveedores**  \n   - Asegúrate de que el RFC del proveedor coincida con el que buscas.  \n   - Si el nombre “Grupo Ravan” corresponde a un RFC distinto, filtra los CFDIs por ese RFC.\n\n2. **Control de pagos**  \n   - Mantén un registro consolidado de los montos pagados por concepto y proveedor para evitar confusiones.  \n   - Utiliza herramientas de BI o dashboards que agrupen los pagos por RFC y nombre de proveedor.\n\n3. **Auditoría interna**  \n   - Revisa los CFDIs con “PUE” y “Transferencia electrónica” para confirmar que los fondos se hayan transferido correctamente.  \n   - Verifica que el IVA se haya calculado correctamente (16 % sobre el subtotal).\n\n---\n\n**Conclusión**  \nEl CFDI proporcionado muestra un pago total de 7 688,65 MXN a INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335. No hay evidencia de un pago a Grupo Ravan en esta transacción. Para confirmar pagos a Grupo Ravan, revisa los CFDIs correspondientes a ese proveedor.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3676,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 8869.2
+  },
+  {
+    "id": "cfdi_variante_04",
+    "pregunta": "Dame el total de mis ingresos",
+    "respuesta_esperada": "El total de ingresos registrados.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.236,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.3,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Ingresos del Periodo (CFDI 1)**  \n*Fecha de emisión: 23 de enero 2026*  \n\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje (habitación sencilla) | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering (cafetería) | 90101701 | 14 | 4 481,57 |\n| **Subtotal** | – | – | **6 628,15** |\n| **IVA (16 %)** | – | – | **1 060,50** |\n| **Total** | – | – | **7 688,65** |\n\n### Resumen Ejecutivo\n- **Ingresos Totales**: **7 688,65 MXN** (incluye IVA).  \n- **Fuente de ingresos**: 2 146,58 MXN provenientes de hospedaje y 4 481,57 MXN de servicios de cafetería.  \n- **Impuestos**: Se aplicó IVA al 16 % sobre el subtotal, sin retenciones adicionales.  \n- **Observaciones**:  \n  - El CFDI no registra retenciones, lo que simplifica la contabilidad y la declaración de impuestos.  \n  - La mayor parte de los ingresos proviene de servicios de catering, lo que indica una demanda sólida en ese segmento.  \n\n### Recomendaciones\n1. **Diversificación**: Considerar ampliar la oferta de servicios de hospedaje para equilibrar la dependencia del catering.  \n2. **Control de Costos**: Analizar los costos asociados a cada concepto para mejorar el margen bruto.  \n3. **Seguimiento de CFDIs**: Mantener un registro actualizado de todos los CFDIs emitidos para facilitar la conciliación y la presentación de declaraciones fiscales.  \n\n---\n\n**Respuesta a la pregunta**  \n> **Total de ingresos**: **7 688,65 MXN**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.236,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 9933.4
+  },
+  {
+    "id": "cfdi_variante_05",
+    "pregunta": "¿Los gastos que tuve son deducibles según la ley?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos según la normativa SAT.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "RMF_2026"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.5105,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "",
+    "fragmentos_recuperados": [
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "9c138b33b3d15091f3ab1784b4f80aa4dfa4a04f1dae9bd0667f31edb0326aa1",
+        "section": "II. Cuando una sociedad residente en el extranjero haya pagado el ISR en términos del",
+        "page_number": 1,
+        "similarity": 0.576,
+        "origen": "ley"
+      },
+      {
+        "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+        "chunk_id": "6c7f960be8d21cf2febd6ee54fa3a41baff484d47bbdc74f18975a0724dfb09f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5592,
+        "origen": "ley"
+      },
+      {
+        "filename": "libro_regimen_limpio.pdf",
+        "chunk_id": "37bda9c6bfc070beb40baf1b97ff8170b32caaa64be35194942980ba6355947d",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5582,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_7_RMF2026-09012026_limpio.pdf",
+        "chunk_id": "6e2f7d3d30fc14bdb04cc8a15f444558a0ae28b37dfa2efec38b0ae4f4c7b782",
+        "section": "II. Que se acredite la existencia del hecho que la ley señala como delito",
+        "page_number": 1,
+        "similarity": 0.5522,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "6b6de516ceb020b1c097d522bdb36868c53e3e6414c2da59f064bc6a8de76211",
+        "section": "V. Deducción de intereses a que se refiere el artículo 28, fracciones XXVII y XXXII",
+        "page_number": 1,
+        "similarity": 0.5409,
+        "origen": "ley"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2766,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "HIBRIDO",
+    "latencia_ms": 14008.7
+  },
+  {
+    "id": "cfdi_variante_06",
+    "pregunta": "¿Mi régimen fiscal me permite deducir lo que gasté?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos según tu régimen fiscal.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "RMF_2026"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.6025,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "**Respuesta de un Profesor Experto del SAT**\n\nPara determinar si tu régimen fiscal te permite deducir los gastos que realizaste, es necesario analizar tres aspectos clave:\n\n| 1️⃣  | Régimen fiscal | 2️⃣  | Tipo de gasto | 3️⃣  | Requisitos de deducibilidad |\n|-----|----------------|------|---------------|------|\n| **Régimen General de Ley** | **Gastos de operación** (empresa) | • CFDI de tipo Ingreso y Egreso emitido en el mismo ejercicio.<br>• El gasto debe estar “amparado” por el comprobante fiscal.<br>• Se debe registrar en el campo **“Devoluciones, descuentos y bonificaciones”** de la sección **Gastos** de la declaración. | **Gastos personales** (individual) | • Art. 151 LISR: deben ser para la persona contribuyente, su cónyuge, concubino o ascendientes/descendientes en línea recta.<br>• Los beneficiarios no pueden percibir ingresos ≥ salario mínimo general anual.<br>• Pago con cheque nominativo, transferencia electrónica, tarjeta de crédito/débito, etc.<br>• CFDI válido. |\n| **Régimen Simplificado de Confianza** | **Gastos de operación** (empresa) | • Los pagos provisionales ya están precargados en el campo **“Devoluciones, descuentos y bonificaciones”**.<br>• Si se detecta una diferencia, se debe ajustar el timbrado de los CFDI y presentar declaraciones complementarias. | **Gastos personales** | • Igual que en el Régimen General, pero con la particularidad de que el régimen simplificado no permite deducciones de gastos personales; solo se deducen los gastos de operación de la actividad. |\n| **Inversiones y activos fijos** | • Se aplican las reglas de la Sección II, Capítulo II, Título II LISR.<br>• Se puede deducir hasta **1/3** del monto original de la inversión (incluye precio, impuestos pagados, derechos, cuotas, fletes, seguros, etc.).<br>• La deducción se aplica en cada ejercicio y se ajusta a partir del ejercicio siguiente según la fracción VII, inciso a) de la regla. | | |\n\n---\n\n## 1. ¿Qué tipo de gasto estás intentando deducir?\n\n| Pregunta | Respuesta |\n|----------|-----------|\n| **¿Es un gasto de operación de tu negocio?** | Si tu régimen es **General** o **Simplificado**, los gastos de operación (salarios, renta, servicios, etc.) son deducibles siempre que cuenten con CFDI y se registren correctamente. |\n| **¿Es un gasto personal (educación, salud, vivienda, etc.)?** | Solo es deducible si cumples con el Art. 151 LISR y el beneficiario no supera el límite de ingresos. Además, el gasto debe estar amparado por un CFDI válido. |\n| **¿Es una inversión en activos fijos?** | Se deduce hasta 1/3 del valor original, con los requisitos de la Sección II, Capítulo II, Título II LISR. |\n\n---\n\n## 2. ¿Tienes los comprobantes fiscales (CFDI) correctos?\n\n- **Para el Régimen General**: El CFDI debe ser de tipo **Ingreso** (para ingresos) y **Egreso** (para gastos). Debe estar timbrado en el mismo ejercicio fiscal en que se realiza la deducción.\n- **Para el Régimen Simplificado**: Los CFDI de pagos provisionales ya están precargados. Si detectas diferencias, ajusta el timbrado y presenta declaraciones complementarias.\n\n> **Tip**: Si el CFDI está en un ejercicio diferente, la deducción no es válida. Debes solicitar un nuevo CFDI o un “re‑timbrado” en el ejercicio correcto.\n\n---\n\n## 3. ¿Cumples con los límites y condiciones de la Ley?\n\n| Condición | Detalle |\n|-----------|---------|\n| **Límite de deducción de inversiones** | 1/3 del monto original (incluye impuestos pagados, excepto IVA). |\n| **Límite de deducción de gastos personales** | El beneficiario no debe percibir ingresos ≥ salario mínimo general anual. |\n| **Requisitos de pago** | Cheque nominativo, transferencia electrónica, tarjeta de crédito/débito, etc. |\n| **Requisitos de documentación** | CFDI válido, emitido en el mismo ejercicio, con datos completos (RFC, descripción, importe, etc.). |\n\n---\n\n## 4. Pasos concretos para verificar tu deducibilidad\n\n1. **Revisa tu régimen**: ¿Estás en el Régimen General o en el Simplificado?  \n2. **Clasifica el gasto**: ¿Es de operación, personal o inversión?  \n3. **Verifica el CFDI**:  \n   - Tipo (Ingreso/Egreso).  \n   - Fecha de timbrado (mismo ejercicio).  \n   - Datos completos (RFC, descripción, importe).  \n4. **Aplica los límites**:  \n   - Para inversiones, calcula 1/3 del valor original.  \n   - Para gastos personales, verifica el ingreso del beneficiario.  \n5. **Registra en la declaración**:  \n   - En el campo **“Devoluciones, descuentos y bonificaciones”** (Régimen General).  \n   - Ajusta el timbrado y presenta declaraciones complementarias (Régimen Simplificado).  \n6. **Conserva la documentación**: Guarda los CFDI y los papeles de trabajo que respalden la deducción.\n\n---\n\n## 5. Respuesta a tu pregunta\n\n> **¿Mi régimen fiscal me permite deducir lo que gasté?**\n\n**Sí, siempre y cuando:**\n\n1. **El gasto sea de la naturaleza que tu régimen permite deducir** (operación, personal o inversión).  \n2. **Tengas un CFDI válido emitido en el mismo ejercicio fiscal**.  \n3. **Cumpla con los límites y requisitos establecidos por la LISR** (1/3 para inversiones, condiciones de ingresos para gastos personales, etc.).  \n4. **El gasto esté registrado correctamente en la declaración** (campo “Devoluciones, descuentos y bonificaciones” para el Régimen General, ajustes de timbrado y declaraciones complementarias para el Régimen Simplificado).\n\nSi alguno de estos requisitos no se cumple, la deducción no será aceptada por el SAT. En ese caso, lo más recomendable es consultar con un contador público certificado o con un especialista en impuestos para corregir la situación y evitar sanciones.\n\n---\n\n### Preguntas frecuentes que podrías tener\n\n| Pregunta | Respuesta breve |\n|----------|-----------------|\n| **¿Puedo deducir gastos de mi cónyuge que no trabaja?** | Sí, siempre que el cónyuge no perciba ingresos ≥ salario mínimo anual y el gasto esté amparado por CFDI. |\n| **¿Qué pasa si el CFDI está en un ejercicio diferente?** | No es deducible; necesitas un nuevo CFDI o un re‑timbrado en el ejercicio correcto. |\n| **¿Puedo deducir gastos de salud de mis hijos?** | Sí, si cumplen con el Art. 151 LISR y el CFDI está correcto. |\n| **¿Puedo deducir la compra de un vehículo para mi negocio?** | Sí, como inversión en activo fijo, hasta 1/3 del valor original, siguiendo la mecánica de la Sección II, Capítulo II, Título II LISR. |\n\n---\n\n**Conclusión:**  \nTu régimen fiscal te permite deducir los gastos siempre que se ajusten a las reglas específicas de tu régimen y cumplan con los requisitos de documentación y límites establecidos por la Ley del Impuesto sobre la Renta. Si tienes dudas sobre un gasto concreto, revisa los puntos anteriores y, si es necesario, consulta a un profesional para asegurarte de que la deducción sea válida y esté correctamente reportada",
+    "fragmentos_recuperados": [
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "9c138b33b3d15091f3ab1784b4f80aa4dfa4a04f1dae9bd0667f31edb0326aa1",
+        "section": "II. Cuando una sociedad residente en el extranjero haya pagado el ISR en términos del",
+        "page_number": 1,
+        "similarity": 0.6237,
+        "origen": "ley"
+      },
+      {
+        "filename": "Preguntas_frecuentes_VF_12012025_REV_1a8b1a706f_limpio.pdf",
+        "chunk_id": "c3cfaa980935cd8d475f5d6ea4bfc708a4c6993fbbf5ebde36c316b5be222f7f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.6193,
+        "origen": "ley"
+      },
+      {
+        "filename": "El_ABC_personas_contribuyentes_v2.pdf",
+        "chunk_id": "6c7f960be8d21cf2febd6ee54fa3a41baff484d47bbdc74f18975a0724dfb09f",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5924,
+        "origen": "ley"
+      },
+      {
+        "filename": "libro_regimen_limpio.pdf",
+        "chunk_id": "37bda9c6bfc070beb40baf1b97ff8170b32caaa64be35194942980ba6355947d",
+        "section": "introduccion",
+        "page_number": 1,
+        "similarity": 0.5909,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "bf90cdc2af0fbde6d707f1566fe06d5c5a9df2db168000c753e0482c4c637f40",
+        "section": "IV. Que la enajenación por parte de la institución de crédito o de los fideicomisos a",
+        "page_number": 1,
+        "similarity": 0.5861,
+        "origen": "ley"
+      }
+    ],
+    "ruta_seleccionada": "NORMATIVA",
+    "latencia_ms": 24823.4
+  },
+  {
+    "id": "cfdi_variante_07",
+    "pregunta": "De mis facturas, ¿cuáles cumplen los requisitos del SAT para ser deducibles?",
+    "respuesta_esperada": "Lista de facturas que cumplen requisitos de deducibilidad SAT.",
+    "fragmentos_fuente": [
+      "extracciones",
+      "Anexo_20"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.5548,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 1,
+    "respuesta_generada": "",
+    "fragmentos_recuperados": [
+      {
+        "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "chunk_id": "2d3a5268a9944e2c7f15f40e04ec73309b4d26d1d01024d523e5a5cbea7634dd",
+        "section": "I. Para acreditar el régimen de propiedad de la unidad de producción",
+        "page_number": 1,
+        "similarity": 0.6068,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_1A_RMF_2025_Tramites_v2.pdf",
+        "chunk_id": "f388238052f45275050142bb5db31e60670e2492e71c09e303fef319b9a97d1c",
+        "section": "I. En el apartado Descripción del Servicio, en la pestaña Trámite selecciona la opci",
+        "page_number": 1,
+        "similarity": 0.6026,
+        "origen": "ley"
+      },
+      {
+        "filename": "RMF_2026_Completa_limpio.pdf",
+        "chunk_id": "f7d44f5552caa58edf76a66d44c1a3bb4483503ce387b6461504fdc980204d2c",
+        "section": "VIII. Cuando el SAT detecte que el proveedor no cuenta en sus sistemas con la infraestr",
+        "page_number": 1,
+        "similarity": 0.5981,
+        "origen": "ley"
+      },
+      {
+        "filename": "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf",
+        "chunk_id": "2be09db9f29e6e0e4036ce15d9694fa80fe6a80ea26457cfa84e2ac5c9f0ef2b",
+        "section": "36. ¿El SAT reconoce o autoriza algún servicio, herramienta o sistema de validación de facturas electrónicas ofrecido por terceros ajenos al propio SAT?",
+        "page_number": 1,
+        "similarity": 0.5518,
+        "origen": "ley"
+      },
+      {
+        "filename": "GuiaAnexo20DPA_limpio.pdf",
+        "chunk_id": "182a9d7105942feb99c5fb51a186bd4ce6d4e47e5a72deb102df8218ec3b8082",
+        "section": "Control de cambios",
+        "page_number": 1,
+        "similarity": 0.5506,
+        "origen": "ley"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4192,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "HIBRIDO",
+    "latencia_ms": 26412.0
+  },
+  {
+    "id": "cfdi_variante_08",
+    "pregunta": "¿Cuánto IVA me han cobrado mis proveedores?",
+    "respuesta_esperada": "El total de IVA cobrado por tus proveedores.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.4092,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – IVA Cobrado por Proveedores (CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119)**  \n\n| Concepto | Importe (MXN) |\n|----------|---------------|\n| **Subtotal** | 6 628,15 |\n| **IVA (16 %)** | **1 060,50** |\n| **Total** | 7 688,65 |\n\n### Resumen Ejecutivo\n- **Proveedor**: INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3)  \n- **Cliente**: VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8)  \n- **Fecha de emisión**: 23 enero 2026  \n- **Método de pago**: PUE (Pago en una sola exhibición)  \n- **Moneda**: MXN  \n\nEl CFDI indica que el IVA aplicado a los servicios facturados (hospedaje y catering) asciende a **1 060,50 MXN**. Este valor corresponde al 16 % del subtotal de 6 628,15 MXN, tal como exige la normativa fiscal mexicana.\n\n### Detalle de los Conceptos Facturados\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 |\n| **Subtotal** | | | **6 628,15** |\n\n> **Nota**: No se reportan retenciones en este CFDI.\n\n### Conclusión\n- **IVA cobrado por el proveedor**: **1 060,50 MXN**.  \n- Si se dispone de más CFDIs, el IVA total a considerar será la suma de los valores de IVA de cada documento.\n\n### Recomendaciones\n1. **Revisar la conciliación**: Verificar que el importe de IVA registrado en la contabilidad coincida con el de los CFDIs.  \n2. **Control de retenciones**: Aunque en este caso no hay retenciones, es importante revisar periódicamente si se aplican retenciones de ISR o IVA en futuras facturas.  \n3. **Optimización de pagos**: Dado que el método de pago es PUE, se recomienda planificar la liquidez para evitar retrasos y posibles recargos.\n\n---\n\n**Respuesta directa a la pregunta**:  \n> **El IVA que te han cobrado tus proveedores en este CFDI es de 1 060,50 MXN.**",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4092,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 16918.4
+  },
+  {
+    "id": "cfdi_variante_09",
+    "pregunta": "Dame un reporte de gastos",
+    "respuesta_esperada": "Reporte de gastos registrados.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.2328,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2328,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 7085.3
+  },
+  {
+    "id": "cfdi_variante_10",
+    "pregunta": "¿Cuánto gasté a Proveedor Integral SA?",
+    "respuesta_esperada": "El total gastado al proveedor Proveedor Integral SA.",
+    "fragmentos_fuente": [
+      "extracciones"
+    ],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "rag_coverage": 0.3706,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": 1,
+    "campo_tipo_faltante": 0,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119**  \n*(Recuperado por relevancia semántica – 23 de enero 2026)*  \n\n| Elemento | Detalle |\n|----------|---------|\n| **Emisor** | INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335 (RFC XOK970330AM3) |\n| **Receptor** | VALLEJO‑FELICIANO SA SA DE CV (RFC FYU200407ZV8) |\n| **Fecha de emisión** | 2026‑01‑23 T11:23:34 |\n| **Método de pago** | PUE (Pago en una sola exhibición) |\n| **Forma de pago** | 01 (Transferencia electrónica de fondos) |\n| **Moneda** | MXN |\n| **Subtotal** | 6 628,15 MXN |\n| **IVA (16 %)** | 1 060,50 MXN |\n| **Retenciones** | Ninguna |\n| **Total** | 7 688,65 MXN |\n\n### Conceptos facturados\n| Concepto | Clave SAT | Cantidad | Importe (MXN) |\n|----------|-----------|----------|---------------|\n| Servicio de hospedaje en hotel, habitación sencilla | 90111801 | 2 | 2 146,58 |\n| Restaurantes y catering, servicios de cafetería | 90101701 | 14 | 4 481,57 |\n\n#### Resumen de gastos por categoría\n| Categoría | Importe (MXN) | % del total |\n|-----------|---------------|-------------|\n| Hospedaje | 2 146,58 | 27,9 % |\n| Catering | 4 481,57 | 58,3 % |\n| **Subtotal** | 6 628,15 | 100 % |\n\n> **Observación**: El IVA se aplica sobre el subtotal (16 %) y no se registran retenciones.\n\n---\n\n## Respuesta a la pregunta específica\n\n**¿Cuánto gasté a Proveedor Integral SA?**\n\nEn el CFDI analizado no aparece ninguna referencia a **Proveedor Integral SA**. El único emisor presente es **INDUSTRIAS OLIVO TOVAR Y MURO IAP F 64335**. Por lo tanto, **no se registró ningún gasto a Proveedor Integral SA** en este documento.\n\n---\n\n## Recomendaciones rápidas\n\n1. **Verificar la base de datos**: Si se espera que haya transacciones con Proveedor Integral SA, revisa otros CFDIs o registros contables que no hayan sido incluidos en esta muestra.\n2. **Control de categorías**: El gasto en catering representa la mayor parte del total. Considera negociar paquetes o descuentos si la frecuencia de uso es alta.\n3. **Revisión de pagos**: Todos los pagos se realizaron mediante transferencia electrónica. Mantén un registro de los comprobantes bancarios para auditorías futuras.\n\n---\n\n**Conclusión**: El CFDI 77BDAEFD-A8EE-4E77-97CA-5BF06E57F119 muestra un gasto total de 7 688,65 MXN, distribuido entre hospedaje y catering, sin implicaciones para Proveedor Integral SA. Si necesitas un análisis de otro CFDI o un resumen consolidado de varios documentos, por favor proporciónalos y con gusto lo elaboro.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3706,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 15176.3
+  }
+]

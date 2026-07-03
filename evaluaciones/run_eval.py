@@ -26,10 +26,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
+
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
@@ -37,8 +40,6 @@ sys.path.insert(0, str(_ROOT / "evaluaciones"))
 
 from dotenv import load_dotenv
 load_dotenv(_ROOT / ".env")
-
-import os
 
 from evaluaciones.juez import JuezFiscal
 from evaluaciones.metricas import (
@@ -49,7 +50,7 @@ from evaluaciones.metricas import (
 from evaluaciones.reporte import generar_reporte
 
 from rag.config import load_config_from_env
-from rag.retriever import FiscalRAGRetriever
+from rag.retriever import FiscalRAGRetriever, OrgRAGRetriever
 
 
 
@@ -86,11 +87,17 @@ def cargar_dataset(path: str) -> list[dict]:
 
 
 def recuperar_para_evaluacion(
-    retriever: FiscalRAGRetriever,
+    retriever: FiscalRAGRetriever | OrgRAGRetriever,
     pregunta: str,
     top_k: int = 5,
+    id_organizacion: str | None = None,
 ) -> tuple[list[str], list[str], list[dict]]:
-    fragmentos = retriever.retrieve(query=pregunta, top_k=top_k)
+    if isinstance(retriever, OrgRAGRetriever):
+        if not id_organizacion:
+            raise ValueError("id_organizacion es obligatorio para el retriever org")
+        fragmentos = retriever.retrieve(query=pregunta, id_organizacion=id_organizacion, top_k=top_k, tipo_documento="cfdi")
+    else:
+        fragmentos = retriever.retrieve(query=pregunta, top_k=top_k)
 
     filenames_recuperados = [f.filename for f in fragmentos]
     chunk_ids_recuperados = [f.chunk_id for f in fragmentos]
@@ -104,6 +111,12 @@ def recuperar_para_evaluacion(
         for f in fragmentos
     ]
     return filenames_recuperados, chunk_ids_recuperados, fragmentos_para_juez
+
+
+def crear_retriever(config, retriever_name: str) -> FiscalRAGRetriever | OrgRAGRetriever:
+    if retriever_name == "org":
+        return OrgRAGRetriever(config)
+    return FiscalRAGRetriever(config)
 
 
 def generar_respuesta_rag(
@@ -124,6 +137,8 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
     t_inicio = time.time()
     modo = args.modo
     top_k = args.top_k
+    retriever_name = args.retriever
+    org_id = args.org_id
 
     print(f"\n{'═'*65}")
     print(f"  EVALUACIÓN RAG FISCAL — Modo: {modo.upper()}")
@@ -135,14 +150,14 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
 
     chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
     config = load_config_from_env(chroma_path=chroma_path)
-    retriever = FiscalRAGRetriever(config)
+    retriever = crear_retriever(config, retriever_name)
 
     groq_api_key   = os.getenv("GROQ_API_KEY", "")
     groq_model     = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
     groq_judge_model = os.getenv("GROQ_JUDGE_MODEL", "llama-3.3-70b-versatile")
     llm_base_url   = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
 
-    if not groq_api_key:
+    if modo == "completo" and not groq_api_key:
         print("[ERROR] GROQ_API_KEY no configurada en .env")
         sys.exit(1)
 
@@ -171,7 +186,10 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
 
         t0 = time.time()
         filenames_rec, chunk_ids_rec, fragmentos_para_juez = recuperar_para_evaluacion(
-            retriever, pregunta, top_k=top_k
+            retriever,
+            pregunta,
+            top_k=top_k,
+            id_organizacion=org_id,
         )
         lat_rec = round((time.time() - t0) * 1000)
 
@@ -202,7 +220,10 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
         }
 
         if modo == "completo" and juez is not None:
-            fragmentos_raw = retriever.retrieve(query=pregunta, top_k=top_k)
+            if isinstance(retriever, OrgRAGRetriever):
+                fragmentos_raw = retriever.retrieve(query=pregunta, id_organizacion=org_id, top_k=top_k, tipo_documento="cfdi")
+            else:
+                fragmentos_raw = retriever.retrieve(query=pregunta, top_k=top_k)
 
             t1 = time.time()
             respuesta_generada, tokens_entrada, tokens_salida = generar_respuesta_rag(
@@ -314,7 +335,15 @@ def main() -> None:
         help="recall: solo Recall@k (para CI). completo: + juez LLM (para sprint review).",
     )
     parser.add_argument(
-        "--dataset", default="evaluaciones/data/eval_dataset.json",
+        "--retriever", choices=["normativa", "org"], default="normativa",
+        help="Selecciona la colección a evaluar: normativa SAT o CFDIs de organización.",
+    )
+    parser.add_argument(
+        "--org-id", default="org-test-visir-001",
+        help="id_organizacion usado cuando --retriever org.",
+    )
+    parser.add_argument(
+        "--dataset", default=None,
         help="Ruta al dataset de evaluación.",
     )
     parser.add_argument(
@@ -326,6 +355,12 @@ def main() -> None:
         help="Ruta del reporte Markdown (default: validation_results/eval_<ts>.md).",
     )
     args = parser.parse_args()
+    if args.dataset is None:
+        args.dataset = (
+            "evaluaciones/data/eval_dataset_cfdis.json"
+            if args.retriever == "org"
+            else "evaluaciones/data/eval_dataset.json"
+        )
     ejecutar_evaluacion(args)
 
 

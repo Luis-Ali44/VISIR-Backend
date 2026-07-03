@@ -15,14 +15,6 @@ from rag.config import load_config_from_env
 from rag.retriever import FiscalRAGRetriever
 from rag.chain import FiscalRAGChain
 
-# setup_logging() agrega un handler al root logger de Python con salida
-# a stdout. Sin esto, get_logger("rag_fiscal") (usado en ingest_router,
-# org_ingestion_service, etc.) devuelve un logger que NO tiene ningún
-# handler propio ni heredado — Python cae al "handler de último
-# recurso", que solo imprime WARNING/ERROR a stderr y descarta los
-# logger.info(...) en silencio. Por eso "ingesta_iniciada" /
-# "ingesta_completada" / "ingesta_fallida" nunca aparecían en
-# `docker compose logs`, aunque el código sí los emitía.
 setup_logging(level=os.getenv("LOG_LEVEL", "INFO"))
 
 

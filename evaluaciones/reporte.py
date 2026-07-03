@@ -7,7 +7,6 @@ from metricas import ResultadoRecall
 
 
 def _emoji_score(score: int | float | None) -> str:
-    """Convierte score 1-5 a emoji de semáforo."""
     if score is None:
         return "⚪"
     s = int(round(score))

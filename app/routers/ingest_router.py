@@ -16,22 +16,12 @@ _ingest_running: bool = False
 
 
 def _get_chroma_env() -> tuple[str, str]:
-    """
-    Lee CHROMA_PATH / CHROMA_COLLECTION directo de variables de entorno,
-    igual que hace rag/config.py::load_config_from_env. app/core/config.py
-    no expone get_settings() ni estos campos, así que no se usa aquí.
-    """
     chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
     chroma_collection = os.getenv("CHROMA_COLLECTION", "documentos_fiscales")
     return chroma_path, chroma_collection
 
 
 def _get_chroma_org_env() -> tuple[str, str]:
-    """
-    Igual que _get_chroma_env(), pero para la colección compartida de
-    documentos/CFDIs de organización (CHROMA_ORG_COLLECTION), separada
-    de la normativa SAT (CHROMA_COLLECTION). Ver rag/config.py.
-    """
     chroma_path = os.getenv("CHROMA_PATH", "./chroma_db")
     chroma_org_collection = os.getenv("CHROMA_ORG_COLLECTION", "documentos_organizacion")
     return chroma_path, chroma_org_collection

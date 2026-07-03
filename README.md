@@ -111,11 +111,17 @@ cp .env.example .env
 | `LLM_TEMPERATURE` | Temperatura de generación del LLM | `0.2` |
 | `LLM_MAX_TOKENS` | Máximo de tokens de salida del LLM | `1024` |
 | `EMBEDDING_BASE_URL` | URL de Ollama para embeddings | `http://host.docker.internal:11434/v1` |
+| `EMBEDDING_API_KEY` | API key del servidor de embeddings | `ollama` |
 | `EMBEDDING_MODEL` | Modelo de embeddings | `embeddinggemma:latest` |
+| `EMBEDDING_TIMEOUT` | Timeout de solicitud de embeddings (segundos) | `30` |
+| `EMBEDDING_MAX_RETRIES` | Reintentos máximos para solicitudes de embeddings | `3` |
 | `CHROMA_PATH` | Ruta a la base vectorial | `./chroma_db` |
 | `CHROMA_COLLECTION` | Colección de normativa SAT (compartida, solo lectura) | `documentos_fiscales` |
 | `CHROMA_ORG_COLLECTION` | Colección de documentos/CFDIs por organización | `documentos_organizacion` |
 | `MISTRAL_API_KEY` | API key de Mistral, usada por el extractor de CFDIs | `tu_clave_aqui` |
+| `GROQ_API_KEY` | API key de Groq (usada en evaluaciones) | `gsk_...` |
+| `GROQ_MODEL` | Modelo para evaluaciones | `llama-3.3-70b-versatile` |
+| `GROQ_JUDGE_MODEL` | Modelo juez para evaluaciones | `llama-3.3-70b-versatile` |
 
 > `CHROMA_COLLECTION` y `CHROMA_ORG_COLLECTION` son colecciones **separadas** dentro del
 > mismo ChromaDB: la primera es normativa SAT compartida entre todas las organizaciones
@@ -132,7 +138,6 @@ Aplicar en orden desde el **SQL Editor de Supabase**, uno por uno:
 ```
 migrations/20260519140000_create_organizaciones.sql
 migrations/20260519140001_create_roles.sql
-migrations/20260519140002_create_categorias.sql
 migrations/20260519140003_create_usuarios.sql
 migrations/20260519140005_create_categorias.sql
 migrations/20260519140007_create_formas_pago.sql
@@ -227,14 +232,6 @@ uv run python -m ingestion.run              # ingestar todos los PDFs en data/
 uv run python -m ingestion.run --stats      # ver estado actual de ChromaDB
 uv run python -m ingestion.run --preview    # previsualizar chunks sin indexar
 uv run python -m ingestion.run --reset      # limpiar ChromaDB y reingestar
-```
-
-**Con Docker (si el sistema ya está levantado):**
-
-```bash
-./scripts/ingestar.sh
-./scripts/ingestar.sh --stats
-./scripts/ingestar.sh --reset
 ```
 
 **Vía endpoint HTTP:**
@@ -340,9 +337,10 @@ curl -X POST http://localhost:8000/v1/consultas/preguntar \
 ### Ingesta (normativa SAT)
 
 | Método | Ruta | Auth | Descripción |
-|---|---|---|---|
+|---|---|---|---|---|
 | `POST` | `/v1/ingest/run` | ✅ JWT | Lanzar pipeline de ingesta de PDFs normativos |
-| `GET` | `/v1/ingest/stats` | ✅ JWT | Estadísticas actuales de ChromaDB (colección de normativa) |
+| `GET` | `/v1/ingest/stats` | ✅ JWT | Estadísticas de ChromaDB (colección de normativa SAT) |
+| `GET` | `/v1/ingest/org-stats` | ✅ JWT | Estadísticas de ChromaDB (colección de documentos de la organización) |
 
 ---
 
@@ -441,7 +439,6 @@ VISIR-Backend/
 ├── migrations/                   # SQL para Supabase en orden numérico
 ├── data/                         # ← coloca aquí los PDFs normativos a ingestar
 ├── chroma_db/                    # base vectorial (generada por la ingesta, no versionar)
-├── scripts/
 ├── tests/
 ├── docs/                         # documentación técnica detallada
 ├── docker-compose.yml

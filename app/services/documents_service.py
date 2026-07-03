@@ -128,7 +128,6 @@ async def subir_documento_service(
         link=ruta_archivo,
         id_usuario=UUID(id_usuario),
         id_organizacion=UUID(id_organizacion),
-        # id_categorias=id_categoria,
         id_categorias=None,
     )
 
@@ -170,7 +169,7 @@ async def subir_documento_service(
             return documento_response
     finally:
         if tmp_path and tmp_path.exists():
-            tmp_path.unlink(missing_ok=True) 
+            tmp_path.unlink(missing_ok=True)
 
     cfdis_datos = _normalizar_cfdis_extraidos(data)
 

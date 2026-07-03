@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 def get_extracciones_by_org(
     id_organizacion: str,
-    id_usuario: str | None = None,  # <- NUEVO: Soporte para aislamiento por usuario
+    id_usuario: str | None = None,  
     estado: str = "procesado",
     fecha_inicio: str | None = None,
     fecha_fin: str | None = None,
@@ -77,13 +77,13 @@ def get_estadisticas_basicas(id_organizacion: str, limit: int = 1000) -> dict[st
     }
 
 def get_resumen_gasto_por_mes(id_organizacion: str) -> dict[str, Any]:
-    # Implementación mantenida intacta de tu código original
+    
     pass
 
 def get_gastos_por_proveedor(id_organizacion: str, top_n: int = 5) -> dict[str, Any]:
-     # Implementación mantenida intacta de tu código original
+    
     pass
 
 def get_gastos_por_categoria(id_organizacion: str) -> dict[str, Any]:
-     # Implementación mantenida intacta de tu código original
+    
     pass

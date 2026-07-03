@@ -6,7 +6,6 @@ from datetime import UTC, datetime
 
 class JSONFormatter(logging.Formatter):
 
-
     def format(self, record: logging.LogRecord) -> str:
         payload: dict = {
             "timestamp": datetime.now(tz=UTC).isoformat(),

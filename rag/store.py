@@ -1,4 +1,7 @@
 from dataclasses import dataclass
+import os
+
+os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 
 import chromadb
 from chromadb.config import Settings
@@ -191,13 +194,6 @@ class FiscalChromaStore:
         }
 
     def stats_by_org(self, id_organizacion: str) -> dict:
-        """
-        Igual que stats(), pero acotado a los chunks de una sola
-        organización vía filtro de metadata. Pensado para la colección
-        compartida `documentos_organizacion`, donde stats() sin filtro
-        devolvería el conteo de TODAS las organizaciones mezcladas —
-        un dato que un usuario normal no debería poder ver.
-        """
         where = {"id_organizacion": {"$eq": id_organizacion}}
 
         results = self.collection.get(

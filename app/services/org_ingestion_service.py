@@ -1,17 +1,4 @@
-# app/services/org_ingestion_service.py
-"""
-Ingesta documentos subidos por una organización (CFDIs parseados o
-documentos generales en PDF/MD/TXT) hacia la colección compartida de
-Chroma `documentos_organizacion`, usando el mismo pipeline de chunking
-y embeddings que ya existe para la normativa SAT (ingestion/pipeline.py),
-pero apuntando a una RAGConfig con collection_name distinto y agregando
-id_organizacion / id_documento / id_usuario / tipo_documento como
-metadata obligatoria de cada chunk.
 
-Se ejecuta en background tras subir_documento_service (ver
-documents_service.py), para no bloquear la respuesta HTTP de /cargar
-con el tiempo de embeddings.
-"""
 import logging
 import tempfile
 from dataclasses import replace
@@ -23,10 +10,6 @@ from rag.config import RAGConfig, load_config_from_env
 
 logger = logging.getLogger(__name__)
 
-# Caché simple del pipeline de ingesta de organización: construirlo de
-# nuevo en cada subida recargaría el modelo de embeddings y reabriría
-# Chroma en cada request, lo cual es costoso. Se construye una sola vez
-# por proceso, igual que rag_service en app.state.
 _org_pipeline: RAGIngestionPipeline | None = None
 
 
@@ -34,8 +17,6 @@ def get_org_ingestion_pipeline() -> RAGIngestionPipeline:
     global _org_pipeline
     if _org_pipeline is None:
         base_config = load_config_from_env()
-        # Mismo embedding/chunking que la normativa SAT, pero apuntando
-        # a la colección de organización en vez de documentos_fiscales.
         org_config: RAGConfig = replace(
             base_config,
             collection_name=base_config.org_collection_name,
@@ -45,14 +26,6 @@ def get_org_ingestion_pipeline() -> RAGIngestionPipeline:
 
 
 def _cfdi_a_texto(extraccion: dict[str, Any]) -> str:
-    """
-    Convierte los datos ya parseados de un CFDI (el dict que produce
-    app/services/Extraccion/xml_parser.py + pipeline.py) en un texto
-    legible para embeddings. No se le pasa el XML crudo al chunker:
-    un texto estructurado en español da mejor similitud semántica
-    contra preguntas en lenguaje natural ("¿cuánto le pagué a tal
-    proveedor por tal concepto?") que las etiquetas XML originales.
-    """
     emisor = extraccion.get("emisor") or {}
     receptor = extraccion.get("receptor") or {}
     conceptos = extraccion.get("conceptos") or []
@@ -86,12 +59,11 @@ def ingestar_cfdi_organizacion(
     id_organizacion: str,
     id_documento: str,
     id_usuario: str,
+    extra_metadata: dict[str, Any] | None = None,
 ) -> None:
-    """
-    Ingesta el contenido textual de un CFDI ya parseado hacia la
-    colección de organización. Se llama desde documents_service tras
-    guardar la fila en `extracciones`.
-    """
+    folio = extraccion.get("folio_fiscal") or id_documento
+    filename_canonical = f"{folio}.md"
+
     texto = _cfdi_a_texto(extraccion)
 
     with tempfile.NamedTemporaryFile(
@@ -102,23 +74,30 @@ def ingestar_cfdi_organizacion(
 
     try:
         pipeline = get_org_ingestion_pipeline()
+        metadata = {
+            "filename": filename_canonical,
+            "id_organizacion": id_organizacion,
+            "id_documento": id_documento,
+            "id_usuario": id_usuario,
+            "tipo_documento": "cfdi",
+            "folio_fiscal": folio,
+        }
+        if extra_metadata:
+            metadata.update(extra_metadata)
+        metadata["filename"] = metadata.get("filename") or filename_canonical
+
         pipeline.ingest(
-            pdf_path=tmp_path,  # nombre del parámetro heredado; acepta .md también
+            pdf_path=tmp_path,
             importance=pipeline.config.default_importance,
-            extra_metadata={
-                "id_organizacion": id_organizacion,
-                "id_documento": id_documento,
-                "id_usuario": id_usuario,
-                "tipo_documento": "cfdi",
-                "folio_fiscal": extraccion.get("folio_fiscal") or "",
-            },
-            force_reingest=True,  # cada CFDI es un archivo temporal nuevo; nunca está "ya indexado" por hash
+            extra_metadata=metadata,
+            force_reingest=True,
         )
     except Exception:
         logger.exception(
             "Fallo al ingestar CFDI al RAG de organización",
             extra={"id_organizacion": id_organizacion, "id_documento": id_documento},
         )
+        raise
     finally:
         Path(tmp_path).unlink(missing_ok=True)
 
@@ -129,14 +108,6 @@ def ingestar_documento_general_organizacion(
     id_documento: str,
     id_usuario: str,
 ) -> None:
-    """
-    Ingesta un documento general (PDF/MD/TXT) subido por la organización
-    —no un CFDI— hacia la colección de organización. `ruta_local` debe
-    ser una ruta en disco accesible (p. ej. un archivo temporal donde se
-    volcó el contenido recibido en el UploadFile antes de subirlo a
-    Storage), ya que ingestion/pipeline.py trabaja sobre archivos, no
-    sobre bytes en memoria.
-    """
     try:
         pipeline = get_org_ingestion_pipeline()
         pipeline.ingest(
@@ -148,7 +119,7 @@ def ingestar_documento_general_organizacion(
                 "id_usuario": id_usuario,
                 "tipo_documento": "general",
             },
-            force_reingest=False,  # aquí sí vale el dedupe por hash de archivo real
+            force_reingest=False,  
         )
     except Exception:
         logger.exception(

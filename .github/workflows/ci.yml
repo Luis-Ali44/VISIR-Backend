@@ -13,6 +13,8 @@ on:
         required: true
       SUPABASE_SECRET_KEY:
         required: true
+      GROQ_API_KEY:
+        required: true
 
 jobs:
   ci:
@@ -44,3 +46,56 @@ jobs:
 
       - name: Docker — compilar imagen
         run: docker build -t visir-api .
+
+  evals:
+    runs-on: ubuntu-latest
+    services:
+      ollama:
+        image: ollama/ollama:latest
+        ports:
+          - 11434:11434
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Instalar dependencias
+        run: uv sync
+
+      - name: Descargar modelo de embeddings en Ollama
+        run: |
+          curl -s http://localhost:11434/api/pull -d '{"name": "embeddinggemma:latest"}'
+
+      - name: Restaurar índice de ChromaDB (normativa SAT) desde caché
+        id: cache-chroma
+        uses: actions/cache@v4
+        with:
+          path: chroma_db
+          key: chroma-normativa-${{ hashFiles('data/**/*.pdf', 'data/**/*.md') }}
+
+      - name: Ingestar normativa SAT (solo si no hay caché)
+        if: steps.cache-chroma.outputs.cache-hit != 'true'
+        run: uv run python -m ingestion.run
+        env:
+          CHROMA_PATH: ./chroma_db
+          EMBEDDING_BASE_URL: http://localhost:11434/v1
+
+      - name: Gate — Recall@k del RAG normativo (V-05 / V-07)
+        run: uv run python -m evaluaciones.ci_gate --umbral-recall-3 0.70
+        env:
+          CHROMA_PATH: ./chroma_db
+          EMBEDDING_BASE_URL: http://localhost:11434/v1
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+      - name: Gate — Precisión de enrutamiento (léxico)
+        run: uv run python -m evaluaciones.eval_ruteo --modo lexico --umbral 0.80
+
+      - name: Subir reportes de evaluación como artefacto
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-evaluacion
+          path: validation_results/

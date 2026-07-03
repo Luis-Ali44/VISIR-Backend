@@ -1,0 +1,200 @@
+[
+  {
+    "id": "cfdi_original_01",
+    "pregunta": "¿Cuánto gasté el mes pasado en total?",
+    "respuesta_esperada": "El total gastado el mes pasado, según tus CFDIs.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_02",
+    "pregunta": "¿Cuáles fueron mis facturas de mayor monto en julio?",
+    "respuesta_esperada": "Las facturas de mayor monto registradas en julio.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_03",
+    "pregunta": "¿Cuánto le he pagado al proveedor Grupo Ravan este año?",
+    "respuesta_esperada": "El total pagado al proveedor Grupo Ravan en lo que va del año.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_04",
+    "pregunta": "Dame el total de mis ingresos de junio",
+    "respuesta_esperada": "El total de ingresos registrados en junio.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_05",
+    "pregunta": "¿Los gastos que tuve este mes son deducibles según la ley?",
+    "respuesta_esperada": "Análisis de deducibilidad de los gastos del mes según la normativa SAT.",
+    "fragmentos_fuente": ["extracciones", "RMF_2026"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_original_06",
+    "pregunta": "¿Mi régimen fiscal me permite deducir lo que gasté en julio?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos de julio según tu régimen fiscal.",
+    "fragmentos_fuente": ["extracciones", "RMF_2026"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_original_07",
+    "pregunta": "De mis facturas de este mes, ¿cuáles cumplen los requisitos del SAT para ser deducibles?",
+    "respuesta_esperada": "Lista de facturas del mes que cumplen requisitos de deducibilidad SAT.",
+    "fragmentos_fuente": ["extracciones", "Anexo_20"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_original_08",
+    "pregunta": "¿Puedo deducir el total de mis compras a proveedores según mi régimen?",
+    "respuesta_esperada": "Análisis de deducibilidad de compras a proveedores según tu régimen.",
+    "fragmentos_fuente": ["extracciones", "RMF_2026"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_original_09",
+    "pregunta": "¿En qué mes gasté más dinero?",
+    "respuesta_esperada": "El mes con mayor gasto según tus CFDIs registrados.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_10",
+    "pregunta": "¿Cuánto gasté en total a Proveedor Integral SA?",
+    "respuesta_esperada": "El total gastado al proveedor Proveedor Integral SA.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_11",
+    "pregunta": "¿Cuánto IVA me han cobrado mis proveedores este trimestre?",
+    "respuesta_esperada": "El total de IVA cobrado por tus proveedores en el trimestre actual.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_original_12",
+    "pregunta": "Dame un reporte de gastos de enero a marzo de 2025",
+    "respuesta_esperada": "Reporte detallado de gastos del primer trimestre de 2025.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": false,
+    "campo_removido": null,
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_01",
+    "pregunta": "¿Cuánto gasté en total?",
+    "respuesta_esperada": "El total de gastos registrados en tus CFDIs.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_02",
+    "pregunta": "¿Cuáles fueron mis facturas de mayor monto?",
+    "respuesta_esperada": "Las facturas de mayor monto registradas.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_03",
+    "pregunta": "¿Cuánto le he pagado al proveedor Grupo Ravan?",
+    "respuesta_esperada": "El total pagado al proveedor Grupo Ravan.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_04",
+    "pregunta": "Dame el total de mis ingresos",
+    "respuesta_esperada": "El total de ingresos registrados.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_05",
+    "pregunta": "¿Los gastos que tuve son deducibles según la ley?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos según la normativa SAT.",
+    "fragmentos_fuente": ["extracciones", "RMF_2026"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_variante_06",
+    "pregunta": "¿Mi régimen fiscal me permite deducir lo que gasté?",
+    "respuesta_esperada": "Análisis de deducibilidad de gastos según tu régimen fiscal.",
+    "fragmentos_fuente": ["extracciones", "RMF_2026"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_variante_07",
+    "pregunta": "De mis facturas, ¿cuáles cumplen los requisitos del SAT para ser deducibles?",
+    "respuesta_esperada": "Lista de facturas que cumplen requisitos de deducibilidad SAT.",
+    "fragmentos_fuente": ["extracciones", "Anexo_20"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "hibrido"
+  },
+  {
+    "id": "cfdi_variante_08",
+    "pregunta": "¿Cuánto IVA me han cobrado mis proveedores?",
+    "respuesta_esperada": "El total de IVA cobrado por tus proveedores.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_09",
+    "pregunta": "Dame un reporte de gastos",
+    "respuesta_esperada": "Reporte de gastos registrados.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  },
+  {
+    "id": "cfdi_variante_10",
+    "pregunta": "¿Cuánto gasté a Proveedor Integral SA?",
+    "respuesta_esperada": "El total gastado al proveedor Proveedor Integral SA.",
+    "fragmentos_fuente": ["extracciones"],
+    "es_ambigua": true,
+    "campo_removido": "periodo",
+    "_origen": "cfdi"
+  }
+]
