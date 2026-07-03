@@ -18,7 +18,7 @@ from .catalogos import (
     validar_formato_rfc,
 )
 from .llm_extractor import construir_prompt
-from app.schemas.schema_extraccion import validar_ocr, validar_xml
+from .schema import validar_ocr, validar_xml
 from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
 from .texto_utils import normalizar_fecha as _normalizar_fecha
 
