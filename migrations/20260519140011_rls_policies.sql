@@ -11,26 +11,31 @@ ALTER TABLE conversaciones   ENABLE ROW LEVEL SECURITY;
 GRANT USAGE ON SCHEMA public TO authenticated;
 GRANT USAGE ON SCHEMA public TO service_role;
 
-GRANT SELECT, INSERT, UPDATE ON usuarios       TO authenticated;
-GRANT SELECT                 ON organizaciones TO authenticated;
-GRANT SELECT                 ON roles          TO authenticated;
-GRANT SELECT                 ON categorias     TO authenticated;
-GRANT SELECT                 ON formas_pago    TO authenticated;
-GRANT SELECT, INSERT         ON documentos     TO authenticated;
-GRANT SELECT                 ON extracciones   TO authenticated;
-GRANT SELECT, INSERT         ON conversaciones TO authenticated;
+GRANT SELECT, INSERT, UPDATE ON usuarios            TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE   ON organizaciones       TO authenticated;
+GRANT SELECT                 ON roles                TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE                ON categorias           TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE                 ON formas_pago          TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE         ON documentos           TO authenticated;
+GRANT SELECT, INSERT, UPDATE ON extracciones         TO authenticated;
+GRANT SELECT, INSERT         ON conversaciones       TO authenticated;
+GRANT SELECT                 ON tipos_comprobantes   TO authenticated;
 
 GRANT ALL ON ALL TABLES IN SCHEMA public TO service_role;
 
 
 CREATE OR REPLACE FUNCTION get_my_org_id()
 RETURNS UUID AS $$
-    SELECT (auth.jwt() -> 'user_metadata' ->> 'org_id')::UUID;
+    SELECT id_organizacion
+    FROM public.usuarios
+    WHERE id = auth.uid();
 $$ LANGUAGE sql STABLE SECURITY DEFINER;
 
 CREATE OR REPLACE FUNCTION get_my_role()
 RETURNS TEXT AS $$
-    SELECT auth.jwt() -> 'user_metadata' ->> 'role';
+    SELECT lower(r.nombre)
+    FROM public.roles r
+    WHERE r.id = (select id_role from public.usuarios wherer id= auth.uid());
 $$ LANGUAGE sql STABLE SECURITY DEFINER;
 
 -- organizaciones
@@ -128,6 +133,10 @@ CREATE POLICY "usuario: ver extracciones de su org"
 ON extracciones FOR SELECT
 USING (get_my_role() = 'usuario' AND id_organizacion = get_my_org_id());
 
+CREATE POLICY "usuario: insertar extrraccion"
+ON extracciones FOR INSERT 
+WITH CHECK (get_my_role() = 'usuario' AND id_organizacion = get_my_org_id());
+
 -- conversaciones
 CREATE POLICY "owner: todas las conversaciones"
 ON conversaciones FOR ALL
@@ -142,3 +151,9 @@ CREATE POLICY "usuario: sus conversaciones"
 ON conversaciones FOR ALL
 USING (get_my_role() = 'usuario' AND id_usuario = auth.uid() AND id_organizacion = get_my_org_id())
 WITH CHECK (get_my_role() = 'usuario' AND id_usuario = auth.uid() AND id_organizacion = get_my_org_id());
+
+
+-- TIPOS DE COMPROBANTES
+
+CREATE POLICY "Permitir lectura global de tipos de comprobantes"
+ON tipos_comprobantes FOR SELECT TO authenticated USING (true);

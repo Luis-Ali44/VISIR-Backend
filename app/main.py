@@ -2,8 +2,10 @@ from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers.auth_router import router as auth_router
+from app.routers.conversacion_router import router as consultas_router
 from app.routers.documents_router import router as documents_router
 from app.routers.extracciones_router import router as extracciones_router
 
@@ -17,6 +19,14 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
 
 
 app = FastAPI(title="VISIR API", version="0.1.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5500"],  # tu frontend local; agrega la URL del VPS después
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
@@ -32,3 +42,4 @@ def welcome() -> str:
 app.include_router(documents_router)
 app.include_router(auth_router)
 app.include_router(extracciones_router)
+app.include_router(consultas_router)

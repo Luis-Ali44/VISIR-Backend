@@ -3,7 +3,7 @@ from typing import Any
 from fastapi import APIRouter, Depends, File, Query, UploadFile
 
 from app.core.dependencies import get_user
-from app.schemas.documents_schema import DocumentResponse
+from app.schemas.documents_schema import DocumentResponse, LoteResponse
 from app.schemas.user_schema import UsuarioActual
 from app.services.documents_service import (
     get_document_id,
@@ -23,7 +23,7 @@ async def upload_document(
     return await subir_documento_service(file, user)
 
 
-@router.get("/{id}", response_model=list[DocumentResponse])
+@router.get("/{document_id}", response_model=list[DocumentResponse])
 async def get_document(document_id: str) -> list[Any]:
     return get_document_id(document_id)
 
@@ -48,5 +48,5 @@ async def get_my_documents_router(
 @router.post("/lote", response_model=list[DocumentResponse])
 async def subir_carpeta(
     files: list[UploadFile] = File(...), user: UsuarioActual = Depends(get_user)
-) -> list:
+) -> LoteResponse:
     return await subir_lote_service(files, user)

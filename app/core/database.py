@@ -1,4 +1,4 @@
-from supabase import Client, create_client
+from supabase.client import Client, create_client
 
 from app.core.config import settings
 

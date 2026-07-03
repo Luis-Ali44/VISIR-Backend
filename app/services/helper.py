@@ -1,4 +1,7 @@
 from datetime import datetime
+from pathlib import Path
+
+from lxml import etree
 
 from app.repositories.documents_repository import nombre_forma_pago, tipo_comprobante
 
@@ -39,3 +42,30 @@ def map_tipo_comprobante(tipo: str) -> str | None:
 
 def get_nombre_forma_pago(forma_pago: str) -> str | None:
     return nombre_forma_pago(forma_pago)
+
+
+base__dir = Path(__file__).resolve().parent.parent.parent
+
+RUTA_XSD_CFDI = base__dir / "resources" / "sat" / "cfdi_combinado.xsd"
+
+
+if not RUTA_XSD_CFDI.exists():
+    raise FileNotFoundError(f"No se encontró el archivo XSD en la ruta absoluta: {RUTA_XSD_CFDI}")
+
+schema_cfdi = etree.XMLSchema(etree.parse(RUTA_XSD_CFDI))
+
+
+def verificar_xml(xml_bytes: bytes) -> tuple[bool, list[str]]:
+    try:
+        xml_doc = etree.fromstring(xml_bytes)
+    except etree.XMLSyntaxError as e:
+        return False, [f"XML mal formado: {e}"]
+
+    es_valido = schema_cfdi.validate(xml_doc)
+
+    errores = []
+    if not es_valido:
+        for error in schema_cfdi.error_log:
+            errores.append(str(error))
+
+    return es_valido, errores

@@ -19,7 +19,7 @@ def registro_service(data: Registrar) -> MenssageResponse:
         ):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Tu contraseña no puede ser igual correo, nombre o apellido",
+                detail="Tu contraseña no puede ser igual a tu correo, nombre o apellido",
             )
 
         response = registro_repository(data)

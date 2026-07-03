@@ -27,7 +27,10 @@ async def get_user(credenciales: HTTPAuthorizationCredentials = Depends(security
             .execute()
         )
 
-        org_id: str | None = None
+        if org_response is None:
+            raise HTTPException(status_code=401, detail="Usuario sin organización")
+
+        org_id: str
         if org_response.data and len(org_response.data) > 0:
             row = cast(dict[str, Any], org_response.data[0])
 

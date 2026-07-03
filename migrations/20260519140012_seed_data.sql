@@ -54,3 +54,11 @@ INSERT INTO documentos (id, nombre, tipo, tamaño, link, id_usuario, id_organiza
     ('dd000001-0000-0000-0000-000000000002', 'factura_enero_2026.pdf',      'application/pdf', 98304, 'documentos/factura_enero_2026.pdf',      'a0000001-0000-0000-0000-000000000002', '11111111-1111-1111-1111-111111111111', 'ca000001-0000-0000-0000-000000000001', '2026-01-15 10:01:00'),
     ('dd000002-0000-0000-0000-000000000001', 'nomina_febrero_2026.xml',     'text/xml',        3072,  'documentos/nomina_febrero_2026.xml',     'b0000002-0000-0000-0000-000000000003', '22222222-2222-2222-2222-222222222222', 'ca000001-0000-0000-0000-000000000004', '2026-02-28 09:00:00'),
     ('dd000002-0000-0000-0000-000000000002', 'nota_credito_marzo_2026.xml', 'text/xml',        2048,  'documentos/nota_credito_marzo_2026.xml', 'b0000002-0000-0000-0000-000000000003', '22222222-2222-2222-2222-222222222222', 'ca000001-0000-0000-0000-000000000002', '2026-03-10 14:30:00');
+
+INSERT INTO tipos_comprobantes (clave, nombre) VALUES
+    ('I', 'Ingreso'),
+    ('E', 'Egreso'),
+    ('T', 'Traslado'),
+    ('N', 'Nómina'),
+    ('P', 'Pago'),
+    ('R', 'Retención e información de pagos');

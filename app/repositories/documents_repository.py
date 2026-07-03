@@ -121,3 +121,22 @@ def nombre_forma_pago(forma_pago: str) -> str | None:
     except Exception:
         return None
     return None
+
+
+def delete_document_storage(ruta_archivo: str) -> None:
+    supabase.storage.from_("documentos").remove([ruta_archivo])
+
+
+def delete_document_metadata(documento_id: str) -> None:
+    supabase.table("documentos").delete().eq("id", documento_id).execute()
+
+
+def get_document_by_hash(hash_archivo: str, id_organizacion: str) -> list[Any]:
+    response = (
+        supabase.table("documentos")
+        .select("*")
+        .eq("hash_archivo", hash_archivo)
+        .eq("id_organizacion", id_organizacion)
+        .execute()
+    )
+    return list(response.data)
