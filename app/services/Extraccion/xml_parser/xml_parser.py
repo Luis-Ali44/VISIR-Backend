@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import xml.etree.ElementTree as ET
-from datetime import datetime
 from pathlib import Path
 
+from ..texto_utils import normalizar_fecha as _normalizar_fecha
 from .complementos import (
     addenda,
     carta_porte,
@@ -21,21 +21,6 @@ def _float_or_none(valor: str | None) -> float | None:
     try:
         return float(valor)
     except (ValueError, TypeError):
-        return None
-
-
-def _normalizar_fecha(fecha_str: str | None) -> str | None:
-    if not fecha_str:
-        return None
-    fecha_str = fecha_str.split("+")[0].split("Z")[0].strip()
-    if "." in fecha_str:
-        fecha_str = fecha_str.split(".")[0]
-    if len(fecha_str) == 10:
-        fecha_str = fecha_str + "T00:00:00"
-    try:
-        datetime.fromisoformat(fecha_str)
-        return fecha_str
-    except ValueError:
         return None
 
 
