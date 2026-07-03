@@ -39,10 +39,14 @@ REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
 6. forma_pago  → código de 2 dígitos ("01", "02", "03", "28", "99", etc.).
    Solo extrae el código si aparece EXPLÍCITAMENTE en el texto como número.
 7. moneda      → código ISO de 3 letras ("MXN", "USD", "EUR", etc.).
-8. Campos numéricos → número sin símbolo de moneda ni comas (ej. 1234.56).
-9. RFCs        → sin espacios, sin guiones, en MAYÚSCULAS.
-10. NUNCA inventes datos. Si un campo no está visible en el texto → null.
-11. descripcion de cada concepto → copia el texto COMPLETO y LITERAL.
+8. tipo_comprobante → código de una letra: "I" (Ingreso), "E" (Egreso), 
+   "P" (Pago), "N" (Nómina), "T" (Traslado). Busca en el texto 
+   "Tipo de Comprobante", "TipoDeComprobante", o palabras clave 
+   como "INGRESO", "EGRESO", "PAGO", "NÓMINA", "TRASLADO".
+9. Campos numéricos → número sin símbolo de moneda ni comas (ej. 1234.56).
+10. RFCs        → sin espacios, sin guiones, en MAYÚSCULAS.
+11. NUNCA inventes datos. Si un campo no está visible en el texto → null.
+12. descripcion de cada concepto → copia el texto COMPLETO y LITERAL.
     No resumir, no parafrasear. El texto de la tabla puede venir sin columnas
     separadas; corta la descripción ANTES de palabras que pertenezcan a otra
     columna como "Unidad", "Tasa", "IVA", un porcentaje aislado seguido de
@@ -56,6 +60,7 @@ estructura JSON requerida por cada CFDI:
     "version":       null,
     "folio_fiscal":  null,
     "fecha_emision": null,
+    "tipo_comprobante": null,
     "metodo_pago":   null,
     "forma_pago":    null,
     "moneda":        null,

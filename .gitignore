@@ -2,4 +2,8 @@ __pycache__/
 .venv/
 .venv-1/
 
-.env
+.env.venv-ml/
+app.zip
+data/
+models/
+notebooks/

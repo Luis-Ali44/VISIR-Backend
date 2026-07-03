@@ -61,10 +61,15 @@ class ConceptoMinimo(BaseModel):
             raise ValueError(f"ClaveProdServ '{v}' no existe en el catálogo del SAT")
         return v
 
+    @field_validator("clave_unidad", mode="before")
+    @classmethod
+    def _normalizar_clave_unidad(cls, v: str | None) -> str | None:
+        return cast("str | None", normalizar_catalogo(v, CATALOGO_CLAVE_UNIDAD))
+
     @field_validator("clave_unidad")
     @classmethod
     def _validar_clave_unidad(cls, v: str | None) -> str | None:
-        if v is not None and v not in CATALOGO_CLAVE_UNIDAD:
+        if v is not None and v not in CATALOGO_CLAVE_UNIDAD.values():
             raise ValueError(f"ClaveUnidad '{v}' no está en el catálogo del SAT")
         return v
 
@@ -89,9 +94,7 @@ class ConceptoMinimo(BaseModel):
             and self.descuento > self.importe
         ):
             raise ValueError(
-                f"Importe ({self.importe}) no cuadra con "
-                f"Cantidad x ValorUnitario "
-                f"({self.cantidad} x {self.valor_unitario} = {esperado:.2f})"
+                f"Descuento ({self.descuento}) no puede ser mayor que Importe ({self.importe})"
             )
         return self
 
@@ -148,15 +151,19 @@ class ExtractionResultBase(BaseModel):
     def _normalizar_moneda(cls, v: str | None) -> str | None:
         return cast("str | None", normalizar_catalogo(v, CATALOGO_MONEDA))
 
-    @field_validator("emisor_rfc")
+    @field_validator("emisor_rfc", mode="before")
     @classmethod
     def _val_emisor_rfc(cls, v: str | None) -> str | None:
-        return _validar_rfc(v, permitir_genericos=False) if v else v
+        if v is None:
+            return v
+        return _validar_rfc(v, permitir_genericos=False)
 
-    @field_validator("receptor_rfc")
+    @field_validator("receptor_rfc", mode="before")
     @classmethod
     def _val_receptor_rfc(cls, v: str | None) -> str | None:
-        return _validar_rfc(v, permitir_genericos=True) if v else v
+        if v is None:
+            return v
+        return _validar_rfc(v, permitir_genericos=True)
 
     @field_validator("folio_fiscal")
     @classmethod
@@ -236,7 +243,6 @@ class ExtractionResultXML(ExtractionResultBase):
     @model_validator(mode="after")
     def _validar_completitud(self) -> ExtractionResultXML:
         ausentes: list[str] = []
-        es_pago = self.tipo_comprobante == "P"
 
         for campo, etiqueta in CAMPOS_OBLIGATORIOS_CFDI.items():
             if getattr(self, campo) in (None, ""):
@@ -327,12 +333,13 @@ def campos_obligatorios_ausentes(data: dict) -> list[str]:
     payload = _aplanar_estructura(data)
 
     tipo_comprobante = payload.get("tipo_comprobante", "")
-    es_pago = tipo_comprobante == "P"
 
     for campo, etiqueta in CAMPOS_OBLIGATORIOS_CFDI.items():
         valor = payload.get(campo)
         if valor is None or (isinstance(valor, str) and valor.strip() == ""):
-            if es_pago and campo in ["forma_pago", "metodo_pago"]:
+            if tipo_comprobante in ("P", "T") and campo in ("forma_pago", "metodo_pago"):
+                continue
+            if tipo_comprobante == "N" and campo == "forma_pago":
                 continue
             ausentes.append(etiqueta)
 
