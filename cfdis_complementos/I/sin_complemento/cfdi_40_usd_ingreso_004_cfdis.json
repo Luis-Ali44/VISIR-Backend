@@ -1,0 +1,77 @@
+{
+  "archivo": "cfdi_40_usd_ingreso_004",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "8226",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "20000",
+    "exportacion": "01",
+    "no_certificado": "20222695345797320757",
+    "folio_fiscal": "04566F06-C3B5-495C-A639-85E381D66DC6",
+    "fecha_emision": "2026-03-18T07:26:14",
+    "fecha_timbrado": "2026-03-18T07:27:41",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000806163770",
+    "metodo_pago": "PUE",
+    "forma_pago": "12",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "ZAPATA MESA ANTONIA",
+      "RFC": "OVSF821101NF6",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "CLUB MÍAS-DUARTE SC",
+      "RFC": "QFH110414EH4",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "603",
+      "domicilio_fiscal": "10030"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "clave_prod_serv": "81112501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 12284.56,
+        "descuento": null,
+        "importe": 24569.12,
+        "iva": 3931.06,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 3.0,
+        "valor_unitario": 7892.31,
+        "descuento": null,
+        "importe": 23676.93,
+        "iva": 3788.31,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Honorarios profesionales",
+        "clave_prod_serv": "80111501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 1.0,
+        "valor_unitario": 47130.05,
+        "descuento": null,
+        "importe": 47130.05,
+        "iva": 7540.81,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 95376.1,
+    "descuento": null,
+    "iva": 15260.18,
+    "retenciones": 4713.01,
+    "total": 105923.27
+  }
+}

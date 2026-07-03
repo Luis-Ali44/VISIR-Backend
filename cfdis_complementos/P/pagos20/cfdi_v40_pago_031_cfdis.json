@@ -1,0 +1,123 @@
+{
+  "archivo": "cfdi_v40_pago_031",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "RP",
+    "folio": "40681",
+    "tipo_comprobante": "P",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "98639877901560907757",
+    "folio_fiscal": "87417FFA-9195-436C-94FF-E0CB0522A9FF",
+    "fecha_emision": "2026-06-24T14:26:14",
+    "fecha_timbrado": "2026-06-24T14:27:43",
+    "rfc_proveedor_certificacion": "MIS141016RX2",
+    "no_certificado_sat": "00001000000752317369",
+    "metodo_pago": null,
+    "forma_pago": null,
+    "moneda": "XXX",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "DESPHO GAMEZ, VELÁSQUEZ Y COLLAZO SAS DE CV",
+      "RFC": "KNG180823YH8",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "RAMÍREZ Y LIRA Y ASOCIADOS SAS DE CV",
+      "RFC": "FHU120515ZH5",
+      "uso_cfdi": "CP01",
+      "regimen_fiscal": "603",
+      "domicilio_fiscal": "77594"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago",
+        "clave_prod_serv": "84111506",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 0.0,
+        "descuento": null,
+        "importe": 0.0,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 0.0,
+    "descuento": null,
+    "iva": null,
+    "retenciones": null,
+    "total": 0.0,
+    "complemento_pagos": {
+      "version": "2.0",
+      "totales": {
+        "total_retenciones_iva": null,
+        "total_retenciones_isr": null,
+        "total_retenciones_ieps": null,
+        "total_traslados_base_iva16": 18595.4,
+        "total_traslados_impuesto_iva16": 2975.26,
+        "total_traslados_base_iva8": null,
+        "total_traslados_impuesto_iva8": null,
+        "total_traslados_base_iva0": null,
+        "total_traslados_impuesto_iva0": null,
+        "total_traslados_base_iva_exento": null,
+        "monto_total_pagos": 21570.66
+      },
+      "pagos": [
+        {
+          "fecha_pago": "2026-06-13T14:26:14",
+          "forma_de_pago_p": "02",
+          "moneda_p": "MXN",
+          "tipo_cambio_p": 1.0,
+          "monto": 21570.66,
+          "num_operacion": "OP5807484691",
+          "rfc_emisor_cta_ord": null,
+          "nom_banco_ord_ext": null,
+          "cta_ordenante": null,
+          "rfc_emisor_cta_ben": null,
+          "cta_beneficiario": null,
+          "tipo_cad_pago": null,
+          "doctos_relacionados": [
+            {
+              "id_documento": "32EF9B43-C1CB-48B6-A1B1-265DDB0DDD10",
+              "serie": "A",
+              "folio": "61909",
+              "moneda_dr": "MXN",
+              "equivalencia_dr": 1.0,
+              "num_parcialidad": 1.0,
+              "imp_saldo_ant": 21570.66,
+              "imp_pagado": 21570.66,
+              "imp_saldo_insoluto": 0.0,
+              "objeto_imp_dr": "02",
+              "impuestos_dr": {
+                "traslados": [
+                  {
+                    "base_dr": 18595.4,
+                    "impuesto_dr": "002",
+                    "tipo_factor_dr": "Tasa",
+                    "tasa_o_cuota_dr": 0.16,
+                    "importe_dr": 2975.26
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ],
+          "impuestos_p": {
+            "traslados": [
+              {
+                "base_p": 18595.4,
+                "impuesto_p": "002",
+                "tipo_factor_p": "Tasa",
+                "tasa_o_cuota_p": 0.16,
+                "importe_p": 2975.26
+              }
+            ],
+            "retenciones": []
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="A"
+  Folio="20311"
+  Fecha="2026-01-29T21:26:14"
+  FormaPago="99"
+  NoCertificado="95505235412180627948"
+  Certificado="fjgTIHs6SRCsFPVhEhVUygUEXZSehxvqlSBvze/MQ7uoUu/H7VKAD00EMYVqVSFgNr0mQOadflkF9S3aQc53vBJr6XBJ0RrVuaeJJdMgZ2Q="
+  Sello="zarlEjR+Qez1cMF63OrkQ6PN5dTSWmpUETEN4yMpKsrF4oSlmFglhUXNkG8muqGLlQQuAvMjCkIIRwRmmkqaPLTnvVeo6ffNcaqZ3S+XGotoPgEp2aNcOyQIxEu6qmjPANLn8B9ajZulK1MRZMwQuGOmyZRoOvTLGcrLvJnVGk7U2J36urue0rZUiJQpwj1jSVzPqgvj4uG04bE2fL3aRRCt3pvjHItubE2mV4QWJofbmc7In5mbQUk86Duopi/ro0wER/4mBb3agZMWodN0PLr8+NJWUF8IRJ9FPqNcPqMLWGnh0KqhIdhQPOAHJ/ullRQ6DbFf9rFdLDcr/g8D4g=="
+  SubTotal="3903.79"
+  Descuento="246.18"
+  Moneda="MXN"
+  Total="4242.83"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:Emisor Rfc="ZSG001029KW6" Nombre="CARRIÓN-ARELLANO S DE RL DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="JWI161209HH0"
+    Nombre="MALDONADO Y RODARTE SC"
+    DomicilioFiscalReceptor="62495"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="90101701"
+      
+      Cantidad="6"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Restaurantes y catering, servicios de cafetería"
+      ValorUnitario="240.33"
+      Importe="1441.98"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="1441.98" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="230.72"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="90111801"
+      
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Noche"
+      Descripcion="Servicio de hospedaje en hotel, habitación sencilla"
+      ValorUnitario="2461.81"
+      Importe="2461.81"
+      Descuento="246.18"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="2215.63" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="354.50"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="585.22">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="3657.61" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="585.22"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="565413D3-4CC2-4184-AF6B-C557EF2E5209"
+      FechaTimbrado="2026-01-29T21:27:42"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000733414127"
+      SelloCFDI="zarlEjR+Qez1cMF63OrkQ6PN5dTSWmpUETEN4yMpKsrF4oSlmFglhUXNkG8muqGLlQQuAvMjCkIIRwRmmkqaPLTnvVeo6ffNcaqZ3S+XGotoPgEp2aNcOyQIxEu6qmjPANLn8B9ajZulK1MRZMwQuGOmyZRoOvTLGcrLvJnVGk7U2J36urue0rZUiJQpwj1jSVzPqgvj4uG04bE2fL3aRRCt3pvjHItubE2mV4QWJofbmc7In5mbQUk86Duopi/ro0wER/4mBb3agZMWodN0PLr8+NJWUF8IRJ9FPqNcPqMLWGnh0KqhIdhQPOAHJ/ullRQ6DbFf9rFdLDcr/g8D4g=="
+      SelloSAT="o7GGLQ9DwPcgceYiH5aSgnoA34wbAJOSHd6nHP5W3NlMoD92iEW9rlkW1FKt/Wb74/X1RIagFL33EvC0FcCss19R3ms9asW4B5Unbg+ikwraAEYDhsMDJ1xqRWNDplw/x6qMLHJ4nSQLwTjouxeLW2wyi1pw4Zhnc8HsHUv3vyX1k0femYAHM7E131Ai0tnG3Psm0KrkDcFMu1vpIpsZRcJQ7crPz76aarN5Ad7KiF1Y7lyF4DKXKG6J//hy4OcDf35J9qSVPG2+/vduQTSyL3UzduzsqeSK0OfISCSYALGaT1zeg0wqr6gD5lNq0OLy9upKfq9MYQ7U/krA3ITUGQ=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

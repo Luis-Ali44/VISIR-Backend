@@ -1,0 +1,68 @@
+{
+  "archivo": "cfdi_v40_addenda_025",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "A",
+    "folio": "17236",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "72626898822816038312",
+    "folio_fiscal": "7C98D98F-7F5F-4974-B6B6-8D373485A40D",
+    "fecha_emision": "2026-04-29T14:26:14",
+    "fecha_timbrado": "2026-04-29T14:27:07",
+    "rfc_proveedor_certificacion": "MIS141016RX2",
+    "no_certificado_sat": "00001000000287817416",
+    "metodo_pago": "PUE",
+    "forma_pago": "02",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "SANTACRUZ ZARAGOZA LOURDES",
+      "RFC": "FPBC920824YP3",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "DESPHO SERRATO, SOTO Y ALMONTE AC",
+      "RFC": "UUC030929HH4",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "85366"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Honorarios profesionales",
+        "clave_prod_serv": "80111501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 37684.87,
+        "descuento": null,
+        "importe": 75369.74,
+        "iva": 12059.16,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 75369.74,
+    "descuento": null,
+    "iva": 12059.16,
+    "retenciones": 7536.97,
+    "total": 79891.93,
+    "addenda": {
+      "presente": true,
+      "contenido": [
+        {
+          "hijos": {
+            "NumOrden": {
+              "texto": "17236"
+            },
+            "Almacen": {
+              "texto": "ALM962"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

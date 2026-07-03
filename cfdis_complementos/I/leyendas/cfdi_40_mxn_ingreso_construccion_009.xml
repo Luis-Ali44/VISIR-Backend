@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="C"
+  Folio="21873"
+  Fecha="2026-06-02T09:26:14"
+  FormaPago="03"
+  NoCertificado="90644022508642359396"
+  Certificado="KQGhIo+rgPJyZhGB3i0PXawYa6j51rWcfxzrrOK5O8XWI09GSgXqxs94/KoaqkkMLinu9k4PvipzpjlSQHRgBXu+YsFSPpEJih+68WM8GtI="
+  Sello="GlC8QKKkZyaZGptdHGm33Qpxsv5m3B/xNR15Wbi/o8DjIUJtKtqvBlsd+ChMD76x0VtctPE+0TD+coC5ABlM/Ifv/3QbHKKsMzY/5kJhncd0c1LAzaj75E4662ZzQK99t+6WeRk8ZPGr9umDhM3AMQCNL0JNA2oQOoy73bpPTEZFQAeQ7eka/S2KfnHUpHerVOx8JrHR5lACoSLCjgKTVWXS2N5HdFj/v1/R5LsuBSx5yGg/Fu2PlokoH6IGQYBdTjPPIlVUKU10lt8+po12PMmp6/0EwtqP6oaVp1+j6sDwzODbfETRJGkVfEUpIqZoegNh/nk7O7y9K/O2uShY6A=="
+  SubTotal="803231.43"
+  Descuento="21222.13"
+  Moneda="MXN"
+  Total="907130.79"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="06600">
+
+  <cfdi:Emisor Rfc="KTZ131005JD8" Nombre="TERRAZAS-POSADA AC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="GIV060717TV0"
+    Nombre="CORPORIN NÚÑEZ-GARCÍA AC"
+    DomicilioFiscalReceptor="86332"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="I01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="72111006"
+      NoIdentificacion="SKU-08267"
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de construcción de casas unifamiliares nuevas"
+      ValorUnitario="591010.18"
+      Importe="591010.18"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="591010.18" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="94561.63"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80131501"
+      
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Construcción de edificaciones residenciales"
+      ValorUnitario="212221.25"
+      Importe="212221.25"
+      Descuento="21222.13"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="190999.12" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="30559.86"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="125121.49">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="782009.30" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="125121.49"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="B6F8A9AB-B603-4CC4-B951-2D029F007668"
+      FechaTimbrado="2026-06-02T09:27:58"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000094358613"
+      SelloCFDI="GlC8QKKkZyaZGptdHGm33Qpxsv5m3B/xNR15Wbi/o8DjIUJtKtqvBlsd+ChMD76x0VtctPE+0TD+coC5ABlM/Ifv/3QbHKKsMzY/5kJhncd0c1LAzaj75E4662ZzQK99t+6WeRk8ZPGr9umDhM3AMQCNL0JNA2oQOoy73bpPTEZFQAeQ7eka/S2KfnHUpHerVOx8JrHR5lACoSLCjgKTVWXS2N5HdFj/v1/R5LsuBSx5yGg/Fu2PlokoH6IGQYBdTjPPIlVUKU10lt8+po12PMmp6/0EwtqP6oaVp1+j6sDwzODbfETRJGkVfEUpIqZoegNh/nk7O7y9K/O2uShY6A=="
+      SelloSAT="GBRD+6ueMbIcSXJ+Y0+hklYp+DUqnQgQyH5eXyI2SbLwiXc7qxKBy1F4ZEMLM8I7TjCPy7IPr0uMVoT/PWlVlwVXXJuHyBz2fThWUXwHAtu0c19hBEV+/o4+4w3cvMjqm3nZjcWcGWezLJWSF6xWdHqFXvyiRo1+LC8m59aoUkFXB6hMo5zZ4d8dHJAKIeDTgYIAF5y+JST+tODD6UwR6nS8vBtipG3OWjiUY61/h0z/ZIheSTd2hJ9DHPmviHxb0+9TeVayOSYZ+OU+7eFZ+dXPLdEznpIg/FfgKZNOYL462W3CM2ATLQ1kc9ef019JeoyiAxXLC3TqO0m8up/xTg=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

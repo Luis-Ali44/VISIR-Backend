@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pago20="http://www.sat.gob.mx/Pagos20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd"
+  Version="4.0"
+  Serie="RP"
+  Folio="2873"
+  Fecha="2026-06-09T17:26:14"
+  NoCertificado="52112298695280097712"
+  Certificado="clem0CamGjs0hyOzksnNK7UdTDE/lELkj6NrNut5kvWzBawl2e5pmT/NEtIiBiBG5uRDTZhYMfKvHdqf6izLEu2cFknXab9Hh415zvE1ZKs="
+  Sello="WlNnAwVlTSgGglbnOyQe2Wm8xmiKwSWcTAu3NoB+prFl4VPUoQqmMCMSeBg9Q43lISXXN6h283sJsUNXiMXYsj8A0ywXs73MHGcQH2pq8mgLLETWlsP2sSWOCk+1eqxHP84IP2Mpm+uCUePLPFLx4fqnCShTGQ51Jwl/RkXW1eL6G+qBuD/FVGjcD9EoL6oyqIPnq45B1KPPmncFTUnuXIKLqW2p2PNZFOiEVjnPNn0LqXRe5jg2InR34hgOKjHaEZuXJsP+ikHTxZu7wFbDfVhXB7icvfUjhRsqVJAgZqET6Rq5gKv1CKeZ82P+D4AjIPhVuwy2Cpu1/QeMEdJMxg=="
+  SubTotal="0"
+  Moneda="XXX"
+  Total="0"
+  TipoDeComprobante="P"
+  Exportacion="01"
+  LugarExpedicion="20000">
+  
+
+  <cfdi:Emisor
+    Rfc="QVK160930EP3"
+    Nombre="CASTILLO-QUIROZ S. R.L. DE C.V. SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="FQW200119LU4"
+    Nombre="DESPHO MARES Y GUILLEN SA DE CV"
+    DomicilioFiscalReceptor="11452"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="CP01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111506"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago"
+      ValorUnitario="0"
+      Importe="0"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Complemento>
+    <pago20:Pagos Version="2.0">
+
+      
+      <pago20:Totales
+        
+        
+        
+        TotalTrasladosBaseIVA16="47571.69"
+        TotalTrasladosImpuestoIVA16="7611.47"
+        
+        MontoTotalPagos="55183.16"/>
+
+      
+      
+      <pago20:Pago
+        FechaPago="2026-05-12T17:26:14"
+        FormaDePagoP="06"
+        MonedaP="MXN"
+        TipoCambioP="1"
+        Monto="55183.16"
+        >
+
+        
+        
+        <pago20:DoctoRelacionado
+          IdDocumento="A7F69FE1-388D-468D-942F-E6A71635282E"
+          Serie="F"
+          Folio="12173"
+          MonedaDR="MXN"
+          EquivalenciaDR="1"
+          NumParcialidad="1"
+          ImpSaldoAnt="55183.16"
+          ImpPagado="55183.16"
+          ImpSaldoInsoluto="0.00"
+          ObjetoImpDR="02">
+          
+
+          
+          <pago20:ImpuestosDR>
+            <pago20:TrasladosDR>
+              
+              <pago20:TrasladoDR
+                BaseDR="47571.69"
+                ImpuestoDR="002"
+                TipoFactorDR="Tasa"
+                TasaOCuotaDR="0.160000"
+                ImporteDR="7611.47"/>
+            </pago20:TrasladosDR>
+            
+          </pago20:ImpuestosDR>
+          
+        </pago20:DoctoRelacionado>
+        
+
+        
+        
+        <pago20:ImpuestosP>
+          <pago20:TrasladosP>
+            
+            <pago20:TrasladoP
+              BaseP="47571.69"
+              ImpuestoP="002"
+              TipoFactorP="Tasa"
+              TasaOCuotaP="0.160000"
+              ImporteP="7611.47"/>
+          </pago20:TrasladosP>
+          
+        </pago20:ImpuestosP>
+        
+
+      </pago20:Pago>
+      
+
+    </pago20:Pagos>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="BC96DD82-A37B-4F2E-AD3B-59B09857AEDC"
+      FechaTimbrado="2026-06-09T17:27:58"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000387324224"
+      SelloCFDI="WlNnAwVlTSgGglbnOyQe2Wm8xmiKwSWcTAu3NoB+prFl4VPUoQqmMCMSeBg9Q43lISXXN6h283sJsUNXiMXYsj8A0ywXs73MHGcQH2pq8mgLLETWlsP2sSWOCk+1eqxHP84IP2Mpm+uCUePLPFLx4fqnCShTGQ51Jwl/RkXW1eL6G+qBuD/FVGjcD9EoL6oyqIPnq45B1KPPmncFTUnuXIKLqW2p2PNZFOiEVjnPNn0LqXRe5jg2InR34hgOKjHaEZuXJsP+ikHTxZu7wFbDfVhXB7icvfUjhRsqVJAgZqET6Rq5gKv1CKeZ82P+D4AjIPhVuwy2Cpu1/QeMEdJMxg=="
+      SelloSAT="yqb2h+uPQs19qsPVsiAuh7Gp1MM/KlPfWyPbqNhNzhLbgSk5z7L3uPe1/7qY8vnmB1h40Kb1sYdO93WJtWu1ZCGvupTfq3HtudXlizDu7Em9+kF2xUgLNvqnKldUbzguOn9KU/CLtDa4rw1GAAwvu8fcGnhRo5n3pKK7dx7PNx2EiwJSbjuVhhlOmrGyqX9UlU0mAV2/eVm0dPNlvPd0CIaPNYJm1LbDDT7PcHRDS36V6nS4z5YqwIIRWcPYBVlxAjUjd5vIgOHh9sshvliUaagtOMvduk/07171ksIYYO4vdKJuG5/JK4wZkXklTXyJxrvS4jNGb43Qiac5aeDlBQ=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="8226"
+  Fecha="2026-03-18T07:26:14"
+  FormaPago="12"
+  NoCertificado="20222695345797320757"
+  Certificado="T+zvwe1h3pojb64IhM8ZsHBmbKHM3bGZKgJCIuxg+LMaAebJwpjlzO3vRPSr/GgTFYa+7PxrE57KbA4c/YNez5kxpnEEHuyD/Dc6MCODyAY="
+  Sello="wS3hA9d6yvw1r9rzbxkUG5TyKuzFpf+tV3+/94QuP2StGEOntEuCEGHMk3+KVF5RXFjIwtSgzVdRx3xLtjRkUEzGxxYk55v+3wYRA6oAD+bnCggV8+zwe5pBWNPnlFKJbbErfXbgDEuijLfDTOeXbeKxz8HHf1l8HfaNgJO+PQtLXknRexTTU/RI8YeO3DwquT4TXrJpxuN+1zZODR/ezOhZqfpdJk4+Ht8Vr0cXEpxm/LSH9RZdjpsSyXmv0SkkEwwOjbGY19m7wz5ubWqnCUA5LuOsHMZoHz+3W6SV+rqnzelV1lwNSfYcirbaw3KXOtGXW95ewdHB/pyzrsgNMA=="
+  SubTotal="95376.10"
+  
+  Moneda="MXN"
+  Total="105923.27"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="20000">
+
+  <cfdi:Emisor Rfc="OVSF821101NF6" Nombre="ZAPATA MESA ANTONIA" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="QFH110414EH4"
+    Nombre="CLUB MÍAS-DUARTE SC"
+    DomicilioFiscalReceptor="10030"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      NoIdentificacion="SKU-88895"
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="12284.56"
+      Importe="24569.12"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="24569.12" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3931.06"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-47344"
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="7892.31"
+      Importe="23676.93"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="23676.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3788.31"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="47130.05"
+      Importe="47130.05"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="47130.05" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7540.81"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="47130.05" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="4713.01"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="4713.01"
+    TotalImpuestosTrasladados="15260.18">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="4713.01"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="95376.10" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="15260.18"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="04566F06-C3B5-495C-A639-85E381D66DC6"
+      FechaTimbrado="2026-03-18T07:27:41"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000806163770"
+      SelloCFDI="wS3hA9d6yvw1r9rzbxkUG5TyKuzFpf+tV3+/94QuP2StGEOntEuCEGHMk3+KVF5RXFjIwtSgzVdRx3xLtjRkUEzGxxYk55v+3wYRA6oAD+bnCggV8+zwe5pBWNPnlFKJbbErfXbgDEuijLfDTOeXbeKxz8HHf1l8HfaNgJO+PQtLXknRexTTU/RI8YeO3DwquT4TXrJpxuN+1zZODR/ezOhZqfpdJk4+Ht8Vr0cXEpxm/LSH9RZdjpsSyXmv0SkkEwwOjbGY19m7wz5ubWqnCUA5LuOsHMZoHz+3W6SV+rqnzelV1lwNSfYcirbaw3KXOtGXW95ewdHB/pyzrsgNMA=="
+      SelloSAT="Y1XiXayN/k90CHqOb2rTjEWAOechXc1Jjgd/9cJZYG2ymdpetVrwT10qknwZm3OdsOUv9A75RKi42x7iTAdST4G8LXTaEzRcwE249gJyGmmRh+RoxvxHhKjWlYs4CsQZ2qPw1aSvOEag/VdCYXRP6ANn+2jrHYAEDwU92/BlYKn9ET7W1jdqn50xi6glR3Vsy3aEFY83gZreXueU7giW9DspjHfaFdlbluDB5Jg9LMX+kCxsRuQZhnSixXuNv8QK/DdQbsJhrSj89ZlxcgeQybRR0d6F5YkIJUsTtYmOuP9AgqENLmM9rqf2s/wh+tQkxK6tgtehioAxbJb7PeljaA=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

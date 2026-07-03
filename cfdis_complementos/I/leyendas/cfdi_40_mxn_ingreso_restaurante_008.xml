@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="F"
+  Folio="41682"
+  Fecha="2026-05-24T21:26:14"
+  FormaPago="99"
+  NoCertificado="59828544634813982537"
+  Certificado="VDHfY3nytUCnWt31+UFsCH+7J/NcEc1w/4z14sWDv6oK8IBOHXbAD/6GTdmCLVAq1SUqLbNFf8oD+EgnFKG7lOailhnR+snJ1kddjLfBJNA="
+  Sello="ba/g2FKcVVpEDoUhluSVlUxGPLPh6pQ3jVg+x2V3pkmERpyESRYO79O+YPwbOq7wXu/Mjr2RP9pGvyLT1j+UbmhayIYS14VM7vu9mLi+u172kAsYfuZDftSVoHBjpV3IjovARqU0P88DolWW1U0Bs+ALfM+J3qfCF2Sn6bLSr4oS4C4TVbTIVtG7WFq+f2RCs+B/sl4mkXyNbZ+XSjrJ5+i4Hn6zcUmnTcUUkIunYMmvfvw2mKX4liXRoX/71S3l2Bzvkn3IrSuQXvG/J1MdOcDSr0ircZ32i4dJAKkMy6+NbXOm1hYul8J9zVSJWNipnfVbyH97k480LlRQuacl0w=="
+  SubTotal="5271.93"
+  
+  Moneda="MXN"
+  Total="6115.44"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="76100">
+
+  <cfdi:Emisor Rfc="IRX190126ZN6" Nombre="CLUB ULLOA-RODARTE SC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="QBY061105SV0"
+    Nombre="CLUB LEYVA Y JAIME SA DE CV"
+    DomicilioFiscalReceptor="63466"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="90101801"
+      
+      Cantidad="19"
+      ClaveUnidad="H87"
+      Unidad="Pieza"
+      Descripcion="Venta de alimentos preparados para llevar"
+      ValorUnitario="277.47"
+      Importe="5271.93"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="5271.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="843.51"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="843.51">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="5271.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="843.51"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="3448FF24-5E42-4539-BC64-B2799307A66A"
+      FechaTimbrado="2026-05-24T21:27:08"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000749473842"
+      SelloCFDI="ba/g2FKcVVpEDoUhluSVlUxGPLPh6pQ3jVg+x2V3pkmERpyESRYO79O+YPwbOq7wXu/Mjr2RP9pGvyLT1j+UbmhayIYS14VM7vu9mLi+u172kAsYfuZDftSVoHBjpV3IjovARqU0P88DolWW1U0Bs+ALfM+J3qfCF2Sn6bLSr4oS4C4TVbTIVtG7WFq+f2RCs+B/sl4mkXyNbZ+XSjrJ5+i4Hn6zcUmnTcUUkIunYMmvfvw2mKX4liXRoX/71S3l2Bzvkn3IrSuQXvG/J1MdOcDSr0ircZ32i4dJAKkMy6+NbXOm1hYul8J9zVSJWNipnfVbyH97k480LlRQuacl0w=="
+      SelloSAT="K0hlWBC9Gy9DB9p9UIF+GRE/sKksbCqqUtYqhsS91l8Br7Reju3y1TsFUeWRR+h7N+sFrZ+4wi9vyP2Rrv9SzcA0hMSLPVxyWr7+YlLYqh2uA0j+9Loj/NZGmcl4ku+J6UB3dYxfiCghd+RvALhNT7R4jkTDQQpRJEB7742VFPU93Z2SK/yE6Z016Mhj4JLnHcNJm4DU8XjWAlB3mPS/XTZIBCMCCwaKjcvbEqdsxYalj/erjn0Vn9i3PXClxoQc2298vbxyrb4POXFw0sm8Dlspd0FTxWysQ3U/Wf6Y3Ur2aShAjIWvyr31zauMxfOay3cJ2hcAuLVuWMW3XQHprQ=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

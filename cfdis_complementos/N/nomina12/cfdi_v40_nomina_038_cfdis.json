@@ -1,0 +1,130 @@
+{
+  "archivo": "cfdi_v40_nomina_038",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "NOM",
+    "folio": "49587",
+    "tipo_comprobante": "N",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "16698754383787961073",
+    "folio_fiscal": "02E5CE5D-B598-483D-B307-F6617F135E71",
+    "fecha_emision": "2026-05-14T20:26:15",
+    "fecha_timbrado": "2026-05-14T20:27:33",
+    "rfc_proveedor_certificacion": "MIS141016RX2",
+    "no_certificado_sat": "00001000000548543492",
+    "metodo_pago": "PUE",
+    "forma_pago": "03",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "GRUPO GUARDADO-ULLOA AC",
+      "RFC": "SEH970401YZ2",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "MATÍAS TAPIA FRIDA",
+      "RFC": "MATF940701VS6",
+      "uso_cfdi": "CN01",
+      "regimen_fiscal": "605",
+      "domicilio_fiscal": "31828"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago de nómina",
+        "clave_prod_serv": "84111505",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 5342.05,
+        "descuento": null,
+        "importe": 5342.05,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 5342.05,
+    "descuento": 667.76,
+    "iva": null,
+    "retenciones": null,
+    "total": 4674.29,
+    "complemento_nomina": {
+      "version": "1.2",
+      "tipo_nomina": "O",
+      "fecha_pago": "2026-05-14",
+      "fecha_inicial_pago": "2026-05-06",
+      "fecha_final_pago": "2026-05-12",
+      "num_dias_pagados": 7.0,
+      "total_percepciones": 5342.05,
+      "total_deducciones": 667.76,
+      "total_otros_pagos": null,
+      "emisor": {
+        "curp": null,
+        "registro_patronal": "R6931250294",
+        "rfc_patron_origen": null,
+        "entidad_sncf": null
+      },
+      "receptor": {
+        "curp": "MLTF940701MHGFXVA0",
+        "tipo_contrato": "05",
+        "tipo_regimen": "04",
+        "num_empleado": "EMP2950",
+        "departamento": "Compras",
+        "puesto": "Desarrollador",
+        "tipo_jornada": "01",
+        "periodicidad_pago": "05",
+        "banco": "012",
+        "cuenta_bancaria": "765720467675302024",
+        "salario_base_cot_apor": 763.15,
+        "salario_diario_integrado": 953.94,
+        "clave_ent_fed": "MC",
+        "num_seguridad_social": "79432531398",
+        "fecha_inicio_rel_laboral": "2018-09-19",
+        "antiguedad": "P399W",
+        "riesgo_puesto": "2",
+        "sindicalizado": "No",
+        "sub_contratacion": []
+      },
+      "percepciones": {
+        "total_sueldos": 5342.05,
+        "total_separacion_indemniz": null,
+        "total_jubilacion_pen_ret": null,
+        "total_gravado": 4914.69,
+        "total_exento": 427.36,
+        "percepciones": [
+          {
+            "tipo_percepcion": "001",
+            "clave": "001",
+            "concepto": "Sueldos, Salarios Rayas y Jornales",
+            "importe_gravado": 4914.69,
+            "importe_exento": 427.36,
+            "horas_extra": [],
+            "jubilacion_pension_retiro": null,
+            "separacion_indemnizacion": null
+          }
+        ]
+      },
+      "deducciones": {
+        "total_otras_deducciones": 133.55,
+        "total_impuestos_retenidos": 534.21,
+        "deducciones": [
+          {
+            "tipo_deduccion": "001",
+            "clave": "001",
+            "concepto": "Seguridad Social",
+            "importe": 133.55
+          },
+          {
+            "tipo_deduccion": "002",
+            "clave": "002",
+            "concepto": "ISR",
+            "importe": 534.21
+          }
+        ]
+      },
+      "otros_pagos": [],
+      "incapacidades": []
+    }
+  }
+}

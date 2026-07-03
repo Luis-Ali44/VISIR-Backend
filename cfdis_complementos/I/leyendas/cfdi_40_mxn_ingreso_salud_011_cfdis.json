@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_salud_011",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "F",
+    "folio": "10501",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "44100",
+    "exportacion": "01",
+    "no_certificado": "52190836140784411286",
+    "folio_fiscal": "723F0EB0-9780-432C-9C79-2C382D371202",
+    "fecha_emision": "2026-05-08T06:26:14",
+    "fecha_timbrado": "2026-05-08T06:27:37",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000209080537",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "MEJÍA Y HINOJOSA S DE RL DE CV",
+      "RFC": "XDW130925RH8",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "ESPINOZA Y HERNÁNDEZ SAS DE CV",
+      "RFC": "QML961006KM1",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "82534"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Consulta médica en consultorio",
+        "clave_prod_serv": "85101503",
+        "clave_unidad": "E48",
+        "unidad": "Consulta",
+        "cantidad": 2.0,
+        "valor_unitario": 828.7,
+        "descuento": null,
+        "importe": 1657.4,
+        "iva": 265.18,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicios de enfermería y cuidados médicos",
+        "clave_prod_serv": "85101601",
+        "clave_unidad": "E48",
+        "unidad": "Hora",
+        "cantidad": 1.0,
+        "valor_unitario": 229.43,
+        "descuento": 22.94,
+        "importe": 229.43,
+        "iva": 33.04,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 1886.83,
+    "descuento": 22.94,
+    "iva": 298.22,
+    "retenciones": null,
+    "total": 2162.11
+  }
+}

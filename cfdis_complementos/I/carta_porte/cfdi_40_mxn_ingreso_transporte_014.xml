@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="F"
+  Folio="64655"
+  Fecha="2026-03-14T02:26:14"
+  FormaPago="27"
+  NoCertificado="06268735016092329018"
+  Certificado="tCQ4L4kIH2PVtT5e6jez65qN25IUXs6DufkTTg1obPkOOCtmbo2EsOJ8z6KTRXVn7TtQAYz+Jh6WIY0Mb7Zvn0A24fXRhdymnctqQ9U7asM="
+  Sello="rHYxOckaFFuWVgxuouQYwv+xq9cYCdxmz9O1kYUpcN0V+jMjTBQWMRxr2QOQgbSr1sztrY/WDreUnBFyyCFkXhjrnPuK4Om+0fap5XzwEM6UT7xUvul8dxqYJ1lK7Yp3UVRbCPbWA21gzxyWnNt/TYgrRU3798fRgXujVqrOCvxphF1UdS4NyafRq8+KB/imZ6UssvqXwixhenEPtKXDQVRGX/h5kO1f+/PlqIWkDqFYMsYjZxzRVK8dL3+TjYZdpOCUIfJuaG9604kMzFkGordIFuK0veODW197WdUzwa7jYtCrI0XlFTasUvTFHmVR1xV172g+MDND4WtY1DLJcw=="
+  SubTotal="22805.12"
+  Descuento="1140.26"
+  Moneda="MXN"
+  Total="25131.24"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="06600">
+
+  <cfdi:Emisor Rfc="WXY131120ZI1" Nombre="PROYECTOS GASTÉLUM-CORNEJO SC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="ODI951031TT3"
+    Nombre="SAUCEDO-CAVAZOS SAS DE CV"
+    DomicilioFiscalReceptor="03965"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="78102201"
+      
+      Cantidad="32"
+      ClaveUnidad="E48"
+      Unidad="Envío"
+      Descripcion="Servicios de entrega postal y paquetería nacional"
+      ValorUnitario="712.66"
+      Importe="22805.12"
+      Descuento="1140.26"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="21664.86" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3466.38"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="3466.38">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="21664.86" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3466.38"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="8B63F029-8D62-4319-B08C-DE46568D5D58"
+      FechaTimbrado="2026-03-14T02:26:19"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000725692115"
+      SelloCFDI="rHYxOckaFFuWVgxuouQYwv+xq9cYCdxmz9O1kYUpcN0V+jMjTBQWMRxr2QOQgbSr1sztrY/WDreUnBFyyCFkXhjrnPuK4Om+0fap5XzwEM6UT7xUvul8dxqYJ1lK7Yp3UVRbCPbWA21gzxyWnNt/TYgrRU3798fRgXujVqrOCvxphF1UdS4NyafRq8+KB/imZ6UssvqXwixhenEPtKXDQVRGX/h5kO1f+/PlqIWkDqFYMsYjZxzRVK8dL3+TjYZdpOCUIfJuaG9604kMzFkGordIFuK0veODW197WdUzwa7jYtCrI0XlFTasUvTFHmVR1xV172g+MDND4WtY1DLJcw=="
+      SelloSAT="h7yFMb2gY8ILmbxUXvc5Fm1RrkFQYmVm1Pf4EU3aBvGZpDl9Y9f6uXd468yQSAGEOBSXH9eK9dIPMj52IisALGdq2kbIPh7lc3JkatvJYOLUvtkiVKLyGsifIVHNOlPeLnCSus36yqOUSktfus+tGX/T/ZUIyVjgqtabF+PshJdxhe2n9JbVvm97tWs4jfODkJcGKlWzH5jx8YpKyh3zjbzJtI+xsvk9lXz16ZVKzVn0OPWqOBkeDF7TH4iMrkd8uFJvhv1d+Q8db3fEBtaK+GG8LWugpmRJ/1MYqg5yOeUSULFrdPDouIxX59H0t9WsQxPUMVoDrGt3fPqCqeKx+w=="/>
+    
+    
+<cartaporte31:CartaPorte
+  xmlns:cartaporte31="http://www.sat.gob.mx/CartaPorte31"
+  Version="3.1"
+  TranspInternac="No"
+  TotalDistRec="398">
+
+  <cartaporte31:Ubicaciones>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Origen"
+      IDUbicacion="OR000001"
+      RFCRemitenteDestinatario="WXY131120ZI1"
+      FechaHoraSalidaLlegada="2026-03-14T02:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="06600"
+        Estado="CDMX"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Destino"
+      IDUbicacion="DE000001"
+      RFCRemitenteDestinatario="ODI951031TT3"
+      DistanciaRecorrida="398"
+      FechaHoraSalidaLlegada="2026-03-14T07:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="44100"
+        Estado="JAL"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+  </cartaporte31:Ubicaciones>
+
+  <cartaporte31:Mercancias
+    PesoBrutoTotal="10679"
+    UnidadPeso="KGM"
+    NumTotalMercancias="1">
+    <cartaporte31:Mercancia
+      BienesTransp="24131510"
+      Descripcion="Paquetería y mercancía general"
+      Cantidad="32.00"
+      ClaveUnidad="KGM"
+      PesoEnKg="10679"/>
+    <cartaporte31:Autotransporte
+      PermSCT="TPAF03"
+      NumPermisoSCT="PERM/0447/8527">
+      <cartaporte31:IdentificacionVehicular
+        ConfigVehicular="C2"
+        PesoBrutoVehicular="18679"
+        PlacaVM="RCU999"
+        AnioModeloVM="2023"/>
+      <cartaporte31:Seguros
+        AseguraRespCivil="GRUPO VA-TERÁN S DE RL DE CV"
+        PolizaRespCivil="POL-6888-PICB"/>
+    </cartaporte31:Autotransporte>
+  </cartaporte31:Mercancias>
+
+  <cartaporte31:FiguraTransporte>
+    <cartaporte31:TiposFigura
+      TipoFigura="01"
+      RFCFigura="WYVO720718VF6"
+      NumLicencia="LIC89124851"/>
+  </cartaporte31:FiguraTransporte>
+
+</cartaporte31:CartaPorte>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

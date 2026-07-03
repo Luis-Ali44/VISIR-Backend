@@ -1,0 +1,130 @@
+{
+  "archivo": "cfdi_v40_nomina_037",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "NOM",
+    "folio": "98573",
+    "tipo_comprobante": "N",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "38421266940430453779",
+    "folio_fiscal": "3CB87A04-F832-4CD5-A16E-BFED8962D144",
+    "fecha_emision": "2026-06-20T23:26:15",
+    "fecha_timbrado": "2026-06-20T23:26:20",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000106161881",
+    "metodo_pago": "PUE",
+    "forma_pago": "03",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "URÍAS, CORRALES Y ROBLES AC",
+      "RFC": "BEY230428MT6",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "DOMÍNGUEZ ULIBARRI MARISELA",
+      "RFC": "DTUM041210FW8",
+      "uso_cfdi": "CN01",
+      "regimen_fiscal": "605",
+      "domicilio_fiscal": "71307"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago de nómina",
+        "clave_prod_serv": "84111505",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 69195.9,
+        "descuento": null,
+        "importe": 69195.9,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 69195.9,
+    "descuento": 8649.49,
+    "iva": null,
+    "retenciones": null,
+    "total": 60546.41,
+    "complemento_nomina": {
+      "version": "1.2",
+      "tipo_nomina": "O",
+      "fecha_pago": "2026-06-20",
+      "fecha_inicial_pago": "2026-05-20",
+      "fecha_final_pago": "2026-06-18",
+      "num_dias_pagados": 30.0,
+      "total_percepciones": 69195.9,
+      "total_deducciones": 8649.49,
+      "total_otros_pagos": null,
+      "emisor": {
+        "curp": null,
+        "registro_patronal": "M9581103066",
+        "rfc_patron_origen": null,
+        "entidad_sncf": null
+      },
+      "receptor": {
+        "curp": "DBUM041210HDFWLFA0",
+        "tipo_contrato": "01",
+        "tipo_regimen": "10",
+        "num_empleado": "EMP5632",
+        "departamento": "Tecnología",
+        "puesto": "Supervisor",
+        "tipo_jornada": "01",
+        "periodicidad_pago": "04",
+        "banco": "006",
+        "cuenta_bancaria": "005910005946879371",
+        "salario_base_cot_apor": 2306.53,
+        "salario_diario_integrado": 2883.16,
+        "clave_ent_fed": "MC",
+        "num_seguridad_social": "73503412400",
+        "fecha_inicio_rel_laboral": "2023-08-20",
+        "antiguedad": "P147W",
+        "riesgo_puesto": "1",
+        "sindicalizado": "No",
+        "sub_contratacion": []
+      },
+      "percepciones": {
+        "total_sueldos": 69195.9,
+        "total_separacion_indemniz": null,
+        "total_jubilacion_pen_ret": null,
+        "total_gravado": 63660.23,
+        "total_exento": 5535.67,
+        "percepciones": [
+          {
+            "tipo_percepcion": "001",
+            "clave": "001",
+            "concepto": "Sueldos, Salarios Rayas y Jornales",
+            "importe_gravado": 63660.23,
+            "importe_exento": 5535.67,
+            "horas_extra": [],
+            "jubilacion_pension_retiro": null,
+            "separacion_indemnizacion": null
+          }
+        ]
+      },
+      "deducciones": {
+        "total_otras_deducciones": 1729.9,
+        "total_impuestos_retenidos": 6919.59,
+        "deducciones": [
+          {
+            "tipo_deduccion": "001",
+            "clave": "001",
+            "concepto": "Seguridad Social",
+            "importe": 1729.9
+          },
+          {
+            "tipo_deduccion": "002",
+            "clave": "002",
+            "concepto": "ISR",
+            "importe": 6919.59
+          }
+        ]
+      },
+      "otros_pagos": [],
+      "incapacidades": []
+    }
+  }
+}

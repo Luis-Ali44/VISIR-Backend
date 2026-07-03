@@ -42,6 +42,7 @@ MAX_FILE_SIZE = 5 * 1024 * 1024
 ALLOWED_TYPES = {
     "application/pdf": ".pdf",
     "text/xml": ".xml",
+    "application/xml": ".xml",
     "image/jpeg": ".jpeg",
     "image/jpg": ".jpg",
     "image/png": ".png",

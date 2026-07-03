@@ -80,11 +80,20 @@ CATALOGO_CLAVE_UNIDAD: dict[str, str] = {
     "GRM": "GRM", "GRAMO": "GRM",
     "MLT": "MLT", "MILILITRO": "MLT",
     "MTK": "MTK", "METRO CUADRADO": "MTK",
-    "PR": "PR",  "PAR": "PR",
+    "PR": "PR",   "PAR": "PR",
     "SET": "SET", "CONJUNTO": "SET",
     "XBX": "XBX", "CAJA": "XBX",
     "XPK": "XPK", "PAQUETE": "XPK",
     "XUN": "XUN",
+    "ACT": "ACT", "ACTIVIDAD": "ACT",
+    "C62": "C62", "UNO": "C62",
+    "HUR": "HUR", "HORA": "HUR",
+    "MON": "MON", "MES": "MON",
+    "ANN": "ANN", "AÑO": "ANN", "ANIO": "ANN",
+    "E51": "E51", "TRABAJO": "E51",
+    "E54": "E54", "VIAJE": "E54",
+    "KMT": "KMT", "KILOMETRO": "KMT",
+    "ROM": "ROM", "HABITACION": "ROM",
 }
 
 CATALOGO_MONEDA: dict[str, str] = {
@@ -94,6 +103,45 @@ CATALOGO_MONEDA: dict[str, str] = {
     "CAD": "CAD", "DOLAR CANADIENSE": "CAD",
     "GBP": "GBP", "LIBRA ESTERLINA": "GBP",
     "JPY": "JPY", "YEN": "JPY",
+}
+
+CATALOGO_EXPORTACION: dict[str, str] = {
+    "01": "01", "NO APLICA": "01",
+    "02": "02", "DEFINITIVA": "02",
+    "03": "03", "TEMPORAL": "03",
+    "04": "04", "RETORNO DE MERCANCIA": "04", "RETORNO": "04",
+}
+
+CATALOGO_TIPO_COMPROBANTE: dict[str, str] = {
+    "I": "I", "INGRESO": "I",
+    "E": "E", "EGRESO": "E", "NOTA DE CREDITO": "E",
+    "T": "T", "TRASLADO": "T",
+    "N": "N", "NOMINA": "N", "NÓMINA": "N",
+    "P": "P", "PAGO": "P",
+}
+
+CATALOGO_IMPUESTO: dict[str, str] = {
+    "001": "001", "ISR": "001",
+    "002": "002", "IVA": "002",
+    "003": "003", "IEPS": "003",
+}
+
+CATALOGO_TIPO_FACTOR: dict[str, str] = {
+    "Tasa": "Tasa",     "TASA": "Tasa",
+    "Cuota": "Cuota",   "CUOTA": "Cuota",
+    "Exento": "Exento", "EXENTO": "Exento",
+}
+
+CATALOGO_TIPO_RELACION: dict[str, str] = {
+    "01": "01", "NOTA DE CREDITO": "01",
+    "02": "02", "NOTA DE DEBITO": "02",
+    "03": "03", "DEVOLUCION": "03", "DEVOLUCIÓN": "03",
+    "04": "04", "SUSTITUCION": "04", "SUSTITUCIÓN": "04",
+    "05": "05", "TRASLADOS DE MERCANCIAS": "05",
+    "06": "06", "FACTURA POR TRASLADO": "06",
+    "07": "07", "ANTICIPO APLICADO": "07", "ANTICIPO": "07",
+    "08": "08", "FACTURA POR PAGOS": "08",
+    "09": "09", "LEYENDA": "09",
 }
 
 

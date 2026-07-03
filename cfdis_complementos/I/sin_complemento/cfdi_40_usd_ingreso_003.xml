@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="F"
+  Folio="61041"
+  Fecha="2026-02-27T10:26:14"
+  FormaPago="99"
+  NoCertificado="43549801414560654106"
+  Certificado="5SqJaxu3akD+YZGH/k+1ce6KQSO1isP6INpfQz29l0lwXgQUikcnQP3qSdfXRKEtn1Uf4VEsIM3ea2CCAxUQhECZpRasHC95n5FqXb4aDMo="
+  Sello="BJ9v6J32sraQlHdf9PS5bhGj54eBmPDEYA9Y7dkGzQo/NP4BAo7ydndNmU1/n0Q2XCPmyT+fjVJhM/q8nS0mpH/5BwWZfyfvnnEzxmSN0nqpHxD6YgLGT4JAqQFPr/R2cai8VQGNCi79EcsQQjddEc6BPKHdetqiF3zugcOpVFeMyI1rmgEoNQApYtrqZummg1nCHIxn6/hmnA+GhsIUi3/uw4Oe0Yzi4RwDKZscHMsx90ywYVgOwt1PNqjvRPisITEbYOHrstqcwmU63ISuahymKdyR9X+gBE1PKQf/ruXKfiN0/USC+3+Fj5nDyHk6J4hnyPClYi4IU8BvT+Cn2w=="
+  SubTotal="97240.76"
+  Descuento="8650.98"
+  Moneda="MXN"
+  Total="102764.14"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:Emisor Rfc="HQA000926HS6" Nombre="OROO-ARANDA SC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="OXO111123FD8"
+    Nombre="DELGADILLO S DE RL DE CV"
+    DomicilioFiscalReceptor="74795"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="2"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="10730.97"
+      Importe="21461.94"
+      Descuento="1073.10"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="20388.84" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3262.21"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      NoIdentificacion="SKU-96537"
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="75778.82"
+      Importe="75778.82"
+      Descuento="7577.88"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="68200.94" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="10912.15"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="14174.36">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="88589.78" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="14174.36"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="57EBD042-01FE-4C1A-BD80-622DB1DF37AA"
+      FechaTimbrado="2026-02-27T10:26:59"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000253463879"
+      SelloCFDI="BJ9v6J32sraQlHdf9PS5bhGj54eBmPDEYA9Y7dkGzQo/NP4BAo7ydndNmU1/n0Q2XCPmyT+fjVJhM/q8nS0mpH/5BwWZfyfvnnEzxmSN0nqpHxD6YgLGT4JAqQFPr/R2cai8VQGNCi79EcsQQjddEc6BPKHdetqiF3zugcOpVFeMyI1rmgEoNQApYtrqZummg1nCHIxn6/hmnA+GhsIUi3/uw4Oe0Yzi4RwDKZscHMsx90ywYVgOwt1PNqjvRPisITEbYOHrstqcwmU63ISuahymKdyR9X+gBE1PKQf/ruXKfiN0/USC+3+Fj5nDyHk6J4hnyPClYi4IU8BvT+Cn2w=="
+      SelloSAT="OFA0S5OKfNmnImIg3xMq0BC9p3+HGmNsv/haUxrLC33suui5STrI620EVpbx+VlESwZQGq/eOPdBoqVQoVwEi8cTipRX8/thNEsBF4ReG0olzuKfYCxE1NF7Hof2kiiHssRgoYjwZ+eWhGXAp5kAbsWLtcZZGOHT426/wccFzYkOMnkZ/TSQrrGQeUX/EJAnWyvd859ZGVDDeKqIo7dGYk+psLsA5rhZjsVACkKY+qgwgKlZ6nEkAAXOW5c6c1q834TNRxzvA3pm2Fvq6asv+WiaYy3O/Fmyqg0AX8BIjnqow8HHL1AIvSF7AeuRyj1s92wgtQrSlewG08uTmBXaUA=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

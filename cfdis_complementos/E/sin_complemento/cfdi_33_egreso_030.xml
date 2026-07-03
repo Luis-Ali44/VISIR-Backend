@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd"
+  Version="3.3"
+  Serie="C"
+  Folio="9963"
+  Fecha="2026-01-31T09:26:14"
+  NoCertificado="12132734393813233092"
+  Certificado="zsMux2R24FqHN51NnT4D6SYyfGicStT9vhzgxCzu5iXKpTKG1AhkMZU0u2Re7LCjyPr5QoKlJzJh7CTulii5FVHAsPGsUgK9byejo7CckAc="
+  Sello="mNwLM7DAoUX0V9MbN8thh4ezwAenjO8is+M8sMFMcDuFJj/7AAsK4yKIH80WMsZf/rOqpR/gPG5Vb/cWZw56Ww5Z7Q7ZFKk8Cpk6jTv4f9c5CuQho/0NT5lCQjywzTAJ+mu18/5XHiC5nYnPCfwooeKjYAo2qHebAKjGsV4jcBngze3+mrIsJwPx+jqc7yMDPMtgkmc1jC5ThbZ+A3QbXTc0p9odNb4WlssJiAFtFn22Q4AkOo6PkvikZY9ACqV5miOjorh9/YOyc9YB7TYzToJQ0lGycq54aWDf1LACmG4PyaaOjtPxA9xH45HQX6GLU4+YB48u/hekRt0jEmGDaQ=="
+  SubTotal="249910.34"
+  Descuento="4536.45"
+  Moneda="MXN"
+  Total="284633.71"
+  TipoDeComprobante="E"
+  FormaPago="28"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+
+  <cfdi:CfdiRelacionados TipoRelacion="01">
+    <cfdi:CfdiRelacionado UUID="985FD125-A4D3-471C-91FA-0CED2C36B68F"/>
+  </cfdi:CfdiRelacionados>
+
+  <cfdi:Emisor
+    Rfc="HSC100417MF3"
+    Nombre="VALENTÍN, BUSTAMANTE Y ESTÉVEZ SAS DE CV"
+    RegimenFiscal="601"/>
+
+  
+  <cfdi:Receptor
+    Rfc="PPY040827AO0"
+    Nombre="DESPHO GARRIDO, VILLEGAS Y RAZO AC"
+    UsoCFDI="G02"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      
+      Cantidad="3"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="53060.48"
+      Importe="159181.44"
+      >
+      
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="159181.44" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="25469.03"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-44685"
+      Cantidad="5"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="18145.78"
+      Importe="90728.90"
+      Descuento="4536.45">
+      
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="86192.45" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13790.79"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="39259.82">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="245373.89" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="39259.82"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="E0D3D9B6-EEEB-4ED3-B05C-6A6B7C661513"
+      FechaTimbrado="2026-01-31T09:26:20"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000312270752"
+      SelloCFDI="mNwLM7DAoUX0V9MbN8thh4ezwAenjO8is+M8sMFMcDuFJj/7AAsK4yKIH80WMsZf/rOqpR/gPG5Vb/cWZw56Ww5Z7Q7ZFKk8Cpk6jTv4f9c5CuQho/0NT5lCQjywzTAJ+mu18/5XHiC5nYnPCfwooeKjYAo2qHebAKjGsV4jcBngze3+mrIsJwPx+jqc7yMDPMtgkmc1jC5ThbZ+A3QbXTc0p9odNb4WlssJiAFtFn22Q4AkOo6PkvikZY9ACqV5miOjorh9/YOyc9YB7TYzToJQ0lGycq54aWDf1LACmG4PyaaOjtPxA9xH45HQX6GLU4+YB48u/hekRt0jEmGDaQ=="
+      SelloSAT="bisfE/gZtD7bDfOhVEshAv7tNGVoLI243A3F4qsdi1eGaMT20MUVtS7DLh2wklMzllDizkHmsncxOxPxMNY2Wou5K4EQcuU/oiuHuCT7lxlyDpN8l/+F3ffaPO633fPx0Z0Z1F9KKBepfUnm4h30CVRaKSuAwuwelMgkWPP3TpQeD3A/cb5ApREImlK0ayFRbpS4OAB2a8Z90gAIaOBzyT3j+CBJ7z6rzZVD6KlDPZfuVmLdqd5rN+CrQpVxZSkjcypVOXVyNdSoDucA19qP8ZI5WPsTOpTxh+ktMKyb/fs680sATFhZyaYNxAIYrLtP/9H3jQAM1L9LlZmjrCrtNQ=="/>
+    
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_restaurante_007",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "A",
+    "folio": "20311",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "44100",
+    "exportacion": "01",
+    "no_certificado": "95505235412180627948",
+    "folio_fiscal": "565413D3-4CC2-4184-AF6B-C557EF2E5209",
+    "fecha_emision": "2026-01-29T21:26:14",
+    "fecha_timbrado": "2026-01-29T21:27:42",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000733414127",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "CARRIÓN-ARELLANO S DE RL DE CV",
+      "RFC": "ZSG001029KW6",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "MALDONADO Y RODARTE SC",
+      "RFC": "JWI161209HH0",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "62495"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Restaurantes y catering, servicios de cafetería",
+        "clave_prod_serv": "90101701",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 6.0,
+        "valor_unitario": 240.33,
+        "descuento": null,
+        "importe": 1441.98,
+        "iva": 230.72,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicio de hospedaje en hotel, habitación sencilla",
+        "clave_prod_serv": "90111801",
+        "clave_unidad": "E48",
+        "unidad": "Noche",
+        "cantidad": 1.0,
+        "valor_unitario": 2461.81,
+        "descuento": 246.18,
+        "importe": 2461.81,
+        "iva": 354.5,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 3903.79,
+    "descuento": 246.18,
+    "iva": 585.22,
+    "retenciones": null,
+    "total": 4242.83
+  }
+}

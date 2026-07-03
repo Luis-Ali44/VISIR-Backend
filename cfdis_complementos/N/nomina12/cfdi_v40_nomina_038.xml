@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+  Version="4.0"
+  Serie="NOM"
+  Folio="49587"
+  Fecha="2026-05-14T20:26:15"
+  NoCertificado="16698754383787961073"
+  Certificado="Qgteef3BSGwhEHZwChpKmdqTd8xmig21dfSex84vrTJk8MnioM3f1qqoWaynUPuzUiH1+qq4+DxvU9cuYoJx4yWisSTMYHXtE9El4Gi8UNg="
+  Sello="Pv993vLRkMAubFQBfI7qE5Iov0xDY+lxMn1nJ2qxPOrYUybmXWUrEAm2/BeTllU6u7qCnU2PHMhBfKI1MGbvb1QPa1UxySR5eFNkKnu6MBsIHDNvp7108CJfUTU2ua8sMDzQ9n8p2TkJM+Rggu2yNRCCBmhLcc2ahmVwWmYFTJvxnmEBOLmkQ4aDzASk20JP7nolU4KiIWQxIuMjiUwi3Zjhn53oVU4HX51kpDS79iCxXCQP208wiLGChFMby0gdrswxC0RyhukGRXq25cpfzBO+nI4jK3R5sZ+RWRSLGaOOGACuXpr1eAKsW6dfFTx51k6ezNU00c04x8xiSqm4Ew=="
+  SubTotal="5342.05"
+  Moneda="MXN"
+  
+  Descuento="667.76"
+  Total="4674.29"
+  TipoDeComprobante="N"
+  Exportacion="01"
+  FormaPago="03"
+  MetodoPago="PUE"
+  LugarExpedicion="06600">
+  
+
+  <cfdi:Emisor
+    Rfc="SEH970401YZ2"
+    Nombre="GRUPO GUARDADO-ULLOA AC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="MATF940701VS6"
+    Nombre="MATÍAS TAPIA FRIDA"
+    DomicilioFiscalReceptor="31828"
+    RegimenFiscalReceptor="605"
+    UsoCFDI="CN01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111505"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago de nómina"
+      ValorUnitario="5342.05"
+      Importe="5342.05"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  
+
+  <cfdi:Complemento>
+    <nomina12:Nomina
+      Version="1.2"
+      TipoNomina="O"
+      FechaPago="2026-05-14"
+      FechaInicialPago="2026-05-06"
+      FechaFinalPago="2026-05-12"
+      NumDiasPagados="7"
+      TotalPercepciones="5342.05"
+      TotalDeducciones="667.76"
+      >
+
+      <nomina12:Emisor
+        RegistroPatronal="R6931250294"
+        />
+
+      <nomina12:Receptor
+        Curp="MLTF940701MHGFXVA0"
+        NumSeguridadSocial="79432531398"
+        FechaInicioRelLaboral="2018-09-19"
+        Antigüedad="P399W"
+        TipoContrato="05"
+        Sindicalizado="No"
+        TipoJornada="01"
+        TipoRegimen="04"
+        NumEmpleado="EMP2950"
+        Departamento="Compras"
+        Puesto="Desarrollador"
+        RiesgoPuesto="2"
+        PeriodicidadPago="05"
+        Banco="012"
+        CuentaBancaria="765720467675302024"
+        SalarioBaseCotApor="763.15"
+        SalarioDiarioIntegrado="953.94"
+        ClaveEntFed="MC"/>
+
+      <nomina12:Percepciones
+        TotalSueldos="5342.05"
+        TotalGravado="4914.69"
+        TotalExento="427.36">
+        
+        <nomina12:Percepcion
+          TipoPercepcion="001"
+          Clave="001"
+          Concepto="Sueldos, Salarios Rayas y Jornales"
+          ImporteGravado="4914.69"
+          ImporteExento="427.36"/>
+        
+      </nomina12:Percepciones>
+
+      <nomina12:Deducciones
+        TotalOtrasDeducciones="133.55"
+        TotalImpuestosRetenidos="534.21">
+        
+        <nomina12:Deduccion
+          TipoDeduccion="001"
+          Clave="001"
+          Concepto="Seguridad Social"
+          Importe="133.55"/>
+        
+        <nomina12:Deduccion
+          TipoDeduccion="002"
+          Clave="002"
+          Concepto="ISR"
+          Importe="534.21"/>
+        
+      </nomina12:Deducciones>
+
+      
+
+    </nomina12:Nomina>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="02E5CE5D-B598-483D-B307-F6617F135E71"
+      FechaTimbrado="2026-05-14T20:27:33"
+      RfcProvCertif="MIS141016RX2"
+      NoCertificadoSAT="00001000000548543492"
+      SelloCFDI="Pv993vLRkMAubFQBfI7qE5Iov0xDY+lxMn1nJ2qxPOrYUybmXWUrEAm2/BeTllU6u7qCnU2PHMhBfKI1MGbvb1QPa1UxySR5eFNkKnu6MBsIHDNvp7108CJfUTU2ua8sMDzQ9n8p2TkJM+Rggu2yNRCCBmhLcc2ahmVwWmYFTJvxnmEBOLmkQ4aDzASk20JP7nolU4KiIWQxIuMjiUwi3Zjhn53oVU4HX51kpDS79iCxXCQP208wiLGChFMby0gdrswxC0RyhukGRXq25cpfzBO+nI4jK3R5sZ+RWRSLGaOOGACuXpr1eAKsW6dfFTx51k6ezNU00c04x8xiSqm4Ew=="
+      SelloSAT="cy5wzI7rSexd/vnD66ttDlI9S6Oopny2w/iaRhzES3Znoc+AGn77IZjTy1LWQxyhzto3PtIpf1AEkFj2etGm3vXz93mKCila80PayXDlgPv+kRw11yCWhWohn6ZW20qlWy5ME8DWvGrwg632g/LwFf1qVG4PFiIE0tNxu4ArdaKVcDsvPhULDpP2FFPvu47CsqL7i3QK0ppwRGhYAAW9Mh0y4PmV2A0CN89117X6OWzE1p7MY/LW+K3RqN6rbsng41lypSgqjxZpMbCxv7R9DBGsNwNUCZehRfqBt708Y5ighE6ZBSwHehVDEEXZp6MImTgmm4u6gSicooBNaeohag=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

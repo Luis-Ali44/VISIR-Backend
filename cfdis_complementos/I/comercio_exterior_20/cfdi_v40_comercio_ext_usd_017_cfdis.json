@@ -1,0 +1,108 @@
+{
+  "archivo": "cfdi_v40_comercio_ext_usd_017",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "CE",
+    "folio": "70973",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "44100",
+    "exportacion": "02",
+    "no_certificado": "07193373741361458373",
+    "folio_fiscal": "D363DF3E-ABA1-4CAF-884F-53C65F7EF497",
+    "fecha_emision": "2026-06-19T01:26:14",
+    "fecha_timbrado": "2026-06-19T01:27:04",
+    "rfc_proveedor_certificacion": "MIS141016RX2",
+    "no_certificado_sat": "00001000000563684882",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "USD",
+    "tipo_cambio": 17.424,
+    "emisor": {
+      "nombre": "DESPHO BÁEZ-DE LA TORRE S DE RL DE CV",
+      "RFC": "JXI971127JX8",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "DESPHO BERMÚDEZ, PIÑA Y MONTOYA S DE RL DE CV",
+      "RFC": "XEXX010101000",
+      "uso_cfdi": "S01",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "89528"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 5.0,
+        "valor_unitario": 18350.84,
+        "descuento": 9175.42,
+        "importe": 91754.2,
+        "iva": 13212.6,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 91754.2,
+    "descuento": 9175.42,
+    "iva": 13212.6,
+    "retenciones": null,
+    "total": 95791.38,
+    "complemento_comercio_exterior": {
+      "version": "2.0",
+      "motivo_traslado": "A",
+      "clave_de_pedimento": "A1",
+      "certificado_origen": "0",
+      "num_certificado_origen": null,
+      "numero_exportador_confiable": null,
+      "incoterm": "EXW",
+      "observaciones": null,
+      "tipo_cambio_usd": 17.424,
+      "total_usd": 91754.2,
+      "emisor": {
+        "curp": null,
+        "domicilio": {
+          "calle": "Pasaje Arreola",
+          "numero_exterior": "55801",
+          "numero_interior": null,
+          "colonia": "Col. Centro",
+          "localidad": "Nueva Reino Unido de Gran Bret",
+          "municipio": "Vieja Venezuela",
+          "estado": "JAL",
+          "pais": "MEX",
+          "codigo_postal": "20693",
+          "referencia": null
+        }
+      },
+      "propietarios": [],
+      "receptor": {
+        "num_reg_id_trib": "10-8849837",
+        "domicilio": {
+          "calle": "783 Carol Extension",
+          "numero_exterior": "816",
+          "numero_interior": null,
+          "colonia": null,
+          "localidad": "West Michaelchester",
+          "municipio": null,
+          "estado": "NA",
+          "pais": "DEU",
+          "codigo_postal": "28259",
+          "referencia": null
+        }
+      },
+      "destinatarios": [],
+      "mercancias": [
+        {
+          "no_identificacion": "SKU-18940",
+          "fraccion_arancelaria": "29321990",
+          "cantidad_aduana": 5.0,
+          "unidad_aduana": "15",
+          "valor_unitario_aduana": 18350.84,
+          "valor_dolares": 91754.2,
+          "descripciones_especificas": []
+        }
+      ]
+    }
+  }
+}

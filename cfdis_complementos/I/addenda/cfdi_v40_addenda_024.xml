@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="11807"
+  Fecha="2026-02-04T16:26:14"
+  FormaPago="99"
+  NoCertificado="22881004033170203450"
+  Certificado="XazO92cBSAmL7Zc1x+Kjrhzm+YFbQ7hUybb1u57nEhv7p8HVBij7UZkLo/neugwRX8sdLDfQWxEYeLzPi3DOMrOBSwi3YJlmwge+JvQc4yU="
+  Sello="8r9RcofQ6Mpa0aCJypY1Wi5sEBGmQW6tKDroY/pXbYgwSzKZheA6cVJbzCa2PwYYRtfSnK8JtW3njzci20InqxDJQplAJ9MStgoJKxC+9Ad6JjI8vCssLWSdWWEM8FH9YOAfGVZKXpet0+H+KP6ZopA7MV+u4H/xlRNc+Bh5jTDNRLo0Us0DYCXhXX7Uhx5BQxMEggokli6GU5bNua38EfdU/bsPsTu8iQdJ2uzXRJNFG8Y6W+dwXMab+eWwCWORnpM8g8BNh3jZqNtfqAUKuQX1b80xQp+9I0rFJCG0h7WApdnTBYA88oj2zomChJg6oqRbZm8ogK9ETEP7gOiNoQ=="
+  SubTotal="173858.95"
+  Descuento="1240.82"
+  Moneda="MXN"
+  Total="189231.66"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor
+    Rfc="IYOH010427LM1"
+    Nombre="BUSTAMANTE CAMARILLO ARMANDO"
+    RegimenFiscal="612"/>
+
+  <cfdi:Receptor
+    Rfc="YGE111126PT9"
+    Nombre="MENA Y CASARES E HIJOS SAS DE CV"
+    DomicilioFiscalReceptor="17165"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      NoIdentificacion="SKU-18676"
+      Cantidad="3"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="8272.13"
+      Importe="24816.39"
+      Descuento="1240.82"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="23575.57" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3772.09"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="12996.28"
+      Importe="38988.84"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="38988.84" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="6238.21"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="55026.86"
+      Importe="110053.72"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="110053.72" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="17608.60"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="110053.72" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="11005.37"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="11005.37"
+    TotalImpuestosTrasladados="27618.90">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="11005.37"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="172618.13" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="27618.90"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="8C7BE886-F294-4B07-BA83-3A4ED930360D"
+      FechaTimbrado="2026-02-04T16:26:31"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000567779628"
+      SelloCFDI="8r9RcofQ6Mpa0aCJypY1Wi5sEBGmQW6tKDroY/pXbYgwSzKZheA6cVJbzCa2PwYYRtfSnK8JtW3njzci20InqxDJQplAJ9MStgoJKxC+9Ad6JjI8vCssLWSdWWEM8FH9YOAfGVZKXpet0+H+KP6ZopA7MV+u4H/xlRNc+Bh5jTDNRLo0Us0DYCXhXX7Uhx5BQxMEggokli6GU5bNua38EfdU/bsPsTu8iQdJ2uzXRJNFG8Y6W+dwXMab+eWwCWORnpM8g8BNh3jZqNtfqAUKuQX1b80xQp+9I0rFJCG0h7WApdnTBYA88oj2zomChJg6oqRbZm8ogK9ETEP7gOiNoQ=="
+      SelloSAT="sZM0Ndqz1Vxrm7EKz7e8zJdkSEUmXIfvrr0cYIsP3AWh3xg0meoHRDMq1aTy8xMBaGO+vxIOz2SDiJ36uoxHVorYLe70EM6Bvy19PJKyAVmmoA7JtDyUcwmktvToCcGLAVMgE4sGTZPKApwrlT4QcVbG6+8KLF4PCqgn08EEr+GWePMQjWhZjqxD+wD7ONEsn43z+9wNcCXesS7UCcKtdgHfD3Ri19YXzLUCXNEp/WO4kN9tRr0/YBr1wHJEsjUPw98GG5BGjLr2BPECHzqY+mdAN325hPGbtkRGcHKLxK5L3O8+LKm6C/qqWlfDHj/KEfK7VbGdIxWwl0p59YWDaQ=="/>
+  </cfdi:Complemento>
+
+  
+  <cfdi:Addenda>
+    <oxxo:InfoFactura xmlns:oxxo="http://facturacion.oxxo.com"><oxxo:NumProveedor>P985363</oxxo:NumProveedor><oxxo:CentroDistribucion>CD297</oxxo:CentroDistribucion></oxxo:InfoFactura>
+  </cfdi:Addenda>
+
+</cfdi:Comprobante>

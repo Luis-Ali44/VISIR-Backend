@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="A"
+  Folio="66579"
+  Fecha="2026-02-19T01:26:14"
+  FormaPago="99"
+  NoCertificado="28191800862924825739"
+  Certificado="0ZjiG4g82tXPUnhTJAS40hXt+RTTf/3uU4mBZAth6z6S7pSr6pbJ5e9Gs7uJXOOzPM5vfkYHHTf+8xyQ81LAr5TlA4zPjEpRhnt9WR3fvZg="
+  Sello="2yG6fp15T/w2nGi4ex2Ft80NoAIhBC/YLUW3BpESbpXKhYypfWKgExaCebPKvjhnZ0lqFYG7M8gK3QTpNPzTRvwTMZ+TonycFpiwwIq/LHZqcUzgUjhAWSVnlPJ9cFSNbnl0fT2mMjs4c/ndrK+qINDbWmObSqA6Smw69xEHnm4QoyItE2F0a1K+x8mrQOMqSVGjiJU0rGgoAPN8EJ835joqjHqSKCyfx9LV7ROz5+Iz4O37Z+gIFrZe4M9AQxf68KF/KXd24x5XMl9LOj38bh+vsLhdNoj0HEBejrUnU8+0ILBiu7bUxUr0pKs/TGSSbVAR4O5iq9GqNtcuyiF7ww=="
+  SubTotal="154498.23"
+  Descuento="2030.75"
+  Moneda="MXN"
+  Total="165511.54"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:Emisor Rfc="CDDG000908SZ7" Nombre="VALENTÍN OCAMPO TEODORO" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="UEQ121003RM2"
+    Nombre="CASILLAS-TAMEZ SA DE CV"
+    DomicilioFiscalReceptor="81976"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="20683.38"
+      Importe="20683.38"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="20683.38" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3309.34"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-86108"
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="6769.17"
+      Importe="20307.51"
+      Descuento="2030.75"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="18276.76" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2924.28"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      NoIdentificacion="SKU-51537"
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="56753.67"
+      Importe="113507.34"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="113507.34" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="18161.17"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="113507.34" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="11350.73"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="11350.73"
+    TotalImpuestosTrasladados="24394.79">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="11350.73"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="152467.48" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="24394.79"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="05C5AAFC-75A1-4E02-A117-B0E8DB11671F"
+      FechaTimbrado="2026-02-19T01:27:20"
+      RfcProvCertif="SAT970701NN3"
+      NoCertificadoSAT="00001000000481340504"
+      SelloCFDI="2yG6fp15T/w2nGi4ex2Ft80NoAIhBC/YLUW3BpESbpXKhYypfWKgExaCebPKvjhnZ0lqFYG7M8gK3QTpNPzTRvwTMZ+TonycFpiwwIq/LHZqcUzgUjhAWSVnlPJ9cFSNbnl0fT2mMjs4c/ndrK+qINDbWmObSqA6Smw69xEHnm4QoyItE2F0a1K+x8mrQOMqSVGjiJU0rGgoAPN8EJ835joqjHqSKCyfx9LV7ROz5+Iz4O37Z+gIFrZe4M9AQxf68KF/KXd24x5XMl9LOj38bh+vsLhdNoj0HEBejrUnU8+0ILBiu7bUxUr0pKs/TGSSbVAR4O5iq9GqNtcuyiF7ww=="
+      SelloSAT="xbE6d2drl6aJHKyTumM3SLCjPey5ZuxzFSGInNOX6vJgzP+RGFzRaoFLowE+ef+9Y8U8sjDsIjy4CWY0CQOhTDNoOXT/0Mbw4E5cOQ/kHgih8lBfbP00rJnhF5YRp/Y92Bl54WkzWYm7uzio1GDSyYefMsJqs8AHVpZpp6PZyujhDRi3BDTuRZpjRlyGNs1aGKLTHGMvhIJqnjJeaJSbsixLBE3H2c0W0XU/VqQCrRw2VtL6juNHDq8PES9R/zWQbm1c02+yofUjjLj5aGOgmVBS2t6T7IlZoVc7uZ2tEGP5ttE6Rs3myNJABJOPzMYj9Z9pLopkkGrlp/Lm9OYF9A=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

@@ -1,0 +1,123 @@
+{
+  "archivo": "cfdi_v40_pago_034",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "RP",
+    "folio": "24971",
+    "tipo_comprobante": "P",
+    "lugar_expedicion": "75700",
+    "exportacion": "01",
+    "no_certificado": "24329856653144244287",
+    "folio_fiscal": "CB600212-F2C4-445F-8847-9726D6A49382",
+    "fecha_emision": "2026-06-12T22:26:14",
+    "fecha_timbrado": "2026-06-12T22:27:58",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000111823003",
+    "metodo_pago": null,
+    "forma_pago": null,
+    "moneda": "XXX",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "ULLOA-MOLINA S. R.L. DE C.V. SC",
+      "RFC": "WKK190815HL6",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "BONILLA Y CAVAZOS SAS DE CV",
+      "RFC": "JRX250224TY6",
+      "uso_cfdi": "CP01",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "55791"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago",
+        "clave_prod_serv": "84111506",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 0.0,
+        "descuento": null,
+        "importe": 0.0,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 0.0,
+    "descuento": null,
+    "iva": null,
+    "retenciones": null,
+    "total": 0.0,
+    "complemento_pagos": {
+      "version": "2.0",
+      "totales": {
+        "total_retenciones_iva": null,
+        "total_retenciones_isr": null,
+        "total_retenciones_ieps": null,
+        "total_traslados_base_iva16": 45898.47,
+        "total_traslados_impuesto_iva16": 7343.76,
+        "total_traslados_base_iva8": null,
+        "total_traslados_impuesto_iva8": null,
+        "total_traslados_base_iva0": null,
+        "total_traslados_impuesto_iva0": null,
+        "total_traslados_base_iva_exento": null,
+        "monto_total_pagos": 53242.23
+      },
+      "pagos": [
+        {
+          "fecha_pago": "2026-06-03T22:26:14",
+          "forma_de_pago_p": "28",
+          "moneda_p": "MXN",
+          "tipo_cambio_p": 1.0,
+          "monto": 53242.23,
+          "num_operacion": null,
+          "rfc_emisor_cta_ord": null,
+          "nom_banco_ord_ext": null,
+          "cta_ordenante": null,
+          "rfc_emisor_cta_ben": null,
+          "cta_beneficiario": null,
+          "tipo_cad_pago": null,
+          "doctos_relacionados": [
+            {
+              "id_documento": "3D2CFD3B-8667-4057-8DB3-BB88AB443EC7",
+              "serie": "F",
+              "folio": "99956",
+              "moneda_dr": "MXN",
+              "equivalencia_dr": 1.0,
+              "num_parcialidad": 1.0,
+              "imp_saldo_ant": 53242.23,
+              "imp_pagado": 53242.23,
+              "imp_saldo_insoluto": 0.0,
+              "objeto_imp_dr": "02",
+              "impuestos_dr": {
+                "traslados": [
+                  {
+                    "base_dr": 45898.47,
+                    "impuesto_dr": "002",
+                    "tipo_factor_dr": "Tasa",
+                    "tasa_o_cuota_dr": 0.16,
+                    "importe_dr": 7343.76
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ],
+          "impuestos_p": {
+            "traslados": [
+              {
+                "base_p": 45898.47,
+                "impuesto_p": "002",
+                "tipo_factor_p": "Tasa",
+                "tasa_o_cuota_p": 0.16,
+                "importe_p": 7343.76
+              }
+            ],
+            "retenciones": []
+          }
+        }
+      ]
+    }
+  }
+}

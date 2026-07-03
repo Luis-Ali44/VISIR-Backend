@@ -1,0 +1,108 @@
+{
+  "archivo": "cfdi_v40_comercio_ext_usd_018",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "CE",
+    "folio": "3851",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "06600",
+    "exportacion": "02",
+    "no_certificado": "29125307612655401509",
+    "folio_fiscal": "075738A5-264D-41E8-8570-28BE4E7A6F73",
+    "fecha_emision": "2026-05-12T03:26:14",
+    "fecha_timbrado": "2026-05-12T03:27:03",
+    "rfc_proveedor_certificacion": "MIS141016RX2",
+    "no_certificado_sat": "00001000000457269209",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "USD",
+    "tipo_cambio": 17.9709,
+    "emisor": {
+      "nombre": "PROYECTOS MURO, LONGORIA Y MONTAÑO SC",
+      "RFC": "RWD211227RD1",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "ÁVILA S DE RL DE CV",
+      "RFC": "XEXX010101000",
+      "uso_cfdi": "S01",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "39400"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 4.0,
+        "valor_unitario": 14217.3,
+        "descuento": 5686.92,
+        "importe": 56869.2,
+        "iva": 8189.16,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 56869.2,
+    "descuento": 5686.92,
+    "iva": 8189.16,
+    "retenciones": null,
+    "total": 59371.44,
+    "complemento_comercio_exterior": {
+      "version": "2.0",
+      "motivo_traslado": "A",
+      "clave_de_pedimento": "A1",
+      "certificado_origen": "0",
+      "num_certificado_origen": null,
+      "numero_exportador_confiable": null,
+      "incoterm": "FCA",
+      "observaciones": null,
+      "tipo_cambio_usd": 17.9709,
+      "total_usd": 56869.2,
+      "emisor": {
+        "curp": null,
+        "domicilio": {
+          "calle": "Periférico Castro",
+          "numero_exterior": "5595",
+          "numero_interior": null,
+          "colonia": "Col. Centro",
+          "localidad": "San Rodolfo los bajos",
+          "municipio": "Nueva República Democrática Po",
+          "estado": "SON",
+          "pais": "MEX",
+          "codigo_postal": "22702",
+          "referencia": null
+        }
+      },
+      "propietarios": [],
+      "receptor": {
+        "num_reg_id_trib": "29-7934625",
+        "domicilio": {
+          "calle": "538 Scott Park",
+          "numero_exterior": "5545",
+          "numero_interior": null,
+          "colonia": null,
+          "localidad": "Barneston",
+          "municipio": null,
+          "estado": "NA",
+          "pais": "CAN",
+          "codigo_postal": "43736",
+          "referencia": null
+        }
+      },
+      "destinatarios": [],
+      "mercancias": [
+        {
+          "no_identificacion": "SKU-02694",
+          "fraccion_arancelaria": "29321990",
+          "cantidad_aduana": 4.0,
+          "unidad_aduana": "11",
+          "valor_unitario_aduana": 14217.3,
+          "valor_dolares": 56869.2,
+          "descripciones_especificas": []
+        }
+      ]
+    }
+  }
+}

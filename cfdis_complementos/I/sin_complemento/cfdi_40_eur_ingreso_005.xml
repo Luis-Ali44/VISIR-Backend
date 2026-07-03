@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="55100"
+  Fecha="2026-05-01T23:26:14"
+  FormaPago="99"
+  NoCertificado="90371693101045939038"
+  Certificado="2C7rfLfDkfK17JvFQioMGTr2q67u8pgxC/LdzEOwgjmDvqsmlA+anESWqd/MMW6GzQ2IJzju4Nxp84MPUB1BG7YQ012n+4P1JNP8EDkh4Z4="
+  Sello="Ca9K2CGdkho2WF1BvCb1I8PgK2lsBfOya8EJ0IwcvV4bfyzBQl0wRBfipPzwiHlecDxoCA6AW/DzSyjAvQVeNqi8QQuTseOETJzVkWuKZG++KUYM6rLP/1HyF45X8bPvpZOuQraSMxABPmUn47ygdR6ugcdwAKfyjtbsPK7TpEiWDhOmpttrFP/oE8RcMJ88y/vyWPP0utHkIEQm157rm8FRffbCW7074nHdWeDIUHSXG34nzu3xyUKsfwzUeMC90DNS54xERmiAQ/N7MH5VbCLd6FqGJxts4riTTLCoHbin+eNxvHs0W+Q1ZhTGHZCpGsi7q+5ZW7Ydx8AETqYU2A=="
+  SubTotal="131931.10"
+  
+  Moneda="MXN"
+  Total="153040.07"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:Emisor Rfc="HYB120520YD9" Nombre="MÍAS AC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="XCR101224VY7"
+    Nombre="LOMELI Y CASTILLO S DE RL DE CV"
+    DomicilioFiscalReceptor="38240"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-71948"
+      Cantidad="5"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="23129.03"
+      Importe="115645.15"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="115645.15" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="18503.22"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="81112501"
+      
+      Cantidad="3"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de consultoría"
+      ValorUnitario="5428.65"
+      Importe="16285.95"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="16285.95" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2605.75"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="21108.97">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="131931.10" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="21108.97"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="19FA1E8C-2AAF-45B6-8D27-301C0766C9E7"
+      FechaTimbrado="2026-05-01T23:26:51"
+      RfcProvCertif="SAT970701NN3"
+      NoCertificadoSAT="00001000000951583614"
+      SelloCFDI="Ca9K2CGdkho2WF1BvCb1I8PgK2lsBfOya8EJ0IwcvV4bfyzBQl0wRBfipPzwiHlecDxoCA6AW/DzSyjAvQVeNqi8QQuTseOETJzVkWuKZG++KUYM6rLP/1HyF45X8bPvpZOuQraSMxABPmUn47ygdR6ugcdwAKfyjtbsPK7TpEiWDhOmpttrFP/oE8RcMJ88y/vyWPP0utHkIEQm157rm8FRffbCW7074nHdWeDIUHSXG34nzu3xyUKsfwzUeMC90DNS54xERmiAQ/N7MH5VbCLd6FqGJxts4riTTLCoHbin+eNxvHs0W+Q1ZhTGHZCpGsi7q+5ZW7Ydx8AETqYU2A=="
+      SelloSAT="YmXKSQPaoVWTUuWMn3VKCIiKZoHniDmce7uxbx7RkobJ+L+nuXSLd6UGuOqvkH31Wg75GrWO8uKlDjhvS6+quppNit+N70N8i1MxwAXZrU1RrpaAlDkIsn1wwDObkAWSP+9kUZ4LQmenDqP/YHfixTjCG/u4gKzZc7EqZE2YE7bhfPW+5la8xLPbW8DzYvP0ElpuhsWovto41R6RBh6tZEGqpoEUgkKLX5lHCI9wRd4St+FBjCUnJWRYyFRD3HnNMS2YqqZEbqShYEsiK56sqwOGahoee6VvsOZxEhtwMcasBRVdal9Du5KtxAsgrhkOrPw+P+rll04LiwHaDQjpJg=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>
