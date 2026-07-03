@@ -1,0 +1,123 @@
+{
+  "archivo": "cfdi_v40_pago_032",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "RP",
+    "folio": "14362",
+    "tipo_comprobante": "P",
+    "lugar_expedicion": "20000",
+    "exportacion": "01",
+    "no_certificado": "83494310891682991482",
+    "folio_fiscal": "E1B06FA2-2EE5-4583-BB04-9076A2A091C0",
+    "fecha_emision": "2026-06-29T10:26:14",
+    "fecha_timbrado": "2026-06-29T10:27:11",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000896920008",
+    "metodo_pago": null,
+    "forma_pago": null,
+    "moneda": "XXX",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "QUINTANA, MONTALVO Y BARRAZA SC",
+      "RFC": "EAG210501KD9",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "AYALA-MONTES AC",
+      "RFC": "NQT020624JV6",
+      "uso_cfdi": "CP01",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "98596"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago",
+        "clave_prod_serv": "84111506",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 0.0,
+        "descuento": null,
+        "importe": 0.0,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 0.0,
+    "descuento": null,
+    "iva": null,
+    "retenciones": null,
+    "total": 0.0,
+    "complemento_pagos": {
+      "version": "2.0",
+      "totales": {
+        "total_retenciones_iva": null,
+        "total_retenciones_isr": null,
+        "total_retenciones_ieps": null,
+        "total_traslados_base_iva16": 12712.76,
+        "total_traslados_impuesto_iva16": 2034.04,
+        "total_traslados_base_iva8": null,
+        "total_traslados_impuesto_iva8": null,
+        "total_traslados_base_iva0": null,
+        "total_traslados_impuesto_iva0": null,
+        "total_traslados_base_iva_exento": null,
+        "monto_total_pagos": 14746.8
+      },
+      "pagos": [
+        {
+          "fecha_pago": "2026-06-16T10:26:14",
+          "forma_de_pago_p": "03",
+          "moneda_p": "MXN",
+          "tipo_cambio_p": 1.0,
+          "monto": 14746.8,
+          "num_operacion": "OP5906380763",
+          "rfc_emisor_cta_ord": null,
+          "nom_banco_ord_ext": null,
+          "cta_ordenante": null,
+          "rfc_emisor_cta_ben": null,
+          "cta_beneficiario": null,
+          "tipo_cad_pago": null,
+          "doctos_relacionados": [
+            {
+              "id_documento": "879BF87B-161C-43DE-94A4-0DEE852B9384",
+              "serie": "F",
+              "folio": "75939",
+              "moneda_dr": "MXN",
+              "equivalencia_dr": 1.0,
+              "num_parcialidad": 1.0,
+              "imp_saldo_ant": 14746.8,
+              "imp_pagado": 14746.8,
+              "imp_saldo_insoluto": 0.0,
+              "objeto_imp_dr": "02",
+              "impuestos_dr": {
+                "traslados": [
+                  {
+                    "base_dr": 12712.76,
+                    "impuesto_dr": "002",
+                    "tipo_factor_dr": "Tasa",
+                    "tasa_o_cuota_dr": 0.16,
+                    "importe_dr": 2034.04
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ],
+          "impuestos_p": {
+            "traslados": [
+              {
+                "base_p": 12712.76,
+                "impuesto_p": "002",
+                "tipo_factor_p": "Tasa",
+                "tasa_o_cuota_p": 0.16,
+                "importe_p": 2034.04
+              }
+            ],
+            "retenciones": []
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_40_egreso_027",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "46505",
+    "tipo_comprobante": "E",
+    "lugar_expedicion": "44100",
+    "exportacion": "01",
+    "no_certificado": "89113737360305742084",
+    "folio_fiscal": "8C8F1BB3-92EB-44AE-ACCB-97C9089F04B9",
+    "fecha_emision": "2026-02-15T16:26:14",
+    "fecha_timbrado": "2026-02-15T16:27:17",
+    "rfc_proveedor_certificacion": "SAT970701NN3",
+    "no_certificado_sat": "00001000000956828165",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "GUERRA SA DE CV",
+      "RFC": "MQF990131LC0",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "GONZÁLEZ S DE RL DE CV",
+      "RFC": "HTV950923WD2",
+      "uso_cfdi": "G02",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "32442"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 1.0,
+        "valor_unitario": 18353.6,
+        "descuento": 1835.36,
+        "importe": 18353.6,
+        "iva": 2642.92,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "clave_prod_serv": "81112501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 49773.34,
+        "descuento": null,
+        "importe": 99546.68,
+        "iva": 15927.47,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 117900.28,
+    "descuento": 1835.36,
+    "iva": 18570.39,
+    "retenciones": null,
+    "total": 134635.31
+  }
+}

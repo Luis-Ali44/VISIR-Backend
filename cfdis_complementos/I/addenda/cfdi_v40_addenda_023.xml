@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="60424"
+  Fecha="2026-04-21T11:26:14"
+  FormaPago="28"
+  NoCertificado="84883929889143992625"
+  Certificado="mrezp4jq9eaNEEhVp54mPphoWy0Ze/6/YYKBpqzYjU3PBmnTuxX2Rc4Ds+tCFCi3Yu28fz5PjmXR4Bah+P0drZSdwAP/QQOxJQA8EDSs8Jg="
+  Sello="TXzuHJJ6PliOZrUNzejheg2A+i8uvSp819Q+LzFVrLzmKm/PxkcPFWqhdOh8lobKB5f6NMlsDxD0hJRq2dy6dglFtLRixh050xyNRJR4ueTKl3dJ1NcbTD9IpO2RWhHSbQ4j4ncPchale6Y9Ubb8hUuGAGUS6j+Utxz07fVmFVceaEk5NH1EXXlv8pEZLBmsRCd3Nnk6QYaei2PMT5xZrOwoBRhmrXkJSmvAmcKQIf2jSWIuK2V3suvRNNq2cJbl6l46QcEJkCKTYuAkRquDN4g8UgO20LEjr18TyArOXB4beJXI1M8VsUfcbZ/UpUQOumRl8JLmW6iT0lIFqWQmrg=="
+  SubTotal="59780.66"
+  Descuento="1712.30"
+  Moneda="MXN"
+  Total="63093.53"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor
+    Rfc="PJFE940815WZ9"
+    Nombre="ROLÓN RUELAS JUANA"
+    RegimenFiscal="612"/>
+
+  <cfdi:Receptor
+    Rfc="SBP240130KB8"
+    Nombre="TAMAYO-ARANDA AC"
+    DomicilioFiscalReceptor="39188"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="21328.83"
+      Importe="42657.66"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="42657.66" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="6825.23"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="42657.66" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="4265.77"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      
+      Cantidad="4"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="4280.75"
+      Importe="17123.00"
+      Descuento="1712.30"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="15410.70" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="2465.71"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="4265.77"
+    TotalImpuestosTrasladados="9290.94">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="4265.77"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="58068.36" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="9290.94"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="1AA6DB96-DD95-486D-AC75-99669CC56321"
+      FechaTimbrado="2026-04-21T11:26:46"
+      RfcProvCertif="SAT970701NN3"
+      NoCertificadoSAT="00001000000132294614"
+      SelloCFDI="TXzuHJJ6PliOZrUNzejheg2A+i8uvSp819Q+LzFVrLzmKm/PxkcPFWqhdOh8lobKB5f6NMlsDxD0hJRq2dy6dglFtLRixh050xyNRJR4ueTKl3dJ1NcbTD9IpO2RWhHSbQ4j4ncPchale6Y9Ubb8hUuGAGUS6j+Utxz07fVmFVceaEk5NH1EXXlv8pEZLBmsRCd3Nnk6QYaei2PMT5xZrOwoBRhmrXkJSmvAmcKQIf2jSWIuK2V3suvRNNq2cJbl6l46QcEJkCKTYuAkRquDN4g8UgO20LEjr18TyArOXB4beJXI1M8VsUfcbZ/UpUQOumRl8JLmW6iT0lIFqWQmrg=="
+      SelloSAT="+B2aki26w/X1BNpfqvewq0EpsDWE6JF64BsjsVk2Vqp4icLZ4XaSLLgUSF0c25iOCVRPeSWrnPARcseaxqOAr3MqZKctoNplJQ2XcxrHsxgvXUE4SZypT26hYk1pCwg3Lu8QtROzl1+DusJT+EdRRm5AKWqKZi2flZjHDJ9bB3Co0zMIvQGJRrnPuI2ris2jj5Aqr+/3eAIYRVsyRC7viEegw3ZI9lJMuK2JFfynso6Q2U5q8WbNi/RZZe2D0K/SebmXP0BYK6y3LhwwagGHmXehVTi7fOSUzlM7S9mDZ6cnVxwW5puCD3BBxwZ7HZGFSLOsLCuXnjkpiFHR0tzG4A=="/>
+  </cfdi:Complemento>
+
+  
+  <cfdi:Addenda>
+    <liverpool:DatosFactura xmlns:liverpool="http://www.liverpool.com.mx/addenda"><liverpool:NumOrden>60424</liverpool:NumOrden><liverpool:Almacen>ALM523</liverpool:Almacen></liverpool:DatosFactura>
+  </cfdi:Addenda>
+
+</cfdi:Comprobante>

@@ -1,0 +1,92 @@
+{
+  "archivo": "cfdi_v40_addenda_024",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "11807",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "22881004033170203450",
+    "folio_fiscal": "8C7BE886-F294-4B07-BA83-3A4ED930360D",
+    "fecha_emision": "2026-02-04T16:26:14",
+    "fecha_timbrado": "2026-02-04T16:26:31",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000567779628",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "BUSTAMANTE CAMARILLO ARMANDO",
+      "RFC": "IYOH010427LM1",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "MENA Y CASARES E HIJOS SAS DE CV",
+      "RFC": "YGE111126PT9",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "626",
+      "domicilio_fiscal": "17165"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "clave_prod_serv": "81112501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 3.0,
+        "valor_unitario": 8272.13,
+        "descuento": 1240.82,
+        "importe": 24816.39,
+        "iva": 3772.09,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 3.0,
+        "valor_unitario": 12996.28,
+        "descuento": null,
+        "importe": 38988.84,
+        "iva": 6238.21,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Honorarios profesionales",
+        "clave_prod_serv": "80111501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 55026.86,
+        "descuento": null,
+        "importe": 110053.72,
+        "iva": 17608.6,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 173858.95,
+    "descuento": 1240.82,
+    "iva": 27618.9,
+    "retenciones": 11005.37,
+    "total": 189231.66,
+    "addenda": {
+      "presente": true,
+      "contenido": [
+        {
+          "hijos": {
+            "NumProveedor": {
+              "texto": "P985363"
+            },
+            "CentroDistribucion": {
+              "texto": "CD297"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

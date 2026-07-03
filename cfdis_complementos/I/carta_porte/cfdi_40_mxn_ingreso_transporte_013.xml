@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="A"
+  Folio="56437"
+  Fecha="2026-03-17T19:26:14"
+  FormaPago="05"
+  NoCertificado="97109007147803347542"
+  Certificado="wxjVqgyvcoYCDLIAYdbM30L46QugMyYIfYagMBP/8yPbsvk95spqTcdj1+1sySIlZeIFwRP99oK+v+BMqTaDa1kL9oic6wSw9ThI1C4cHqE="
+  Sello="NXiQxjGb+uOOyscg/rV5reiBgev7ludqF/2pudnj07RC2DD3pRdP3oIrE5UzEx9lh4ENa76hLAjGYacABB+jhwOsfMxBuV9PTLAHZeLvBoKghsepquCdM0yvkn1YSZNkBIxAiMp95sN4lI0eF1QC7l5XWvqYxIMM55V7I0sYVnZuQhGLiUDFXOy0pOnnr1AiVgvM2bomIMzMRzkx60rH0zz0knlVpBaLeiK3vyf5f+9HHaBxnz+3mw+WRw9+YxsXsDVRlPSsDea1jJrsS9Tg+p/6kgd56jPuloSVhRegDLpV8QNUSM87FjF6RdAO9TB4298zHXxURFrE9Z7BiazUng=="
+  SubTotal="60428.47"
+  Descuento="1353.99"
+  Moneda="MXN"
+  Total="68526.40"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PUE"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor Rfc="PKU221029DH1" Nombre="CORPORIN BARRIOS, HIDALGO Y ALVAREZ SAS DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="BBS170218RC8"
+    Nombre="PATIÑO Y PADRÓN Y ASOCIADOS SA DE CV"
+    DomicilioFiscalReceptor="77227"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="78101801"
+      
+      Cantidad="4"
+      ClaveUnidad="E48"
+      Unidad="Viaje"
+      Descripcion="Servicio de transporte de carga terrestre en área local"
+      ValorUnitario="3384.98"
+      Importe="13539.92"
+      Descuento="1353.99"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="12185.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="1949.75"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="78101802"
+      
+      Cantidad="5"
+      ClaveUnidad="E48"
+      Unidad="Viaje"
+      Descripcion="Servicio de transporte de carga por carretera a nivel regional y nacional"
+      ValorUnitario="9377.71"
+      Importe="46888.55"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="46888.55" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="7502.17"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="9451.92">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="59074.48" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="9451.92"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="1BA66087-B191-4927-8707-8F5E9F2E8548"
+      FechaTimbrado="2026-03-17T19:26:43"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000780249990"
+      SelloCFDI="NXiQxjGb+uOOyscg/rV5reiBgev7ludqF/2pudnj07RC2DD3pRdP3oIrE5UzEx9lh4ENa76hLAjGYacABB+jhwOsfMxBuV9PTLAHZeLvBoKghsepquCdM0yvkn1YSZNkBIxAiMp95sN4lI0eF1QC7l5XWvqYxIMM55V7I0sYVnZuQhGLiUDFXOy0pOnnr1AiVgvM2bomIMzMRzkx60rH0zz0knlVpBaLeiK3vyf5f+9HHaBxnz+3mw+WRw9+YxsXsDVRlPSsDea1jJrsS9Tg+p/6kgd56jPuloSVhRegDLpV8QNUSM87FjF6RdAO9TB4298zHXxURFrE9Z7BiazUng=="
+      SelloSAT="vgbthTtGaQ5ZgJoRoQzVnC0tyXZh/KSeIfHXn1W3KYpv6Z2P/+elx9YeG4/k6PHtUsprKEYs+XOKKR5ugm5Y7WO1yCZwmsuUX8Y5YjnfjNHvr4Vvm8yRBhl4s+gvhQ+Pn8L/k0LzzcZ56Ox55f9Mhvm/DoGithxboECdHDdE/AICudr6fKhMUpRvcQ61+QY+C0fUnHioZuKXQnZPhuX/xd7pSWcUxfOtpTT/YYQFGajVbLv7oruwrw4oOclwi2hPYbovM8+TUitle9RM0AdVyy5DsW4PCCbe++tn7Ih2aR5n+bWxHwu/Oist6omvmZl4gWavOI7mbjJ9rDTiWLPArA=="/>
+    
+    
+<cartaporte31:CartaPorte
+  xmlns:cartaporte31="http://www.sat.gob.mx/CartaPorte31"
+  Version="3.1"
+  TranspInternac="No"
+  TotalDistRec="241">
+
+  <cartaporte31:Ubicaciones>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Origen"
+      IDUbicacion="OR000001"
+      RFCRemitenteDestinatario="PKU221029DH1"
+      FechaHoraSalidaLlegada="2026-03-17T19:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="64000"
+        Estado="NLE"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Destino"
+      IDUbicacion="DE000001"
+      RFCRemitenteDestinatario="BBS170218RC8"
+      DistanciaRecorrida="241"
+      FechaHoraSalidaLlegada="2026-03-18T04:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="20000"
+        Estado="AGU"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+  </cartaporte31:Ubicaciones>
+
+  <cartaporte31:Mercancias
+    PesoBrutoTotal="4280"
+    UnidadPeso="KGM"
+    NumTotalMercancias="1">
+    <cartaporte31:Mercancia
+      BienesTransp="24131510"
+      Descripcion="Refrigeradores de mostrador (carga general)"
+      Cantidad="9.00"
+      ClaveUnidad="KGM"
+      PesoEnKg="4280"/>
+    <cartaporte31:Autotransporte
+      PermSCT="TPAF03"
+      NumPermisoSCT="PERM/5383/7049">
+      <cartaporte31:IdentificacionVehicular
+        ConfigVehicular="C2"
+        PesoBrutoVehicular="12280"
+        PlacaVM="YAF032"
+        AnioModeloVM="2021"/>
+      <cartaporte31:Seguros
+        AseguraRespCivil="CRESPO Y MAGAÑA Y ASOCIADOS S DE RL DE CV"
+        PolizaRespCivil="POL-7612-PPEZ"/>
+    </cartaporte31:Autotransporte>
+  </cartaporte31:Mercancias>
+
+  <cartaporte31:FiguraTransporte>
+    <cartaporte31:TiposFigura
+      TipoFigura="01"
+      RFCFigura="PAGU951222PC0"
+      NumLicencia="LIC73091638"/>
+  </cartaporte31:FiguraTransporte>
+
+</cartaporte31:CartaPorte>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

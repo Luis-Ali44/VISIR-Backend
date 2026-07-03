@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="F"
+  Folio="10501"
+  Fecha="2026-05-08T06:26:14"
+  FormaPago="99"
+  NoCertificado="52190836140784411286"
+  Certificado="CeaPP8C/FBNzd1Bv5kcEqWongeewEe9KpaUGgI8Zmb65o5y+n0Nqr+VUyKyf6V1QKkCWRADPkaIDqANtubftGRWNUS18FlQrsseS/n8ltUc="
+  Sello="7Zaonm6sqwSPQCPdEbiJY8il8/1cKoWzMVF4WULhhw9utQouAcxvmHlNU/g1/IcUWkL7QjVneeraQaEu0NZRz5iVUuexrGxD6SxfmrX6hs+zXORijobFwzRB5aDAf/P/X1mu7jDB1Yt8vnbt5UeQFK7tTPbsHCDX/KKkIyxMHPXs786+4aJS8R9zrElecDNAdl/KHvPwmynBiIP2s51IRYYx9r+5JwMNgJPo6nroMhLqUs3ShinUcPv3Q79nAJ2kcGmnrgQiZuCerTdusb70TXW0ShlT5ZCFD9kNlIHdcwu/SSM/zi+jNdRuvEKluD9hwkpB8ZcjqqQY5B8wGTbpyg=="
+  SubTotal="1886.83"
+  Descuento="22.94"
+  Moneda="MXN"
+  Total="2162.11"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+
+  <cfdi:Emisor Rfc="XDW130925RH8" Nombre="MEJÍA Y HINOJOSA S DE RL DE CV" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="QML961006KM1"
+    Nombre="ESPINOZA Y HERNÁNDEZ SAS DE CV"
+    DomicilioFiscalReceptor="82534"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="85101503"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Consulta"
+      Descripcion="Consulta médica en consultorio"
+      ValorUnitario="828.70"
+      Importe="1657.40"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="1657.40" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="265.18"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="85101601"
+      
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Hora"
+      Descripcion="Servicios de enfermería y cuidados médicos"
+      ValorUnitario="229.43"
+      Importe="229.43"
+      Descuento="22.94"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="206.49" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="33.04"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="298.22">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="1863.89" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="298.22"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="723F0EB0-9780-432C-9C79-2C382D371202"
+      FechaTimbrado="2026-05-08T06:27:37"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000209080537"
+      SelloCFDI="7Zaonm6sqwSPQCPdEbiJY8il8/1cKoWzMVF4WULhhw9utQouAcxvmHlNU/g1/IcUWkL7QjVneeraQaEu0NZRz5iVUuexrGxD6SxfmrX6hs+zXORijobFwzRB5aDAf/P/X1mu7jDB1Yt8vnbt5UeQFK7tTPbsHCDX/KKkIyxMHPXs786+4aJS8R9zrElecDNAdl/KHvPwmynBiIP2s51IRYYx9r+5JwMNgJPo6nroMhLqUs3ShinUcPv3Q79nAJ2kcGmnrgQiZuCerTdusb70TXW0ShlT5ZCFD9kNlIHdcwu/SSM/zi+jNdRuvEKluD9hwkpB8ZcjqqQY5B8wGTbpyg=="
+      SelloSAT="iPmZBRRjYDQDGRzclst1Vxil3rlOc1LN72vhtRMpe7vIicqeqrP/TO5WGt44f+mLQwNvGQ8AYWAu3MIlupzQzLGVkQB34/G7HMGpdxlPDnN+d4xv41coy+utQGeZMLkMtDNYk03AnFTSq0Xi/mzeWR86z6s6pUtLhD0TBMv6VWu7FbXBUel8XxUwAkNrgw0A1TN3xy830in5+NA6SaOskEVJfVH7n+971syL8gbmvKaAv8VWYNzeCkfcwKhrUgeYFL8/og7G46fupJylYYUR8eTYGngAVHvaQAfmXwX51zNltSfYdxIeMNepQEdoBeUMiVq9Wk7/PVw2PijlejdADw=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

@@ -1,0 +1,194 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_transporte_015",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "A",
+    "folio": "33627",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "48254910710191542406",
+    "folio_fiscal": "CA8AF2C7-FC9A-4CCA-A7A9-74764A9176C7",
+    "fecha_emision": "2026-01-07T20:26:14",
+    "fecha_timbrado": "2026-01-07T20:26:29",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000395872624",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "INDUSTRIAS OLIVARES-SANDOVAL AC",
+      "RFC": "JYD060320SJ9",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "GONZÁLEZ S DE RL DE CV",
+      "RFC": "UQY041223UE7",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "44267"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicios de entrega postal y paquetería nacional",
+        "clave_prod_serv": "78102201",
+        "clave_unidad": "E48",
+        "unidad": "Envío",
+        "cantidad": 30.0,
+        "valor_unitario": 806.84,
+        "descuento": null,
+        "importe": 24205.2,
+        "iva": 3872.83,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicio de transporte de carga por carretera a nivel regional y nacional",
+        "clave_prod_serv": "78101802",
+        "clave_unidad": "E48",
+        "unidad": "Viaje",
+        "cantidad": 2.0,
+        "valor_unitario": 30294.58,
+        "descuento": null,
+        "importe": 60589.16,
+        "iva": 9694.27,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 84794.36,
+    "descuento": null,
+    "iva": 13567.1,
+    "retenciones": null,
+    "total": 98361.46,
+    "complemento_carta_porte": {
+      "version": "3.1",
+      "id_ccp": null,
+      "transporte_internacional": "No",
+      "pais_origen_destino": null,
+      "via_entrada_salida": null,
+      "entrada_salida_merc": null,
+      "registro_istmo": null,
+      "ubicacion_polo_origen": null,
+      "ubicacion_polo_destino": null,
+      "total_dist_recorrida": 426.0,
+      "regimenes_aduaneros": [],
+      "ubicaciones": [
+        {
+          "tipo_ubicacion": "Origen",
+          "id_ubicacion": "OR000001",
+          "rfc_remitente_destinatario": "JYD060320SJ9",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-01-07T20:26:14",
+          "distancia_recorrida": null,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "NLE",
+            "pais": "MEX",
+            "codigo_postal": "64000",
+            "referencia": null
+          }
+        },
+        {
+          "tipo_ubicacion": "Destino",
+          "id_ubicacion": "DE000001",
+          "rfc_remitente_destinatario": "UQY041223UE7",
+          "nombre_remitente_destinatario": null,
+          "num_reg_id_trib": null,
+          "residencia_fiscal": null,
+          "fecha_hora_salida_llegada": "2026-01-08T03:26:14",
+          "distancia_recorrida": 426.0,
+          "domicilio": {
+            "calle": null,
+            "numero_exterior": null,
+            "numero_interior": null,
+            "colonia": null,
+            "localidad": null,
+            "municipio": null,
+            "estado": "CDMX",
+            "pais": "MEX",
+            "codigo_postal": "06600",
+            "referencia": null
+          }
+        }
+      ],
+      "mercancias": {
+        "peso_bruto_total": 8606.0,
+        "unidad_peso": "KGM",
+        "peso_neto_total": null,
+        "num_total_mercancias": 1.0,
+        "cargo_por_tasacion": null,
+        "logistica_inversa": null,
+        "mercancias": [
+          {
+            "bienes_transp": "24131510",
+            "clave_stcc": null,
+            "descripcion": "Paquetería y mercancía general",
+            "cantidad": 32.0,
+            "clave_unidad": "KGM",
+            "unidad": null,
+            "dimensiones": null,
+            "material_peligroso": null,
+            "cve_material_peligroso": null,
+            "embalaje": null,
+            "descrip_embalaje": null,
+            "sector_cofepris": null,
+            "peso_en_kg": 8606.0,
+            "valor_mercancia": null,
+            "moneda": null,
+            "fraccion_arancelaria": null,
+            "uuid_comercio_ext": null,
+            "tipo_materia": null,
+            "descripcion_materia": null,
+            "documentacion_aduanera": [],
+            "guias_identificacion": [],
+            "cantidad_transporta": [],
+            "detalle_mercancia": null
+          }
+        ],
+        "autotransporte": {
+          "perm_sct": "TPAF03",
+          "num_permiso_sct": "PERM/0244/8091",
+          "identificacion_vehicular": {
+            "config_vehicular": "C2",
+            "peso_bruto_vehicular": 16606.0,
+            "placa_vm": "EZR058",
+            "anio_modelo_vm": 2022.0
+          },
+          "seguros": {
+            "asegura_resp_civil": "LINARES SC",
+            "poliza_resp_civil": "POL-0722-SNQI",
+            "asegura_med_ambiente": null,
+            "poliza_med_ambiente": null,
+            "asegura_carga": null,
+            "poliza_carga": null,
+            "prima_seguro": null
+          },
+          "remolques": []
+        },
+        "transporte_maritimo": null,
+        "transporte_aereo": null,
+        "transporte_ferroviario": null
+      },
+      "figura_transporte": [
+        {
+          "tipo_figura": "01",
+          "rfc_figura": "HDUE910724YB4",
+          "num_licencia": "LIC77066255",
+          "nombre_figura": null,
+          "num_reg_id_trib_figura": null,
+          "residencia_fiscal_figura": null,
+          "partes_transporte": [],
+          "domicilio": null
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="38489"
+  Fecha="2026-01-09T10:26:14"
+  FormaPago="99"
+  NoCertificado="23663414290462044864"
+  Certificado="bNtlfq0a7gEHNgMAbqf2v+i42Dua3HS/xeyRFZxZRDeBFMk9B7IQ8AjR5wsn0LyNtYnMo27BivCQJ43krWb4CNLVN8wky4cmSW3Toqbqt34="
+  Sello="lbaCGoWnkdfFovsyZwwUtxemuooZUX9kRur/SP7J1AZgOz+xCfjNnZ+REJhd+LS9qM+8jf4jU9yUcK3YgOZCiSr3+WXwp8O9uoSVUH6atqAvpIex675holk+hl3iBcJKfyqxjBHjkBi+HM9381CPqXryF+uT1wLEOf5akiApHRY4rPzrwx+PS6RdZOXnkMgPD52jmhieSLYnmgeRKfM3yXMeMxm+hyrp6oNSDy5A7LAoXeoGVHhPv00wA9FlTnuF+OKxg8muvcP6MBccu8kzziqVC9dvbkj95QRZ0LcASzjuSBRjBSNKYndH5+/t0Rmriob+Mno/XvuWSOd/GyC7vw=="
+  SubTotal="92321.00"
+  
+  Moneda="MXN"
+  Total="107092.36"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="20000">
+
+  <cfdi:Emisor
+    Rfc="QGU221005BM3"
+    Nombre="DESPHO CARREÓN Y SALDAÑA SA DE CV"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="YKG160103LG6"
+    Nombre="MARROQUÍN-LUCIO SC"
+    DomicilioFiscalReceptor="59648"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-14261"
+      Cantidad="4"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="23080.25"
+      Importe="92321.00"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="92321.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="14771.36"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="14771.36">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="92321.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="14771.36"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="C88BDBDF-155F-415E-9F6B-F95D986A5500"
+      FechaTimbrado="2026-01-09T10:27:08"
+      RfcProvCertif="SAT970701NN3"
+      NoCertificadoSAT="00001000000163557909"
+      SelloCFDI="lbaCGoWnkdfFovsyZwwUtxemuooZUX9kRur/SP7J1AZgOz+xCfjNnZ+REJhd+LS9qM+8jf4jU9yUcK3YgOZCiSr3+WXwp8O9uoSVUH6atqAvpIex675holk+hl3iBcJKfyqxjBHjkBi+HM9381CPqXryF+uT1wLEOf5akiApHRY4rPzrwx+PS6RdZOXnkMgPD52jmhieSLYnmgeRKfM3yXMeMxm+hyrp6oNSDy5A7LAoXeoGVHhPv00wA9FlTnuF+OKxg8muvcP6MBccu8kzziqVC9dvbkj95QRZ0LcASzjuSBRjBSNKYndH5+/t0Rmriob+Mno/XvuWSOd/GyC7vw=="
+      SelloSAT="crYhkLOSTbkQkj+6vDcj/YOHfHxlpjfz00kO5cOU0RtUkUD6c/F1TvhaQNRHdw7BzB0uUD4fD4NMmXp4MtUlzoqYuitZDxrWr7wmkLClwGywcGTAdTiMxGsKGBDOkbL/om555N07w9M7HkJgxQXzfxZhtTI+ztZn+55+8/H/071XmVaBtcbfkzj9uNUNb6WBIqMFqRAd7lgNx9zSeMCg9Af6EiAT+a3Lh8S8EfnmsWN7a4uYigynvo/TF4pJq4JAfzqoqugOsYYdcDeDmfJuZ/pLN1zpCpGQtqEDtZ+a/JsrLbEMHNpBzKAFcCHLUclGKKhvqm/EKUteLQ7M6CEJKA=="/>
+  </cfdi:Complemento>
+
+  
+  <cfdi:Addenda>
+    <walmart:Addenda xmlns:walmart="http://www.walmart.com.mx/edifact/GRECS5"><walmart:OrdenCompra>38489</walmart:OrdenCompra><walmart:Tienda>T8548</walmart:Tienda></walmart:Addenda>
+  </cfdi:Addenda>
+
+</cfdi:Comprobante>

@@ -1,0 +1,175 @@
+{
+  "archivo": "cfdi_v40_pago_035",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "RP",
+    "folio": "57003",
+    "tipo_comprobante": "P",
+    "lugar_expedicion": "75700",
+    "exportacion": "01",
+    "no_certificado": "14405584833394746252",
+    "folio_fiscal": "84AE1BA8-B76E-4517-89CC-B81FC17C59A1",
+    "fecha_emision": "2026-06-21T06:26:14",
+    "fecha_timbrado": "2026-06-21T06:26:31",
+    "rfc_proveedor_certificacion": "SAT970701NN3",
+    "no_certificado_sat": "00001000000225412883",
+    "metodo_pago": null,
+    "forma_pago": null,
+    "moneda": "XXX",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "GALLARDO-GUEVARA S. R.L. DE C.V. SC",
+      "RFC": "RHL250106BH2",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "BECERRA, LARA Y NIETO SAS DE CV",
+      "RFC": "NKG030501WN8",
+      "uso_cfdi": "CP01",
+      "regimen_fiscal": "603",
+      "domicilio_fiscal": "18615"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago",
+        "clave_prod_serv": "84111506",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 0.0,
+        "descuento": null,
+        "importe": 0.0,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 0.0,
+    "descuento": null,
+    "iva": null,
+    "retenciones": null,
+    "total": 0.0,
+    "complemento_pagos": {
+      "version": "2.0",
+      "totales": {
+        "total_retenciones_iva": null,
+        "total_retenciones_isr": null,
+        "total_retenciones_ieps": null,
+        "total_traslados_base_iva16": 41261.14,
+        "total_traslados_impuesto_iva16": 6601.79,
+        "total_traslados_base_iva8": null,
+        "total_traslados_impuesto_iva8": null,
+        "total_traslados_base_iva0": null,
+        "total_traslados_impuesto_iva0": null,
+        "total_traslados_base_iva_exento": null,
+        "monto_total_pagos": 47862.93
+      },
+      "pagos": [
+        {
+          "fecha_pago": "2026-06-02T06:26:14",
+          "forma_de_pago_p": "28",
+          "moneda_p": "MXN",
+          "tipo_cambio_p": 1.0,
+          "monto": 41765.55,
+          "num_operacion": "OP0944924062",
+          "rfc_emisor_cta_ord": null,
+          "nom_banco_ord_ext": null,
+          "cta_ordenante": null,
+          "rfc_emisor_cta_ben": null,
+          "cta_beneficiario": null,
+          "tipo_cad_pago": null,
+          "doctos_relacionados": [
+            {
+              "id_documento": "2A1F30F4-850B-4B47-8E4F-EB926ED64AE6",
+              "serie": "A",
+              "folio": "63352",
+              "moneda_dr": "MXN",
+              "equivalencia_dr": 1.0,
+              "num_parcialidad": 1.0,
+              "imp_saldo_ant": 41765.55,
+              "imp_pagado": 41765.55,
+              "imp_saldo_insoluto": 0.0,
+              "objeto_imp_dr": "02",
+              "impuestos_dr": {
+                "traslados": [
+                  {
+                    "base_dr": 36004.78,
+                    "impuesto_dr": "002",
+                    "tipo_factor_dr": "Tasa",
+                    "tasa_o_cuota_dr": 0.16,
+                    "importe_dr": 5760.77
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ],
+          "impuestos_p": {
+            "traslados": [
+              {
+                "base_p": 36004.78,
+                "impuesto_p": "002",
+                "tipo_factor_p": "Tasa",
+                "tasa_o_cuota_p": 0.16,
+                "importe_p": 5760.77
+              }
+            ],
+            "retenciones": []
+          }
+        },
+        {
+          "fecha_pago": "2026-05-27T06:26:14",
+          "forma_de_pago_p": "02",
+          "moneda_p": "MXN",
+          "tipo_cambio_p": 1.0,
+          "monto": 6097.38,
+          "num_operacion": "OP9213370329",
+          "rfc_emisor_cta_ord": null,
+          "nom_banco_ord_ext": null,
+          "cta_ordenante": null,
+          "rfc_emisor_cta_ben": null,
+          "cta_beneficiario": null,
+          "tipo_cad_pago": null,
+          "doctos_relacionados": [
+            {
+              "id_documento": "989BCE3A-89BB-4429-A3FD-CF24A193E94F",
+              "serie": "F",
+              "folio": "33929",
+              "moneda_dr": "MXN",
+              "equivalencia_dr": 1.0,
+              "num_parcialidad": 2.0,
+              "imp_saldo_ant": 6097.38,
+              "imp_pagado": 6097.38,
+              "imp_saldo_insoluto": 0.0,
+              "objeto_imp_dr": "02",
+              "impuestos_dr": {
+                "traslados": [
+                  {
+                    "base_dr": 5256.36,
+                    "impuesto_dr": "002",
+                    "tipo_factor_dr": "Tasa",
+                    "tasa_o_cuota_dr": 0.16,
+                    "importe_dr": 841.02
+                  }
+                ],
+                "retenciones": []
+              }
+            }
+          ],
+          "impuestos_p": {
+            "traslados": [
+              {
+                "base_p": 5256.36,
+                "impuesto_p": "002",
+                "tipo_factor_p": "Tasa",
+                "tasa_o_cuota_p": 0.16,
+                "importe_p": 841.02
+              }
+            ],
+            "retenciones": []
+          }
+        }
+      ]
+    }
+  }
+}

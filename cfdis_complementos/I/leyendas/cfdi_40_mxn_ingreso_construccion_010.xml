@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="95819"
+  Fecha="2026-04-13T14:26:14"
+  FormaPago="99"
+  NoCertificado="26756625500100507844"
+  Certificado="lHxKlHC6iNNGoAOju4vXAZgwDhTm/CVxoFcl9HK4E04lgBpcKFwM2PHA6b+F1ByGAD+RTCGIu2MJx4IZdiGlcWQHqfRaBJsZKwC1utelDvo="
+  Sello="pouq1SbX5x8ZaAm6AZ9VQZrC8G6tRU4lTsBJlIhasfypxAAHtVK2jKSlwsrJ2ZLQ+RL2NUALuL5JQ3CyxO7Wip9o2S0+14a4S+81y2RTln2wp+MtX5GYeTbj5viw5afK/9rB8JQ4fJrVOwoRaqPQwy8W1FJHi2vvKFKiGhUlzrSm7iDerzpurut6IZb8AdxBcfwGxydZAWaPJlmWvg4H84QqdwY9R9p45hYnxgfLE4hYpRDss3Goonbcyro2tdEWnOKQ1GAOdDsAToCXEkPECwtpPOYsQZj9g/bgPJU3/Tp8e5cbn96hoS/VQnXtqF0bCytI5wxMg9tD4Gt2Dw+/DA=="
+  SubTotal="722629.06"
+  
+  Moneda="MXN"
+  Total="838249.71"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="72000">
+
+  <cfdi:Emisor Rfc="UGO050612UN1" Nombre="DEL VALLE Y LOZANO SAS DE CV" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="NKN031027WA6"
+    Nombre="PROYECTOS MIRANDA, SOLIZ Y CHÁVEZ SAS DE CV"
+    DomicilioFiscalReceptor="23390"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="I01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="72111006"
+      NoIdentificacion="SKU-58622"
+      Cantidad="1"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Servicio de construcción de casas unifamiliares nuevas"
+      ValorUnitario="722629.06"
+      Importe="722629.06"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="722629.06" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="115620.65"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="115620.65">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="722629.06" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="115620.65"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="32B799A2-87EF-45A5-A7A8-D9CAAA53E78B"
+      FechaTimbrado="2026-04-13T14:27:11"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000819600293"
+      SelloCFDI="pouq1SbX5x8ZaAm6AZ9VQZrC8G6tRU4lTsBJlIhasfypxAAHtVK2jKSlwsrJ2ZLQ+RL2NUALuL5JQ3CyxO7Wip9o2S0+14a4S+81y2RTln2wp+MtX5GYeTbj5viw5afK/9rB8JQ4fJrVOwoRaqPQwy8W1FJHi2vvKFKiGhUlzrSm7iDerzpurut6IZb8AdxBcfwGxydZAWaPJlmWvg4H84QqdwY9R9p45hYnxgfLE4hYpRDss3Goonbcyro2tdEWnOKQ1GAOdDsAToCXEkPECwtpPOYsQZj9g/bgPJU3/Tp8e5cbn96hoS/VQnXtqF0bCytI5wxMg9tD4Gt2Dw+/DA=="
+      SelloSAT="7FMLBMU9esQ/LHI7dXwfOtwe2ZQ3EwzjL+ITTopO6OJxH3EM2M83GXGYDbZKmUOhprVHX30iIr3hbvkgfJOIDXNK7ZgRK1dM0FdUiqkFOHu4hENBF7P0JkeLWhkIxj1As2H86UVybjYgKOFh1Go3iQfbIFi/IGiNsItyp432VfREGPrK4Yj1pOApAQgvuamGnpsWcGGVJx2kYSaKWCF6h5gZoXsEVqi9aejJIz03Cb8NKCu+GpS58JbQrCaLRNGChZ6tHhBjCvWqwWbdYEP2JXYqiJkgVCtzTgIOKVJveH3PTzwGI3B+tSW45wUNkAT6YSd9ybcIEfqBrjExH2lQuA=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

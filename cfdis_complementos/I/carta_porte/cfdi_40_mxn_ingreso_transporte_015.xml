@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="A"
+  Folio="33627"
+  Fecha="2026-01-07T20:26:14"
+  FormaPago="99"
+  NoCertificado="48254910710191542406"
+  Certificado="7ll9a5ImiT6lUmtMNokdF/IrOBonPVHSrFTKj4BcDtx1ck6OU3NQsJC4C/n6nABtSLtmu0FRZZafSWml7lvLu9fMPMLADPZMZc+C8B7iKAE="
+  Sello="yCxGiKC7+Ht+yGHU+u7lx+mxNw95Z48IYUQSxA4J1jIUf9541g5s6t/+XjHc2023V8yefwW77GkWvaz7j6UKhoPfmsi0NWSnTwsXlopaMQO9ZVQ/ehQ8XGg7jbV6+9q25QvWdYJGzaeQkQrEuo5+OXOQVRES6fJg8L+qiWwBcYW58Ig6h4ko71Kc4V7VxEf3b2CePoGAYEQtMQGpH3JPHGgWNbOkFJsWV0qSLBXrQ2M0xmf7ezSYLnyaE5AiyehpBVuvDnVC33GYt0rLmpo2POtF2D6npDspqkXjb+wA+rK7LYZvsb47aZRPQ36cqZG9mimkUi6FactNcrkkzPgUYg=="
+  SubTotal="84794.36"
+  
+  Moneda="MXN"
+  Total="98361.46"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor Rfc="JYD060320SJ9" Nombre="INDUSTRIAS OLIVARES-SANDOVAL AC" RegimenFiscal="601"/>
+  <cfdi:Receptor
+    Rfc="UQY041223UE7"
+    Nombre="GONZÁLEZ S DE RL DE CV"
+    DomicilioFiscalReceptor="44267"
+    RegimenFiscalReceptor="612"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="78102201"
+      
+      Cantidad="30"
+      ClaveUnidad="E48"
+      Unidad="Envío"
+      Descripcion="Servicios de entrega postal y paquetería nacional"
+      ValorUnitario="806.84"
+      Importe="24205.20"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="24205.20" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3872.83"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="78101802"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Viaje"
+      Descripcion="Servicio de transporte de carga por carretera a nivel regional y nacional"
+      ValorUnitario="30294.58"
+      Importe="60589.16"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="60589.16" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="9694.27"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="13567.10">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="84794.36" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13567.10"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="CA8AF2C7-FC9A-4CCA-A7A9-74764A9176C7"
+      FechaTimbrado="2026-01-07T20:26:29"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000395872624"
+      SelloCFDI="yCxGiKC7+Ht+yGHU+u7lx+mxNw95Z48IYUQSxA4J1jIUf9541g5s6t/+XjHc2023V8yefwW77GkWvaz7j6UKhoPfmsi0NWSnTwsXlopaMQO9ZVQ/ehQ8XGg7jbV6+9q25QvWdYJGzaeQkQrEuo5+OXOQVRES6fJg8L+qiWwBcYW58Ig6h4ko71Kc4V7VxEf3b2CePoGAYEQtMQGpH3JPHGgWNbOkFJsWV0qSLBXrQ2M0xmf7ezSYLnyaE5AiyehpBVuvDnVC33GYt0rLmpo2POtF2D6npDspqkXjb+wA+rK7LYZvsb47aZRPQ36cqZG9mimkUi6FactNcrkkzPgUYg=="
+      SelloSAT="2UU8wEZjJSnB9VmPJUXhEhRztQpeIFxC8ErNYN6oGyugne7EopEkLOS0u7a0PO9LGb0YqVh6vR6SzGBG2y1ywj277co3SQZp8i7jZ9dSHTgTK/2y5nrYa7RtkKPkxVf38qhuF/n8I1h8ZvEOcAoEEOVSKdRBIv1SF2/h/B+PPnpxqfn7rx9PWzognm84KyNQLy+xJ0WIP2AS8MCUFRpoe1xMBt1sKk8lHJFh39DsaQj/JJfkwlk2H9wrrjKJOVABps1K/sG6Qyzs1ipLyS5FGLZYiqcopxkM/8bv3VE9YzyzBYN0dLR0k37XcK5gKUyqtJ03YvUKiPJLASq7LNPl0A=="/>
+    
+    
+<cartaporte31:CartaPorte
+  xmlns:cartaporte31="http://www.sat.gob.mx/CartaPorte31"
+  Version="3.1"
+  TranspInternac="No"
+  TotalDistRec="426">
+
+  <cartaporte31:Ubicaciones>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Origen"
+      IDUbicacion="OR000001"
+      RFCRemitenteDestinatario="JYD060320SJ9"
+      FechaHoraSalidaLlegada="2026-01-07T20:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="64000"
+        Estado="NLE"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+    <cartaporte31:Ubicacion
+      TipoUbicacion="Destino"
+      IDUbicacion="DE000001"
+      RFCRemitenteDestinatario="UQY041223UE7"
+      DistanciaRecorrida="426"
+      FechaHoraSalidaLlegada="2026-01-08T03:26:14">
+      <cartaporte31:Domicilio
+        CodigoPostal="06600"
+        Estado="CDMX"
+        Pais="MEX"/>
+    </cartaporte31:Ubicacion>
+  </cartaporte31:Ubicaciones>
+
+  <cartaporte31:Mercancias
+    PesoBrutoTotal="8606"
+    UnidadPeso="KGM"
+    NumTotalMercancias="1">
+    <cartaporte31:Mercancia
+      BienesTransp="24131510"
+      Descripcion="Paquetería y mercancía general"
+      Cantidad="32.00"
+      ClaveUnidad="KGM"
+      PesoEnKg="8606"/>
+    <cartaporte31:Autotransporte
+      PermSCT="TPAF03"
+      NumPermisoSCT="PERM/0244/8091">
+      <cartaporte31:IdentificacionVehicular
+        ConfigVehicular="C2"
+        PesoBrutoVehicular="16606"
+        PlacaVM="EZR058"
+        AnioModeloVM="2022"/>
+      <cartaporte31:Seguros
+        AseguraRespCivil="LINARES SC"
+        PolizaRespCivil="POL-0722-SNQI"/>
+    </cartaporte31:Autotransporte>
+  </cartaporte31:Mercancias>
+
+  <cartaporte31:FiguraTransporte>
+    <cartaporte31:TiposFigura
+      TipoFigura="01"
+      RFCFigura="HDUE910724YB4"
+      NumLicencia="LIC77066255"/>
+  </cartaporte31:FiguraTransporte>
+
+</cartaporte31:CartaPorte>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

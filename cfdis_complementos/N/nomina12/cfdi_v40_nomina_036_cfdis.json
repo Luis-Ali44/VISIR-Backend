@@ -1,0 +1,130 @@
+{
+  "archivo": "cfdi_v40_nomina_036",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "NOM",
+    "folio": "1939",
+    "tipo_comprobante": "N",
+    "lugar_expedicion": "64000",
+    "exportacion": "01",
+    "no_certificado": "00706628377527559101",
+    "folio_fiscal": "8F3E6B82-9021-489E-BA20-F75372B9E465",
+    "fecha_emision": "2026-05-03T03:26:14",
+    "fecha_timbrado": "2026-05-03T03:27:50",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000060884155",
+    "metodo_pago": "PUE",
+    "forma_pago": "04",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "LUCERO SC",
+      "RFC": "DVH080326DZ3",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "NAZARIO HIDALGO DARÍO",
+      "RFC": "NDHD620823FE2",
+      "uso_cfdi": "CN01",
+      "regimen_fiscal": "605",
+      "domicilio_fiscal": "95467"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Pago de nómina",
+        "clave_prod_serv": "84111505",
+        "clave_unidad": "ACT",
+        "unidad": "Actividad",
+        "cantidad": 1.0,
+        "valor_unitario": 32653.05,
+        "descuento": null,
+        "importe": 32653.05,
+        "iva": null,
+        "objeto_imp": "01"
+      }
+    ],
+    "subtotal": 32653.05,
+    "descuento": 4081.64,
+    "iva": null,
+    "retenciones": null,
+    "total": 28571.41,
+    "complemento_nomina": {
+      "version": "1.2",
+      "tipo_nomina": "O",
+      "fecha_pago": "2026-05-02",
+      "fecha_inicial_pago": "2026-04-16",
+      "fecha_final_pago": "2026-04-30",
+      "num_dias_pagados": 15.0,
+      "total_percepciones": 32653.05,
+      "total_deducciones": 4081.64,
+      "total_otros_pagos": null,
+      "emisor": {
+        "curp": null,
+        "registro_patronal": "A1909986074",
+        "rfc_patron_origen": null,
+        "entidad_sncf": null
+      },
+      "receptor": {
+        "curp": "NLHD620823HMNQITA0",
+        "tipo_contrato": "03",
+        "tipo_regimen": "10",
+        "num_empleado": "EMP1809",
+        "departamento": "Tecnología",
+        "puesto": "Gerente",
+        "tipo_jornada": "04",
+        "periodicidad_pago": "03",
+        "banco": "002",
+        "cuenta_bancaria": "952750938940840073",
+        "salario_base_cot_apor": 2176.87,
+        "salario_diario_integrado": 2721.09,
+        "clave_ent_fed": "JAL",
+        "num_seguridad_social": "61827457882",
+        "fecha_inicio_rel_laboral": "2022-03-01",
+        "antiguedad": "P217W",
+        "riesgo_puesto": "1",
+        "sindicalizado": "No",
+        "sub_contratacion": []
+      },
+      "percepciones": {
+        "total_sueldos": 32653.05,
+        "total_separacion_indemniz": null,
+        "total_jubilacion_pen_ret": null,
+        "total_gravado": 30040.81,
+        "total_exento": 2612.24,
+        "percepciones": [
+          {
+            "tipo_percepcion": "001",
+            "clave": "001",
+            "concepto": "Sueldos, Salarios Rayas y Jornales",
+            "importe_gravado": 30040.81,
+            "importe_exento": 2612.24,
+            "horas_extra": [],
+            "jubilacion_pension_retiro": null,
+            "separacion_indemnizacion": null
+          }
+        ]
+      },
+      "deducciones": {
+        "total_otras_deducciones": 816.33,
+        "total_impuestos_retenidos": 3265.31,
+        "deducciones": [
+          {
+            "tipo_deduccion": "001",
+            "clave": "001",
+            "concepto": "Seguridad Social",
+            "importe": 816.33
+          },
+          {
+            "tipo_deduccion": "002",
+            "clave": "002",
+            "concepto": "ISR",
+            "importe": 3265.31
+          }
+        ]
+      },
+      "otros_pagos": [],
+      "incapacidades": []
+    }
+  }
+}

@@ -376,7 +376,7 @@ No implementados:
 
 ## Casos pendientes
 
-* Validación exhaustiva con nóminas reales
+* Validación con nóminas reales
 * Cobertura completa de todos los tipos SAT
 * Casos SNCF complejos
 
@@ -548,9 +548,9 @@ No implementados:
 
 ### Observaciones
 
-* Se obtuvo **0 errores en todos los casos evaluados**.
-* La columna **XML Correctos** representa únicamente los campos presentes en el XML que fueron extraídos correctamente.
-* La columna **Implementados** incluye además campos opcionales, normalizados o derivados que el parser genera aunque no existan explícitamente en el XML.
-* La diferencia entre **Campos XML** e **Implementados** corresponde principalmente a campos fuera del alcance actual del parser o a estructuras opcionales del modelo de salida.
-* Los complementos evaluados (**Carta Porte, Comercio Exterior, Nómina, Pagos, INE, Leyendas Fiscales y Addenda**) muestran extracción consistente para los casos de prueba disponibles.
-
+* Se obtuvo 0 errores en todos los casos evaluados.
+* La columna XML Correctos representa únicamente los campos presentes en el XML que fueron extraídos correctamente.
+* La columna Implementados incluye además campos opcionales, normalizados o derivados que el parser genera aunque no existan explícitamente en el XML.
+* La diferencia entre Campos XML e Implementados corresponde principalmente a campos fuera del alcance actual del parser o a estructuras opcionales del modelo de salida.
+* Los complementos evaluados (Carta Porte, Comercio Exterior, Nómina, Pagos, INE, Leyendas Fiscales y Addenda) muestran extracción consistente para los casos de prueba disponibles.
+* Las estructuras y ejemplos de los casos fueron tomados de https://developers.sw.com.mx/article-categories/ejemplos-4-0/

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:cce20="http://www.sat.gob.mx/ComercioExterior20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/ComercioExterior20 http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior20/ComercioExterior20.xsd"
+  Version="4.0"
+  Serie="CE"
+  Folio="70973"
+  Fecha="2026-06-19T01:26:14"
+  FormaPago="99"
+  NoCertificado="07193373741361458373"
+  Certificado="5T3bdMHjx0yTKTRvK3mW0G/EaRymO42gc64KjsM9aelYenW61WH5Nwj/f1wx2fjvyLktfNwC7mzrjmMDXDpfosJHXG9laEZzAUo00gi8WAs="
+  Sello="fmXj6Fkb5cZ9eyIGIp6ZH1BQQlt0X7nDyd+zGR4zcGVRcYDXyymry8JeF65F/DJ3WyytIkZtmgLPWhlzLCQ7N1jua/a7w9PNdQFpWg5Oc/Nvt5cUs6RTAstdjgAzYaL1LvnVHJUS8tHnKo1mkarerNpVha2t11Z0nlKdL1mCclUtUq7Nt7NyYAKNkOje+tDT7M95v2mSvK+xeq+5eFuCKqpspdC8czIhCDu6bzAOoGc3dcUqQPEqkH6W7cAKHfwGLpTEL3a/CkqClpckG2mqWeYNvnPvwSNwn4DiOeLi3c5lrIhzuf9alV7U6x+fr63NL40urxPE/OdbtpWY+QzHeg=="
+  SubTotal="91754.20"
+  Descuento="9175.42"
+  Moneda="USD"
+  TipoCambio="17.4240"
+  Total="95791.38"
+  TipoDeComprobante="I"
+  Exportacion="02"
+  MetodoPago="PPD"
+  LugarExpedicion="44100">
+  
+
+  <cfdi:Emisor
+    Rfc="JXI971127JX8"
+    Nombre="DESPHO BÁEZ-DE LA TORRE S DE RL DE CV"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="XEXX010101000"
+    Nombre="DESPHO BERMÚDEZ, PIÑA Y MONTOYA S DE RL DE CV"
+    DomicilioFiscalReceptor="89528"
+    RegimenFiscalReceptor="601"
+    UsoCFDI="S01"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-18940"
+      Cantidad="5"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="18350.84"
+      Importe="91754.20"
+      Descuento="9175.42"
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="82578.78" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13212.60"/>
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosTrasladados="13212.60">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="82578.78" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="13212.60"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <cce20:ComercioExterior
+      Version="2.0"
+      MotivoTraslado="A"
+      ClaveDePedimento="A1"
+      CertificadoOrigen="0"
+      Incoterm="EXW"
+      Subdivision="0"
+      TipoCambioUSD="17.4240"
+      TotalUSD="91754.20">
+
+      <cce20:Emisor>
+        <cce20:Domicilio
+          Calle="Pasaje Arreola"
+          NumeroExterior="55801"
+          Colonia="Col. Centro"
+          Localidad="Nueva Reino Unido de Gran Bret"
+          Municipio="Vieja Venezuela"
+          Estado="JAL"
+          Pais="MEX"
+          CodigoPostal="20693"/>
+      </cce20:Emisor>
+
+      <cce20:Receptor
+        NumRegIdTrib="10-8849837"
+        Residencia="DEU">
+        <cce20:Domicilio
+          Calle="783 Carol Extension"
+          NumeroExterior="816"
+          Localidad="West Michaelchester"
+          Estado="NA"
+          Pais="DEU"
+          CodigoPostal="28259"/>
+      </cce20:Receptor>
+
+      <cce20:Mercancias>
+        
+        <cce20:Mercancia
+          NoIdentificacion="SKU-18940"
+          DescripcionAduana="Licencia de software"
+          FraccionArancelaria="29321990"
+          CantidadAduana="5"
+          UnidadAduana="15"
+          ValorUnitarioAduana="18350.84"
+          ValorDolares="91754.20"/>
+        
+      </cce20:Mercancias>
+
+    </cce20:ComercioExterior>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="D363DF3E-ABA1-4CAF-884F-53C65F7EF497"
+      FechaTimbrado="2026-06-19T01:27:04"
+      RfcProvCertif="MIS141016RX2"
+      NoCertificadoSAT="00001000000563684882"
+      SelloCFDI="fmXj6Fkb5cZ9eyIGIp6ZH1BQQlt0X7nDyd+zGR4zcGVRcYDXyymry8JeF65F/DJ3WyytIkZtmgLPWhlzLCQ7N1jua/a7w9PNdQFpWg5Oc/Nvt5cUs6RTAstdjgAzYaL1LvnVHJUS8tHnKo1mkarerNpVha2t11Z0nlKdL1mCclUtUq7Nt7NyYAKNkOje+tDT7M95v2mSvK+xeq+5eFuCKqpspdC8czIhCDu6bzAOoGc3dcUqQPEqkH6W7cAKHfwGLpTEL3a/CkqClpckG2mqWeYNvnPvwSNwn4DiOeLi3c5lrIhzuf9alV7U6x+fr63NL40urxPE/OdbtpWY+QzHeg=="
+      SelloSAT="kG9oBk7MWvIsO9/zlX1JVbcclPEjfh2vSyA8pFZjhm60mPRvLtIR7UWP/tfaeFhnkYDxGeu1r3nJaY2BPPOiNEXEco2hXCVE/6krO8s6WauKDcGdFrYfqfPVy6meutMAFz1IMzdRKWO+ypIxDxkoD7bCQM/z3hofjJDg37eR6bckYQjWOaipaVbdmASj+jlFK25sUt6sGjlJhEZ5ivQjJu4Ec9Ip5ZVENcwBrTmV+6ek7MQ8u5bhDiVKkorJH+4w6G+Hg06LeX9mBDF/rg9IanAoG6cBScQOwJM5Wd4tuiixUT5gd6mi0iU60zYTxY8M7EUk5kwLjr9IXAOwRFrMUA=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

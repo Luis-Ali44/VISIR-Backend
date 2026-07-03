@@ -1,0 +1,53 @@
+{
+  "archivo": "cfdi_33_egreso_029",
+  "fuente": "xml",
+  "datos": {
+    "version": "3.3",
+    "serie": "B",
+    "folio": "25085",
+    "tipo_comprobante": "E",
+    "lugar_expedicion": "44100",
+    "exportacion": null,
+    "no_certificado": "02488319370624920032",
+    "folio_fiscal": "3D1800B6-F1E1-4E47-8545-254A6525FEEE",
+    "fecha_emision": "2026-05-11T09:26:14",
+    "fecha_timbrado": "2026-05-11T09:26:48",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000358623666",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "CALDERÓN-GIL AC",
+      "RFC": "TIE141002DH7",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "MAYORGA, MAYA Y SALAS SAS DE CV",
+      "RFC": "RVC070707CE4",
+      "uso_cfdi": "G02",
+      "regimen_fiscal": null,
+      "domicilio_fiscal": null
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de consultoría",
+        "clave_prod_serv": "81112501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 3.0,
+        "valor_unitario": 52792.42,
+        "descuento": null,
+        "importe": 158377.26,
+        "iva": 25340.36,
+        "objeto_imp": null
+      }
+    ],
+    "subtotal": 158377.26,
+    "descuento": null,
+    "iva": 25340.36,
+    "retenciones": null,
+    "total": 183717.62
+  }
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="B"
+  Folio="54804"
+  Fecha="2026-03-29T07:26:14"
+  FormaPago="99"
+  NoCertificado="87396275856040995742"
+  Certificado="SOBQFshWDPISJP9iRpEns3cOZyE6o5BGX1Jq2dqDhHt+sw3a8Z8TEeUujPfQuWwtlezHuMgECQxSKdlywjmkWvw4aQqS2Xm/exfbmziW6tc="
+  Sello="9rnJbQdWVNls34ySR5cs+OBhjh2D9IB4u5N6r7VTNQH0LG1HfuoVCfbMdKEw8GwwVjHawYpg43UghlxF7WpuP2+rpPbJXC1mObPNvGbATNmN55wUjInXeDHDlpHwJH0b8q70jBv+n7HVE300UQJS9wRs7wDQuhf78EJBial28edCXa6HzzSXbIv/9sRwNwnRRw5w2owYJ/YgYelxMsFNJy3PL/0wHq+6TASuWExZ7A7iFFsxQ0qUMALtEYDjV1QfASz+r0AGWP2PyIfF9Uy6ozNVF2h41Zoriql0cYo1hZoK7rlioYOLJQrqoWu6We/KVRxJo/zTCXW2A8BqOLSAog=="
+  SubTotal="143922.61"
+  
+  Moneda="MXN"
+  Total="154472.20"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="06600">
+
+  <cfdi:Emisor
+    Rfc="KAQP740602VV3"
+    Nombre="LOZADA ONTIVEROS DOLORES"
+    RegimenFiscal="612"/>
+
+  <cfdi:Receptor
+    Rfc="KZH961116FW7"
+    Nombre="ALEMÁN-ROYBAL SC"
+    DomicilioFiscalReceptor="48275"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="43211507"
+      NoIdentificacion="SKU-63968"
+      Cantidad="3"
+      ClaveUnidad="H87"
+      Unidad="Licencia"
+      Descripcion="Licencia de software"
+      ValorUnitario="6380.77"
+      Importe="19142.31"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="19142.31" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="3062.77"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="80111501"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Servicio"
+      Descripcion="Honorarios profesionales"
+      ValorUnitario="62390.15"
+      Importe="124780.30"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="124780.30" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="19964.85"/>
+        </cfdi:Traslados>
+        
+        <cfdi:Retenciones>
+          <cfdi:Retencion Base="124780.30" Impuesto="001" TipoFactor="Tasa" TasaOCuota="0.100000" Importe="12478.03"/>
+        </cfdi:Retenciones>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Impuestos
+    TotalImpuestosRetenidos="12478.03"
+    TotalImpuestosTrasladados="23027.62">
+    
+    <cfdi:Retenciones>
+      <cfdi:Retencion Impuesto="001" Importe="12478.03"/>
+    </cfdi:Retenciones>
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="143922.61" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="23027.62"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="DD7AC2AE-B985-465E-A993-BA3A39241F75"
+      FechaTimbrado="2026-03-29T07:26:51"
+      RfcProvCertif="INT020124V62"
+      NoCertificadoSAT="00001000000224353387"
+      SelloCFDI="9rnJbQdWVNls34ySR5cs+OBhjh2D9IB4u5N6r7VTNQH0LG1HfuoVCfbMdKEw8GwwVjHawYpg43UghlxF7WpuP2+rpPbJXC1mObPNvGbATNmN55wUjInXeDHDlpHwJH0b8q70jBv+n7HVE300UQJS9wRs7wDQuhf78EJBial28edCXa6HzzSXbIv/9sRwNwnRRw5w2owYJ/YgYelxMsFNJy3PL/0wHq+6TASuWExZ7A7iFFsxQ0qUMALtEYDjV1QfASz+r0AGWP2PyIfF9Uy6ozNVF2h41Zoriql0cYo1hZoK7rlioYOLJQrqoWu6We/KVRxJo/zTCXW2A8BqOLSAog=="
+      SelloSAT="lmkXF94PI2YKBw0Hb3qN2zJFoX5O1iRl2K2UHGD7uMvl2H5TBQma64P1ap2W8JzHRbE9MTJsW0Zl6wWoHYm7ODYodEJK/lJpRrvMspR7dYNVr0gM+nwXasmECf90q4CxbhXrHSueW/PWg/ThM2sX1PGqPnuYsClpORmjCQ59sC0ALNUsDDHQ/mtgQXFKbxFDXVuwW9HxyH02ZrE+FD5DHxgnp2LmVvFmz7Jv77uVesYGID0U31H+5ApDS1xGRyV3fa8JTclvVpDgWb2oz38IOy6/OS/Qc8mDMwD/03HIjwZeiW0ZlbHqfIiCeXRyLPAzm171LaCEejFempB3HJw58w=="/>
+  </cfdi:Complemento>
+
+  
+  <cfdi:Addenda>
+    <walmart:Addenda xmlns:walmart="http://www.walmart.com.mx/edifact/GRECS5"><walmart:OrdenCompra>54804</walmart:OrdenCompra><walmart:Tienda>T0552</walmart:Tienda></walmart:Addenda>
+  </cfdi:Addenda>
+
+</cfdi:Comprobante>

@@ -1,0 +1,53 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_restaurante_008",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "F",
+    "folio": "41682",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "76100",
+    "exportacion": "01",
+    "no_certificado": "59828544634813982537",
+    "folio_fiscal": "3448FF24-5E42-4539-BC64-B2799307A66A",
+    "fecha_emision": "2026-05-24T21:26:14",
+    "fecha_timbrado": "2026-05-24T21:27:08",
+    "rfc_proveedor_certificacion": "FEL150316IY4",
+    "no_certificado_sat": "00001000000749473842",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "CLUB ULLOA-RODARTE SC",
+      "RFC": "IRX190126ZN6",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "CLUB LEYVA Y JAIME SA DE CV",
+      "RFC": "QBY061105SV0",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "601",
+      "domicilio_fiscal": "63466"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Venta de alimentos preparados para llevar",
+        "clave_prod_serv": "90101801",
+        "clave_unidad": "H87",
+        "unidad": "Pieza",
+        "cantidad": 19.0,
+        "valor_unitario": 277.47,
+        "descuento": null,
+        "importe": 5271.93,
+        "iva": 843.51,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 5271.93,
+    "descuento": null,
+    "iva": 843.51,
+    "retenciones": null,
+    "total": 6115.44
+  }
+}

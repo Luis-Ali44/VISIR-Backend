@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:nomina12="http://www.sat.gob.mx/nomina12"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd"
+  Version="4.0"
+  Serie="NOM"
+  Folio="24762"
+  Fecha="2026-06-27T07:26:15"
+  NoCertificado="27624783058094833011"
+  Certificado="yE+8b4anO5i9CkPLoX6NvKT5qC+QSQoLV/py/zXL3zw3L6uVXh/FJayZTuDfCiCFsbhMY/3BMn2AhinvtnB/SL/dVeZEOwPdneaV0JG158k="
+  Sello="A+PGPt+NJKB7iJee+jyt2YRPK3YsDPyTqWsBGTLau4A9Wb39lrh07OuWt/6/Wqu3FLimM2mtv523bToP3z1b8dV7/lv5NXPhcTZ2LK9FulQu43p6Rn2HI4mLwiARN8qF8bw4CbnsnZzaidRJF17hNoZJYy6vZ6qVHc94asXfH1o/I4aUuvUqtANIvcGPp8Ew0m4kRyUIgyrx7pGoNlGKPwBLTzJez7s/2p+EBWW+NHyL+S4wVttVSqvxkrpaGE3lezFhczdJsqVKSwq/p8pI3a3UqLE1w0Sk4NsJ8PBOpfgod4tQ+RQ2VTwK5aTMzRucXKZ/sQfcRLBbTwtwfrBc7A=="
+  SubTotal="19157.46"
+  Moneda="MXN"
+  
+  Descuento="2394.69"
+  Total="16762.77"
+  TipoDeComprobante="N"
+  Exportacion="01"
+  FormaPago="03"
+  MetodoPago="PUE"
+  LugarExpedicion="06600">
+  
+
+  <cfdi:Emisor
+    Rfc="IQQ960723KT4"
+    Nombre="BERMÚDEZ-ARIAS SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="CJMN890105OI4"
+    Nombre="CONCEPCIÓN MARROQUÍN NANCY"
+    DomicilioFiscalReceptor="37046"
+    RegimenFiscalReceptor="605"
+    UsoCFDI="CN01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111505"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago de nómina"
+      ValorUnitario="19157.46"
+      Importe="19157.46"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  
+
+  <cfdi:Complemento>
+    <nomina12:Nomina
+      Version="1.2"
+      TipoNomina="E"
+      FechaPago="2026-06-28"
+      FechaInicialPago="2026-06-13"
+      FechaFinalPago="2026-06-26"
+      NumDiasPagados="14"
+      TotalPercepciones="19157.46"
+      TotalDeducciones="2394.69"
+      >
+
+      <nomina12:Emisor
+        RegistroPatronal="X1877792859"
+        />
+
+      <nomina12:Receptor
+        Curp="CPMN890105HVZLNWA0"
+        NumSeguridadSocial="59967673885"
+        FechaInicioRelLaboral="2022-01-05"
+        Antigüedad="P233W"
+        TipoContrato="03"
+        Sindicalizado="No"
+        TipoJornada="01"
+        TipoRegimen="02"
+        NumEmpleado="EMP9807"
+        Departamento="Logística"
+        Puesto="Analista"
+        RiesgoPuesto="1"
+        PeriodicidadPago="99"
+        Banco="009"
+        CuentaBancaria="421619250535457699"
+        SalarioBaseCotApor="1368.39"
+        SalarioDiarioIntegrado="1710.49"
+        ClaveEntFed="BC"/>
+
+      <nomina12:Percepciones
+        TotalSueldos="19157.46"
+        TotalGravado="17624.86"
+        TotalExento="1532.60">
+        
+        <nomina12:Percepcion
+          TipoPercepcion="001"
+          Clave="001"
+          Concepto="Sueldos, Salarios Rayas y Jornales"
+          ImporteGravado="17624.86"
+          ImporteExento="1532.60"/>
+        
+      </nomina12:Percepciones>
+
+      <nomina12:Deducciones
+        TotalOtrasDeducciones="478.94"
+        TotalImpuestosRetenidos="1915.75">
+        
+        <nomina12:Deduccion
+          TipoDeduccion="001"
+          Clave="001"
+          Concepto="Seguridad Social"
+          Importe="478.94"/>
+        
+        <nomina12:Deduccion
+          TipoDeduccion="002"
+          Clave="002"
+          Concepto="ISR"
+          Importe="1915.75"/>
+        
+      </nomina12:Deducciones>
+
+      
+
+    </nomina12:Nomina>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="A80AD34B-4811-49BD-B96A-5AE42FBB319E"
+      FechaTimbrado="2026-06-27T07:28:04"
+      RfcProvCertif="CSM160201TU5"
+      NoCertificadoSAT="00001000000510846916"
+      SelloCFDI="A+PGPt+NJKB7iJee+jyt2YRPK3YsDPyTqWsBGTLau4A9Wb39lrh07OuWt/6/Wqu3FLimM2mtv523bToP3z1b8dV7/lv5NXPhcTZ2LK9FulQu43p6Rn2HI4mLwiARN8qF8bw4CbnsnZzaidRJF17hNoZJYy6vZ6qVHc94asXfH1o/I4aUuvUqtANIvcGPp8Ew0m4kRyUIgyrx7pGoNlGKPwBLTzJez7s/2p+EBWW+NHyL+S4wVttVSqvxkrpaGE3lezFhczdJsqVKSwq/p8pI3a3UqLE1w0Sk4NsJ8PBOpfgod4tQ+RQ2VTwK5aTMzRucXKZ/sQfcRLBbTwtwfrBc7A=="
+      SelloSAT="iAhFxc0roYUVTXw3oEBZ5b9Iy2nfi6xyVGOCFe4t1QzZ6tjNQxW+6SfnQk7JNEsfWGNJgJgtOkkS2wJk/+Lwg0bQAu+TP3r6QcyvMcigUV1y9imTcwIWdffy3JxF4jgkGg/mHbLPxBgym+kmmJz70jej2ld6iusoT8TO6LuA1xAnVwptk8kBIFnWtK56oYgnXb/sW/274aCDAaufXvuVup90MzvwFVqeZ+yBoZtyn2N/A/vAgluDDPvBSbrIXRkxDTBChHCVuT0vRD9aRQenQuuKk6McUlcv/eNW5qeY4iqcj8wECuskyJFlMi9SWCMZHD4T5+AmKq6X5lwYylZDlA=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>

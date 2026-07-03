@@ -1,0 +1,53 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_construccion_010",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "95819",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "72000",
+    "exportacion": "01",
+    "no_certificado": "26756625500100507844",
+    "folio_fiscal": "32B799A2-87EF-45A5-A7A8-D9CAAA53E78B",
+    "fecha_emision": "2026-04-13T14:26:14",
+    "fecha_timbrado": "2026-04-13T14:27:11",
+    "rfc_proveedor_certificacion": "CSM160201TU5",
+    "no_certificado_sat": "00001000000819600293",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "DEL VALLE Y LOZANO SAS DE CV",
+      "RFC": "UGO050612UN1",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "PROYECTOS MIRANDA, SOLIZ Y CHÁVEZ SAS DE CV",
+      "RFC": "NKN031027WA6",
+      "uso_cfdi": "I01",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "23390"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de construcción de casas unifamiliares nuevas",
+        "clave_prod_serv": "72111006",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 1.0,
+        "valor_unitario": 722629.06,
+        "descuento": null,
+        "importe": 722629.06,
+        "iva": 115620.65,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 722629.06,
+    "descuento": null,
+    "iva": 115620.65,
+    "retenciones": null,
+    "total": 838249.71
+  }
+}

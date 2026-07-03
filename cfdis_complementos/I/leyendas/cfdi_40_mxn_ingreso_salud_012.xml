@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd"
+  Version="4.0"
+  Serie="F"
+  Folio="20370"
+  Fecha="2026-05-26T07:26:14"
+  FormaPago="99"
+  NoCertificado="54773314321893047702"
+  Certificado="yM4bmAawLb/te/cb5zot8sigKE+I7Q9jB6BBEav5ju1qSzddQL0PW+0zkilq/K3O+RhzKyqE7/H5YN00Dx69zpc9JTUgM2pc0DzCIsDaafw="
+  Sello="dQrDQdP060SVEp43nGb9xV7F6LzmdMK6DZ+XjdXli/j1DR9d5ksxQWJoPAe6EG7Z36XWCv178WG2NHQDBXpdo/Dcfh1UONQwCo8Irk/dJwvXJ84pMAbUQEotEvRgDUgyMLtaVtlHvrmDLKqNHR/4KkG8KeMNxFDdnYCGufuikW0SBsfyboJZgWrvdQmAElF5E+l+hID3ydxQMqaOtkrMBoWBb7xJiKezIlC0GEpsNXTZj3O8KrL66VSinzPdzVg4tR370xg5Uv4W0HH8669JqVYj/cxmVihxte2nXWsXoSg+yfGrxczlQqbh+NUS3kfUZepATiTzL8dQwmTbulwMVA=="
+  SubTotal="3021.68"
+  
+  Moneda="MXN"
+  Total="3505.15"
+  TipoDeComprobante="I"
+  Exportacion="01"
+  MetodoPago="PPD"
+  LugarExpedicion="64000">
+
+  <cfdi:Emisor Rfc="MNL960223MT3" Nombre="BUSTAMANTE, UREÑA Y OQUENDO AC" RegimenFiscal="612"/>
+  <cfdi:Receptor
+    Rfc="RMO171229ZR8"
+    Nombre="GALLARDO, VALLADARES Y SALCIDO S DE RL DE CV"
+    DomicilioFiscalReceptor="19937"
+    RegimenFiscalReceptor="603"
+    UsoCFDI="G03"/>
+
+  <cfdi:Conceptos>
+    
+    <cfdi:Concepto
+      ClaveProdServ="85101503"
+      
+      Cantidad="2"
+      ClaveUnidad="E48"
+      Unidad="Consulta"
+      Descripcion="Consulta médica en consultorio"
+      ValorUnitario="665.50"
+      Importe="1331.00"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="1331.00" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="212.96"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+    <cfdi:Concepto
+      ClaveProdServ="85101601"
+      NoIdentificacion="SKU-33393"
+      Cantidad="4"
+      ClaveUnidad="E48"
+      Unidad="Hora"
+      Descripcion="Servicios de enfermería y cuidados médicos"
+      ValorUnitario="422.67"
+      Importe="1690.68"
+      
+      ObjetoImp="02">
+      
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          
+          <cfdi:Traslado Base="1690.68" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="270.51"/>
+        </cfdi:Traslados>
+        
+      </cfdi:Impuestos>
+      
+    </cfdi:Concepto>
+    
+  </cfdi:Conceptos>
+
+  
+  <cfdi:Impuestos
+    
+    TotalImpuestosTrasladados="483.47">
+    
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="3021.68" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.160000" Importe="483.47"/>
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+
+  <cfdi:Complemento>
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="E9483A61-7E19-4689-A16B-E87051EB60E6"
+      FechaTimbrado="2026-05-26T07:28:08"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000300745565"
+      SelloCFDI="dQrDQdP060SVEp43nGb9xV7F6LzmdMK6DZ+XjdXli/j1DR9d5ksxQWJoPAe6EG7Z36XWCv178WG2NHQDBXpdo/Dcfh1UONQwCo8Irk/dJwvXJ84pMAbUQEotEvRgDUgyMLtaVtlHvrmDLKqNHR/4KkG8KeMNxFDdnYCGufuikW0SBsfyboJZgWrvdQmAElF5E+l+hID3ydxQMqaOtkrMBoWBb7xJiKezIlC0GEpsNXTZj3O8KrL66VSinzPdzVg4tR370xg5Uv4W0HH8669JqVYj/cxmVihxte2nXWsXoSg+yfGrxczlQqbh+NUS3kfUZepATiTzL8dQwmTbulwMVA=="
+      SelloSAT="1lknu34uEmxudcbeOWLyWd1EScLAcBJZPF9fdaMPWm2zQYVJC4DMMWJsoB1scyPdLMtAZIIZKa9XQwGDVRqP+bJ2G1XBXRcL2/eDnp276p6QRkaM6tq/7PA6Hwfr/XsgDgoMVqQGbFFRV1ohyKtN4MdMDs3oEc866LdReHiES5gHb70ePFmGOxPrsSdZwRnxVfXjsYlO3+yoKkyCcO4aN1sceXxn8R1A5WKNLEJ+s5je/0ZQyULZQl8oqc0xGr9AAQhyYXEx3/TyRmwIO7H87SAAmOI5NO8+CuK9NtMs5Bql12rBeR6qPKTPps+dDl0DsUHU7fshGwqkjRNsqfLbTw=="/>
+    
+  </cfdi:Complemento>
+</cfdi:Comprobante>

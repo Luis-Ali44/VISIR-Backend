@@ -1,0 +1,65 @@
+{
+  "archivo": "cfdi_40_mxn_ingreso_construccion_009",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "C",
+    "folio": "21873",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "90644022508642359396",
+    "folio_fiscal": "B6F8A9AB-B603-4CC4-B951-2D029F007668",
+    "fecha_emision": "2026-06-02T09:26:14",
+    "fecha_timbrado": "2026-06-02T09:27:58",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000094358613",
+    "metodo_pago": "PUE",
+    "forma_pago": "03",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "TERRAZAS-POSADA AC",
+      "RFC": "KTZ131005JD8",
+      "regimen_fiscal": "601"
+    },
+    "receptor": {
+      "nombre": "CORPORIN NÚÑEZ-GARCÍA AC",
+      "RFC": "GIV060717TV0",
+      "uso_cfdi": "I01",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "86332"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Servicio de construcción de casas unifamiliares nuevas",
+        "clave_prod_serv": "72111006",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 1.0,
+        "valor_unitario": 591010.18,
+        "descuento": null,
+        "importe": 591010.18,
+        "iva": 94561.63,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Construcción de edificaciones residenciales",
+        "clave_prod_serv": "80131501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 1.0,
+        "valor_unitario": 212221.25,
+        "descuento": 21222.13,
+        "importe": 212221.25,
+        "iva": 30559.86,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 803231.43,
+    "descuento": 21222.13,
+    "iva": 125121.49,
+    "retenciones": null,
+    "total": 907130.79
+  }
+}

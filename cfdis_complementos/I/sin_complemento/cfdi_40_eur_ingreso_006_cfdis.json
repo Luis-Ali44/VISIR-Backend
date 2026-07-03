@@ -1,0 +1,77 @@
+{
+  "archivo": "cfdi_40_eur_ingreso_006",
+  "fuente": "xml",
+  "datos": {
+    "version": "4.0",
+    "serie": "B",
+    "folio": "12405",
+    "tipo_comprobante": "I",
+    "lugar_expedicion": "06600",
+    "exportacion": "01",
+    "no_certificado": "07891230892114481297",
+    "folio_fiscal": "3099266E-B263-4A2A-B15E-5E7E78D1B02C",
+    "fecha_emision": "2026-05-30T17:26:14",
+    "fecha_timbrado": "2026-05-30T17:26:33",
+    "rfc_proveedor_certificacion": "INT020124V62",
+    "no_certificado_sat": "00001000000008947865",
+    "metodo_pago": "PPD",
+    "forma_pago": "99",
+    "moneda": "MXN",
+    "tipo_cambio": null,
+    "emisor": {
+      "nombre": "ACUÑA ANAYA MÓNICA",
+      "RFC": "WYDQ951218JJ1",
+      "regimen_fiscal": "612"
+    },
+    "receptor": {
+      "nombre": "ORTIZ SC",
+      "RFC": "BFG080612BI2",
+      "uso_cfdi": "G03",
+      "regimen_fiscal": "612",
+      "domicilio_fiscal": "14467"
+    },
+    "conceptos": [
+      {
+        "descripcion": "Honorarios profesionales",
+        "clave_prod_serv": "80111501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 2.0,
+        "valor_unitario": 87184.5,
+        "descuento": 17436.9,
+        "importe": 174369.0,
+        "iva": 25109.14,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Licencia de software",
+        "clave_prod_serv": "43211507",
+        "clave_unidad": "H87",
+        "unidad": "Licencia",
+        "cantidad": 1.0,
+        "valor_unitario": 4202.33,
+        "descuento": 420.23,
+        "importe": 4202.33,
+        "iva": 605.14,
+        "objeto_imp": "02"
+      },
+      {
+        "descripcion": "Servicio de consultoría",
+        "clave_prod_serv": "81112501",
+        "clave_unidad": "E48",
+        "unidad": "Servicio",
+        "cantidad": 3.0,
+        "valor_unitario": 51473.81,
+        "descuento": null,
+        "importe": 154421.43,
+        "iva": 24707.43,
+        "objeto_imp": "02"
+      }
+    ],
+    "subtotal": 332992.76,
+    "descuento": 17857.13,
+    "iva": 50421.71,
+    "retenciones": 15693.21,
+    "total": 349864.13
+  }
+}

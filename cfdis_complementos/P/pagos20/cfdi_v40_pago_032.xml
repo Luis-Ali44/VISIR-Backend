@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfdi:Comprobante
+  xmlns:cfdi="http://www.sat.gob.mx/cfd/4"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:pago20="http://www.sat.gob.mx/Pagos20"
+  xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd
+                      http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd"
+  Version="4.0"
+  Serie="RP"
+  Folio="14362"
+  Fecha="2026-06-29T10:26:14"
+  NoCertificado="83494310891682991482"
+  Certificado="rsm713mjPrx8rb+ulTOkf8d+EFDYltI9oNZdPbRFdaM0Qm5vTxl9Etuq7vVbCZvR6bEolDqgwLsRHL14rvGYaPtzq/Zm6kf3YqVUg0RG4Ck="
+  Sello="cChFxwJ+ThO0E4qeWecCSQF9FWi3EzhontgEiOHyxbUF6zk0kr+ek38SYWe9bXdERTKOrajBpAosv43ocXGwGhzXC+ChRbUO9bNmwG+K8P2r13sKRJOxsO8fyVd8tkHR7RYqq1hKvryhzv7pK6dhn/NRkXQfsrGyvy9YttIqaZM8LIpqxOhw1cdFoTpILUtct0ePiaHFj0YxSS3Iej9HoFdDuFSRQ1d13JwBWmwgONoTA2gnFBTWs4CNw/09MijYfGndI2qyjy9gLejvb8jvwLFMiUZRBw5Tkzpoe6PdP7WJRKdw6XrbfuA/RgLpdliBHobT3zXQT24YVXMUYUy99w=="
+  SubTotal="0"
+  Moneda="XXX"
+  Total="0"
+  TipoDeComprobante="P"
+  Exportacion="01"
+  LugarExpedicion="20000">
+  
+
+  <cfdi:Emisor
+    Rfc="EAG210501KD9"
+    Nombre="QUINTANA, MONTALVO Y BARRAZA SC"
+    RegimenFiscal="601"/>
+
+  <cfdi:Receptor
+    Rfc="NQT020624JV6"
+    Nombre="AYALA-MONTES AC"
+    DomicilioFiscalReceptor="98596"
+    RegimenFiscalReceptor="626"
+    UsoCFDI="CP01"/>
+  
+
+  <cfdi:Conceptos>
+    <cfdi:Concepto
+      ClaveProdServ="84111506"
+      Cantidad="1"
+      ClaveUnidad="ACT"
+      Unidad="Actividad"
+      Descripcion="Pago"
+      ValorUnitario="0"
+      Importe="0"
+      ObjetoImp="01"/>
+    
+  </cfdi:Conceptos>
+
+  <cfdi:Complemento>
+    <pago20:Pagos Version="2.0">
+
+      
+      <pago20:Totales
+        
+        
+        
+        TotalTrasladosBaseIVA16="12712.76"
+        TotalTrasladosImpuestoIVA16="2034.04"
+        
+        MontoTotalPagos="14746.80"/>
+
+      
+      
+      <pago20:Pago
+        FechaPago="2026-06-16T10:26:14"
+        FormaDePagoP="03"
+        MonedaP="MXN"
+        TipoCambioP="1"
+        Monto="14746.80"
+        NumOperacion="OP5906380763">
+
+        
+        
+        <pago20:DoctoRelacionado
+          IdDocumento="879BF87B-161C-43DE-94A4-0DEE852B9384"
+          Serie="F"
+          Folio="75939"
+          MonedaDR="MXN"
+          EquivalenciaDR="1"
+          NumParcialidad="1"
+          ImpSaldoAnt="14746.80"
+          ImpPagado="14746.80"
+          ImpSaldoInsoluto="0.00"
+          ObjetoImpDR="02">
+          
+
+          
+          <pago20:ImpuestosDR>
+            <pago20:TrasladosDR>
+              
+              <pago20:TrasladoDR
+                BaseDR="12712.76"
+                ImpuestoDR="002"
+                TipoFactorDR="Tasa"
+                TasaOCuotaDR="0.160000"
+                ImporteDR="2034.04"/>
+            </pago20:TrasladosDR>
+            
+          </pago20:ImpuestosDR>
+          
+        </pago20:DoctoRelacionado>
+        
+
+        
+        
+        <pago20:ImpuestosP>
+          <pago20:TrasladosP>
+            
+            <pago20:TrasladoP
+              BaseP="12712.76"
+              ImpuestoP="002"
+              TipoFactorP="Tasa"
+              TasaOCuotaP="0.160000"
+              ImporteP="2034.04"/>
+          </pago20:TrasladosP>
+          
+        </pago20:ImpuestosP>
+        
+
+      </pago20:Pago>
+      
+
+    </pago20:Pagos>
+
+    <tfd:TimbreFiscalDigital
+      xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+      xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"
+      Version="1.1"
+      UUID="E1B06FA2-2EE5-4583-BB04-9076A2A091C0"
+      FechaTimbrado="2026-06-29T10:27:11"
+      RfcProvCertif="FEL150316IY4"
+      NoCertificadoSAT="00001000000896920008"
+      SelloCFDI="cChFxwJ+ThO0E4qeWecCSQF9FWi3EzhontgEiOHyxbUF6zk0kr+ek38SYWe9bXdERTKOrajBpAosv43ocXGwGhzXC+ChRbUO9bNmwG+K8P2r13sKRJOxsO8fyVd8tkHR7RYqq1hKvryhzv7pK6dhn/NRkXQfsrGyvy9YttIqaZM8LIpqxOhw1cdFoTpILUtct0ePiaHFj0YxSS3Iej9HoFdDuFSRQ1d13JwBWmwgONoTA2gnFBTWs4CNw/09MijYfGndI2qyjy9gLejvb8jvwLFMiUZRBw5Tkzpoe6PdP7WJRKdw6XrbfuA/RgLpdliBHobT3zXQT24YVXMUYUy99w=="
+      SelloSAT="+6HlVcEmyQ1Rn7+S1zuWMYpUsnzQJrBNRNs0gN4ZNJSWPPaunL9/djjiUyB5M36hTK40tp55m+SZFva85SVEaPsRjF8vaqIJMh/aMviuXhlP6FI8KSfoz9EKOYxiQ8kLsstM9USUlYEa5uVZJLaVe7Vk50Mi3v+D2t2QMHAzhGhG10ftnObydnyQzI2MFz2MsSdb0mkLqm2LQDdqAkvA7nt6QzBPmKPuvQAGMbAe1mhGUArf7nRrWL5UUsHb4lnMCb77Z4kpicfmC4J0QeTcasFjKpZ75hWm6BzCXU9Au3ZAqGSih7Dn1qOGcc/4tn3Ry7hZrl06dlKnPrqb3YueFA=="/>
+  </cfdi:Complemento>
+
+</cfdi:Comprobante>
