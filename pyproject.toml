@@ -17,7 +17,7 @@ dependencies = [
 
     # ── Extracción de CFDIs — OCR + LLM (módulo Extraccion/) ─────────────────
     "numpy==1.26.4",
-    "paddlepaddle==3.2.1",
+    "paddlepaddle-gpu==3.2.1",
     "paddleocr==3.5.0",
     "PyMuPDF==1.27.2.3",
     "opencv-python==4.11.0.86",

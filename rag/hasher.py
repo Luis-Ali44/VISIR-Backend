@@ -1,5 +1,4 @@
 import hashlib
-from pathlib import Path
 
 
 def compute_file_hash(pdf_path: str) -> str:
@@ -21,6 +20,5 @@ def short_hash(full_hash: str, length: int = 12) -> str:
 
 
 def compute_doc_id(pdf_path: str) -> str:
-    file_name = Path(pdf_path).stem
     file_hash = compute_file_hash(pdf_path)
-    return f"{file_name}__{short_hash(file_hash)}"
+    return short_hash(file_hash)

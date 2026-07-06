@@ -2,6 +2,7 @@ import asyncio
 import logging
 import tempfile
 import traceback
+from datetime import datetime
 from functools import partial
 from pathlib import Path
 from typing import Any
@@ -22,7 +23,7 @@ from app.schemas.documents_schema import DocumentCreate, DocumentResponse
 from app.schemas.user_schema import UsuarioActual
 
 
-from app.services.Extraccion.pipeline import procesar
+from app.services.extraccion.pipeline import procesar
 from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
 from app.services.org_ingestion_service import ingestar_cfdi_organizacion
 
@@ -158,9 +159,18 @@ async def subir_documento_service(
             tmp_path = Path(tmp.name)
 
         try:
-            data = await asyncio.get_event_loop().run_in_executor(
-                None, partial(procesar, ruta_archivo=tmp_path, guardar_txt=False)
+            data = await asyncio.wait_for(
+                asyncio.get_event_loop().run_in_executor(
+                    None, partial(procesar, ruta_archivo=tmp_path, guardar_txt=False)
+                ),
+                timeout=90.0  # máximo 90 segundos para OCR + Mistral
             )
+        except asyncio.TimeoutError:
+            logger.error(
+                "OCR timeout después de 90 segundos",
+                extra={"id_documento": id_documento, "archivo": archivo.filename},
+            )
+            return documento_response
         except Exception:
             logger.exception(
                 "No se pudo procesar el archivo con OCR/parser de CFDI",
@@ -187,23 +197,37 @@ async def subir_documento_service(
         fecha_emision_raw = datos.get("fecha_emision")
         tipo_comprobante_raw = datos.get("tipo_de_comprobante")
 
+        # Parse fecha — fallback a now() si el LLM no extrajo una fecha válida
+        try:
+            fecha_iso: str | None = (
+                parse_fecha(str(fecha_emision_raw)).isoformat()
+                if fecha_emision_raw is not None
+                else None
+            )
+        except ValueError:
+            fecha_iso = None
+
+        emisor = datos.get("emisor") or {}
+        receptor = datos.get("receptor") or {}
+
         rows.append(
             {
-                "folio_fiscal": datos.get("folio_fiscal"),
-                "total": datos.get("total"),
+                # Columnas NOT NULL — proveer defaults seguros
+                "folio_fiscal": datos.get("folio_fiscal") or "SIN-UUID",
+                "total": float(datos.get("total") or 0.0),
                 "metadatos": datos,
-                "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
-                if fecha_emision_raw is not None
-                else None,
-                "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
-                if tipo_comprobante_raw is not None
-                else None,
-                "metodo_pago": datos.get("metodo_pago"),
+                "fecha_emision": fecha_iso or datetime.now().isoformat(),
+                "tipo_comprobante": (
+                    map_tipo_comprobante(str(tipo_comprobante_raw))
+                    if tipo_comprobante_raw is not None
+                    else None
+                ) or "Ingreso",
+                "metodo_pago": datos.get("metodo_pago") or "PUE",
                 "estado": "procesado",
-                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
-                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
-                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
-                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
+                "rfc_emisor": emisor.get("RFC") or "XAXX010101000",
+                "nombre_emisor": emisor.get("nombre") or "Sin nombre",
+                "rfc_receptor": receptor.get("RFC") or "XAXX010101000",
+                "nombre_receptor": receptor.get("nombre") or "Sin nombre",
                 "id_documento": id_documento,
                 "id_organizacion": id_organizacion,
                 "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,

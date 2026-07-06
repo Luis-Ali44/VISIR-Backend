@@ -21,15 +21,10 @@ class RAGConfig:
     collection_name:  str = "documentos_fiscales"
     topic_seed_path:  str = "./data/topic_seed.md"
 
-    # NUEVO: colección compartida para documentos subidos por organizaciones
-    # (CFDIs propios + documentos generales). Es UNA sola colección para
-    # todas las orgs, aislada por filtro de metadata `id_organizacion` en
-    # cada query — no una colección por organización. Esto escala mejor
-    # a miles de orgs sin crear una colección de Chroma por cada una.
     org_collection_name: str = "documentos_organizacion"
 
     embedding_base_url:   str = "http://localhost:11434/v1"
-    embedding_api_key:    str = "ollama"           # "ollama" para Ollama (valor ignorado)
+    embedding_api_key:    str = "ollama"
     embedding_model_name: str = "embeddinggemma:latest"
     embedding_timeout:    int = 30
     embedding_max_retries: int = 3
@@ -64,14 +59,12 @@ def load_config_from_env(chroma_path: str = "./chroma_db") -> RAGConfig:
         org_collection_name=os.getenv("CHROMA_ORG_COLLECTION", "documentos_organizacion"),
         topic_seed_path=os.getenv("TOPIC_SEED_PATH", "./data/topic_seed.md"),
 
-        # Embeddings
         embedding_base_url=os.getenv("EMBEDDING_BASE_URL", "http://ollama:11434/v1"),
         embedding_api_key=os.getenv("EMBEDDING_API_KEY", "ollama"),
         embedding_model_name=os.getenv("EMBEDDING_MODEL", "embeddinggemma:latest"),
         embedding_timeout=int(os.getenv("EMBEDDING_TIMEOUT", "30")),
         embedding_max_retries=int(os.getenv("EMBEDDING_MAX_RETRIES", "3")),
 
-        # LLM
         llm_base_url=os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1"),
         llm_api_key=os.getenv("LLM_API_KEY", ""),
         llm_model=os.getenv("LLM_MODEL", "llama-3.3-70b-versatile"),

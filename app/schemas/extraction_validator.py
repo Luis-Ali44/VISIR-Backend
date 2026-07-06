@@ -8,7 +8,7 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
-from app.services.Extraccion.catalogos import (
+from app.services.extraccion.catalogos import (
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
     CATALOGO_MONEDA,

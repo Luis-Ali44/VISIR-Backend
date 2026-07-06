@@ -214,7 +214,6 @@ Pregunta: {state['pregunta']}"""
         workflow.add_node("responder_cfdis", self._nodo_respuesta_cfdis)
         workflow.add_node("sintesis_hibrida", self._nodo_sintesis_hibrida)
 
-        # Entrada
         workflow.set_entry_point("analisis_lexico")
 
         workflow.add_conditional_edges(

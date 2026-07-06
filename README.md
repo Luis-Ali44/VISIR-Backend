@@ -191,7 +191,7 @@ El módulo `app/services/Extraccion/` procesa cualquier archivo subido vía
 ```
 PDF/Imagen → ocr_preprocess (clasifica página) → ocr_paddle (extrae texto)
            → pipeline (detecta versión/UUID) → Mistral (estructura JSON)
-           → schema_extraccion (valida Pydantic) → fila en `extracciones`
+            → extraction_validator (valida Pydantic) → fila en `extracciones`
 
 XML        → xml_parser → schema_extraccion (valida Pydantic) → fila en `extracciones`
 ```

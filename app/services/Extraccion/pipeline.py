@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 from typing import Any
 
-from ...schemas.schema_extraccion import validar
+from ...schemas.extraction_validator import validar
 from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,

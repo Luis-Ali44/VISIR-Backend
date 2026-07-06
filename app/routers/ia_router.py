@@ -1,4 +1,3 @@
-# app/routers/ia_router.py
 import os
 import uuid
 from fastapi import APIRouter, Depends, HTTPException, Request, status

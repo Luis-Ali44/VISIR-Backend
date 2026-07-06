@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import json
 import os
 import sys
@@ -9,6 +10,9 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
+from dotenv import load_dotenv
+load_dotenv(_ROOT / ".env")
+
 from app.services.confidence_features import (  # noqa: E402
     detectar_periodo,
     detectar_tipo_consulta,
@@ -17,6 +21,8 @@ from app.services.confidence_features import (  # noqa: E402
     rag_coverage,
     routing_certainty,
 )
+
+ID_ORGANIZACION_PRUEBA = "11111111-1111-1111-1111-111111111111"
 
 
 def cargar_servicio():
@@ -53,7 +59,7 @@ def capturar_fila(servicio, item: dict) -> dict:
     respuesta_final, ruta, metadata = servicio.ejecutar_consulta(
         pregunta=pregunta,
         usuario_id="eval",
-        id_organizacion=item.get("_id_organizacion_prueba", "11111111-1111-1111-1111-111111111111"),
+        id_organizacion=item.get("_id_organizacion_prueba", ID_ORGANIZACION_PRUEBA),
         top_k=5,
     )
     latencia_ms = (time.perf_counter() - t0) * 1000
@@ -68,7 +74,10 @@ def capturar_fila(servicio, item: dict) -> dict:
         "pregunta": pregunta,
         "respuesta_esperada": item["respuesta_esperada"],
         "fragmentos_fuente": item.get("fragmentos_fuente", []),
-        "es_ambigua": item.get("es_ambigua", False),
+        "nivel_ambiguedad": item.get("nivel_ambiguedad"),
+        "accion_esperada": item.get("accion_esperada", "responder"),
+        "nota": item.get("nota"),
+        "es_ambigua": item.get("es_ambigua", item.get("nivel_ambiguedad") not in (None, "clara")),
         "campo_removido": item.get("campo_removido"),
         "rag_coverage": round(rag_coverage(fuentes), 4),
         "routing_certainty": round(routing_certainty(palabras), 4),
@@ -76,8 +85,8 @@ def capturar_fila(servicio, item: dict) -> dict:
         "data_completeness": round(
             data_completeness(len(fuentes), periodo["detectado"]), 4
         ),
-        "campo_periodo_faltante": int(not periodo["detectado"]),
-        "campo_tipo_faltante": int(not tipo["detectado"]),
+        "campo_periodo_faltante": item.get("campo_periodo_faltante", int(not periodo["detectado"])),
+        "campo_tipo_faltante": item.get("campo_tipo_faltante", int(not tipo["detectado"])),
         "respuesta_generada": respuesta_final or "",
         "fragmentos_recuperados": fuentes,
         "ruta_seleccionada": ruta,
@@ -86,8 +95,24 @@ def capturar_fila(servicio, item: dict) -> dict:
 
 
 def main() -> None:
-    dataset_path = _ROOT / "evaluaciones/data/dataset_confianza_variantes.json"
+    parser = argparse.ArgumentParser(description="Fase 2 de V-10: captura de features")
+    parser.add_argument(
+        "--dataset",
+        default="evaluaciones/data/dataset_confianza_gradual.json",
+        help="Ruta al dataset de entrenamiento (default: dataset gradual con CFDIs reales)",
+    )
+    parser.add_argument(
+        "--output",
+        default="evaluaciones/data/dataset_confianza_features.json",
+    )
+    args = parser.parse_args()
+
+    dataset_path = _ROOT / args.dataset
+    if not dataset_path.exists():
+        print(f"[ERROR] No existe el dataset: {dataset_path}")
+        sys.exit(1)
     dataset = json.loads(dataset_path.read_text(encoding="utf-8"))
+    print(f"[DATASET] {dataset_path.name} -- {len(dataset)} preguntas")
 
     servicio = cargar_servicio()
 
@@ -102,7 +127,7 @@ def main() -> None:
             errores.append({"idx": i, "pregunta": item["pregunta"], "error": str(e)})
             continue
 
-    output_path = _ROOT / "evaluaciones/data/dataset_confianza_features.json"
+    output_path = _ROOT / args.output
     output_path.write_text(
         json.dumps(filas, ensure_ascii=False, indent=2), encoding="utf-8"
     )
@@ -115,16 +140,19 @@ def main() -> None:
             print(f"       [{e['idx']}] {e['pregunta'][:50]} - {err_msg}")
 
     if filas:
-        for etiqueta, es_amb in [("no_ambigua", False), ("ambigua", True)]:
-            grupo = [f for f in filas if f["es_ambigua"] == es_amb]
+        niveles = sorted({f.get("nivel_ambiguedad") or ("ambigua" if f["es_ambigua"] else "clara") for f in filas})
+        for nivel in niveles:
+            grupo = [
+                f for f in filas
+                if (f.get("nivel_ambiguedad") or ("ambigua" if f["es_ambigua"] else "clara")) == nivel
+            ]
             if not grupo:
                 continue
             rc_avg = sum(f["rag_coverage"] for f in grupo) / len(grupo)
             rt_avg = sum(f["routing_certainty"] for f in grupo) / len(grupo)
             qc_avg = sum(f["question_clarity"] for f in grupo) / len(grupo)
             dc_avg = sum(f["data_completeness"] for f in grupo) / len(grupo)
-            print("")
-            print(f"--- {etiqueta} ({len(grupo)} preguntas) ---")
+            print(f"\n--- nivel_ambiguedad={nivel} ({len(grupo)} preguntas) ---")
             print(f"   rag_coverage:       {rc_avg:.4f}")
             print(f"   routing_certainty:  {rt_avg:.4f}")
             print(f"   question_clarity:   {qc_avg:.4f}")

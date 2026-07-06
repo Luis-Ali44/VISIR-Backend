@@ -42,7 +42,7 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         rag_config=rag_config,
     )
 
-    from app.services.Extraccion.ocr_paddle import _get_paddle_ocr
+    from app.services.extraccion.ocr_paddle import _get_paddle_ocr
 
     _get_paddle_ocr()
 

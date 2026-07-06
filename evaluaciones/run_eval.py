@@ -1,26 +1,4 @@
-"""
-run_eval.py
-───────────
-Script principal de evaluación del sistema RAG fiscal.
 
-Modos de ejecución:
-  --modo recall    → Solo Recall@1/3/5. Sin costo de LLM juez. Para CI en cada PR.
-  --modo completo  → Recall@k + Fidelidad + Relevancia con modelo juez. Para sprint review.
-
-Uso (desde la raíz del proyecto):
-  uv run python -m evaluaciones.run_eval --modo recall
-  uv run python -m evaluaciones.run_eval --modo completo
-  uv run python -m evaluaciones.run_eval --modo completo --dataset evaluaciones/data/eval_dataset.json
-
-Variables de entorno requeridas (.env):
-  GROQ_API_KEY        → API key para el LLM de generación y el juez
-  GROQ_MODEL          → Modelo para generación (ej: meta-llama/llama-4-scout-17b-16e-instruct)
-  GROQ_JUDGE_MODEL    → Modelo para el juez (ej: llama-3.3-70b-versatile)
-  LLM_BASE_URL        → Base URL del proveedor (ej: https://api.groq.com/openai/v1)
-  CHROMA_PATH         → Ruta al ChromaDB (ej: ./chroma_db)
-  EMBEDDING_BASE_URL  → URL de Ollama para embeddings
-  EMBEDDING_MODEL     → Modelo de embeddings (ej: embeddinggemma:latest)
-"""
 
 from __future__ import annotations
 
@@ -128,8 +106,12 @@ def generar_respuesta_rag(
 ) -> tuple[str, int, int]:
     from rag.chain import FiscalRAGChain
     chain = FiscalRAGChain(api_key=api_key, model=model, base_url=base_url)
-    resultado = chain.invoke(pregunta=pregunta, fragmentos=fragmentos_raw)
-    return resultado.texto, resultado.tokens_entrada, resultado.tokens_salida
+    try:
+        resultado = chain.invoke(pregunta=pregunta, fragmentos=fragmentos_raw)
+        return resultado.texto, resultado.tokens_entrada, resultado.tokens_salida
+    except Exception:
+        print(f"         [WARN] Fallo generación RAG, usando fallback")
+        return "El contexto disponible no cubre esta pregunta.", 0, 0
 
 
 
@@ -236,23 +218,29 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
             lat_gen = round((time.time() - t1) * 1000)
 
             t2 = time.time()
-            eval_fidelidad = juez.fidelidad.evaluar(
-                pregunta=pregunta,
-                fragmentos=fragmentos_para_juez,
-                respuesta_generada=respuesta_generada,
-            )
-            eval_relevancia = juez.relevancia.evaluar(
-                pregunta=pregunta,
-                respuesta_generada=respuesta_generada,
-                respuesta_esperada=respuesta_esperada,
-            )
+            try:
+                eval_completo = juez.evaluar_completo(
+                    pregunta=pregunta,
+                    fragmentos=fragmentos_para_juez,
+                    respuesta_generada=respuesta_generada,
+                    respuesta_esperada=respuesta_esperada,
+                    accion_esperada=item.get("accion_esperada"),
+                )
+                eval_fidelidad = eval_completo["fidelidad"]
+                eval_relevancia = eval_completo["relevancia"]
+                fid_score = eval_fidelidad.get("score", 0)
+                rel_score = eval_relevancia.get("score", 0)
+            except Exception as e:
+                print(f"         [WARN] Juez falló: {e}")
+                eval_fidelidad = {"score": 0, "razonamiento": "", "fallo": str(e)}
+                eval_relevancia = {"score": 0, "razonamiento": "", "fallo": str(e)}
+                fid_score = 0
+                rel_score = 0
+
             lat_juez = round((time.time() - t2) * 1000)
 
-            fid_score = eval_fidelidad.get("score", 0)
-            rel_score = eval_relevancia.get("score", 0)
-
             print(f"         Tokens → entrada:{tokens_entrada}  salida:{tokens_salida}")
-            print(f"         Juez → Fidelidad:{fid_score}/5  Relevancia:{rel_score}/5  ({lat_juez}ms)")
+            print(f"         Juez → Fidelidad:{fid_score}/10  Relevancia:{rel_score}/10  ({lat_juez}ms)")
 
             resultado_item.update({
                 "respuesta_generada": respuesta_generada,
@@ -265,6 +253,7 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
                 "relevancia_score": rel_score,
                 "relevancia_razonamiento": eval_relevancia.get("razonamiento", ""),
                 "relevancia_detalle": eval_relevancia,
+                "calidad": round((fid_score + rel_score) / 2 / 10, 4),
                 "latencia_generacion_ms": lat_gen,
                 "latencia_juez_ms": lat_juez,
             })
@@ -292,9 +281,9 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
         scores_fid_eval = [r["fidelidad_score"] for r in resultados if "fidelidad_score" in r]
         scores_rel = [r["relevancia_score"] for r in resultados if "relevancia_score" in r]
         if scores_fid_eval:
-            print(f"  Fidelidad media:  {sum(scores_fid_eval)/len(scores_fid_eval):.2f}/5")
+            print(f"  Fidelidad media:  {sum(scores_fid_eval)/len(scores_fid_eval):.2f}/10")
         if scores_rel:
-            print(f"  Relevancia media: {sum(scores_rel)/len(scores_rel):.2f}/5")
+            print(f"  Relevancia media: {sum(scores_rel)/len(scores_rel):.2f}/10")
         print(f"  Tokens totales → entrada:{total_tokens_entrada}  salida:{total_tokens_salida}")
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -339,7 +328,7 @@ def main() -> None:
         help="Selecciona la colección a evaluar: normativa SAT o CFDIs de organización.",
     )
     parser.add_argument(
-        "--org-id", default="org-test-visir-001",
+        "--org-id", default="11111111-1111-1111-1111-111111111111",
         help="id_organizacion usado cuando --retriever org.",
     )
     parser.add_argument(

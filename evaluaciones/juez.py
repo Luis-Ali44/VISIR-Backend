@@ -102,11 +102,41 @@ class RelevanciaChain:
         })
 
 
+class RelevanciaAmbiguaChain:
+
+    def __init__(self, api_key: str, model: str, base_url: str) -> None:
+        llm = ChatOpenAI(
+            api_key=api_key,
+            model=model,
+            base_url=base_url,
+            temperature=0.0,
+            max_tokens=600,
+        )
+        prompt = PromptTemplate(
+            template=_load_prompt("relevancia_ambigua.txt"),
+            input_variables=["pregunta", "respuesta_generada", "respuesta_esperada"],
+        )
+        self._chain = prompt | llm | RobustJsonOutputParser()
+
+    def evaluar(
+        self,
+        pregunta: str,
+        respuesta_generada: str,
+        respuesta_esperada: str,
+    ) -> dict:
+        return self._chain.invoke({
+            "pregunta": pregunta,
+            "respuesta_generada": respuesta_generada,
+            "respuesta_esperada": respuesta_esperada,
+        })
+
+
 class JuezFiscal:
 
     def __init__(self, api_key: str, model: str, base_url: str) -> None:
         self.fidelidad = FidelidadChain(api_key=api_key, model=model, base_url=base_url)
         self.relevancia = RelevanciaChain(api_key=api_key, model=model, base_url=base_url)
+        self.relevancia_ambigua = RelevanciaAmbiguaChain(api_key=api_key, model=model, base_url=base_url)
 
     def evaluar_completo(
         self,
@@ -114,7 +144,13 @@ class JuezFiscal:
         fragmentos: list[str | dict],
         respuesta_generada: str,
         respuesta_esperada: str,
+        accion_esperada: str = "responder",
     ) -> dict:
         fid = self.fidelidad.evaluar(pregunta, fragmentos, respuesta_generada)
-        rel = self.relevancia.evaluar(pregunta, respuesta_generada, respuesta_esperada)
-        return {"fidelidad": fid, "relevancia": rel}
+
+        if accion_esperada == "preguntar":
+            rel = self.relevancia_ambigua.evaluar(pregunta, respuesta_generada, respuesta_esperada)
+        else:
+            rel = self.relevancia.evaluar(pregunta, respuesta_generada, respuesta_esperada)
+
+        return {"fidelidad": fid, "relevancia": rel, "modo_relevancia": accion_esperada}

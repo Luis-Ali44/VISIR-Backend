@@ -11,6 +11,16 @@ from app.core.database import supabase
 
 logger = logging.getLogger(__name__)
 
+def get_extraccion_by_id(extraccion_id: str, id_organizacion: str) -> list[dict[str, Any]]:
+    response = (
+        supabase.table("extracciones")
+        .select("*")
+        .eq("id", extraccion_id)
+        .eq("id_organizacion", id_organizacion)
+        .execute()
+    )
+    return response.data
+
 def get_extracciones_by_org(
     id_organizacion: str,
     id_usuario: str | None = None,  
@@ -20,6 +30,7 @@ def get_extracciones_by_org(
     rfc_emisor: str | None = None,
     tipo_comprobante: str | None = None,
     limit: int = 100,
+    cursor: str | None = None,
 ) -> list[dict[str, Any]]:
     
     query = (
@@ -27,7 +38,12 @@ def get_extracciones_by_org(
         .select("*")
         .eq("id_organizacion", id_organizacion)
         .eq("estado", estado)
+        .order("created_at", desc=True)
     )
+    
+    if cursor:
+        query = query.lt("created_at", cursor)
+
     
     if id_usuario:
         query = query.eq("id_usuario", id_usuario)
