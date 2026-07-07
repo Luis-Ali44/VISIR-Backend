@@ -51,6 +51,21 @@ class ConceptoMinimo(BaseModel):
     iva:             float | None = Field(None, ge=0)
     objeto_imp:      str   | None = Field(None, pattern=r"^0[1-4]$")
 
+    # Campos agregados al usar modelo de categorizacion V-09 para sugerir ClaveProdServ
+    clave_prod_serv_sugerida: str   | None = Field(None, pattern=r"^\d{8}$")
+    categoria_confianza:      float | None = Field(None, ge=0, le=1)
+    categoria_fuente:         str   | None = Field(None, pattern=r"^(xml|ocr|modelo)$")
+
+    @field_validator("clave_prod_serv_sugerida")
+    @classmethod
+    def _validar_clave_prod_serv_sugerida(cls, v: str | None) -> str | None:
+        if v is None:
+            return v
+        claves = _claves_sat()
+        if claves and v not in claves:
+            raise ValueError(f"ClaveProdServ sugerida '{v}' no existe en el catálogo del SAT")
+        return v
+
     @field_validator("clave_prod_serv")
     @classmethod
     def _validar_clave_prod_serv(cls, v: str | None) -> str | None:

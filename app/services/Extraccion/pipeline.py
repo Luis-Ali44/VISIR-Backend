@@ -18,10 +18,13 @@ from .catalogos import (
     normalizar_rfc,
     validar_formato_rfc,
 )
+from app.services.Categorizacion.modelo import categorizar_concepto
 from .llm_extractor import construir_prompt
 from .schema import validar_ocr, validar_xml
 from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
 from .texto_utils import normalizar_fecha as _normalizar_fecha
+
+CATEGORIZACION_ACTIVA = True
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_MODEL = "mistral-large-latest"
@@ -70,6 +73,39 @@ def _limpiar_nulos(obj: Any) -> Any:
     if isinstance(obj, list):
         return [_limpiar_nulos(i) for i in obj]
     return None if es_valor_nulo(obj) else obj
+
+
+def _categorizar_conceptos(datos: dict, fuente: str) -> None:
+    """
+    Usa el modelo de V-09 como complemento para V-02 y sugerir claves c_ClaveProdServ en cada concepto de la factura
+    """
+    if not CATEGORIZACION_ACTIVA:
+        return
+
+    for concepto in datos.get("conceptos", []):
+        if not isinstance(concepto, dict):
+            continue
+        descripcion = concepto.get("descripcion")
+        if not descripcion:
+            continue
+
+        if fuente == "xml" and concepto.get("clave_prod_serv"):
+            continue
+
+        try:
+            sugerencia = categorizar_concepto(descripcion)
+        except Exception as e:
+            print(f"  [V-09] No se pudo categorizar concepto: {e}")
+            continue
+
+        if sugerencia.categorizado:
+            concepto["clave_prod_serv_sugerida"] = sugerencia.clave_prod_serv
+            concepto["categoria_confianza"] = round(sugerencia.confianza, 4)
+            concepto["categoria_fuente"] = "modelo"
+        else:
+            concepto["clave_prod_serv_sugerida"] = None
+            concepto["categoria_confianza"] = round(sugerencia.confianza, 4)
+            concepto["categoria_fuente"] = None
 
 
 def _postprocesar(
@@ -252,6 +288,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
             )
 
         datos["archivo"] = ruta.stem
+        _categorizar_conceptos(datos, fuente="xml")
 
         resultado = {
             "archivo": ruta.stem,
@@ -310,6 +347,8 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
                 f"CFDI #{i + 1} de '{ruta.name}' no pasó la validación:\n" +
                 "\n".join(f"  • {e}" for e in errores)
             )
+
+        _categorizar_conceptos(factura, fuente="ocr")
 
         resultados_validados.append({
             "datos":   factura,
