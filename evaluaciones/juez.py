@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from pathlib import Path
 
+from langchain_core.exceptions import OutputParserException
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI  
@@ -29,7 +31,11 @@ class RobustJsonOutputParser(JsonOutputParser):
             match = re.search(r"\{.*\}", clean, re.DOTALL)
             if match:
                 return json.loads(match.group())
-            raise
+            preview = clean[:300].replace("\n", " | ")
+            raise OutputParserException(
+                f"No se pudo extraer JSON del output del LLM. "
+                f"Inicio del output (primeros 300 chars): {preview}"
+            )
 
 def _format_fragmentos_para_juez(fragmentos: list[str | dict]) -> str:
     parts: list[str] = []
@@ -39,7 +45,7 @@ def _format_fragmentos_para_juez(fragmentos: list[str | dict]) -> str:
         elif isinstance(frag, dict):
             chunk_id = frag.get("chunk_id", "N/A")
             fuente = frag.get("fuente", frag.get("filename", "N/A"))
-            texto = frag.get("texto", frag.get("text", ""))
+            texto = frag.get("text", frag.get("texto", ""))
             parts.append(f"[FRAGMENTO {i} | chunk_id: {chunk_id} | fuente: {fuente}]\n{texto}")
     return "\n\n---\n\n".join(parts)
 
@@ -53,7 +59,7 @@ class FidelidadChain:
             model=model,
             base_url=base_url,
             temperature=0.0,
-            max_tokens=600,
+            max_tokens=1500,
         )
         prompt = PromptTemplate(
             template=_load_prompt("fidelidad.txt"),
@@ -67,11 +73,17 @@ class FidelidadChain:
         fragmentos: list[str | dict],
         respuesta_generada: str,
     ) -> dict:
-        return self._chain.invoke({
-            "pregunta": pregunta,
-            "fragmentos": _format_fragmentos_para_juez(fragmentos),
-            "respuesta_generada": respuesta_generada,
-        })
+        for intento in range(3):
+            try:
+                return self._chain.invoke({
+                    "pregunta": pregunta,
+                    "fragmentos": _format_fragmentos_para_juez(fragmentos),
+                    "respuesta_generada": respuesta_generada,
+                })
+            except Exception:
+                if intento == 2:
+                    raise
+                time.sleep(2)
 
 class RelevanciaChain:
 
@@ -81,7 +93,7 @@ class RelevanciaChain:
             model=model,
             base_url=base_url,
             temperature=0.0,
-            max_tokens=600,
+            max_tokens=1000,
         )
         prompt = PromptTemplate(
             template=_load_prompt("relevancia.txt"),
@@ -95,12 +107,17 @@ class RelevanciaChain:
         respuesta_generada: str,
         respuesta_esperada: str,
     ) -> dict:
-        return self._chain.invoke({
-            "pregunta": pregunta,
-            "respuesta_generada": respuesta_generada,
-            "respuesta_esperada": respuesta_esperada,
-        })
-
+        for intento in range(3):
+            try:
+                return self._chain.invoke({
+                    "pregunta": pregunta,
+                    "respuesta_generada": respuesta_generada,
+                    "respuesta_esperada": respuesta_esperada,
+                })
+            except Exception:
+                if intento == 2:
+                    raise
+                time.sleep(2)
 
 class RelevanciaAmbiguaChain:
 
@@ -110,7 +127,7 @@ class RelevanciaAmbiguaChain:
             model=model,
             base_url=base_url,
             temperature=0.0,
-            max_tokens=600,
+            max_tokens=1000,
         )
         prompt = PromptTemplate(
             template=_load_prompt("relevancia_ambigua.txt"),
@@ -124,12 +141,17 @@ class RelevanciaAmbiguaChain:
         respuesta_generada: str,
         respuesta_esperada: str,
     ) -> dict:
-        return self._chain.invoke({
-            "pregunta": pregunta,
-            "respuesta_generada": respuesta_generada,
-            "respuesta_esperada": respuesta_esperada,
-        })
-
+        for intento in range(3):
+            try:
+                return self._chain.invoke({
+                    "pregunta": pregunta,
+                    "respuesta_generada": respuesta_generada,
+                    "respuesta_esperada": respuesta_esperada,
+                })
+            except Exception:
+                if intento == 2:
+                    raise
+                time.sleep(2)
 
 class JuezFiscal:
 

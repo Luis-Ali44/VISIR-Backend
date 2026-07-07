@@ -285,6 +285,7 @@ Pregunta: {state['pregunta']}"""
                 "page_number": f.get("page_number"),
                 "similarity": round(float(f.get("similarity", 0.0)), 4),
                 "origen": "ley",
+                "text": f.get("text", ""),
             })
 
         for f in estado_final.get("datos_cfdi", {}).get("fragmentos_cfdis", []):
@@ -295,6 +296,7 @@ Pregunta: {state['pregunta']}"""
                 "page_number": f.get("page_number"),
                 "similarity": round(float(f.get("similarity", 0.0)), 4),
                 "origen": "cfdi",
+                "text": f.get("text", ""),
             })
 
         fuentes.sort(key=lambda x: x["similarity"], reverse=True)

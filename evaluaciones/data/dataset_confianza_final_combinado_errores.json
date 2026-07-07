@@ -1,0 +1,87 @@
+[
+  {
+    "idx": 2,
+    "pregunta": "¿Cuánto gasté en total?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 6,
+    "pregunta": "¿Cuál fue mi gasto en servicios de nube?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 7,
+    "pregunta": "¿Qué proveedores me facturaron en mayo de 2025?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 8,
+    "pregunta": "¿Qué proveedores me han facturado?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 9,
+    "pregunta": "¿Cuántas facturas de tipo ingreso tengo registradas?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 11,
+    "pregunta": "¿Cuál fue el gasto promedio mensual en el primer semestre de 2025?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 12,
+    "pregunta": "¿Cuál fue mi gasto promedio mensual?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 18,
+    "pregunta": "¿Qué mes tuvo mayor gasto en el primer semestre?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 27,
+    "pregunta": "¿Cuánto gasté en restaurante?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 28,
+    "pregunta": "¿Cuánto facturé en salud en enero de 2026?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198271, Requested 3103. Please try again in 9m53.568s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 29,
+    "pregunta": "¿Cuánto he registrado en comercio minorista en diciembre de 2025?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198261, Requested 2975. Please try again in 8m53.952s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 30,
+    "pregunta": "¿Cuánto gasté en construcción?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198251, Requested 2731. Please try again in 7m4.224s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 31,
+    "pregunta": "¿Cuánto he facturado en comercio minorista?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198240, Requested 2738. Please try again in 7m2.496s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 32,
+    "pregunta": "Dame un reporte de mis gastos.",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198230, Requested 3005. Please try again in 8m53.52s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 33,
+    "pregunta": "¿Cuánto gasté este trimestre?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198220, Requested 2729. Please try again in 6m49.968s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 34,
+    "pregunta": "¿Cuánto he registrado en el rubro de salud?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198210, Requested 3827. Please try again in 14m39.983999999s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  },
+  {
+    "idx": 35,
+    "pregunta": "¿Cuál fue mi documento de mayor monto?",
+    "error": "Error code: 429 - {'error': {'message': 'Rate limit reached for model `openai/gpt-oss-20b` in organization `org_01kt4agrrse1db35e7jrzq6e6k` service tier `on_demand` on tokens per day (TPD): Limit 200000, Used 198200, Requested 2752. Please try again in 6m51.264s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+  }
+]
