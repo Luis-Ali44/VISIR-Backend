@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=builder /app/.venv /app/.venv
 COPY app ./app
+COPY resources ./resources
 
 EXPOSE 8000
 

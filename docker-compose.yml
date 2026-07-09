@@ -18,16 +18,15 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: visir_dev
-      POSTGRES_USER: visir
-      POSTGRES_PASSWORD: visir123
-      POSTGRES_HOST_AUTH_METHOD: md5
+      POSTGRES_DB: DB_VISIR
+      POSTGRES_USER: visir-test
+      POSTGRES_PASSWORD: qwerty12345
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U visir -d visir_dev"]
+      test: ["CMD-SHELL", "pg_isready -U visir-test -d DB_VISIR"]
       interval: 5s
       timeout: 5s
       retries: 5

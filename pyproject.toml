@@ -21,15 +21,20 @@ dependencies = [                    # Librerias necesarias para el proyecto
     "Pillow==11.1.0",
     "mistralai==2.4.5",             #
     "lxml>=6.1.1",
+    "arq>=0.28.0",
+    "celery>=5.6.3",
+    "redis>=5.3.1",
+    "structlog>=26.1.0",
 ]
 
 [dependency-groups]                 # Dependencias de desarrollo 
-dev = [                             # Desarrollo, testing, calidad 
-    "httpx>=0.28.1",                # Cliente http moderno 
-    "mypy>=2.1.0",                  # Revisa los tipos 
+dev = [                             # Desarrollo, testing, calidad
+    "httpx>=0.28.1",                # Cliente http moderno
+    "mypy>=2.1.0",                  # Revisa los tipos
     "pre-commit>=4.6.0",            # Automatiza las revisiones antes de dubir el commit
-    "pytest>=9.0.3",                # Testing 
+    "pytest>=9.0.3",                # Testing
     "ruff>=0.15.13",                # ordenamiento
+    "types-redis>=4.6.0.20241004",
 ]
 
 

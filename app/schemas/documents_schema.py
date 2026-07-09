@@ -13,6 +13,7 @@ class DocumentCreate(BaseModel):
     id_organizacion: UUID | None = None
     id_categorias: UUID | None
     hash_archivo: str
+    estado_documento: str = "pendiente"
 
 
 class DocumentResponse(BaseModel):
@@ -24,6 +25,7 @@ class DocumentResponse(BaseModel):
     id_usuario: UUID | None = None
     id_organizacion: UUID | None = None
     id_categorias: UUID | None
+    estado_documento: str
     created_at: datetime
 
 

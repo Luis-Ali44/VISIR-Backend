@@ -131,12 +131,28 @@ def delete_document_metadata(documento_id: str) -> None:
     supabase.table("documentos").delete().eq("id", documento_id).execute()
 
 
-def get_document_by_hash(hash_archivo: str, id_organizacion: str) -> list[Any]:
-    response = (
+def get_document_by_hash(hash_archivo: str) -> list[Any]:
+    response = supabase.table("documentos").select("*").eq("hash_archivo", hash_archivo).execute()
+    return list(response.data)
+
+
+def descargar_documento_storage(ruta_archivo: str) -> Any:
+    try:
+        response = supabase.storage.from_("documentos").download(ruta_archivo)
+        return response
+    except Exception as e:
+        print(f"[Error] No se pudo descargar el archivo: {e}")
+        return None
+
+
+def update_document_estado(documento_id: str, estado: str) -> None:
+    supabase.table("documentos").update({"estado": estado}).eq("id", documento_id).execute()
+
+
+def actualizar_estado_documento(id_documento: str) -> None:
+    (
         supabase.table("documentos")
-        .select("*")
-        .eq("hash_archivo", hash_archivo)
-        .eq("id_organizacion", id_organizacion)
+        .update({"estado_documento": "procesado"})
+        .eq("id", id_documento)
         .execute()
     )
-    return list(response.data)

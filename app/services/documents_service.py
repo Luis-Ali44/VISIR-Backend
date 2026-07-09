@@ -1,16 +1,10 @@
-import asyncio
 import hashlib
-import tempfile
-import traceback
-from functools import partial
-from pathlib import Path
 from typing import Any
 from uuid import UUID
 
 from fastapi import HTTPException, UploadFile
 
 from app.repositories.documents_repository import (
-    delete_document_metadata,
     delete_document_storage,
     get_document_by_hash,
     get_document_by_id,
@@ -18,7 +12,6 @@ from app.repositories.documents_repository import (
     get_my_documents,
     save_document_metadata,
     save_document_storage,
-    save_extracciones_repository,
 )
 from app.schemas.documents_schema import (
     DocumentCreate,
@@ -29,13 +22,10 @@ from app.schemas.documents_schema import (
 from app.schemas.user_schema import UsuarioActual
 
 # Conexion de paola
-from app.services.Extraccion.pipeline import procesar
 from app.services.helper import (
-    get_nombre_forma_pago,
-    map_tipo_comprobante,
-    parse_fecha,
     verificar_xml,
 )
+from app.tasks.document_tasks import iniciar_procesamiento
 
 MAX_FILE_SIZE = 5 * 1024 * 1024
 
@@ -84,13 +74,14 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
 
     hash_archivo = hashlib.sha256(contenido).hexdigest()
 
-    duplicados = get_document_by_hash(hash_archivo, id_organizacion)
+    duplicados = get_document_by_hash(hash_archivo)
 
     if duplicados:
         raise HTTPException(
             status_code=409,
             detail="Este archivo ya fue subido antes",
         )
+
     if nombre_archivo:
         extencion = nombre_archivo.split(".")[-1].lower()
 
@@ -135,6 +126,7 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
         # id_categorias=id_categoria,
         id_categorias=None,
         hash_archivo=hash_archivo,  # Se puede calcular un hash si es necesario
+        estado_documento="procesando",
     )
 
     # Guardar metadata en la base de datos
@@ -142,10 +134,11 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
         resultado = save_document_metadata(
             metadata.model_dump(mode="json")
         )  # Maneja el UUID como str para que no de error
+
     except Exception as exc:
         delete_document_storage(ruta_archivo)  # Eliminar el archivo si falla la metadata
         raise HTTPException(
-            status_code=500, detail="No se pudieron guardar los metadatos del documento"
+            status_code=500, detail=f"No se pudieron guardar los metadatos del documento {exc}"
         ) from exc
 
     if not isinstance(resultado, list) or not resultado or not isinstance(resultado[0], dict):
@@ -154,85 +147,15 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
             status_code=500, detail="No se pudo recuperar la metadata guardada del documento"
         )
 
-    ext = Path(nombre_archivo or "archivo.pdf").suffix
-    tmp_path = None
-
     # Obtenemos id_documento de la metadata guardada para relacionarlo con las extracciones
     id_documento = resultado[0]["id"]
-    # Descargar el archivo para procesarlo con la libreria de paolaG
-    try:
-        with tempfile.NamedTemporaryFile(suffix=ext, delete=False) as tmp:
-            tmp.write(contenido)
-            tmp_path = Path(tmp.name)
-
-        try:
-            data = await asyncio.get_event_loop().run_in_executor(
-                None, partial(procesar, ruta_archivo=tmp_path, guardar_txt=False)
-            )
-        except Exception as exc:
-            delete_document_storage(ruta_archivo)
-            delete_document_metadata(id_documento)
-            raise HTTPException(
-                status_code=422, detail="No se pudo procesar el archivo con OCR"
-            ) from exc
-    finally:
-        if tmp_path and tmp_path.exists():
-            tmp_path.unlink(missing_ok=True)  # Eliminar el archivo temporal
-
-    # Categoria se mantiene fuera del flujo actual hasta que el OCR la entregue.
-    # categoria = get_id_categoria()
-    # id_categoria = UUID(categoria) if categoria else None
-
-    if (
-        not isinstance(data, dict)
-        or not isinstance(data.get("cfdis"), list)
-        or not data.get("cfdis")
-    ):
-        delete_document_storage(ruta_archivo)
-        delete_document_metadata(id_documento)
-        raise HTTPException(status_code=422, detail="No se encontraron CFDIs para extraer")
-
-    rows = []
-    for item in data.get("cfdis", []):
-        datos = item.get("datos", {}) if isinstance(item, dict) else {}
-
-        forma_pago = datos.get("forma_pago")
-        fecha_emision_raw = datos.get("fecha_emision")
-        tipo_comprobante_raw = datos.get("tipo_de_comprobante")
-
-        rows.append(
-            {
-                "folio_fiscal": datos.get("folio_fiscal"),
-                "total": datos.get("total"),
-                "metadatos": datos,
-                "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
-                if fecha_emision_raw is not None
-                else None,
-                "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
-                if tipo_comprobante_raw is not None
-                else None,
-                "metodo_pago": datos.get("metodo_pago"),
-                "estado": "procesado",
-                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
-                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
-                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
-                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
-                "id_documento": id_documento,
-                "id_organizacion": id_organizacion,
-                "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
-            }
-        )
-
-    # Guardamos las extracciones en la base de datos
-    try:
-        save_extracciones_repository(rows)
-    except Exception as exc:
-        traceback.print_exc()
-        delete_document_storage(ruta_archivo)
-        delete_document_metadata(id_documento)
-        raise HTTPException(
-            status_code=500, detail="No se pudieron guardar las extracciones"
-        ) from exc
+    # Aqui pasamos a celery
+    iniciar_procesamiento.delay(
+        id_documento=id_documento,
+        id_organizacion=id_organizacion,
+        ruta_archivo=ruta_archivo,
+        nombre_archivo=nombre_archivo,
+    )
 
     return DocumentResponse(**resultado[0])
 
@@ -290,10 +213,10 @@ async def subir_lote_service(files: list[UploadFile], user: UsuarioActual) -> Lo
     # Nombre del archivo actual
 
     for file in files:
+        nombre_archivo = file.filename or "archivo"
         try:
             result = await subir_documento_service(file, user)
             exitosos.append(result)
-            nombre_archivo = file.filename or "archivo"
             print(f"Archivo {nombre_archivo} procesado exitosamente.")
 
         except HTTPException as exc:
