@@ -25,6 +25,7 @@ dependencies = [                    # Librerias necesarias para el proyecto
     "celery>=5.6.3",
     "redis>=5.3.1",
     "structlog>=26.1.0",
+    "sentry-sdk>=2.64.0",
 ]
 
 [dependency-groups]                 # Dependencias de desarrollo 

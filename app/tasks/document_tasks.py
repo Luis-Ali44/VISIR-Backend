@@ -1,11 +1,13 @@
 import tempfile
 from pathlib import Path
 
+import sentry_sdk
 import structlog
 from celery import Celery
 
 from app.core.config import settings
 from app.core.logging import configurar_logging
+from app.core.sentry import configurar_sentry
 from app.repositories.documents_repository import (
     actualizar_estado_documento,
     delete_document_metadata,
@@ -16,6 +18,7 @@ from app.repositories.documents_repository import (
 from app.services.Extraccion.pipeline import procesar
 from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
 
+configurar_sentry()
 configurar_logging()
 
 
@@ -60,6 +63,7 @@ def iniciar_procesamiento(
             nombre_archivo=nombre_archivo,
             error=str(exec),
         )
+        sentry_sdk.capture_exeption(exec)
         limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "fallido", "details": "No se pudo procesar el archivo"}
 
@@ -69,7 +73,10 @@ def iniciar_procesamiento(
         or not isinstance(data.get("cfdis"), list)
         or not data.get("cfdis")
     ):
-        log.info("No_se_encontraron_cfdis")
+        log.error("No_se_encontraron_cfdis", id_documento)
+        sentry_sdk.capture_message(
+            f"No se encontraron cfdis para documento {id_documento}", level="warning"
+        )
         limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "failed", "detail": "No se encontraron CFDIs"}
 
@@ -122,6 +129,7 @@ def iniciar_procesamiento(
 
     except Exception as exc:
         log.error("guardado_extracciones_fallido", error=str(exc))
+        sentry_sdk.capture_exception(exc)
         limpiar_fallo(ruta_archivo, id_documento)
         return {"status": "failed", "detail": "No se pudieron guardar las extracciones en la BD"}
 
