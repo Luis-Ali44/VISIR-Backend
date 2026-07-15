@@ -82,8 +82,7 @@ def _postprocesar(
 
     datos["metodo_pago"] = normalizar_catalogo(datos.get("metodo_pago"), CATALOGO_METODO_PAGO)
     datos["tipo_comprobante"] = normalizar_catalogo(
-        datos.get("tipo_comprobante"), 
-        CATALOGO_TIPO_COMPROBANTE
+        datos.get("tipo_comprobante"), CATALOGO_TIPO_COMPROBANTE
     )
     datos["forma_pago"] = normalizar_catalogo(datos.get("forma_pago"), CATALOGO_FORMA_PAGO)
     for concepto in datos.get("conceptos", []):
@@ -165,7 +164,7 @@ def _llamar_mistral(client: Any, prompt: str) -> str:
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0,
             )
-           
+
             return cast(str, response.choices[0].message.content.strip())
         except Exception as e:
             if "429" in str(e):
@@ -239,6 +238,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
 
     if ext in EXTENSIONES_XML:
         from .xml_parser.xml_parser import extraer_desde_xml
+
         datos = extraer_desde_xml(ruta)
         valido, errores, _modelo = validar_xml(datos)
 
@@ -247,8 +247,8 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
             for e in errores:
                 print(f"    • {e}")
             raise ValueError(
-                f"CFDI '{ruta.name}' no pasó la validación:\n" +
-                "\n".join(f"  • {e}" for e in errores)
+                f"CFDI '{ruta.name}' no pasó la validación:\n"
+                + "\n".join(f"  • {e}" for e in errores)
             )
 
         datos["archivo"] = ruta.stem
@@ -300,22 +300,21 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
         valido, errores, _ = validar_ocr(factura)
 
         if not valido:
-            print(
-                f"\n  CFDI #{i + 1} de '{ruta.name}' "
-                f"— {len(errores)} errores:"
-            )
+            print(f"\n  CFDI #{i + 1} de '{ruta.name}' — {len(errores)} errores:")
             for e in errores:
                 print(f"    • {e}")
             raise ValueError(
-                f"CFDI #{i + 1} de '{ruta.name}' no pasó la validación:\n" +
-                "\n".join(f"  • {e}" for e in errores)
+                f"CFDI #{i + 1} de '{ruta.name}' no pasó la validación:\n"
+                + "\n".join(f"  • {e}" for e in errores)
             )
 
-        resultados_validados.append({
-            "datos":   factura,
-            "valido":  True,
-            "errores": [],
-        })
+        resultados_validados.append(
+            {
+                "datos": factura,
+                "valido": True,
+                "errores": [],
+            }
+        )
 
     resultado = {
         "archivo": ruta.stem,
@@ -342,7 +341,7 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
         print("No se encontraron archivos para procesar.")
         return []
 
-    total    = len(archivos)
+    total = len(archivos)
     exitosos = 0
     resultados = []
 
@@ -359,12 +358,14 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
             print("  -> OK")
         except Exception as e:
             print(f"  -> ERROR: {e}")
-            resultados.append({
-                "archivo": arch.name,
-                "fuente":  arch.suffix.lower().lstrip("."),
-                "valido":  False,
-                "errores": [str(e)],
-            })
+            resultados.append(
+                {
+                    "archivo": arch.name,
+                    "fuente": arch.suffix.lower().lstrip("."),
+                    "valido": False,
+                    "errores": [str(e)],
+                }
+            )
 
     fallidos = [r for r in resultados if not r.get("valido", True)]
 
@@ -384,12 +385,14 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
     with open(resumen_path, "w", encoding="utf-8") as f:
         json.dump(
             {
-                "total":      total,
-                "exitosos":   exitosos,
-                "fallidos":   len(fallidos),
+                "total": total,
+                "exitosos": exitosos,
+                "fallidos": len(fallidos),
                 "resultados": resultados,
             },
-            f, ensure_ascii=False, indent=2,
+            f,
+            ensure_ascii=False,
+            indent=2,
         )
     print(f"\nResumen guardado en: {resumen_path}")
 

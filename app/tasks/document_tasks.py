@@ -1,5 +1,7 @@
 import tempfile
+from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 import sentry_sdk
 import structlog
@@ -17,6 +19,7 @@ from app.repositories.documents_repository import (
 )
 from app.services.Extraccion.pipeline import procesar
 from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
+from app.services.org_ingestion_service import ingestar_cfdi_organizacion
 
 configurar_sentry()
 configurar_logging()
@@ -28,10 +31,31 @@ REDIS_URL = settings.REDIS_URL
 celery_app = Celery("Extraccion_pipeline", broker=REDIS_URL, backend=REDIS_URL)
 
 
+def _normalizar_cfdis_extraidos(data: dict) -> list[dict[str, Any]]:
+
+    if not isinstance(data, dict):
+        return []
+
+    if data.get("fuente") == "xml":
+        datos = data.get("datos")
+        return [datos] if isinstance(datos, dict) else []
+
+    cfdis = data.get("cfdis")
+    if not isinstance(cfdis, list):
+        return []
+
+    resultado = []
+    for item in cfdis:
+        datos = item.get("datos") if isinstance(item, dict) else None
+        if isinstance(datos, dict):
+            resultado.append(datos)
+    return resultado
+
+
 @celery_app.task(name="Procesar_documentos")
-# EJECUTAMOS EL PIPELINE DE PAO PARA EXTRAER LOS DATOS
+# EJECUTAMOS EL PIPELINE DE PAOLA PARA EXTRAER LOS DATOS
 def iniciar_procesamiento(
-    id_documento: str, id_organizacion: str, ruta_archivo: str, nombre_archivo: str
+    id_documento: str, id_organizacion: str, id_usuario: str, ruta_archivo: str, nombre_archivo: str
 ) -> dict[str, str]:
     log.info("ocr_iniciado", id_documento=id_documento, id_organizacion=id_organizacion)
 
@@ -63,51 +87,64 @@ def iniciar_procesamiento(
             nombre_archivo=nombre_archivo,
             error=str(exec),
         )
-        sentry_sdk.capture_exeption(exec)
+        sentry_sdk.capture_exception(exec)
         limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "fallido", "details": "No se pudo procesar el archivo"}
+    finally:
+        if tmp_path and tmp_path.exists():
+            tmp_path.unlink(missing_ok=True)
 
-    #   Validamos el resultado de la extracción
-    if (
-        not isinstance(data, dict)
-        or not isinstance(data.get("cfdis"), list)
-        or not data.get("cfdis")
-    ):
-        log.error("No_se_encontraron_cfdis", id_documento)
+    cfdis_datos = _normalizar_cfdis_extraidos(data)
+
+    if not cfdis_datos:
+        log.error("No_se_encontraron_cfdis", id_documento=id_documento)
         sentry_sdk.capture_message(
             f"No se encontraron cfdis para documento {id_documento}", level="warning"
         )
         limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "failed", "detail": "No se encontraron CFDIs"}
 
-    log.info("cfdis_extraidos", cantidad=len(data.get("cfdis", [])))
+    log.info("cfdis_extraidos", cantidad=len(cfdis_datos))
 
     #   Mapeos y formato de filas
     rows = []
-    for item in data.get("cfdis", []):
-        datos = item.get("datos", {}) if isinstance(item, dict) else {}
-
+    for datos in cfdis_datos:
         forma_pago = datos.get("forma_pago")
         fecha_emision_raw = datos.get("fecha_emision")
         tipo_comprobante_raw = datos.get("tipo_de_comprobante")
 
+        # Parse fecha — fallback a now() si el LLM no extrajo una fecha válida
+        try:
+            fecha_iso = (
+                parse_fecha(str(fecha_emision_raw)).isoformat()
+                if fecha_emision_raw is not None
+                else None
+            )
+        except ValueError:
+            fecha_iso = None
+
+        emisor = datos.get("emisor") or {}
+        receptor = datos.get("receptor") or {}
+
         rows.append(
             {
-                "folio_fiscal": datos.get("folio_fiscal"),
-                "total": datos.get("total"),
+                # Columnas NOT NULL — proveer defaults seguros
+                "folio_fiscal": datos.get("folio_fiscal") or "SIN-UUID",
+                "total": float(datos.get("total") or 0.0),
                 "metadatos": datos,
-                "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
-                if fecha_emision_raw is not None
-                else None,
-                "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
-                if tipo_comprobante_raw is not None
-                else None,
-                "metodo_pago": datos.get("metodo_pago"),
+                "fecha_emision": fecha_iso or datetime.now().isoformat(),
+                "tipo_comprobante": (
+                    map_tipo_comprobante(str(tipo_comprobante_raw))
+                    if tipo_comprobante_raw is not None
+                    else None
+                )
+                or "Ingreso",
+                "metodo_pago": datos.get("metodo_pago") or "PUE",
                 "estado": "procesado",
-                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
-                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
-                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
-                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
+                "rfc_emisor": emisor.get("RFC") or "XAXX010101000",
+                "nombre_emisor": emisor.get("nombre") or "Sin nombre",
+                "rfc_receptor": receptor.get("RFC") or "XAXX010101000",
+                "nombre_receptor": receptor.get("nombre") or "Sin nombre",
                 "id_documento": id_documento,
                 "id_organizacion": id_organizacion,
                 "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
@@ -125,6 +162,16 @@ def iniciar_procesamiento(
         save_extracciones_repository(rows)
         actualizar_estado_documento(id_documento)
         log.info("documento_procesado_exitosamente")
+
+        for datos in cfdis_datos:
+            log.info("ingestando_cfdi_organizacion", id_documento=id_documento)
+            ingestar_cfdi_organizacion(
+                extraccion=datos,
+                id_organizacion=id_organizacion,
+                id_documento=str(id_documento),
+                id_usuario=id_usuario,
+            )
+
         return {"status": "success", "id_documento": id_documento}
 
     except Exception as exc:

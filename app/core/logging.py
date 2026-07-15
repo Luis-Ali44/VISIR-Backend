@@ -43,3 +43,7 @@ def configurar_logging() -> None:
         logger_factory=structlog.PrintLoggerFactory(),
         cache_logger_on_first_use=True,
     )
+
+
+def get_logger(name: str = "rag_fiscal") -> logging.Logger:
+    return logging.getLogger(name)

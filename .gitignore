@@ -7,3 +7,10 @@ app.zip
 data/
 models/
 notebooks/
+# Virtual environments
+.venv
+chroma_db/
+validation_results/
+repomix-output.xml
+
+.env

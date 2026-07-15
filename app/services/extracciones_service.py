@@ -3,14 +3,16 @@ from typing import Any
 
 from fastapi import HTTPException
 
-from app.repositories.extracciones_repositories import (
+from app.repositories.extracciones_repository import (
     get_extraccion_by_id,
-    get_extracciones_repository,
+)
+from app.repositories.extracciones_repository import (
+    get_extracciones_by_org as get_extracciones_repository,
 )
 
 
-def get_extraccion_by_id_service(extraccion_id: str) -> list[Any]:
-    extraccion = get_extraccion_by_id(extraccion_id)
+def get_extraccion_by_id_service(extraccion_id: str, id_organizacion: str) -> list[Any]:
+    extraccion = get_extraccion_by_id(extraccion_id, id_organizacion=id_organizacion)
 
     if not extraccion:
         raise HTTPException(status_code=404, detail="Extracción no encontrada")

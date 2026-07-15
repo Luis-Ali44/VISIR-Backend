@@ -153,6 +153,7 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
     iniciar_procesamiento.delay(
         id_documento=id_documento,
         id_organizacion=id_organizacion,
+        id_usuario=id_usuario,
         ruta_archivo=ruta_archivo,
         nombre_archivo=nombre_archivo,
     )

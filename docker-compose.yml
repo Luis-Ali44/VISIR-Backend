@@ -5,8 +5,14 @@ services:
       - "8000:8000"
     env_file:
       - .env
+    environment:
+      - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python  
     volumes:
       - ./app:/app/app
+      - ./rag:/app/rag
+      - ./ingestion:/app/ingestion
+      - ./data:/app/data
+      - chroma_db_data:/app/chroma_db
     depends_on:
       postgres:
         condition: service_healthy
@@ -18,15 +24,15 @@ services:
   postgres:
     image: postgres:16-alpine
     environment:
-      POSTGRES_DB: DB_VISIR
-      POSTGRES_USER: visir-test
-      POSTGRES_PASSWORD: qwerty12345
+      POSTGRES_DB: visir_dev
+      POSTGRES_USER: visir
+      POSTGRES_PASSWORD: visir123
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U visir-test -d DB_VISIR"]
+      test: ["CMD-SHELL", "pg_isready -U visir -d visir_dev"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -46,3 +52,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  chroma_db_data:

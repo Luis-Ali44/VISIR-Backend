@@ -1,0 +1,63 @@
+{
+  "dataset": "C:\\Users\\Derek\\OneDrive\\Escritorio\\Estadias\\Sprint2\\VISIR-Backend\\evaluaciones\\data\\dataset_confianza_final_combinado.json",
+  "n_filas_validas": 30,
+  "n_descartadas": 0,
+  "features": [
+    "rag_coverage",
+    "routing_certainty",
+    "question_clarity",
+    "data_completeness",
+    "campo_periodo_faltante",
+    "campo_tipo_faltante"
+  ],
+  "mejor_alpha": 0.1,
+  "mae_loocv": 0.1566296309702439,
+  "mae_modelo_global": 0.1258658215322207,
+  "mae_baseline_global": 0.24888933333333335,
+  "modelo_supera_baseline": true,
+  "mae_por_nivel_modelo": {
+    "alta": 0.11612439654400865,
+    "clara": 0.10537506784458033,
+    "leve": 0.17280973156123206
+  },
+  "mae_por_nivel_baseline": {
+    "alta": 0.03169142857142859,
+    "clara": 0.3107946666666666,
+    "leve": 0.32286499999999996
+  },
+  "coeficientes": {
+    "rag_coverage": 0.18353665778261274,
+    "routing_certainty": -0.13009383917468867,
+    "question_clarity": 0.18822924660607157,
+    "data_completeness": 0.029335342668155195,
+    "campo_periodo_faltante": -0.19885485833866842,
+    "campo_tipo_faltante": -0.10268307974620694
+  },
+  "intercepto": 0.729983445350558,
+  "resultados_alpha": [
+    [
+      0.01,
+      0.16386201324231123
+    ],
+    [
+      0.1,
+      0.1566296309702439
+    ],
+    [
+      1.0,
+      0.15802616171924155
+    ],
+    [
+      10.0,
+      0.1763050407543941
+    ],
+    [
+      100.0,
+      0.19048282517162599
+    ],
+    [
+      1000.0,
+      0.1929267481905051
+    ]
+  ]
+}
