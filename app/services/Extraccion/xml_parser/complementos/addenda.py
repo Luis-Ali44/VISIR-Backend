@@ -39,6 +39,6 @@ def parse(root: ET.Element) -> dict | None:
 
     contenido = [_elemento_a_dict(hijo) for hijo in list(addenda)]
     return {
-        "presente":   True,
-        "contenido":  contenido,
+        "presente": True,
+        "contenido": contenido,
     }

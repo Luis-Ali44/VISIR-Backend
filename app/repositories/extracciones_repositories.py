@@ -65,7 +65,7 @@ def get_estadisticas_basicas(id_organizacion: str, limit: int = 100) -> dict[str
         }
 
     gasto_total = sum(float(r.get("total") or 0) for r in rows)
-    proveedores = set(r.get("rfc_emisor") for r in rows if r.get("rfc_emisor"))
+    proveedores = {r.get("rfc_emisor") for r in rows if r.get("rfc_emisor")}
 
     fechas = [r.get("fecha_emision") for r in rows if r.get("fecha_emision")]
     periodo_inicio = min(fechas) if fechas else None

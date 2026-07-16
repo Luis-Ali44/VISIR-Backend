@@ -24,9 +24,9 @@ def _extraer_entidad(ine: ET.Element) -> dict | None:
     if entidad is None:
         return None
     return {
-        "clave_entidad":   entidad.get("ClaveEntidad"),
-        "ambito":          entidad.get("Ambito"),
-        "contabilidades":  _extraer_contabilidades(entidad),
+        "clave_entidad": entidad.get("ClaveEntidad"),
+        "ambito": entidad.get("Ambito"),
+        "contabilidades": _extraer_contabilidades(entidad),
     }
 
 
@@ -36,8 +36,8 @@ def parse(root: ET.Element) -> dict | None:
         return None
 
     return {
-        "version":      ine.get("Version"),
+        "version": ine.get("Version"),
         "tipo_proceso": ine.get("TipoProceso"),
-        "tipo_comite":  ine.get("TipoComite"),
-        "entidad":      _extraer_entidad(ine),
+        "tipo_comite": ine.get("TipoComite"),
+        "entidad": _extraer_entidad(ine),
     }

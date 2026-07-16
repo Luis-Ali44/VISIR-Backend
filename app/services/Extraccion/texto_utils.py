@@ -4,13 +4,16 @@ import re
 
 UUID_PATRON = r"[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}"
 
+
 def es_uuid_valido(cadena: str) -> bool:
     return bool(re.fullmatch(UUID_PATRON, cadena, re.IGNORECASE))
+
 
 def extraer_uuid_del_texto(texto: str) -> str | None:
     m = re.search(
         r"FOLIO\s+FISCAL.*?(" + UUID_PATRON + r")",
-        texto, re.IGNORECASE | re.DOTALL,
+        texto,
+        re.IGNORECASE | re.DOTALL,
     )
     if m:
         return m.group(1).upper()
@@ -19,12 +22,9 @@ def extraer_uuid_del_texto(texto: str) -> str | None:
     if m:
         return m.group(1).upper()
 
-    relacionados = {
-        u.upper() for u in re.findall(r"[•\-]\s*(" + UUID_PATRON + r")", texto)
-    }
+    relacionados = {u.upper() for u in re.findall(r"[•\-]\s*(" + UUID_PATRON + r")", texto)}
     candidatos = [
-        u.upper() for u in re.findall(UUID_PATRON, texto)
-        if u.upper() not in relacionados
+        u.upper() for u in re.findall(UUID_PATRON, texto) if u.upper() not in relacionados
     ]
     if candidatos:
         return str(candidatos[0])
@@ -41,6 +41,7 @@ def extraer_uuid_del_texto(texto: str) -> str | None:
                 return limpio_upper
 
     return None
+
 
 def normalizar_fecha(fecha_str: str | None) -> str | None:
     if not fecha_str or not isinstance(fecha_str, str):
@@ -64,7 +65,9 @@ def normalizar_fecha(fecha_str: str | None) -> str | None:
         return s
     return None
 
+
 VALORES_NULOS = {"null", "none", "n/a", "na", "-", "ninguno", ""}
+
 
 def es_valor_nulo(v: object) -> bool:
     return isinstance(v, str) and v.strip().lower() in VALORES_NULOS

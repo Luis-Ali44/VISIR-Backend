@@ -28,7 +28,8 @@ class FuenteCitada(BaseModel):
     similarity: float = Field(..., description="Score de similitud coseno [0, 1].")
     origen: Literal["ley", "cfdi"] = Field(
         ...,
-        description="'ley' si viene de FiscalRAGRetriever (normativa SAT), 'cfdi' si viene de OrgRAGRetriever.",
+        description="'ley' si viene de FiscalRAGRetriever (normativa SAT), "
+        "'cfdi' si viene de OrgRAGRetriever.",
     )
 
 
@@ -54,7 +55,8 @@ class ConsultaResponse(BaseModel):
     )
     fuentes_citadas: list[FuenteCitada] = Field(
         default_factory=list,
-        description="Fragmentos reales del RAG que respaldan la respuesta, ordenados por similitud desc.",
+        description="Fragmentos reales del RAG que respaldan la respuesta, "
+        "ordenados por similitud desc.",
     )
     latencias_ms: dict[str, float]
 

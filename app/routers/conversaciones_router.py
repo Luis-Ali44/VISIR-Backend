@@ -1,5 +1,6 @@
 import json
 import os
+from typing import cast
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
@@ -41,7 +42,7 @@ def get_rag_service(request: Request) -> RAGServiceLangGraph:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="RAGService no inicializado en la aplicacion",
         )
-    return service
+    return cast(RAGServiceLangGraph, service)
 
 
 def _calcular_cobertura(fuentes: list[dict]) -> bool:
@@ -136,7 +137,7 @@ def crear_conversacion(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Fallo al procesar la consulta: {e!s}",
-        )
+        ) from e
 
 
 @router.get("", response_model=list[SesionListaItem])
@@ -263,7 +264,7 @@ def continuar_conversacion(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Fallo al procesar la consulta: {e!s}",
-        )
+        ) from e
 
 
 @router.delete("/{sesion_id}", status_code=status.HTTP_204_NO_CONTENT)

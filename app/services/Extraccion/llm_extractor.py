@@ -39,9 +39,9 @@ REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
 6. forma_pago  → código de 2 dígitos ("01", "02", "03", "28", "99", etc.).
    Solo extrae el código si aparece EXPLÍCITAMENTE en el texto como número.
 7. moneda      → código ISO de 3 letras ("MXN", "USD", "EUR", etc.).
-8. tipo_comprobante → código de una letra: "I" (Ingreso), "E" (Egreso), 
-   "P" (Pago), "N" (Nómina), "T" (Traslado). Busca en el texto 
-   "Tipo de Comprobante", "TipoDeComprobante", o palabras clave 
+8. tipo_comprobante → código de una letra: "I" (Ingreso), "E" (Egreso),
+   "P" (Pago), "N" (Nómina), "T" (Traslado). Busca en el texto
+   "Tipo de Comprobante", "TipoDeComprobante", o palabras clave
    como "INGRESO", "EGRESO", "PAGO", "NÓMINA", "TRASLADO".
 9. Campos numéricos → número sin símbolo de moneda ni comas (ej. 1234.56).
 10. RFCs        → sin espacios, sin guiones, en MAYÚSCULAS.
@@ -105,17 +105,18 @@ def construir_prompt(
     nota_uuid = (
         f'\nNOTA: El folio fiscal pre-extraído es "{uuid_detectado}". '
         'Úsalo directamente en "folio_fiscal" sin modificarlo.\n'
-        if uuid_detectado else ""
+        if uuid_detectado
+        else ""
     )
     if version:
         instruccion_version = (
             f'La versión pre-detectada por OCR es "{version}". Úsala, '
-            'salvo que el propio texto indique claramente otra versión '
+            "salvo que el propio texto indique claramente otra versión "
             '(p. ej. un literal "Versión 3.3" o "CFDI 3.3" visible).'
         )
     else:
         instruccion_version = (
-            'No se pudo pre-detectar la versión por OCR. Búscala tú en el '
+            "No se pudo pre-detectar la versión por OCR. Búscala tú en el "
             'texto (suele indicarse como "Versión", "CFDI" seguido de '
             '"4.0" o "3.3"). Si tampoco la encuentras, usa null — '
             'NO la inventes ni asumas "4.0" por defecto.'

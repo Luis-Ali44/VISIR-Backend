@@ -64,7 +64,7 @@ def extraer_desde_xml(ruta_xml: str | Path) -> dict:
         "uso_cfdi": receptor.get("UsoCFDI") if receptor is not None else None,
         "regimen_fiscal": receptor.get("RegimenFiscalReceptor") if receptor is not None else None,
         "domicilio_fiscal": (
-             receptor.get("DomicilioFiscalReceptor") if receptor is not None else None
+            receptor.get("DomicilioFiscalReceptor") if receptor is not None else None
         ),
     }
 
@@ -89,18 +89,20 @@ def extraer_desde_xml(ruta_xml: str | Path) -> dict:
                 iva_concepto = _float_or_none(traslado.get("Importe"))
                 break
 
-        conceptos.append({
-            "descripcion": con.get("Descripcion"),
-            "clave_prod_serv": con.get("ClaveProdServ"),
-            "clave_unidad": con.get("ClaveUnidad"),
-            "unidad": con.get("Unidad"),
-            "cantidad": _float_or_none(con.get("Cantidad")),
-            "valor_unitario": _float_or_none(con.get("ValorUnitario")),
-            "descuento": _float_or_none(con.get("Descuento")),
-            "importe": _float_or_none(con.get("Importe")),
-            "iva": iva_concepto,
-            "objeto_imp": con.get("ObjetoImp"),
-        })
+        conceptos.append(
+            {
+                "descripcion": con.get("Descripcion"),
+                "clave_prod_serv": con.get("ClaveProdServ"),
+                "clave_unidad": con.get("ClaveUnidad"),
+                "unidad": con.get("Unidad"),
+                "cantidad": _float_or_none(con.get("Cantidad")),
+                "valor_unitario": _float_or_none(con.get("ValorUnitario")),
+                "descuento": _float_or_none(con.get("Descuento")),
+                "importe": _float_or_none(con.get("Importe")),
+                "iva": iva_concepto,
+                "objeto_imp": con.get("ObjetoImp"),
+            }
+        )
 
     carta_porte_datos = carta_porte.parse(root)
     comercio_exterior_datos = comercio_exterior.parse(root)

@@ -9,11 +9,11 @@ from PIL import Image
 
 EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 
-_DPI_TICKET    = 200
-_DPI_NATIVO    = 300
+_DPI_TICKET = 200
+_DPI_NATIVO = 300
 _DPI_ESCANEADO = 250
 
-SCORE_MINIMO        = 0.35
+SCORE_MINIMO = 0.35
 SCORE_MINIMO_NATIVO = 0.25
 
 
@@ -32,16 +32,16 @@ def clasificar_pagina(pagina: fitz.Page) -> str:
 
 def dpi_para_tipo(tipo: str) -> int:
     return {
-        "ticket":   _DPI_TICKET,
-        "nativo":   _DPI_NATIVO,
+        "ticket": _DPI_TICKET,
+        "nativo": _DPI_NATIVO,
         "escaneado": _DPI_ESCANEADO,
     }[tipo]
 
 
 def renderizar_pagina(pagina: fitz.Page, dpi: int) -> np.ndarray:
     escala = dpi / 72.0
-    mat    = fitz.Matrix(escala, escala)
-    pix    = pagina.get_pixmap(matrix=mat, colorspace=fitz.csRGB)
+    mat = fitz.Matrix(escala, escala)
+    pix = pagina.get_pixmap(matrix=mat, colorspace=fitz.csRGB)
     return np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3)
 
 
@@ -50,26 +50,26 @@ def imagen_a_array(ruta: Path) -> np.ndarray:
 
 
 def _preprocesar_ticket(img: np.ndarray) -> np.ndarray:
-    gray  = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    gray  = cv2.resize(gray, None, fx=2, fy=2, interpolation=cv2.INTER_LANCZOS4)
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    gray = cv2.resize(gray, None, fx=2, fy=2, interpolation=cv2.INTER_LANCZOS4)
     clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(4, 4))
-    gray  = clahe.apply(gray)
+    gray = clahe.apply(gray)
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
 
 def _preprocesar_nativo(img: np.ndarray) -> np.ndarray:
-    gray  = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) if img.ndim == 3 else img
+    gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY) if img.ndim == 3 else img
     clahe = cv2.createCLAHE(clipLimit=1.5, tileGridSize=(8, 8))
-    gray  = clahe.apply(gray)
+    gray = clahe.apply(gray)
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
 
 def _preprocesar_escaneado(img: np.ndarray) -> np.ndarray:
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    std  = float(np.std(gray))
+    std = float(np.std(gray))
     clip = 1.5 if std > 40 else 3.0
     clahe = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8, 8))
-    gray  = clahe.apply(gray)
+    gray = clahe.apply(gray)
     return cv2.cvtColor(gray, cv2.COLOR_GRAY2RGB)
 
 
@@ -88,10 +88,10 @@ def agrupar_en_lineas(
     if not items:
         return []
 
-    ordenados    = sorted(items, key=lambda x: x[2])
-    lineas       = []
+    ordenados = sorted(items, key=lambda x: x[2])
+    lineas = []
     linea_actual = [ordenados[0]]
-    y_ref        = ordenados[0][2]
+    y_ref = ordenados[0][2]
 
     for item in ordenados[1:]:
         if abs(item[2] - y_ref) <= tolerancia_y:
@@ -100,7 +100,7 @@ def agrupar_en_lineas(
             linea_actual.sort(key=lambda x: x[3])
             lineas.append(linea_actual)
             linea_actual = [item]
-            y_ref        = item[2]
+            y_ref = item[2]
 
     if linea_actual:
         linea_actual.sort(key=lambda x: x[3])
@@ -114,13 +114,13 @@ def items_a_texto(lineas: list[list[tuple]]) -> list[str]:
 
 
 def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int, int, int]]:
-    doc     = fitz.open(str(ruta))
+    doc = fitz.open(str(ruta))
     paginas = []
 
     for num, pagina in enumerate(doc):
         tipo = clasificar_pagina(pagina)
-        dpi  = dpi_para_tipo(tipo)
-        raw  = renderizar_pagina(pagina, dpi)
+        dpi = dpi_para_tipo(tipo)
+        raw = renderizar_pagina(pagina, dpi)
         proc = preprocesar(raw, tipo)
         paginas.append((proc, tipo, dpi, num + 1, len(doc)))
 
@@ -129,7 +129,7 @@ def extraer_paginas_pdf(ruta: Path) -> list[tuple[np.ndarray, str, int, int, int
 
 
 def extraer_imagen_suelta(ruta: Path) -> list[tuple[np.ndarray, str, int, int, int]]:
-    raw  = imagen_a_array(ruta)
+    raw = imagen_a_array(ruta)
     tipo = "ticket" if (raw.shape[1] < 600) else "escaneado"
     proc = preprocesar(raw, tipo)
     return [(proc, tipo, 0, 1, 1)]

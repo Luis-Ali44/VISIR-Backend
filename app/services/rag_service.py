@@ -2,7 +2,7 @@ import json
 import logging
 import os
 import time
-from typing import Any
+from typing import Any, cast
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
@@ -42,16 +42,19 @@ from rag.retriever import FiscalRAGRetriever, OrgRAGRetriever, RetrievalContext
 
 logger = logging.getLogger(__name__)
 
-PROMPT_LLM_ROUTER = """Eres el enrutador de IA de alta precisión para el sistema fiscal mexicano VISIR.
-Tu trabajo es clasificar la consulta del contribuyente cuando las reglas léxicas fallan.
-
-Pregunta del usuario: "{pregunta}"
-
-Debes clasificar estrictamente en una de estas tres opciones:
-- NORMATIVA: Dudas teóricas sobre leyes del SAT, reglamentos o esquemas de impuestos.
-- CFDI_PROPIOS: Consultas sobre los números de sus facturas, dinero gastado, montos o proveedores del negocio.
-- HIBRIDO: Preguntas que requieren verificar sus datos de facturación REALES y cruzarlos con las leyes del SAT.
-"""
+PROMPT_LLM_ROUTER = (
+    "Eres el enrutador de IA de alta precisión para el sistema fiscal mexicano VISIR.\n"
+    "Tu trabajo es clasificar la consulta del contribuyente cuando las reglas léxicas fallan.\n"
+    "\n"
+    'Pregunta del usuario: "{pregunta}"\n'
+    "\n"
+    "Debes clasificar estrictamente en una de estas tres opciones:\n"
+    "- NORMATIVA: Dudas teóricas sobre leyes del SAT, reglamentos o esquemas de impuestos.\n"
+    "- CFDI_PROPIOS: Consultas sobre los números de sus facturas, dinero gastado, montos "
+    "o proveedores del negocio.\n"
+    "- HIBRIDO: Preguntas que requieren verificar sus datos de facturación REALES "
+    "y cruzarlos con las leyes del SAT.\n"
+)
 
 
 class RAGServiceLangGraph:
@@ -164,7 +167,7 @@ class RAGServiceLangGraph:
         prompt = ChatPromptTemplate.from_messages([("system", PROMPT_LLM_ROUTER)])
         chain_router = prompt | self.router_llm
 
-        decision: DecisionEnrutamiento = chain_router.invoke({"pregunta": state["pregunta"]})
+        decision = cast(DecisionEnrutamiento, chain_router.invoke({"pregunta": state["pregunta"]}))
         return {"ruta_seleccionada": decision.ruta, "decision_enrutamiento": decision}
 
     def _nodo_recuperar_leyes(self, state: VisirState) -> dict[str, Any]:
@@ -212,19 +215,22 @@ class RAGServiceLangGraph:
     def _nodo_respuesta_normativa(self, state: VisirState) -> dict[str, Any]:
         contextos = self._crear_contextos(state)
         historial_txt = self._formatear_historial(state.get("historial", []))
-        sys_msg = "Eres un asistente fiscal especializado en la normativa del SAT de México. Responde ÚNICAMENTE con información presente en el contexto proporcionado."
+        sys_msg = (
+            "Eres un asistente fiscal especializado en la normativa del SAT de México. "
+            "Responde ÚNICAMENTE con información presente en el contexto proporcionado."
+        )
         if historial_txt:
             sys_msg = f"{historial_txt}\n\n{sys_msg}"
         mensajes = [
             ("system", sys_msg),
             (
                 "human",
-                f"Contexto fiscal recuperado:\n{format_context(contextos)}\n\nPregunta del usuario: {state['pregunta']}",
+                f"Contexto fiscal recuperado:\n{format_context(contextos)}\n\n"
+                f"Pregunta del usuario: {state['pregunta']}",
             ),
         ]
-        complejidad = evaluar_complejidad(
-            state["pregunta"], state["ruta_seleccionada"], len(contextos)
-        )
+        ruta = state.get("ruta_seleccionada") or "NORMATIVA"
+        complejidad = evaluar_complejidad(state["pregunta"], ruta, len(contextos))
         result = self._invocar_con_esquema(
             mensajes,
             temperature=0.1,
@@ -255,22 +261,25 @@ class RAGServiceLangGraph:
             )
         else:
             prompt = (
-                f"Genera un informe analítico ejecutivo con base en estos datos numéricos reales del negocio:\n"
+                "Genera un informe analítico ejecutivo con base en estos datos "
+                f"numéricos reales del negocio:\n"
                 f"{json.dumps(state['estadisticas_cfdi'])}\n\n"
                 f"Pregunta: {state['pregunta']}"
             )
 
         historial_txt = self._formatear_historial(state.get("historial", []))
-        sys_msg = "Eres un asistente fiscal especializado en análisis de CFDIs. Genera informes ejecutivos basados exclusivamente en los datos proporcionados."
+        sys_msg = (
+            "Eres un asistente fiscal especializado en análisis de CFDIs. "
+            "Genera informes ejecutivos basados exclusivamente en los datos proporcionados."
+        )
         if historial_txt:
             sys_msg = f"{historial_txt}\n\n{sys_msg}"
         mensajes = [
             ("system", sys_msg),
             ("human", prompt),
         ]
-        complejidad = evaluar_complejidad(
-            state["pregunta"], state["ruta_seleccionada"], len(contextos)
-        )
+        ruta = state.get("ruta_seleccionada") or "CFDI_PROPIOS"
+        complejidad = evaluar_complejidad(state["pregunta"], ruta, len(contextos))
         result = self._invocar_con_esquema(
             mensajes,
             temperature=0.0,
@@ -309,16 +318,19 @@ class RAGServiceLangGraph:
             f"Pregunta: {state['pregunta']}"
         )
         historial_txt = self._formatear_historial(state.get("historial", []))
-        sys_msg = "Eres un asistente fiscal que cruza datos de facturación del contribuyente con las leyes fiscales mexicanas vigentes. Responde basándote exclusivamente en ambos contextos."
+        sys_msg = (
+            "Eres un asistente fiscal que cruza datos de facturación del contribuyente "
+            "con las leyes fiscales mexicanas vigentes. "
+            "Responde basándote exclusivamente en ambos contextos."
+        )
         if historial_txt:
             sys_msg = f"{historial_txt}\n\n{sys_msg}"
         mensajes = [
             ("system", sys_msg),
             ("human", prompt),
         ]
-        complejidad = evaluar_complejidad(
-            state["pregunta"], state["ruta_seleccionada"], len(contextos)
-        )
+        ruta = state.get("ruta_seleccionada") or "HIBRIDO"
+        complejidad = evaluar_complejidad(state["pregunta"], ruta, len(contextos))
         result = self._invocar_con_esquema(
             mensajes,
             temperature=0.2,

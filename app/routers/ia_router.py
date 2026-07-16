@@ -1,6 +1,8 @@
 import os
 import uuid
 
+from typing import cast
+
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from app.core.dependencies import get_user
@@ -23,7 +25,7 @@ def get_rag_service(request: Request) -> RAGServiceLangGraph:
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="RAGService no inicializado en la aplicación",
         )
-    return service
+    return cast(RAGServiceLangGraph, service)
 
 
 def _calcular_cobertura(fuentes: list[dict]) -> bool:
@@ -67,7 +69,7 @@ def procesar_pregunta_ia(
     try:
         historial = obtener_historial(usuario.id, usuario.id_organizacion)
 
-        respuesta, ruta, metadata = rag_service.ejecutar_consulta(
+        respuesta, _ruta, metadata = rag_service.ejecutar_consulta(
             pregunta=body.pregunta,
             usuario_id=usuario.id,
             id_organizacion=usuario.id_organizacion,
@@ -106,4 +108,4 @@ def procesar_pregunta_ia(
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Fallo en la máquina de estados VISIR: {e!s}",
-        )
+        ) from e

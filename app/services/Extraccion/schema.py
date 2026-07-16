@@ -8,6 +8,8 @@ from functools import lru_cache
 from pathlib import Path
 from typing import cast
 
+from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
+
 from .campos_cfdi import CAMPOS_OBLIGATORIOS_4_0, CAMPOS_OBLIGATORIOS_CFDI
 from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
@@ -16,7 +18,6 @@ from .catalogos import (
     CATALOGO_MONEDA,
     normalizar_catalogo,
 )
-from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
 
 _CATALOGO_PATH = Path(__file__).parent / "catalogo_prodserv_sat.json"
 
@@ -40,16 +41,16 @@ def _validar_rfc(v: str, permitir_genericos: bool = False) -> str:
 
 
 class ConceptoMinimo(BaseModel):
-    descripcion:     str   | None = Field(None, max_length=1000)
-    clave_prod_serv: str   | None = Field(None, pattern=r"^\d{8}$")
-    clave_unidad:    str   | None = Field(None, min_length=1, max_length=10)
-    unidad:          str   | None = Field(None, max_length=20)
-    cantidad:        float | None = Field(None, gt=0)
-    valor_unitario:  float | None = Field(None, ge=0)
-    descuento:       float | None = Field(None, ge=0)
-    importe:         float | None = Field(None, ge=0)
-    iva:             float | None = Field(None, ge=0)
-    objeto_imp:      str   | None = Field(None, pattern=r"^0[1-4]$")
+    descripcion: str | None = Field(None, max_length=1000)
+    clave_prod_serv: str | None = Field(None, pattern=r"^\d{8}$")
+    clave_unidad: str | None = Field(None, min_length=1, max_length=10)
+    unidad: str | None = Field(None, max_length=20)
+    cantidad: float | None = Field(None, gt=0)
+    valor_unitario: float | None = Field(None, ge=0)
+    descuento: float | None = Field(None, ge=0)
+    importe: float | None = Field(None, ge=0)
+    iva: float | None = Field(None, ge=0)
+    objeto_imp: str | None = Field(None, pattern=r"^0[1-4]$")
 
     @field_validator("clave_prod_serv")
     @classmethod
@@ -100,41 +101,41 @@ class ConceptoMinimo(BaseModel):
 
 
 class ConceptoXML(ConceptoMinimo):
-    clave_prod_serv: str   = Field(..., pattern=r"^\d{8}$")
-    cantidad:        float = Field(..., gt=0)
-    valor_unitario:  float = Field(..., ge=0)
-    importe:         float = Field(..., ge=0)
+    clave_prod_serv: str = Field(..., pattern=r"^\d{8}$")
+    cantidad: float = Field(..., gt=0)
+    valor_unitario: float = Field(..., ge=0)
+    importe: float = Field(..., ge=0)
 
 
 class ExtractionResultBase(BaseModel):
-    version:          str | None = Field(None, pattern=r"^(3\.3|4\.0)$")
-    folio_fiscal:     str | None = Field(None, min_length=36, max_length=36)
-    fecha_emision:    str | None = None
-    sello:            str | None = Field(None, pattern=r"^[A-Za-z0-9+/]+=*$")
-    metodo_pago:      str | None = Field(None, pattern=r"^(PUE|PPD)$")
-    forma_pago:       str | None = None
-    moneda:           str | None = None
+    version: str | None = Field(None, pattern=r"^(3\.3|4\.0)$")
+    folio_fiscal: str | None = Field(None, min_length=36, max_length=36)
+    fecha_emision: str | None = None
+    sello: str | None = Field(None, pattern=r"^[A-Za-z0-9+/]+=*$")
+    metodo_pago: str | None = Field(None, pattern=r"^(PUE|PPD)$")
+    forma_pago: str | None = None
+    moneda: str | None = None
     tipo_comprobante: str | None = Field(None, pattern=r"^(I|E|P|N|T)$")
-    no_certificado:   str | None = Field(None, pattern=r"^\d{20}$")
-    exportacion:      str | None = Field(None, pattern=r"^0[1-4]$")
+    no_certificado: str | None = Field(None, pattern=r"^\d{20}$")
+    exportacion: str | None = Field(None, pattern=r"^0[1-4]$")
     lugar_expedicion: str | None = Field(None, pattern=r"^\d{5}$")
 
-    emisor_rfc:            str | None = Field(None, min_length=12, max_length=13)
-    emisor_nombre:         str | None = Field(None, max_length=254)
+    emisor_rfc: str | None = Field(None, min_length=12, max_length=13)
+    emisor_nombre: str | None = Field(None, max_length=254)
     regimen_fiscal_emisor: str | None = Field(None, pattern=r"^\d{3}$")
 
-    receptor_rfc:              str | None = Field(None, min_length=12, max_length=13)
-    receptor_nombre:           str | None = Field(None, max_length=254)
+    receptor_rfc: str | None = Field(None, min_length=12, max_length=13)
+    receptor_nombre: str | None = Field(None, max_length=254)
     domicilio_fiscal_receptor: str | None = Field(None, pattern=r"^\d{5}$")
-    regimen_fiscal_receptor:   str | None = Field(None, pattern=r"^\d{3}$")
-    uso_cfdi:                  str | None = Field(None, pattern=r"^[A-Z][A-Z0-9]\d{1,2}$")
+    regimen_fiscal_receptor: str | None = Field(None, pattern=r"^\d{3}$")
+    uso_cfdi: str | None = Field(None, pattern=r"^[A-Z][A-Z0-9]\d{1,2}$")
 
-    subtotal:    float | None = Field(None, ge=0)
-    descuento:   float | None = Field(None, ge=0)
-    iva:         float | None = Field(None, ge=0)
+    subtotal: float | None = Field(None, ge=0)
+    descuento: float | None = Field(None, ge=0)
+    iva: float | None = Field(None, ge=0)
     retenciones: float | None = Field(None, ge=0)
-    total:       float | None = Field(None, ge=0)
-    conceptos:   Sequence[ConceptoMinimo] = Field(default_factory=list)
+    total: float | None = Field(None, ge=0)
+    conceptos: Sequence[ConceptoMinimo] = Field(default_factory=list)
 
     @field_validator("metodo_pago", mode="before")
     @classmethod
@@ -219,9 +220,9 @@ class ExtractionResultBase(BaseModel):
                 raise ValueError("MetodoPago PUE no puede usar FormaPago '99'")
 
         if self.subtotal is not None and self.total is not None:
-            iva         = self.iva         or 0.0
+            iva = self.iva or 0.0
             retenciones = self.retenciones or 0.0
-            descuento   = self.descuento   or 0.0
+            descuento = self.descuento or 0.0
             esperado = self.subtotal - descuento + iva - retenciones
             if abs(esperado - self.total) > 1.0:
                 raise ValueError(
@@ -263,12 +264,10 @@ class ExtractionResultXML(ExtractionResultBase):
 
             for i, conc in enumerate(self.conceptos):
                 if not getattr(conc, "objeto_imp", None):
-                    ausentes.append(f"Concepto #{i+1} ObjetoImp [4.0]")
+                    ausentes.append(f"Concepto #{i + 1} ObjetoImp [4.0]")
 
         if ausentes:
-            raise ValueError(
-                "Campos obligatorios faltantes en CFDI: " + ", ".join(ausentes)
-            )
+            raise ValueError("Campos obligatorios faltantes en CFDI: " + ", ".join(ausentes))
 
         return self
 
@@ -278,16 +277,16 @@ def _aplanar_estructura(data: dict) -> dict:
 
     if "emisor" in resultado and isinstance(resultado["emisor"], dict):
         emisor = resultado.pop("emisor")
-        resultado.setdefault("emisor_rfc",            emisor.get("RFC"))
-        resultado.setdefault("emisor_nombre",         emisor.get("nombre"))
+        resultado.setdefault("emisor_rfc", emisor.get("RFC"))
+        resultado.setdefault("emisor_nombre", emisor.get("nombre"))
         resultado.setdefault("regimen_fiscal_emisor", emisor.get("regimen_fiscal"))
 
     if "receptor" in resultado and isinstance(resultado["receptor"], dict):
         receptor = resultado.pop("receptor")
-        resultado.setdefault("receptor_rfc",              receptor.get("RFC"))
-        resultado.setdefault("receptor_nombre",           receptor.get("nombre"))
-        resultado.setdefault("uso_cfdi",                  receptor.get("uso_cfdi"))
-        resultado.setdefault("regimen_fiscal_receptor",   receptor.get("regimen_fiscal"))
+        resultado.setdefault("receptor_rfc", receptor.get("RFC"))
+        resultado.setdefault("receptor_nombre", receptor.get("nombre"))
+        resultado.setdefault("uso_cfdi", receptor.get("uso_cfdi"))
+        resultado.setdefault("regimen_fiscal_receptor", receptor.get("regimen_fiscal"))
         resultado.setdefault("domicilio_fiscal_receptor", receptor.get("domicilio_fiscal"))
 
     if "fecha" in resultado and "fecha_emision" not in resultado:
@@ -352,17 +351,17 @@ def campos_obligatorios_ausentes(data: dict) -> list[str]:
     conceptos = payload.get("conceptos", [])
     for i, conc in enumerate(conceptos):
         if not conc.get("descripcion"):
-            ausentes.append(f"Concepto #{i+1} Descripción")
+            ausentes.append(f"Concepto #{i + 1} Descripción")
         if conc.get("clave_prod_serv") is None:
-            ausentes.append(f"Concepto #{i+1} ClaveProdServ")
+            ausentes.append(f"Concepto #{i + 1} ClaveProdServ")
         if conc.get("cantidad") is None:
-            ausentes.append(f"Concepto #{i+1} Cantidad")
+            ausentes.append(f"Concepto #{i + 1} Cantidad")
         if conc.get("valor_unitario") is None:
-            ausentes.append(f"Concepto #{i+1} ValorUnitario")
+            ausentes.append(f"Concepto #{i + 1} ValorUnitario")
         if conc.get("importe") is None:
-            ausentes.append(f"Concepto #{i+1} Importe")
+            ausentes.append(f"Concepto #{i + 1} Importe")
         if payload.get("version") == "4.0" and not conc.get("objeto_imp"):
-            ausentes.append(f"Concepto #{i+1} ObjetoImp [4.0]")
+            ausentes.append(f"Concepto #{i + 1} ObjetoImp [4.0]")
 
     return ausentes
 
