@@ -9,9 +9,7 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.types import Send
 
-from app.repositories.extracciones_repository import (
-    get_estadisticas_basicas,
-)
+from app.repositories.extracciones_repositories import get_estadisticas_basicas
 from app.schemas.consulta import DecisionEnrutamiento, VisirState
 from app.services.confidence_features import (
     data_completeness as _data_completeness,
@@ -32,6 +30,11 @@ from app.services.confidence_features import (
     routing_certainty as _routing_certainty,
 )
 from app.services.confidence_scoring import ConfidenceScorer
+from app.services.llm_cascade import (
+    LLMCascadeRouter,
+    cascada_desde_env,
+    evaluar_complejidad,
+)
 from app.services.routing_logic import analizar_lexico
 from rag.chain import ChainResult, FiscalRAGChain, RespuestaLLM, format_context
 from rag.config import RAGConfig, load_config_from_env
@@ -60,6 +63,7 @@ class RAGServiceLangGraph:
         llm_base_url: str,
         llm_model: str,
         rag_config: RAGConfig | None = None,
+        cascada: LLMCascadeRouter | None = None,
     ) -> None:
         self.chain = chain
         self.retriever = retriever
@@ -74,6 +78,8 @@ class RAGServiceLangGraph:
         self.router_llm = ChatOpenAI(
             model=llm_model, temperature=0, api_key=llm_api_key, base_url=llm_base_url
         ).with_structured_output(DecisionEnrutamiento)
+
+        self.cascada = cascada or cascada_desde_env()
 
         modelo_path = os.getenv("MODELO_CONFIANZA_PATH", "")
         self.scorer = ConfidenceScorer(modelo_path)
@@ -114,24 +120,27 @@ class RAGServiceLangGraph:
                 )
         return ctx
 
-    def _invocar_con_esquema(self, mensajes: list, temperature: float) -> ChainResult:
-        llm = ChatOpenAI(
-            model=self.llm_model,
+    def _invocar_con_esquema(
+        self,
+        mensajes: list,
+        temperature: float,
+        complejidad: float,
+        id_organizacion: str | None = None,
+    ) -> ChainResult:
+        resultado = self.cascada.invocar(
+            mensajes=mensajes,
+            schema=RespuestaLLM,
             temperature=temperature,
-            api_key=self.llm_api_key,
-            base_url=self.llm_base_url,
-            max_tokens=2048,
-        ).with_structured_output(RespuestaLLM, include_raw=True)
-        raw = llm.invoke(mensajes)
-        respuesta: RespuestaLLM = raw["parsed"]
-        ai_msg = raw["raw"]
-        usage = getattr(ai_msg, "usage_metadata", None) or {}
+            complejidad=complejidad,
+            id_organizacion=id_organizacion,
+        )
+        respuesta: RespuestaLLM = resultado.texto_esquema
         return ChainResult(
             texto=respuesta.respuesta,
             tiene_cobertura=respuesta.tiene_cobertura,
             fuentes_citadas=respuesta.fuentes_citadas,
-            tokens_entrada=usage.get("input_tokens", 0),
-            tokens_salida=usage.get("output_tokens", 0),
+            tokens_entrada=resultado.tokens_entrada,
+            tokens_salida=resultado.tokens_salida,
         )
 
     def _formatear_historial(self, historial: list[dict[str, str]]) -> str:
@@ -213,7 +222,15 @@ class RAGServiceLangGraph:
                 f"Contexto fiscal recuperado:\n{format_context(contextos)}\n\nPregunta del usuario: {state['pregunta']}",
             ),
         ]
-        result = self._invocar_con_esquema(mensajes, temperature=0.1)
+        complejidad = evaluar_complejidad(
+            state["pregunta"], state["ruta_seleccionada"], len(contextos)
+        )
+        result = self._invocar_con_esquema(
+            mensajes,
+            temperature=0.1,
+            complejidad=complejidad,
+            id_organizacion=state.get("id_organizacion"),
+        )
         respuesta = result.texto
         if state.get("accion_seleccionada") == "responder_con_advertencia":
             respuesta = (
@@ -251,7 +268,15 @@ class RAGServiceLangGraph:
             ("system", sys_msg),
             ("human", prompt),
         ]
-        result = self._invocar_con_esquema(mensajes, temperature=0.0)
+        complejidad = evaluar_complejidad(
+            state["pregunta"], state["ruta_seleccionada"], len(contextos)
+        )
+        result = self._invocar_con_esquema(
+            mensajes,
+            temperature=0.0,
+            complejidad=complejidad,
+            id_organizacion=state.get("id_organizacion"),
+        )
         respuesta = result.texto
         if state.get("accion_seleccionada") == "responder_con_advertencia":
             respuesta = (
@@ -291,7 +316,15 @@ class RAGServiceLangGraph:
             ("system", sys_msg),
             ("human", prompt),
         ]
-        result = self._invocar_con_esquema(mensajes, temperature=0.2)
+        complejidad = evaluar_complejidad(
+            state["pregunta"], state["ruta_seleccionada"], len(contextos)
+        )
+        result = self._invocar_con_esquema(
+            mensajes,
+            temperature=0.2,
+            complejidad=complejidad,
+            id_organizacion=state.get("id_organizacion"),
+        )
         respuesta = result.texto
         if state.get("accion_seleccionada") == "responder_con_advertencia":
             respuesta = (

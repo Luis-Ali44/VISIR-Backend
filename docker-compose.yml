@@ -7,6 +7,7 @@ services:
       - .env
     environment:
       - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python  
+      - REDIS_URL=redis://redis:6379
     volumes:
       - ./app:/app/app
       - ./rag:/app/rag
@@ -21,14 +22,36 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 
+  worker:
+      build: .
+      env_file:
+        - .env
+      environment:
+        - PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python  
+        - REDIS_URL=redis://redis:6379
+      volumes:
+        - ./app:/app/app
+        - ./rag:/app/rag
+        - ./ingestion:/app/ingestion
+        - ./data:/app/data
+        - chroma_db_data:/app/chroma_db
+      depends_on:
+        redis:
+          condition: service_healthy
+        api:
+          condition: service_started
+      command: celery -A app.tasks.document_tasks.celery_app worker --loglevel=info
+
+
   postgres:
     image: postgres:16-alpine
     environment:
       POSTGRES_DB: visir_dev
       POSTGRES_USER: visir
       POSTGRES_PASSWORD: visir123
+      POSTGRES_HOST_AUTH_METHOD: md5
     ports:
-      - "5433:5432"
+      - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -40,7 +63,7 @@ services:
   redis:
     image: redis:7-alpine
     ports:
-      - "6379:6379"
+      - "6380:6379"
     volumes:
       - redis_data:/data
     healthcheck:

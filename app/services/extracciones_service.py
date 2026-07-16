@@ -3,16 +3,14 @@ from typing import Any
 
 from fastapi import HTTPException
 
-from app.repositories.extracciones_repository import (
+from app.repositories.extracciones_repositories import (
     get_extraccion_by_id,
-)
-from app.repositories.extracciones_repository import (
-    get_extracciones_by_org as get_extracciones_repository,
+    get_extracciones_repository,
 )
 
 
-def get_extraccion_by_id_service(extraccion_id: str, id_organizacion: str) -> list[Any]:
-    extraccion = get_extraccion_by_id(extraccion_id, id_organizacion=id_organizacion)
+def get_extraccion_by_id_service(extraccion_id: str) -> list[Any]:
+    extraccion = get_extraccion_by_id(extraccion_id)
 
     if not extraccion:
         raise HTTPException(status_code=404, detail="Extracción no encontrada")
@@ -22,6 +20,7 @@ def get_extraccion_by_id_service(extraccion_id: str, id_organizacion: str) -> li
 def get_extracciones_service(
     limit: int,
     cursor: str | None,
+    id_organizacion: str | None,
     fecha_inicio: date | None = None,
     fecha_final: date | None = None,
     rfc_emisor: str | None = None,
@@ -33,6 +32,7 @@ def get_extracciones_service(
     extracciones = get_extracciones_repository(
         limit=limit,
         cursor=cursor,
+        id_organizacion=id_organizacion,
         fecha_inicio=fecha_inicio,
         fecha_final=fecha_final,
         rfc_emisor=rfc_emisor,

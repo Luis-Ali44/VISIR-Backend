@@ -116,7 +116,7 @@ class OrgRAGRetriever:
     cada consulta y lo inyecta como filtro obligatorio de Chroma. Sin
     este filtro, una organización podría recibir fragmentos de otra —
     el mismo principio de aislamiento que ya aplica
-    extracciones_repository.get_extracciones_by_org a nivel SQL.
+    extracciones_repositories.get_extracciones_repository a nivel SQL.
     """
 
     def __init__(self, config: RAGConfig = DEFAULT_CONFIG):

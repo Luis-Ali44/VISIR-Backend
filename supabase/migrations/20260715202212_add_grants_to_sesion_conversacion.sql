@@ -1,0 +1,1 @@
+GRANT ALL ON sesiones_conversacion TO service_role;

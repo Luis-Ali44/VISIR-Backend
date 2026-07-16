@@ -8,7 +8,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.logging import configurar_logging
 from app.core.sentry import configurar_sentry
 from app.routers.auth_router import router as auth_router
-from app.routers.conversacion_router import router as consultas_router
 from app.routers.conversaciones_router import router as conversaciones_router
 from app.routers.documents_router import router as documents_router
 from app.routers.extracciones_router import router as extracciones_router
@@ -74,6 +73,6 @@ app.include_router(auth_router)
 app.include_router(ia_router)
 app.include_router(ingest_router)
 app.include_router(extracciones_router)
-app.include_router(consultas_router)
+# app.include_router(consultas_router)
 app.include_router(health_router)
 app.include_router(conversaciones_router)

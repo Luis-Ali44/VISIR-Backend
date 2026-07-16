@@ -109,7 +109,7 @@ def reindexar_org_desde_supabase(
     id_usuario: str,
     reset: bool = False,
 ) -> dict[str, Any]:
-    from app.repositories.extracciones_repository import get_extracciones_by_org
+    from app.repositories.extracciones_repositories import get_extracciones_repository
     from rag.store import FiscalChromaStore
 
     pipeline = get_org_ingestion_pipeline()
@@ -131,7 +131,7 @@ def reindexar_org_desde_supabase(
         )
         store.reset()
 
-    extracciones = get_extracciones_by_org(
+    extracciones = get_extracciones_repository(
         id_organizacion=id_organizacion,
         limit=10000,
     )
