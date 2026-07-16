@@ -160,30 +160,30 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
 
         forma_pago = datos.get("forma_pago")
         fecha_emision_raw = datos.get("fecha_emision")
-        tipo_comprobante_raw = datos.get("tipo_de_comprobante")
+        tipo_comprobante_raw = datos.get("tipo_comprobante")
 
-    rows.append(
-        {
-            "folio_fiscal": datos.get("folio_fiscal"),
-            "total": datos.get("total"),
-            "metadatos": datos,
-            "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
-            if fecha_emision_raw is not None
-            else None,
-            "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
-            if tipo_comprobante_raw is not None
-            else None,
-            "metodo_pago": datos.get("metodo_pago"),
-            "estado": "procesado",
-            "rfc_emisor": datos.get("emisor", {}).get("RFC"),
-            "nombre_emisor": datos.get("emisor", {}).get("nombre"),
-            "rfc_receptor": datos.get("receptor", {}).get("RFC"),
-            "nombre_receptor": datos.get("receptor", {}).get("nombre"),
-            "id_documento": id_documento,
-            "id_organizacion": id_organizacion,
-            "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
-        }
-    )
+        rows.append(
+            {
+                "folio_fiscal": datos.get("folio_fiscal"),
+                "total": datos.get("total"),
+                "metadatos": datos,
+                "fecha_emision": parse_fecha(str(fecha_emision_raw)).isoformat()
+                if fecha_emision_raw is not None
+                else None,
+                "tipo_comprobante": map_tipo_comprobante(str(tipo_comprobante_raw))
+                if tipo_comprobante_raw is not None
+                else None,
+                "metodo_pago": datos.get("metodo_pago"),
+                "estado": "procesado",
+                "rfc_emisor": datos.get("emisor", {}).get("RFC"),
+                "nombre_emisor": datos.get("emisor", {}).get("nombre"),
+                "rfc_receptor": datos.get("receptor", {}).get("RFC"),
+                "nombre_receptor": datos.get("receptor", {}).get("nombre"),
+                "id_documento": id_documento,
+                "id_organizacion": id_organizacion,
+                "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
+            }
+        )
 
     # Guardamos las extracciones en la base de datos
     try:

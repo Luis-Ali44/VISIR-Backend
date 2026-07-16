@@ -1,6 +1,11 @@
 from __future__ import annotations
 
+import json
+import os
 import re
+import unicodedata
+from functools import lru_cache
+from pathlib import Path
 
 
 def expandir_abreviaturas(texto: str) -> str:
@@ -166,3 +171,145 @@ validar_digito_rfc = validar_formato_rfc
 
 def normalizar_rfc(rfc: str) -> str:
     return _norm_rfc(rfc)
+
+_ARCHIVOS_CATALOGO: dict[str, str] = {
+    "regimen_fiscal": "regimen_fiscal.json",
+    "uso_cfdi": "uso_cfdi.json",
+    "forma_pago": "forma_pago.json",
+    "metodo_pago": "metodo_pago.json",
+    "moneda": "moneda.json",
+    "clave_unidad": "clave_unidad.json",
+    "tipo_comprobante": "tipo_comprobante.json",
+    "pais": "pais.json",
+    "exportacion": "exportacion.json",
+    "clave_prod_serv": "catalogo_prodserv_sat.json",
+}
+
+
+def _normalizar_texto(s: str | None) -> str:
+    if s is None:
+        return ""
+    s = str(s).strip().upper()
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode("ascii")
+
+
+def _candidatos_data_dir() -> list[Path]:
+    aqui = Path(__file__).resolve()
+    candidatos = []
+    var_entorno = os.getenv("CFDI_DATA_DIR")
+    if var_entorno:
+        candidatos.append(Path(var_entorno))
+    candidatos.append(aqui.parent.parent.parent / "data")
+    return candidatos
+
+
+@lru_cache(maxsize=1)
+def data_dir() -> Path | None:
+    for candidato in _candidatos_data_dir():
+        if candidato.is_dir():
+            return candidato
+    return None
+
+
+@lru_cache(maxsize=None)
+def _leer_json(nombre_archivo: str) -> dict:
+    directorio = data_dir()
+    if directorio is None:
+        return {}
+    ruta = directorio / nombre_archivo
+    if not ruta.exists():
+        return {}
+    try:
+        with ruta.open(encoding="utf-8") as f:
+            return json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+
+@lru_cache(maxsize=None)
+def cargar_catalogo(nombre: str) -> dict[str, str]:
+    archivo = _ARCHIVOS_CATALOGO.get(nombre)
+    if archivo is None:
+        return {}
+    return _leer_json(archivo)
+
+
+@lru_cache(maxsize=1)
+def claves_prod_serv() -> frozenset[str]:
+    catalogo = cargar_catalogo("clave_prod_serv")
+    return frozenset(k for k in catalogo if k.isdigit() and len(k) == 8)
+
+
+@lru_cache(maxsize=None)
+def _es_catalogo_anidado(nombre_catalogo: str) -> bool:
+    catalogo = cargar_catalogo(nombre_catalogo)
+    if not catalogo:
+        return False
+    primer_valor = next(iter(catalogo.values()))
+    return isinstance(primer_valor, dict)
+
+
+@lru_cache(maxsize=None)
+def _indice_texto_a_codigo(nombre_catalogo: str) -> dict[str, str]:
+    catalogo = cargar_catalogo(nombre_catalogo)
+    indice: dict[str, str] = {}
+
+    if _es_catalogo_anidado(nombre_catalogo):
+        for codigo, meta in catalogo.items():
+            descripcion = meta.get("descripcion") if isinstance(meta, dict) else None
+            if descripcion:
+                clave_texto = _normalizar_texto(descripcion)
+                indice.setdefault(clave_texto, codigo)
+    else:
+        for texto, codigo in catalogo.items():
+            indice.setdefault(_normalizar_texto(texto), codigo)
+
+    return indice
+
+
+@lru_cache(maxsize=None)
+def claves_validas(nombre_catalogo: str) -> frozenset[str]:
+    catalogo = cargar_catalogo(nombre_catalogo)
+    if not catalogo:
+        return frozenset()
+    if _es_catalogo_anidado(nombre_catalogo):
+        return frozenset(catalogo.keys())
+    return frozenset(catalogo.values())
+
+
+def normalizar(
+    valor: str | None,
+    nombre_catalogo: str,
+    catalogo_local: dict[str, str] | None = None,
+) -> str | None:
+    if not valor:
+        return valor
+    texto = str(valor).strip()
+
+    if catalogo_local:
+        clave_local = expandir_abreviaturas(texto).upper()
+        if clave_local in catalogo_local:
+            return catalogo_local[clave_local]
+
+    indice = _indice_texto_a_codigo(nombre_catalogo)
+    if indice:
+        clave_sat = _normalizar_texto(texto)
+        if clave_sat in indice:
+            return indice[clave_sat]
+
+    return valor
+
+
+def es_clave_valida(
+    nombre_catalogo: str,
+    clave: str | None,
+    valores_locales: frozenset[str] | None = None,
+) -> bool:
+    if not clave:
+        return False
+    if valores_locales and clave in valores_locales:
+        return True
+    validas = claves_validas(nombre_catalogo)
+    if not validas:
+        return True
+    return clave in validas

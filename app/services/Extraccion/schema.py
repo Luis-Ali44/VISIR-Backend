@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-import json
 import re
 from collections.abc import Sequence
 from datetime import datetime
-from functools import lru_cache
-from pathlib import Path
 from typing import cast
 
 from .campos_cfdi import CAMPOS_OBLIGATORIOS_4_0, CAMPOS_OBLIGATORIOS_CFDI
@@ -14,20 +11,11 @@ from .catalogos import (
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
     CATALOGO_MONEDA,
-    normalizar_catalogo,
+    claves_prod_serv,
+    es_clave_valida,
+    normalizar,
 )
 from pydantic import BaseModel, Field, ValidationError, field_validator, model_validator
-
-_CATALOGO_PATH = Path(__file__).parent / "catalogo_prodserv_sat.json"
-
-
-@lru_cache(maxsize=1)
-def _claves_sat() -> frozenset[str]:
-    try:
-        with _CATALOGO_PATH.open(encoding="utf-8") as f:
-            return frozenset(json.load(f).keys())
-    except FileNotFoundError:
-        return frozenset()
 
 
 def _validar_rfc(v: str, permitir_genericos: bool = False) -> str:
@@ -61,7 +49,7 @@ class ConceptoMinimo(BaseModel):
     def _validar_clave_prod_serv_sugerida(cls, v: str | None) -> str | None:
         if v is None:
             return v
-        claves = _claves_sat()
+        claves = claves_prod_serv()
         if claves and v not in claves:
             raise ValueError(f"ClaveProdServ sugerida '{v}' no existe en el catálogo del SAT")
         return v
@@ -71,7 +59,7 @@ class ConceptoMinimo(BaseModel):
     def _validar_clave_prod_serv(cls, v: str | None) -> str | None:
         if v is None:
             return v
-        claves = _claves_sat()
+        claves = claves_prod_serv()
         if claves and v not in claves:
             raise ValueError(f"ClaveProdServ '{v}' no existe en el catálogo del SAT")
         return v
@@ -79,12 +67,14 @@ class ConceptoMinimo(BaseModel):
     @field_validator("clave_unidad", mode="before")
     @classmethod
     def _normalizar_clave_unidad(cls, v: str | None) -> str | None:
-        return cast("str | None", normalizar_catalogo(v, CATALOGO_CLAVE_UNIDAD))
+        return cast("str | None", normalizar(v, "clave_unidad", CATALOGO_CLAVE_UNIDAD))
 
     @field_validator("clave_unidad")
     @classmethod
     def _validar_clave_unidad(cls, v: str | None) -> str | None:
-        if v is not None and v not in CATALOGO_CLAVE_UNIDAD.values():
+        if v is not None and not es_clave_valida(
+            "clave_unidad", v, frozenset(CATALOGO_CLAVE_UNIDAD.values())
+        ):
             raise ValueError(f"ClaveUnidad '{v}' no está en el catálogo del SAT")
         return v
 
@@ -154,17 +144,17 @@ class ExtractionResultBase(BaseModel):
     @field_validator("metodo_pago", mode="before")
     @classmethod
     def _normalizar_metodo_pago(cls, v: str | None) -> str | None:
-        return cast("str | None", normalizar_catalogo(v, CATALOGO_METODO_PAGO))
+        return cast("str | None", normalizar(v, "metodo_pago", CATALOGO_METODO_PAGO))
 
     @field_validator("forma_pago", mode="before")
     @classmethod
     def _normalizar_forma_pago(cls, v: str | None) -> str | None:
-        return cast("str | None", normalizar_catalogo(v, CATALOGO_FORMA_PAGO))
+        return cast("str | None", normalizar(v, "forma_pago", CATALOGO_FORMA_PAGO))
 
     @field_validator("moneda", mode="before")
     @classmethod
     def _normalizar_moneda(cls, v: str | None) -> str | None:
-        return cast("str | None", normalizar_catalogo(v, CATALOGO_MONEDA))
+        return cast("str | None", normalizar(v, "moneda", CATALOGO_MONEDA))
 
     @field_validator("emisor_rfc", mode="before")
     @classmethod
