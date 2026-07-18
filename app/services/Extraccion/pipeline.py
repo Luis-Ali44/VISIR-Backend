@@ -9,26 +9,30 @@ import time
 from pathlib import Path
 from typing import Any, cast
 
+from app.services.Categorizacion.modelo import categorizar_concepto
+
 from .catalogos import (
     CATALOGO_CLAVE_UNIDAD,
     CATALOGO_FORMA_PAGO,
     CATALOGO_METODO_PAGO,
     CATALOGO_TIPO_COMPROBANTE,
-    normalizar_catalogo,
+    normalizar,
     normalizar_rfc,
     validar_formato_rfc,
 )
 from .llm_extractor import construir_prompt
-from .schema import validar_ocr, validar_xml
+from .schema import campos_obligatorios_ausentes, validar_ocr, validar_xml
 from .texto_utils import es_uuid_valido, es_valor_nulo, extraer_uuid_del_texto
 from .texto_utils import normalizar_fecha as _normalizar_fecha
+
+CATEGORIZACION_ACTIVA = True
 
 MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY", "")
 MISTRAL_MODEL = "mistral-large-latest"
 MAX_REINTENTOS = 4
 
 EXTENSIONES_PDF = {".pdf"}
-EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
+EXTENSIONES_IMAGEN = {".jpg", ".jpeg", ".png"}
 EXTENSIONES_XML = {".xml"}
 
 
@@ -72,6 +76,36 @@ def _limpiar_nulos(obj: Any) -> Any:
     return None if es_valor_nulo(obj) else obj
 
 
+def _categorizar_conceptos(datos: dict, fuente: str) -> None:
+    if not CATEGORIZACION_ACTIVA:
+        return
+
+    for concepto in datos.get("conceptos", []):
+        if not isinstance(concepto, dict):
+            continue
+        descripcion = concepto.get("descripcion")
+        if not descripcion:
+            continue
+
+        if fuente == "xml" and concepto.get("clave_prod_serv"):
+            continue
+
+        try:
+            sugerencia = categorizar_concepto(descripcion)
+        except Exception as e:
+            print(f"  [V-09] No se pudo categorizar concepto: {e}")
+            continue
+
+        if sugerencia.categorizado:
+            concepto["clave_prod_serv_sugerida"] = sugerencia.clave_prod_serv
+            concepto["categoria_confianza"] = round(sugerencia.confianza, 4)
+            concepto["categoria_fuente"] = "modelo"
+        else:
+            concepto["clave_prod_serv_sugerida"] = None
+            concepto["categoria_confianza"] = round(sugerencia.confianza, 4)
+            concepto["categoria_fuente"] = None
+
+
 def _postprocesar(
     datos: dict,
     version: str | None,
@@ -80,14 +114,18 @@ def _postprocesar(
 
     datos = _limpiar_nulos(datos)
 
-    datos["metodo_pago"] = normalizar_catalogo(datos.get("metodo_pago"), CATALOGO_METODO_PAGO)
-    datos["tipo_comprobante"] = normalizar_catalogo(
-        datos.get("tipo_comprobante"), CATALOGO_TIPO_COMPROBANTE
+    datos["metodo_pago"] = normalizar(datos.get("metodo_pago"), "metodo_pago", CATALOGO_METODO_PAGO)
+    datos["tipo_comprobante"] = normalizar(
+        datos.get("tipo_comprobante"),
+        "tipo_comprobante",
+        CATALOGO_TIPO_COMPROBANTE,
     )
-    datos["forma_pago"] = normalizar_catalogo(datos.get("forma_pago"), CATALOGO_FORMA_PAGO)
+    datos["forma_pago"] = normalizar(datos.get("forma_pago"), "forma_pago", CATALOGO_FORMA_PAGO)
     for concepto in datos.get("conceptos", []):
         if isinstance(concepto, dict):
-            concepto["unidad"] = normalizar_catalogo(concepto.get("unidad"), CATALOGO_CLAVE_UNIDAD)
+            concepto["unidad"] = normalizar(
+                concepto.get("unidad"), "clave_unidad", CATALOGO_CLAVE_UNIDAD
+            )
 
     for entidad in ("emisor", "receptor"):
         nodo = datos.get(entidad, {})
@@ -102,7 +140,7 @@ def _postprocesar(
     if uuid_extraido and es_uuid_valido(uuid_extraido):
         if uuid_llm and es_uuid_valido(uuid_llm) and uuid_llm.upper() != uuid_extraido.upper():
             print(
-                f"  [UUID] AVISO: LLM ('{uuid_llm}') y OCR ('{uuid_extraido}') "
+                f"LLM ('{uuid_llm}') y OCR ('{uuid_extraido}') "
                 "no coinciden, ambos con formato válido. Se usa el de OCR; "
                 "revisar manualmente si el monto/folio resultante no cuadra."
             )
@@ -225,7 +263,7 @@ def _extraer_texto_ocr(ruta: Path) -> str:
         lineas = _ocr_desde_array(ocr, img_proc, score_minimo=score_min)
         bloques.append("\n".join(lineas))
 
-    return "\n\n---Inicio de Pagina---\n\n".join(bloques)
+    return "\n\nInicio de Pagina\n\n".join(bloques)
 
 
 def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
@@ -252,6 +290,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
             )
 
         datos["archivo"] = ruta.stem
+        _categorizar_conceptos(datos, fuente="xml")
 
         resultado = {
             "archivo": ruta.stem,
@@ -262,6 +301,7 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
                     "datos": datos,
                     "valido": True,
                     "errores": [],
+                    "advertencias": [],
                 }
             ],
         }
@@ -308,11 +348,22 @@ def procesar(ruta_archivo: str | Path, guardar_txt: bool = True) -> dict:
                 + "\n".join(f"  • {e}" for e in errores)
             )
 
+        _categorizar_conceptos(factura, fuente="ocr")
+
+        advertencias = campos_obligatorios_ausentes(factura)
+        if advertencias:
+            print(
+                f" CFDI #{i + 1} de '{ruta.name}' "
+                f"— {len(advertencias)} campos obligatorios sin extraer "
+                f"(se recomienda revisar): {', '.join(advertencias)}"
+            )
+
         resultados_validados.append(
             {
                 "datos": factura,
                 "valido": True,
                 "errores": [],
+                "advertencias": advertencias,
             }
         )
 
@@ -355,9 +406,9 @@ def procesar_carpeta(carpeta: str | Path) -> list[dict]:
             resultado = procesar(arch)
             resultados.append(resultado)
             exitosos += 1
-            print("  -> OK")
+            print(" OK")
         except Exception as e:
-            print(f"  -> ERROR: {e}")
+            print(f" ERROR: {e}")
             resultados.append(
                 {
                     "archivo": arch.name,
