@@ -14,9 +14,9 @@ REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
    {instruccion_version}
 
 2. EMISOR vs RECEPTOR
-   • EMISOR   → quien EXPIDE la factura. RFC y nombre aparecen en el ENCABEZADO,
+   • EMISOR: quien EXPIDE la factura. RFC y nombre aparecen en el ENCABEZADO,
                 ANTES del "FOLIO FISCAL" / UUID.
-   • RECEPTOR → quien RECIBE. Sus datos aparecen DESPUÉS del folio fiscal.
+   • RECEPTOR: quien RECIBE. Sus datos aparecen DESPUÉS del folio fiscal.
    • NUNCA pongas el mismo RFC en emisor y receptor.
    • NUNCA tomes un RFC de la "Cadena Original del SAT" (el bloque que empieza
      con "1|1.1|" o similar) ni del bloque de sellos digitales. Esos contienen
@@ -35,24 +35,40 @@ REGLAS CRÍTICAS PARA LA EXTRACCIÓN:
    Formato requerido: YYYY-MM-DDTHH:MM:SS (ISO 8601 sin zona horaria).
    Si el texto trae otro formato, conviértelo. Si no hay hora, usa 00:00:00.
 
-5. metodo_pago → exactamente "PUE" o "PPD".
-6. forma_pago  → código de 2 dígitos ("01", "02", "03", "28", "99", etc.).
+5. metodo_pago: exactamente "PUE" o "PPD".
+6. forma_pago: código de 2 dígitos ("01", "02", "03", "28", "99", etc.).
    Solo extrae el código si aparece EXPLÍCITAMENTE en el texto como número.
-7. moneda      → código ISO de 3 letras ("MXN", "USD", "EUR", etc.).
-8. tipo_comprobante → código de una letra: "I" (Ingreso), "E" (Egreso),
-   "P" (Pago), "N" (Nómina), "T" (Traslado). Busca en el texto
-   "Tipo de Comprobante", "TipoDeComprobante", o palabras clave
+7. moneda: código ISO de 3 letras ("MXN", "USD", "EUR", etc.).
+8. tipo_comprobante: código de una letra: "I" (Ingreso), "E" (Egreso), 
+   "P" (Pago), "N" (Nómina), "T" (Traslado). Busca en el texto 
+   "Tipo de Comprobante", "TipoDeComprobante", o palabras clave 
    como "INGRESO", "EGRESO", "PAGO", "NÓMINA", "TRASLADO".
-9. Campos numéricos → número sin símbolo de moneda ni comas (ej. 1234.56).
-10. RFCs        → sin espacios, sin guiones, en MAYÚSCULAS.
-11. NUNCA inventes datos. Si un campo no está visible en el texto → null.
-12. descripcion de cada concepto → copia el texto COMPLETO y LITERAL.
+9. Campos numéricos: número sin símbolo de moneda ni comas (ej. 1234.56).
+10. RFCs: sin espacios, sin guiones, en MAYÚSCULAS.
+11. NUNCA inventes datos. Si un campo no está visible en el texto, usa null.
+12. descripcion de cada concepto: copia el texto COMPLETO y LITERAL.
     No resumir, no parafrasear. El texto de la tabla puede venir sin columnas
     separadas; corta la descripción ANTES de palabras que pertenezcan a otra
     columna como "Unidad", "Tasa", "IVA", un porcentaje aislado seguido de
     cifras, o un número que claramente sea valor unitario/importe. No agregues
     a la descripción palabras de columnas vecinas (cantidad, unidad, tasa,
     impuesto) aunque estén en la misma línea de texto.
+13. lugar_expedicion: código postal de 5 dígitos donde se expide el CFDI
+    (busca "Lugar de Expedición", "C.P.").
+14. regimen_fiscal (emisor y receptor): código de 3 dígitos (ej. "601", "612").
+    Busca "Régimen Fiscal" cerca de los datos de cada uno; el del emisor y el
+    del receptor casi siempre son distintos, no los confundas.
+15. uso_cfdi: código del receptor tipo letra+letra/número+dígito (ej. "G01",
+    "G03", "I01"). Busca "Uso CFDI" o "Uso del CFDI" cerca de los datos del
+    receptor.
+16. domicilio_fiscal_receptor: código postal de 5 dígitos del receptor
+    (distinto del lugar_expedicion, que es del emisor).
+17. exportacion: código de 2 dígitos ("01" No aplica, "02" Definitiva,
+    "03" Temporal, "04" Retorno). Si no aparece explícito, usa "01".
+18. objeto_imp (por concepto): código de 2 dígitos ("01" No objeto de
+    impuesto, "02" Sí objeto de impuesto, "03" Sí objeto pero no obligado
+    al desglose, "04" No objeto y no lo desglosa). Solo si aparece explícito
+    o es inferible con certeza; si no, usa null.
 
 estructura JSON requerida por cada CFDI:
 
@@ -64,13 +80,19 @@ estructura JSON requerida por cada CFDI:
     "metodo_pago":   null,
     "forma_pago":    null,
     "moneda":        null,
+    "lugar_expedicion": null,
+    "exportacion":   null,
     "emisor": {{
         "RFC":    null,
-        "nombre": null
+        "nombre": null,
+        "regimen_fiscal": null
     }},
     "receptor": {{
         "RFC":    null,
-        "nombre": null
+        "nombre": null,
+        "uso_cfdi": null,
+        "regimen_fiscal": null,
+        "domicilio_fiscal": null
     }},
     "conceptos": [
         {{
@@ -81,7 +103,8 @@ estructura JSON requerida por cada CFDI:
             "valor_unitario":  null,
             "descuento":       null,
             "importe":         null,
-            "iva":             null
+            "iva":             null,
+            "objeto_imp":      null
         }}
     ],
     "subtotal":    null,
@@ -105,18 +128,17 @@ def construir_prompt(
     nota_uuid = (
         f'\nNOTA: El folio fiscal pre-extraído es "{uuid_detectado}". '
         'Úsalo directamente en "folio_fiscal" sin modificarlo.\n'
-        if uuid_detectado
-        else ""
+        if uuid_detectado else ""
     )
     if version:
         instruccion_version = (
             f'La versión pre-detectada por OCR es "{version}". Úsala, '
-            "salvo que el propio texto indique claramente otra versión "
+            'salvo que el propio texto indique claramente otra versión '
             '(p. ej. un literal "Versión 3.3" o "CFDI 3.3" visible).'
         )
     else:
         instruccion_version = (
-            "No se pudo pre-detectar la versión por OCR. Búscala tú en el "
+            'No se pudo pre-detectar la versión por OCR. Búscala tú en el '
             'texto (suele indicarse como "Versión", "CFDI" seguido de '
             '"4.0" o "3.3"). Si tampoco la encuentras, usa null — '
             'NO la inventes ni asumas "4.0" por defecto.'
