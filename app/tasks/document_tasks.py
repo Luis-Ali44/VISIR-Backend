@@ -111,7 +111,7 @@ def iniciar_procesamiento(
     for datos in cfdis_datos:
         forma_pago = datos.get("forma_pago")
         fecha_emision_raw = datos.get("fecha_emision")
-        tipo_comprobante_raw = datos.get("tipo_de_comprobante")
+        tipo_comprobante_raw = datos.get("tipo_comprobante")
 
         # Parse fecha — fallback a now() si el LLM no extrajo una fecha válida
         try:
