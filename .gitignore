@@ -4,7 +4,6 @@ __pycache__/
 
 .env.venv-ml/
 app.zip
-data/
 models/
 notebooks/
 # Virtual environments
