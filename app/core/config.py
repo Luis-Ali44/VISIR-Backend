@@ -20,11 +20,11 @@ class Settings(BaseSettings):
     SUPABASE_PUBLIC_KEY: str
     SUPABASE_SECRET_KEY: str
 
-    REDIS_URL: str
+    REDIS_URL: str | None = None
 
     MISTRAL_API_KEY: str
 
-    SENTRY_DSN: str
+    SENTRY_DSN: str | None = None
 
 
 settings = Settings()

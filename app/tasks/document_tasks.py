@@ -145,6 +145,8 @@ def iniciar_procesamiento(
                 "nombre_emisor": emisor.get("nombre") or "Sin nombre",
                 "rfc_receptor": receptor.get("RFC") or "XAXX010101000",
                 "nombre_receptor": receptor.get("nombre") or "Sin nombre",
+                "uso_cfdi": receptor.get("uso_cfdi"),
+                "regimen_fiscal": receptor.get("regimen_fiscal"),
                 "id_documento": id_documento,
                 "id_organizacion": id_organizacion,
                 "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
