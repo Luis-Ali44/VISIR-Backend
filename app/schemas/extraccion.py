@@ -19,12 +19,10 @@ class ExtraccionResponse(BaseModel):
     total: float | None = Field(None, description="Monto total del comprobante")
     metodo_pago: str | None = Field(None, description="Método de pago (PUE, PPD)")
     forma_pago: str | None = Field(
-        None, 
-        description="Nombre de la forma de pago (Efectivo, Transferencia, etc.)"
+        None, description="Nombre de la forma de pago (Efectivo, Transferencia, etc.)"
     )
     tipo_comprobante: str | None = Field(
-        None, 
-        description="Tipo de comprobante (Ingreso, Egreso, etc.)"
+        None, description="Tipo de comprobante (Ingreso, Egreso, etc.)"
     )
     uso_cfdi_receptor: str | None = Field(None, description="Uso del CFDI del receptor")
     estado: str = Field("procesado", description="Estado del procesamiento")
