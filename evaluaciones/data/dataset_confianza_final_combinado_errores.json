@@ -1,0 +1,32 @@
+[
+  {
+    "idx": 2,
+    "id": "cfdi-00-ambigua",
+    "pregunta": "¿Cuánto gasté en total?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 8,
+    "id": "cfdi-03-ambigua",
+    "pregunta": "¿Qué proveedores me han facturado?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 11,
+    "id": "cfdi-05-original",
+    "pregunta": "¿Cuál fue el gasto promedio mensual en el primer semestre de 2025?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 12,
+    "id": "cfdi-05-ambigua",
+    "pregunta": "¿Cuál fue mi gasto promedio mensual?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 34,
+    "id": "n2-05",
+    "pregunta": "¿Cuánto he registrado en el rubro de salud?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  }
+]

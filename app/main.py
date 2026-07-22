@@ -68,11 +68,11 @@ app.add_middleware(
 )
 
 
-app.include_router(documents_router)
-app.include_router(auth_router)
-app.include_router(ia_router)
-app.include_router(ingest_router)
-app.include_router(extracciones_router)
-# app.include_router(consultas_router)
 app.include_router(health_router)
+app.include_router(auth_router)
+app.include_router(documents_router)
+app.include_router(extracciones_router)
+app.include_router(ia_router)
 app.include_router(conversaciones_router)
+app.include_router(ingest_router)
+# app.include_router(consultas_router)

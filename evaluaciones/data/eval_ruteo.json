@@ -1,0 +1,17 @@
+[
+  {"pregunta": "¿Qué régimen fiscal me conviene si soy persona física con actividad empresarial?", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "¿Cuáles son mis obligaciones fiscales como contribuyente RESICO?", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "¿Qué dice la ley sobre la deducción de gastos de representación?", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "¿Qué artículo regula el complemento de comercio exterior?", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "¿Cuánto gasté el mes pasado en total?", "ruta_esperada": "CFDI_PROPIOS"},
+  {"pregunta": "¿Cuáles fueron mis facturas de mayor monto en julio?", "ruta_esperada": "CFDI_PROPIOS"},
+  {"pregunta": "¿Cuánto le he pagado al proveedor Grupo Ravan este año?", "ruta_esperada": "CFDI_PROPIOS"},
+  {"pregunta": "Dame el total de mis ingresos de junio", "ruta_esperada": "CFDI_PROPIOS"},
+  {"pregunta": "¿Los gastos que tuve este mes son deducibles según la ley?", "ruta_esperada": "HIBRIDO"},
+  {"pregunta": "¿Mi régimen fiscal me permite deducir lo que gasté en julio?", "ruta_esperada": "HIBRIDO"},
+  {"pregunta": "De mis facturas de este mes, ¿cuáles cumplen los requisitos del SAT para ser deducibles?", "ruta_esperada": "HIBRIDO"},
+  {"pregunta": "¿Puedo deducir el total de mis compras a proveedores según mi régimen?", "ruta_esperada": "HIBRIDO"},
+  {"pregunta": "hola, quiero saber algo", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "explícame qué es una addenda", "ruta_esperada": "NORMATIVA"},
+  {"pregunta": "¿en qué mes gasté más dinero?", "ruta_esperada": "CFDI_PROPIOS"}
+]

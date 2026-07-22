@@ -1,0 +1,273 @@
+[
+  {
+    "pregunta": "¿Qué RFC genérico se debe usar para facturar a un extranjero sin registro fiscal en México?",
+    "respuesta_esperada": "XEXX010101000",
+    "fragmentos_fuente": [
+      "rfc-generico.md"
+    ],
+    "dificultad": "baja",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Cuál es el plazo máximo para emitir el complemento de recepción de pagos (REP) después de recibir un pago?",
+    "respuesta_esperada": "Quinto día natural del mes siguiente al que se recibió el pago",
+    "fragmentos_fuente": [
+      "complementos.md"
+    ],
+    "dificultad": "media",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Qué código de forma de pago corresponde a 'Tarjeta de Débito'?",
+    "respuesta_esperada": "28",
+    "fragmentos_fuente": [
+      "metodos-pago.md"
+    ],
+    "dificultad": "baja",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Qué tipo de comprobante se utiliza para registrar una nota de crédito o devolución de mercancía?",
+    "respuesta_esperada": "E / Egreso",
+    "fragmentos_fuente": [
+      "tipos-comprobante.md"
+    ],
+    "dificultad": "baja",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Qué régimen fiscal debe tener el receptor cuando se emite un CFDI con el RFC ΧΑΧΧ010101000?",
+    "respuesta_esperada": "616 / Sin obligaciones fiscales",
+    "fragmentos_fuente": [
+      "rfc-generico.md"
+    ],
+    "dificultad": "media",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿En qué situaciones se debe usar el complemento de Carta Porte versión 3.1?",
+    "respuesta_esperada": "Cuando se traslada mercancía por carretera federal, ferrocarril, vía aérea o marítima dentro de México, ya sea que el transportista preste el servicio (CFDI tipo 1) o que el propietario traslade su propia mercancía (CFDI tipo T).",
+    "fragmentos_fuente": [
+      "complementos.md"
+    ],
+    "dificultad": "media",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "Si emito una factura que se va a pagar en varias partes, ¿qué debo poner en los campos de método de pago y forma de pago?",
+    "respuesta_esperada": "En la factura original de Ingreso (tipo 'I') , el método de pago debe ser PPD (Pago en Parcialidades o Diferido) y la forma de pago debe ser 99 (Por definir). Estos campos son obligatorios.",
+    "fragmentos_fuente": [
+      "metodos-pago.md"
+    ],
+    "dificultad": "alta",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Para qué sirve el complemento de nómina versión 1.2 y cuándo es obligatorio?",
+    "respuesta_esperada": "Sirve para detallar percepciones, deducciones, retenciones y otros pagos relacionados con salarios y prestaciones laborales.Es obligatorio para todos los patrones que pagan nómina a sus trabajadores.",
+    "fragmentos_fuente": [
+      "complementos.md"
+    ],
+    "dificultad": "baja",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Qué es el complemento de pagos (REP) versión 2.0 y para qué se usa?",
+    "respuesta_esperada": "Es un complemento que se incorpora a un CFDI de tipo P para registrar pagos recibidos de facturas que se emitieron originalmente con método de pago PPD.",
+    "fragmentos_fuente": [
+      "complementos.md"
+    ],
+    "dificultad": "media",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Qué tipo de CFDI se usa para registrar un pago parcial de una factura previamente emitida con pago diferido?",
+    "respuesta_esperada": "P / Pago",
+    "fragmentos_fuente": [
+      "tipos-comprobante.md",
+      "complementos.md"
+    ],
+    "dificultad": "baja",
+    "_origen": "diccionario-fiscal"
+  },
+  {
+    "pregunta": "¿Cuál es la versión del CFDI que deben utilizar los contribuyentes conforme al Anexo 20?",
+    "respuesta_esperada": "La versión que deben registrar en el campo Version del CFDI es '4.0'.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuántos caracteres puede tener el campo Folio de un CFDI?",
+    "respuesta_esperada": "hasta 40 caracteres alfanuméricos",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué valor deben registrar en el campo SubTotal los CFDI de tipo T (Traslado) y P (Pago)?",
+    "respuesta_esperada": "Cuando el campo TipoDeComprobante sea 'T' (Traslado) o 'P' (Pago), el importe registrado en el campo SubTotal debe ser igual a cero.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿A partir de qué edad pueden tramitar el RFC las personas físicas menores de edad?",
+    "respuesta_esperada": "Los menores de edad pueden tramitar el RFC a partir de los 16 años, cuando van a realizar un servicio personal subordinado. Las personas físicas que hayan cumplido 18 años también pueden inscribirse con o sin obligaciones fiscales, y pueden preinscribirse a través del Portal del SAT siempre que cuenten con la CURP.",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuál es la tasa máxima del ISR aplicable a ingresos que excedan $425,642.00 en la tarifa mensual de pagos provisionales 2026?",
+    "respuesta_esperada": "La tasa máxima del ISR en la tarifa mensual de pagos provisionales 2026 es del 35%, aplicable a ingresos que excedan $425,642.00. La cuota fija para ese rango es de $133,488.54.",
+    "fragmentos_fuente": [
+      "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuál es la diferencia entre un impuesto directo y uno indirecto ?",
+    "respuesta_esperada": "Los impuestos directos son pagados por el contribuyente sin intermediarios. Los impuestos indirectos son aplicados en gastos de producción y consumo, donde existe un intermediario entre el contribuyente y la autoridad fiscal",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué campo del CFDI debe registrarse cuando la moneda utilizada es distinta del peso mexicano (MXN), y qué ocurre si el valor está fuera del rango permitido?",
+    "respuesta_esperada": "Debe registrarse el campo TipoCambio con el tipo de cambio FIX. Si el valor está fuera del porcentaje aplicable a la moneda tomado del catálogo c_Moneda, el emisor debe obtener del PAC una clave de confirmación única para ratificar que el valor es correcto, e integrar dicha clave en el campo Confirmacion.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Bajo qué condiciones se puede optar por no habilitar el Buzón Tributario?",
+    "respuesta_esperada": "Los contribuyentes pueden optar por no habilitar el Buzón Tributario en tres supuestos: cuando las personas físicas cuenten ante el RFC con situación fiscal sin obligaciones fiscales, sin actividad económica o suspendidas; cuando las personas morales tengan situación fiscal de suspendidos; y cuando las personas físicas y morales se encuentren ante el RFC con situación fiscal de cancelados. Sin embargo, esto no aplica cuando el trámite específico requiera que el contribuyente cuente con Buzón Tributario.",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué campos del CFDI NO deben existir cuando el TipoDeComprobante es 'N' (Nómina)?",
+    "respuesta_esperada": "Cuando el TipoDeComprobante es 'N' (Nómina): no debe existir el campo CondicionesDePago, no debe existir el nodo Impuestos, y no debe existir el campo FormaPago. Sí pueden existir los campos MetodoPago y Descuento.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuáles son los requisitos para tributar en el Régimen Simplificado de Confianza (RESICO) para personas físicas y cuáles son las causas de exclusión?",
+    "respuesta_esperada": "Pueden tributar en RESICO las personas físicas que realicen actividades empresariales, agrícolas, ganaderas, pesqueras, silvícolas, servicios profesionales u otorguen uso o goce temporal de bienes, siempre que sus ingresos del ejercicio anterior no hayan excedido $3,500,000. No pueden tributar: socios o accionistas de personas morales o partes relacionadas, residentes en el extranjero con establecimiento permanente, y quienes obtengan ingresos sujetos a regímenes fiscales preferentes. Se sale del régimen si los ingresos anuales exceden $3,500,000, si se incumplen las obligaciones del artículo 113-G, o si se omiten tres o más pagos mensuales en un año calendario o no se presenta la declaración anual.",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuál es el límite inferior, el límite superior y la cuota fija de la primera fila de la tarifa diaria para pagos de retenciones de ISR 2026?",
+    "respuesta_esperada": "En la tarifa diaria de retenciones de ISR 2026, el primer rango tiene un límite inferior de $0.01 y un límite superior de $27.78, con una cuota fija de $0.00 y una tasa del 1.92% sobre el excedente del límite inferior.",
+    "fragmentos_fuente": [
+      "Anexo-8-RMF-2026_DOF-28122025_limpio.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuál es la clave de producto o servicio (ClaveProdServ) y de unidad (ClaveUnidad) que debe registrarse en el CFDI de anticipo?",
+    "respuesta_esperada": "En el CFDI por el valor del anticipo recibido, en el nodo Concepto debe registrarse: ClaveProdServ = '84111506' (Servicios de facturación), Cantidad = '1', ClaveUnidad = 'ACT' (Actividad), y en el campo Descripcion debe registrarse el valor 'Anticipo del bien o servicio'. El ValorUnitario corresponde al monto entregado como anticipo antes de impuestos.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cómo se describe el proceso completo de emisión de CFDI cuando se recibe un anticipo?",
+    "respuesta_esperada": "El proceso completa tres pasos: (1) Al recibir el anticipo se emite un CFDI tipo 'I' (Ingreso) con MetodoPago 'PUE' y la forma de pago real con que se recibió; no debe existir el nodo CfdiRelacionados. (2) Al concretar la operación se emite un CFDI tipo 'I' por el valor total, relacionando al anticipo con TipoRelacion '07' (CFDI por aplicación de anticipo) referenciando el UUID del CFDI del anticipo. (3) Inmediatamente se emite un CFDI tipo 'E' (Egreso) con FormaPago '30' (Aplicación de anticipo) y MetodoPago 'PUE', relacionando con TipoRelacion '07' el UUID del CFDI por el valor total. Si al emitir la factura por el valor total la diferencia no se paga de inmediato, también debe emitirse un CFDI con Complemento para Recepción de Pagos por cada pago recibido.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuándo un pago anticipado no se considera anticipo y cuál es la diferencia con una venta en parcialidades?",
+    "respuesta_esperada": "No es anticipo cuando la entrega de dinero funciona como garantía o depósito, por ejemplo, el depósito que da un arrendatario al arrendador para garantizar el pago de rentas. Tampoco es anticipo cuando ya existe acuerdo sobre el bien o servicio a adquirir y su precio,  el comprador paga una parte del precio; ese caso es una venta en parcialidades. Solo existe anticipo cuando se realiza un pago en una operación donde no se conoce o no se ha determinado el bien o servicio a adquirir, su precio, o ambos.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuáles son las tasas de retención del ISR que aplican las plataformas tecnológicas digitales sobre los ingresos de personas físicas",
+    "respuesta_esperada": "Las tasas de retención del ISR que aplican las plataformas digitales son: 2.1% por prestación de servicios de transporte terrestre de pasajeros y de entrega de bienes; 4% por prestación de servicios de hospedaje; 1% por enajenación de bienes y prestación de servicios en general. La retención se efectúa sobre el total de los ingresos efectivamente percibidos sin incluir el IVA y tiene el carácter de pago provisional.",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuál es la regla sobre cómo registrar el campo FormaPago cuando en una misma transacción se aplican más de una forma de pago?",
+    "respuesta_esperada": "Cuando se aplica más de una forma de pago en una sola transacción, el contribuyente debe incluir en el campo FormaPago la clave vigente del catálogo c_FormaPago correspondiente a la forma de pago con la que se liquida la mayor cantidad. En caso de que se reciban distintas formas de pago con el mismo importe, el contribuyente puede registrar a su consideración cualquiera de las formas de pago con las que se recibió la contraprestación.",
+    "fragmentos_fuente": [
+      "Anexo_20_Guia_Llenado_CFDI_v4_v2.pdf"
+    ],
+    "dificultad": "alta",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué elementos se compone la e.firma?",
+    "respuesta_esperada": "Se compone de una contraseña y tres archivos: CER (Certificado), KEY (Llave privada) y REQ (Requerimiento).",
+    "fragmentos_fuente": [
+      "El_ABC_personas_contribuyentes_v2.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué establece el criterio normativo 24/CFF/N?",
+    "respuesta_esperada": "Establece que cuando el retenedor no efectúa la retención y asume el adeudo o paga las contribuciones directamente con su patrimonio, puede obtener los beneficios legales propios de los contribuyentes.",
+    "fragmentos_fuente": [
+      "Anexo_7_RMF2026-09012026_limpio.pdf"
+    ],
+    "dificultad": "baja",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Qué criterios aplican a las enajenaciones subsecuentes de alcohol o alcohol desnaturalizado?",
+    "respuesta_esperada": "Establece que quienes efectúen enajenaciones subsecuentes de alcohol o alcohol desnaturalizado con fines de comercialización son contribuyentes del IEPS, ya que la Ley del IEPS no limita el impuesto únicamente a la primera enajenación. La tasa aplicable es del 50% conforme al artículo 2° de la Ley del IEPS.",
+    "fragmentos_fuente": [
+      "Anexo_7_RMF2026-09012026_limpio.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  },
+  {
+    "pregunta": "¿Cuándo un producto lácteo o lácteo combinado queda sujeto al IEPS aplicable a bebidas saborizadas?",
+    "respuesta_esperada": "Los productos lácteos y productos lácteos combinados quedan afectos al IEPS aplicable a bebidas saborizadas cuando en su proceso de elaboración se disuelvan azúcares o edulcorantes en agua.",
+    "fragmentos_fuente": [
+      "Anexo_7_RMF2026-09012026_limpio.pdf"
+    ],
+    "dificultad": "media",
+    "_origen": "corpus-sat"
+  }
+]

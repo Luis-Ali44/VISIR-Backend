@@ -1,0 +1,874 @@
+[
+  {
+    "id": "n0-01",
+    "pregunta": "¿Cuánto gasté en restaurante en marzo de 2026?",
+    "respuesta_esperada": "$11,641.74 MXN, correspondientes a un documento de PULIDO-CORTÉS IAP.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md"
+    ],
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "nota": null,
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3974,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "En marzo de 2026, el gasto total en restaurante fue de **$11 641,74 MXN** (incluye el subtotal de $10 035,98 MXN más el IVA de $1 605,76 MXN).",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_egreso_restaurante_045.md",
+        "chunk_id": "53d0ffb199b1f73662cefeb7b3389a814ec2a2add042125e2e281c6e313b89a7",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4314,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_047.md",
+        "chunk_id": "0d446005950243fb81d384a7730449a27c3b8054985aaed2c7aa195ac147e549",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4274,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3898,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3725,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.366,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 6917.1
+  },
+  {
+    "id": "n0-02",
+    "pregunta": "¿Cuál fue el monto del documento de salud de diciembre de 2025?",
+    "respuesta_esperada": "$21,875.01 MXN, de VILLANUEVA GALARZA ELVIRA SAS DE CV.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_salud_048.md"
+    ],
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "nota": null,
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.3999,
+    "routing_certainty": 0.3,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "El documento de salud emitido en diciembre de 2025 corresponde al **CFDI 1** (folio fiscal **DAFFFA7B‑5860‑4DCF‑9634‑0B1BBA21B9A1**).  \n\n**Monto total del CFDI 1:** **$21 875,01 MXN** (Subtotal $18 857,77 + IVA $3 017,24).",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_egreso_salud_048.md",
+        "chunk_id": "0cdde4b403fe55d18967a1fa7bac41a604f61c36522d371c7240e5ef964d002b",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4442,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4119,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3857,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_039.md",
+        "chunk_id": "c2fe6af25ea0d7c29531f668551a05dc084adc0f045f74c8d82fb86252fb936e",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3823,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_comercio_minorista_0211.md",
+        "chunk_id": "54e27738e7f32f06a3d5ddba4eef49e71fbb00bbacd12ec4ee899e637aeff31f",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3753,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 1608.7
+  },
+  {
+    "id": "n0-03",
+    "pregunta": "¿Cuánto gasté en construcción en noviembre de 2025?",
+    "respuesta_esperada": "$917,948.81 MXN, de CORPORACIN VILLASEÑOR-HOLGUÍN IAP.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "nota": null,
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.4202,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Gasto en construcción – Noviembre 2025**\n\n| CFDI | Fecha | Concepto | Subtotal | IVA | Total |\n|------|-------|----------|----------|-----|-------|\n| 1 | 2025‑11‑29 | Servicios de construcción, remodelación y/o materiales (cemento) | 791 335,18 MXN | 126 613,63 MXN | **917 948,81 MXN** |\n\n**Resultado:**  \nEn noviembre de 2025, el gasto total en construcción fue **917 948,81 MXN**.  \n\n> Este valor corresponde al total del CFDI 1, que incluye el subtotal de los servicios de construcción y el IVA correspondiente. No hay otros CFDIs de construcción registrados en ese mes.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4767,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4431,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_028.md",
+        "chunk_id": "8ca4a7b79d2572d466bf754b2afa4a15226320de8b3ed27c4daa09e3f3f4c145",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3983,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3947,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_026.md",
+        "chunk_id": "88c2acb8b51ecbe08ed811a31663b3060d7519c16b70e9b3b8580cb8f7fbb783",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3883,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 938.8
+  },
+  {
+    "id": "n0-04",
+    "pregunta": "¿Cuánto le pagué a Industrias Tello y Gracia?",
+    "respuesta_esperada": "$163,472.16 MXN, único documento registrado con ese proveedor (enero de 2026).",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_026.md"
+    ],
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "nota": "Falta período explícito, pero el proveedor específico ya acota a un único resultado -- no debería requerir pregunta. Ejemplo de control: campo faltante que NO genera ambigüedad real.",
+    "es_ambigua": false,
+    "campo_removido": null,
+    "rag_coverage": 0.4166,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Pago a Industrias Tello y Gracia S. de R.L. de C.V.**\n\n- **Folio fiscal:** D49CA2D3-0564-4117-9AEE-EA60A9604415  \n- **Fecha de emisión:** 2026‑01‑01  \n- **Monto total pagado:** **163 472,16 MXN** (Subtotal 140 924,28 + IVA 22 547,88)\n\nEse es el importe total que se registró en el CFDI como pago a la empresa **Industrias Tello y Gracia**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v40_egreso_construccion_026.md",
+        "chunk_id": "88c2acb8b51ecbe08ed811a31663b3060d7519c16b70e9b3b8580cb8f7fbb783",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4884,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_028.md",
+        "chunk_id": "8ca4a7b79d2572d466bf754b2afa4a15226320de8b3ed27c4daa09e3f3f4c145",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4158,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4091,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_047.md",
+        "chunk_id": "0d446005950243fb81d384a7730449a27c3b8054985aaed2c7aa195ac147e549",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3899,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_comercio_minorista_024.md",
+        "chunk_id": "8e3ff52d54fcf9f72cabda043ea06b44ff2393be848e30289e832b2db135b6f0",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3799,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 879.6
+  },
+  {
+    "id": "n1-01",
+    "pregunta": "¿Cuánto gasté en restaurante?",
+    "respuesta_esperada": "En total $19,330.39 MXN, combinando 2 documentos: $7,688.65 de enero de 2026 y $11,641.74 de marzo de 2026. Si te refieres a un mes en particular, dime cuál.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_restaurante_045.md"
+    ],
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "nota": "Solo 2 documentos, montos del mismo orden de magnitud -- ambigüedad baja, responder con advertencia es razonable.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3239,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Gasto neto en restaurante (2026)**  \n| CFDI | Concepto | Importe (MXN) | Comentario |\n|------|----------|---------------|------------|\n| 1 | Servicios de hospedaje y/o restaurantes y catering (restaurante) | **11 641,74** | Total pagado |\n| 2 | Servicios de hospedaje y/o restaurantes y catering (restaurante) | **7 688,65** | Total pagado |\n| 3 | Nota de crédito – Restaurantes y catering (servicios de cafetería) | **‑4 481,57** | Crédito que reduce el gasto |\n\n**Total gastado en restaurante**:  \n\\(11 641,74 + 7 688,65 - 4 481,57 = 14 848,82\\) MXN\n\n> **Resultado**: **$14 848,82 MXN** gastaste en servicios de restaurante durante el periodo analizado.  \n>  \n> La nota de crédito (CFDI 3) disminuye el gasto neto, por lo que se resta del total de pagos. No se incluyen los conceptos de hospedaje o construcción, ya que no están clasificados como “restaurante”.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_egreso_restaurante_045.md",
+        "chunk_id": "53d0ffb199b1f73662cefeb7b3389a814ec2a2add042125e2e281c6e313b89a7",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3618,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_047.md",
+        "chunk_id": "0d446005950243fb81d384a7730449a27c3b8054985aaed2c7aa195ac147e549",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3396,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "tmp20nxc5ul.md",
+        "chunk_id": "573234a80a8e2796c8280b67249eca0df7d989931aefdcf90c90d308d03756d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3247,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_032.md",
+        "chunk_id": "19a18e43d37ba8a989f0fd2e7ce0f48497e38bf4d645a416c4345cd1b0db0311",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2975,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2961,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 1428.7
+  },
+  {
+    "id": "n1-02",
+    "pregunta": "¿Cuánto facturé en salud en enero de 2026?",
+    "respuesta_esperada": "$9,901.22 MXN en total, combinando 2 documentos de enero de 2026 ($7,715.22 y $2,186.00).",
+    "fragmentos_fuente": [
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md"
+    ],
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "nota": "Período y tipo están claros; la ambigüedad es de documento específico (hay 2), no de campo faltante -- aun así amerita aclarar que se sumaron 2 documentos.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3939,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Informe analítico ejecutivo – Facturación en Salud (Enero 2026)**  \n\n| CFDI | Fecha | Emisor | Concepto | Total (MXN) |\n|------|-------|--------|----------|-------------|\n| 1 | 2026‑01‑01 | MUÑIZ SOLÍS ALMA SAS DE CV | Servicios médicos, de enfermería y/o medicamentos (salud, INGRESO) | 7 715,22 |\n| 2 | 2026‑01‑03 | FLÓREZ RENTERÍA ESPERANZA AC | Servicios médicos, de enfermería y/o medicamentos (salud, INGRESO) | 2 186,00 |\n\n**Total facturado en salud – Enero 2026**  \n\\[\n7 715,22 \\;+\\; 2 186,00 \\;=\\; 9 901,22 \\text{ MXN}\n\\]\n\n---\n\n### Observaciones clave\n- **Solo dos CFDIs corresponden a servicios de salud** en el mes de enero de 2026; los demás (hospedaje, construcción, etc.) no se incluyen en este cálculo.\n- La facturación total de salud es **9 901,22 MXN**, lo que representa el 100 % de la facturación de salud del periodo analizado.\n- No se registraron retenciones ni pagos con tarjeta de débito en estos CFDIs; ambos se pagaron con tarjeta de crédito (PPD) y efectivo (PUE) respectivamente.\n\n**Conclusión**  \nEn enero de 2026, el negocio facturó **9 901,22 MXN** en servicios de salud. Esta cifra puede servir como referencia para comparar con periodos anteriores o para evaluar la evolución de la cartera de clientes en el sector salud.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4607,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_032.md",
+        "chunk_id": "19a18e43d37ba8a989f0fd2e7ce0f48497e38bf4d645a416c4345cd1b0db0311",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4416,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_salud_048.md",
+        "chunk_id": "0cdde4b403fe55d18967a1fa7bac41a604f61c36522d371c7240e5ef964d002b",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.364,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_047.md",
+        "chunk_id": "0d446005950243fb81d384a7730449a27c3b8054985aaed2c7aa195ac147e549",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.356,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_026.md",
+        "chunk_id": "88c2acb8b51ecbe08ed811a31663b3060d7519c16b70e9b3b8580cb8f7fbb783",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3472,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 6572.4
+  },
+  {
+    "id": "n1-03",
+    "pregunta": "¿Cuánto he registrado en comercio minorista en diciembre de 2025?",
+    "respuesta_esperada": "$290,333.43 MXN en total, combinando 3 documentos de diciembre de 2025 ($1,183.22, $69,475.38 y $219,674.83). Nota: incluye tanto ingresos como una nota de crédito -- si buscas solo uno de los dos tipos, dime cuál.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md"
+    ],
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "nota": "Mismo mes, pero mezcla INGRESO/EGRESO con variación de monto de ~185x entre los 3 documentos -- amerita advertencia fuerte aunque no llegue a bloquear la respuesta.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3999,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": true,
+    "respuesta_generada": "**Resumen de los movimientos de comercio minorista en diciembre 2025**\n\n| CFDI | Fecha | Tipo | Total (MXN) |\n|------|-------|------|-------------|\n| 1 | 2025‑12‑30 | Ingreso | 219 674,83 |\n| 2 | 2025‑12‑09 | Egreso | 1 183,22 |\n| 3 | 2025‑12‑21 | Ingreso | 69 475,38 |\n\n> **Nota:** El CFDI 5 (12 dic 2025) corresponde a servicios médicos, no a comercio minorista, por lo que no se incluye en este cálculo.\n\n### 1. Suma total de todas las transacciones (ingresos + egresos)\n\n\\[\n219 674,83 + 1 183,22 + 69 475,38 = \\boxed{290 333,43\\ \\text{MXN}}\n\\]\n\n### 2. Suma de los ingresos únicamente\n\n\\[\n219 674,83 + 69 475,38 = \\boxed{289 150,21\\ \\text{MXN}}\n\\]\n\n### 3. Suma de los egresos únicamente\n\n\\[\n1 183,22 = \\boxed{1 183,22\\ \\text{MXN}}\n\\]\n\n---\n\n**Respuesta a la pregunta**\n\n- **Si se refiere a la cifra total registrada (ingresos y egresos)**: **290 333,43 MXN**.\n- **Si se refiere solo a los ingresos**: **289 150,21 MXN**.\n\nEn cualquier caso, el único CFDI que no pertenece a comercio minorista en ese mes es el número 5.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_039.md",
+        "chunk_id": "c2fe6af25ea0d7c29531f668551a05dc084adc0f045f74c8d82fb86252fb936e",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4291,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_comercio_minorista_0211.md",
+        "chunk_id": "54e27738e7f32f06a3d5ddba4eef49e71fbb00bbacd12ec4ee899e637aeff31f",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4157,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4081,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3756,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_salud_048.md",
+        "chunk_id": "0cdde4b403fe55d18967a1fa7bac41a604f61c36522d371c7240e5ef964d002b",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3709,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 13088.0
+  },
+  {
+    "id": "n2-01",
+    "pregunta": "¿Cuánto gasté en construcción?",
+    "respuesta_esperada": "¿A qué mes te refieres? Tienes documentos de construcción registrados en noviembre de 2025 ($917,948.81), enero de 2026 ($163,472.16), marzo de 2026 ($367,565.98) y mayo de 2026 ($793,587.90) -- los montos varían mucho entre sí, así que prefiero confirmar antes de sumarlos.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_029.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md"
+    ],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "4 meses distintos, variación de 5.6x entre el monto menor y el mayor -- caso central de por qué V-10 debe frenar aquí en vez de sumar/asumir.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.349,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Gasto en Construcción**\n\n| CFDI | Fecha de emisión | Emisor | Total (MXN) |\n|------|------------------|--------|-------------|\n| 1 | 2026‑03‑25 | DOMÍNGUEZ VILLA Y ALONZO S DE RL DE CV | 367 565,98 |\n| 2 | 2025‑11‑29 | CORPORACIN VILLASEÑOR‑HOLGUÍN IAP | 917 948,81 |\n| 3 | 2026‑05‑02 | INDUSTRIAS CORNEJO BAEZA Y VELÁSQUEZ SAS | 793 587,90 |\n| 4 | 2026‑01‑01 | INDUSTRIAS TELLO Y GRACIA S DE RL DE CV | 163 472,16 |\n| **Total Construcción** | | | **2 242 574,85** |\n\n---\n\n### Metodología\n1. **Filtrado por concepto** – Se seleccionaron únicamente los CFDIs que indican “Servicios de construcción, remodelación y/o materiales (cemento)”, identificados como **EGRESO** en la categoría de construcción.\n2. **Suma de montos** – Se sumaron los valores del campo **Total** de cada CFDI filtrado.\n3. **Exclusión de no‑construcción** – El CFDI 5 (artículos de papelería, equipo de cómputo y/o mercancía general) se excluyó del cálculo, ya que corresponde a **INGRESO** y no a gasto de construcción.\n\n### Resultado\n- **Gasto total en construcción**: **$2 242 574,85 MXN** (dos millones, doscientos cuarenta‑dos mil, quinientos setenta‑cuatro pesos 85/100).\n\n### Observaciones\n- Los cuatro CFDIs de construcción representan el 100 % del gasto total registrado en la lista.\n- El gasto más alto corresponde al CFDI 2 (917 948,81 MXN), seguido por el CFDI 3 (793 587,90 MXN).\n- No se detectaron retenciones ni pagos diferidos en estos documentos; todos fueron pagados en efectivo (PUE) salvo el CFDI 5, que se pagó por transferencia electrónica (PPD).\n\n---\n\n**Conclusión**  \nEl negocio ha invertido **$2 242 574,85 MXN** en proyectos de construcción durante el período cubierto por los CFDIs analizados. Esta cifra puede servir como base para la planificación presupuestaria, la evaluación de la rentabilidad de los proyectos y la toma de decisiones estratégicas sobre futuras inversiones en construcción.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.396,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3734,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_028.md",
+        "chunk_id": "8ca4a7b79d2572d466bf754b2afa4a15226320de8b3ed27c4daa09e3f3f4c145",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3561,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_026.md",
+        "chunk_id": "88c2acb8b51ecbe08ed811a31663b3060d7519c16b70e9b3b8580cb8f7fbb783",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3491,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2704,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 8987.7
+  },
+  {
+    "id": "n2-02",
+    "pregunta": "¿Cuánto he facturado en comercio minorista?",
+    "respuesta_esperada": "¿Te refieres a un mes específico? Hay documentos de comercio minorista en diciembre de 2025 (3 documentos), febrero, abril y mayo de 2026, con montos que van de $1,183.22 hasta $219,674.83 -- es una diferencia muy grande como para sumarlos sin confirmar contigo primero.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md"
+    ],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "6 documentos en 4 meses, variación de 185x entre el menor y el mayor monto -- el caso más extremo del dataset.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.408,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "respuesta_generada": "**Facturación en comercio minorista (2026)**  \n\n| CFDI | Concepto | Total (MXN) |\n|------|----------|-------------|\n| 3 | Artículos de papelería, equipo de cómputo y/o mercancía general (comercio_minorista) | **7 690,34** |\n\n**Resultado:**  \nEn el periodo analizado, la única factura que corresponde a la categoría **comercio minorista** es la del CFDI 3, por lo que el total facturado en esa categoría es **7 690,34 MXN**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.42,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4088,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_comercio_minorista_022.md",
+        "chunk_id": "2f7037274e0f3ceaaa28f65c1a1e52cb600e8e7d615f3e86f1a9927b7ecad9eb",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4082,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_047.md",
+        "chunk_id": "0d446005950243fb81d384a7730449a27c3b8054985aaed2c7aa195ac147e549",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4024,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_045.md",
+        "chunk_id": "53d0ffb199b1f73662cefeb7b3389a814ec2a2add042125e2e281c6e313b89a7",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.4006,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 15363.6
+  },
+  {
+    "id": "n2-03",
+    "pregunta": "Dame un reporte de mis gastos.",
+    "respuesta_esperada": "Con gusto, pero necesito que me digas de qué período y de qué categoría -- tienes documentos de restaurante, salud, comercio minorista y construcción, distribuidos entre noviembre de 2025 y mayo de 2026. ¿Quieres el reporte de todo ese rango o de un mes/categoría en particular?",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md",
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md",
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md",
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "Sin período NI categoría -- el caso más abierto; ambos campos obligatorios faltan a la vez.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3089,
+    "routing_certainty": 0.85,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "respuesta_generada": "**Informe Analítico Ejecutivo – Gastos del Periodo 2025‑11‑29 a 2026‑03‑07**  \n*(Datos extraídos de los CFDI proporcionados)*  \n\n| # | Fecha | Emisor | Concepto | Subtotal (MXN) | IVA (MXN) | Total (MXN) | Forma de Pago |\n|---|-------|--------|----------|----------------|-----------|-------------|---------------|\n| 2 | 2025‑12‑12 | VILLANUEVA GALARZA ELVIRA SAS DE CV | Servicios médicos, de enfermería y/o medicamentos | 18 857,77 | 3 017,24 | 21 875,01 | EFECTIVO (01) |\n| 4 | 2026‑03‑07 | PULIDO‑CORTÉS IAP | Servicios de hospedaje y/o restaurantes y catering | 10 035,98 | 1 605,76 | 11 641,74 | EFECTIVO (01) |\n| 5 | 2025‑11‑29 | CORPORACIN VILLASEÑOR‑HOLGUÍN IAP | Servicios de construcción, remodelación y/o materiales (cemento) | 791 335,18 | 126 613,63 | 917 948,81 | EFECTIVO (01) |\n\n---\n\n## 1. Resumen Ejecutivo\n\n| Indicador | Valor |\n|-----------|-------|\n| **Total de gastos** | **$951 465,56 MXN** |\n| **Subtotal** | $820 228,93 MXN |\n| **IVA** | $131 236,63 MXN |\n| **Número de transacciones** | 3 |\n| **Promedio mensual** | $292 759 MXN (≈ 3,25 meses) |\n| **Método de pago predominante** | EFECTIVO (100 %) |\n| **Moneda** | MXN |\n| **Retenciones** | 0 MXN |\n\n> **Conclusión rápida:** La mayor parte de los gastos (96,5 %) corresponde a servicios de construcción, con un gasto mínimo en salud (2,3 %) y hospedaje (1,2 %).\n\n---\n\n## 2. Detalle por Categoría\n\n| Categoría | Nº de CFDI | Subtotal | IVA | Total | % del total |\n|-----------|------------|----------|-----|-------|-------------|\n| Construcción (cemento, remodelación) | 1 | 791 335,18 | 126 613,63 | 917 948,81 | 96,5 % |\n| Salud (servicios médicos, enfermería) | 1 | 18 857,77 | 3 017,24 | 21 875,01 | 2,3 % |\n| Hospedaje / Catering | 1 | 10 035,98 | 1 605,76 | 11 641,74 | 1,2 % |\n| **Total** | 3 | 820 228,93 | 131 236,63 | 951 465,56 | 100 % |\n\n### Observaciones clave\n- **Construcción** domina el gasto, representando casi todo el presupuesto.  \n- Los gastos de **salud** y **hospitalidad** son relativamente bajos y están bien controlados.  \n- No se registraron retenciones ni pagos en moneda extranjera.\n\n---\n\n## 3. Tendencias y Comparaciones\n\n| Mes | Total Gastos (MXN) | % del total anual (estimado) |\n|-----|--------------------|------------------------------|\n| Nov‑25 | 917 948,81 | 96,5 % |\n| Dic‑25 | 21 875,01 | 2,3 % |\n| Mar‑26 | 11 641,74 | 1,2 % |\n\n> **Tendencia:** El gasto se concentra en el mes de noviembre, coincidiendo con la inversión en construcción. Los meses siguientes muestran una reducción significativa, lo que sugiere que la fase de obra se completó o se redujo la actividad de construcción.\n\n---\n\n## 4. Recomendaciones Estratégicas\n\n1. **Revisión de Contratos de Construcción**  \n   - Analizar la facturación de la obra para identificar posibles sobrecostos o desviaciones del presupuesto inicial.  \n   - Negociar cláusulas de penalización por retrasos o sobrecostos.\n\n2. **Control de Gastos de Salud y Hospedaje**  \n   - Establecer límites mensuales y comparar con proyecciones para evitar sorpresas.  \n   - Explorar acuerdos con proveedores de servicios médicos y de catering que ofrezcan descuentos por volumen.\n\n3. **Optimización de Pagos**  \n   - Dado que todos los pagos se realizaron en efectivo, evaluar la posibilidad de migrar a transferencias electrónicas para mejorar la trazabilidad y aprovechar posibles incentivos fiscales.\n\n4. **Planificación de Próximos Proyectos**  \n   - Si se prevé otra fase de construcción, planificar el flujo de caja con antelación y considerar líneas de crédito específicas para obras.\n\n---\n\n## 5. Próximos Pasos\n\n| Acción | Responsable",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3403,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_salud_048.md",
+        "chunk_id": "0cdde4b403fe55d18967a1fa7bac41a604f61c36522d371c7240e5ef964d002b",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3083,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_039.md",
+        "chunk_id": "c2fe6af25ea0d7c29531f668551a05dc084adc0f045f74c8d82fb86252fb936e",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3038,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_restaurante_045.md",
+        "chunk_id": "53d0ffb199b1f73662cefeb7b3389a814ec2a2add042125e2e281c6e313b89a7",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2966,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2955,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 11322.3
+  },
+  {
+    "id": "n2-04",
+    "pregunta": "¿Cuánto gasté este trimestre?",
+    "respuesta_esperada": "¿A qué trimestre te refieres exactamente? 'Este trimestre' es ambiguo sin saber la fecha actual de referencia y sin especificar la categoría -- dime el rango de meses o la categoría para poder darte un número preciso.",
+    "fragmentos_fuente": [],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "Período relativo ('trimestre') sin ancla de fecha clara -- distinto de los demás casos porque ni siquiera con retrieval perfecto se resuelve; requiere aclaración conversacional, no solo datos.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3103,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "respuesta_generada": "Para poder responder con precisión, necesito saber a qué trimestre te refieres:\n\n1. **Trimestre actual** (abril‑junio 2026)  \n2. **Trimestre del año 2026** (julio‑septiembre 2026)  \n3. **Cualquier otro trimestre** que tengas en mente (por ejemplo, el trimestre que cubre los CFDIs que has listado)\n\nUna vez que me confirmes el período, podré calcular el gasto total correspondiente.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3152,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_028.md",
+        "chunk_id": "8ca4a7b79d2572d466bf754b2afa4a15226320de8b3ed27c4daa09e3f3f4c145",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3147,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3129,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_027.md",
+        "chunk_id": "5067c462f933a67595bd3943ad97b8bcfd5c127892a7ff23ae17a84ccfa733ed",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3102,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2986,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 12235.0
+  },
+  {
+    "id": "n2-05",
+    "pregunta": "¿Cuánto he registrado en el rubro de salud?",
+    "respuesta_esperada": "¿Buscas solo ingresos, solo la nota de crédito, o el total combinado? En salud tienes un documento tipo egreso de diciembre de 2025 ($21,875.01) y dos de ingreso de enero de 2026 ($7,715.22 y $2,186.00) -- son naturalezas distintas y prefiero confirmar antes de sumarlas.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md"
+    ],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "Ambigüedad de TIPO (ingreso vs egreso/nota de crédito) además de período -- distinto de los casos anteriores que solo tenían ambigüedad de período.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.3021,
+    "routing_certainty": 0.55,
+    "question_clarity": 0.9,
+    "data_completeness": 0.5,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "respuesta_generada": "**Total registrado en el rubro de salud (Servicios médicos, enfermería y/o medicamentos)**  \n\n| CFDI | Fecha | Emisor | Total (MXN) |\n|------|-------|--------|-------------|\n| 1 | 2026‑01‑03 | FLÓREZ RENTERÍA ESPERANZA AC | 2 186,00 |\n| 2 | 2026‑01‑01 | MUÑIZ SOLÍS ALMA SAS DE CV | 7 715,22 |\n| 3 | 2025‑12‑12 | VILLANUEVA GALARZA ELVIRA SAS DE CV | 21 875,01 |\n\n**Suma total**:  \n2 186,00 + 7 715,22 + 21 875,01 = **31 776,23 MXN**\n\nPor lo tanto, has registrado **31 776,23 pesos mexicanos** en el rubro de salud.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_salud_032.md",
+        "chunk_id": "19a18e43d37ba8a989f0fd2e7ce0f48497e38bf4d645a416c4345cd1b0db0311",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3519,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3196,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_egreso_salud_048.md",
+        "chunk_id": "0cdde4b403fe55d18967a1fa7bac41a604f61c36522d371c7240e5ef964d002b",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3185,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_028.md",
+        "chunk_id": "8ca4a7b79d2572d466bf754b2afa4a15226320de8b3ed27c4daa09e3f3f4c145",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2605,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_039.md",
+        "chunk_id": "c2fe6af25ea0d7c29531f668551a05dc084adc0f045f74c8d82fb86252fb936e",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2601,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 15945.5
+  },
+  {
+    "id": "n2-06",
+    "pregunta": "¿Cuál fue mi documento de mayor monto?",
+    "respuesta_esperada": "¿De qué categoría o período quieres saberlo? Sin acotar, el de mayor monto en todo el historial es el de construcción de noviembre de 2025 ($917,948.81), pero si te refieres solo a un rubro o mes el resultado puede ser otro.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md",
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md",
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md",
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "nota": "Pregunta superlativa ('el mayor') sin acotar universo -- el sistema SÍ puede calcular una respuesta técnica, pero probablemente no es la pregunta real del usuario.",
+    "es_ambigua": true,
+    "campo_removido": null,
+    "rag_coverage": 0.2931,
+    "routing_certainty": 0.3,
+    "question_clarity": 0.9,
+    "data_completeness": 1.0,
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "respuesta_generada": "El documento con el mayor monto es el **CFDI 4** (folio fiscal **6DEFA9CE-F3FA-43FF-9ACB-35755214DFE8**), con un total de **917 948,81 MXN**.",
+    "fragmentos_recuperados": [
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_039.md",
+        "chunk_id": "c2fe6af25ea0d7c29531f668551a05dc084adc0f045f74c8d82fb86252fb936e",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.3052,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_comercio_minorista_038.md",
+        "chunk_id": "9c690675f2382ba183cd74f1a31b36cdf825cc569228c7d8d20605bdb457ad3a",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2952,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v33_ingreso_salud_031.md",
+        "chunk_id": "ca7cf9ec1d9d1d504d1c8fdda9e617ad56ef8e332ba5ea2e7c982f48aea09bcc",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2924,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_construccion_029.md",
+        "chunk_id": "2ff843b6bee9334443db82d5b87a6b26e18a584336813cd5028e0e044d5e39d9",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.2875,
+        "origen": "cfdi"
+      },
+      {
+        "filename": "cfdi_v40_egreso_comercio_minorista_0211.md",
+        "chunk_id": "54e27738e7f32f06a3d5ddba4eef49e71fbb00bbacd12ec4ee899e637aeff31f",
+        "section": "introduccion",
+        "page_number": null,
+        "similarity": 0.285,
+        "origen": "cfdi"
+      }
+    ],
+    "ruta_seleccionada": "CFDI_PROPIOS",
+    "latencia_ms": 15888.1
+  }
+]

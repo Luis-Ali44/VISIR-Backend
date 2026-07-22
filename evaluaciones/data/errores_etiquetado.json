@@ -1,0 +1,22 @@
+[
+  {
+    "idx": 2,
+    "pregunta": "¿Cuál fue el monto del documento de salud de diciembre de 2025?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 5,
+    "pregunta": "¿Cuánto gasté en restaurante?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 9,
+    "pregunta": "¿Cuánto he facturado en comercio minorista?",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  },
+  {
+    "idx": 10,
+    "pregunta": "Dame un reporte de mis gastos.",
+    "error": "Invalid json output: \nFor troubleshooting, visit: https://docs.langchain.com/oss/python/langchain/errors/OUTPUT_PARSING_FAILURE "
+  }
+]

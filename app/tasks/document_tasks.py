@@ -129,27 +129,27 @@ def iniciar_procesamiento(
         rows.append(
             {
                 # Columnas NOT NULL — proveer defaults seguros
+                "id_organizacion": id_organizacion,
+                "id_documento": id_documento,
                 "folio_fiscal": datos.get("folio_fiscal") or "SIN-UUID",
-                "total": float(datos.get("total") or 0.0),
-                "metadatos": datos,
+                "nombre_emisor": emisor.get("nombre") or "Sin nombre",
+                "rfc_emisor": emisor.get("RFC") or "XAXX010101000",
+                "nombre_receptor": receptor.get("nombre") or "Sin nombre",
+                "rfc_receptor": receptor.get("RFC") or "XAXX010101000",
                 "fecha_emision": fecha_iso or datetime.now().isoformat(),
+                "regimen_fiscal": receptor.get("regimen_fiscal"),
+                "total": float(datos.get("total") or 0.0),
+                "metodo_pago": datos.get("metodo_pago") or "PUE",
+                "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
                 "tipo_comprobante": (
                     map_tipo_comprobante(str(tipo_comprobante_raw))
                     if tipo_comprobante_raw is not None
                     else None
                 )
                 or "Ingreso",
-                "metodo_pago": datos.get("metodo_pago") or "PUE",
-                "estado": "procesado",
-                "rfc_emisor": emisor.get("RFC") or "XAXX010101000",
-                "nombre_emisor": emisor.get("nombre") or "Sin nombre",
-                "rfc_receptor": receptor.get("RFC") or "XAXX010101000",
-                "nombre_receptor": receptor.get("nombre") or "Sin nombre",
-                "uso_cfdi": receptor.get("uso_cfdi"),
-                "regimen_fiscal": receptor.get("regimen_fiscal"),
-                "id_documento": id_documento,
-                "id_organizacion": id_organizacion,
-                "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
+                "uso_cfdi_receptor": receptor.get("uso_cfdi"),
+                "estado": "procesando",
+                "metadatos": datos,
             }
         )
 

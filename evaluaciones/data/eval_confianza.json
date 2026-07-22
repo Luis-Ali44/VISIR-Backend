@@ -1,0 +1,102 @@
+[
+  {
+    "id": "conf_001",
+    "descripcion": "features perfectas -> responder",
+    "features": {
+      "rag_coverage": 0.95,
+      "routing_certainty": 0.85,
+      "question_clarity": 0.9,
+      "data_completeness": 1.0,
+      "campo_periodo_faltante": 0.0,
+      "campo_tipo_faltante": 0.0
+    },
+    "accion_esperada": "responder",
+    "confianza_min": 0.8
+  },
+  {
+    "id": "conf_002",
+    "descripcion": "cobertura media sin periodo",
+    "features": {
+      "rag_coverage": 0.65,
+      "routing_certainty": 0.55,
+      "question_clarity": 0.9,
+      "data_completeness": 0.6,
+      "campo_periodo_faltante": 1.0,
+      "campo_tipo_faltante": 0.0
+    },
+    "accion_esperada": "responder_con_advertencia",
+    "confianza_min": 0.5,
+    "confianza_max": 0.8
+  },
+  {
+    "id": "conf_003",
+    "descripcion": "todo bajo y sin datos -> preguntar",
+    "features": {
+      "rag_coverage": 0.0,
+      "routing_certainty": 0.3,
+      "question_clarity": 0.3,
+      "data_completeness": 0.0,
+      "campo_periodo_faltante": 1.0,
+      "campo_tipo_faltante": 1.0
+    },
+    "accion_esperada": "preguntar",
+    "confianza_max": 0.5
+  },
+  {
+    "id": "conf_004",
+    "descripcion": "routing bajo pero buena cobertura -> advertencia",
+    "features": {
+      "rag_coverage": 0.88,
+      "routing_certainty": 0.3,
+      "question_clarity": 0.9,
+      "data_completeness": 1.0,
+      "campo_periodo_faltante": 0.0,
+      "campo_tipo_faltante": 0.0
+    },
+    "accion_esperada": "responder_con_advertencia",
+    "confianza_min": 0.5,
+    "confianza_max": 0.8
+  },
+  {
+    "id": "conf_005",
+    "descripcion": "pregunta ambigua sin periodo ni tipo -> preguntar",
+    "features": {
+      "rag_coverage": 0.3,
+      "routing_certainty": 0.55,
+      "question_clarity": 0.3,
+      "data_completeness": 0.0,
+      "campo_periodo_faltante": 1.0,
+      "campo_tipo_faltante": 1.0
+    },
+    "accion_esperada": "preguntar",
+    "confianza_max": 0.5
+  },
+  {
+    "id": "conf_006",
+    "descripcion": "caso normal con periodo completo -> responder",
+    "features": {
+      "rag_coverage": 0.8,
+      "routing_certainty": 0.85,
+      "question_clarity": 0.9,
+      "data_completeness": 1.0,
+      "campo_periodo_faltante": 0.0,
+      "campo_tipo_faltante": 0.0
+    },
+    "accion_esperada": "responder",
+    "confianza_min": 0.7
+  },
+  {
+    "id": "conf_007",
+    "descripcion": "cobertura muy baja datos incompletos -> preguntar",
+    "features": {
+      "rag_coverage": 0.2,
+      "routing_certainty": 0.55,
+      "question_clarity": 0.5,
+      "data_completeness": 0.0,
+      "campo_periodo_faltante": 1.0,
+      "campo_tipo_faltante": 1.0
+    },
+    "accion_esperada": "preguntar",
+    "confianza_max": 0.5
+  }
+]

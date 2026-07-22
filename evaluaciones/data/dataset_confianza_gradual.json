@@ -1,0 +1,208 @@
+[
+  {
+    "id": "n0-01",
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "pregunta": "¿Cuánto gasté en restaurante en marzo de 2026?",
+    "respuesta_esperada": "$11,641.74 MXN, correspondientes a un documento de PULIDO-CORTÉS IAP.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md"
+    ],
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false
+  },
+  {
+    "id": "n0-02",
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "pregunta": "¿Cuál fue el monto del documento de salud de diciembre de 2025?",
+    "respuesta_esperada": "$21,875.01 MXN, de VILLANUEVA GALARZA ELVIRA SAS DE CV.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_salud_048.md"
+    ],
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false
+  },
+  {
+    "id": "n0-03",
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "pregunta": "¿Cuánto gasté en construcción en noviembre de 2025?",
+    "respuesta_esperada": "$917,948.81 MXN, de CORPORACIN VILLASEÑOR-HOLGUÍN IAP.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false
+  },
+  {
+    "id": "n0-04",
+    "nivel_ambiguedad": "clara",
+    "accion_esperada": "responder",
+    "pregunta": "¿Cuánto le pagué a Industrias Tello y Gracia?",
+    "respuesta_esperada": "$163,472.16 MXN, único documento registrado con ese proveedor (enero de 2026).",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_026.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "nota": "Falta período explícito, pero el proveedor específico ya acota a un único resultado -- no debería requerir pregunta. Ejemplo de control: campo faltante que NO genera ambigüedad real."
+  },
+  {
+    "id": "n1-01",
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "pregunta": "¿Cuánto gasté en restaurante?",
+    "respuesta_esperada": "En total $19,330.39 MXN, combinando 2 documentos: $7,688.65 de enero de 2026 y $11,641.74 de marzo de 2026. Si te refieres a un mes en particular, dime cuál.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_restaurante_045.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "nota": "Solo 2 documentos, montos del mismo orden de magnitud -- ambigüedad baja, responder con advertencia es razonable."
+  },
+  {
+    "id": "n1-02",
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "pregunta": "¿Cuánto facturé en salud en enero de 2026?",
+    "respuesta_esperada": "$9,901.22 MXN en total, combinando 2 documentos de enero de 2026 ($7,715.22 y $2,186.00).",
+    "fragmentos_fuente": [
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md"
+    ],
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": false,
+    "nota": "Período y tipo están claros; la ambigüedad es de documento específico (hay 2), no de campo faltante -- aun así amerita aclarar que se sumaron 2 documentos."
+  },
+  {
+    "id": "n1-03",
+    "nivel_ambiguedad": "leve",
+    "accion_esperada": "responder_con_advertencia",
+    "pregunta": "¿Cuánto he registrado en comercio minorista en diciembre de 2025?",
+    "respuesta_esperada": "$290,333.43 MXN en total, combinando 3 documentos de diciembre de 2025 ($1,183.22, $69,475.38 y $219,674.83). Nota: incluye tanto ingresos como una nota de crédito -- si buscas solo uno de los dos tipos, dime cuál.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md"
+    ],
+    "campo_periodo_faltante": false,
+    "campo_tipo_faltante": true,
+    "nota": "Mismo mes, pero mezcla INGRESO/EGRESO con variación de monto de ~185x entre los 3 documentos -- amerita advertencia fuerte aunque no llegue a bloquear la respuesta."
+  },
+  {
+    "id": "n2-01",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "¿Cuánto gasté en construcción?",
+    "respuesta_esperada": "¿A qué mes te refieres? Tienes documentos de construcción registrados en noviembre de 2025 ($917,948.81), enero de 2026 ($163,472.16), marzo de 2026 ($367,565.98) y mayo de 2026 ($793,587.90) -- los montos varían mucho entre sí, así que prefiero confirmar antes de sumarlos.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_construccion_029.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "nota": "4 meses distintos, variación de 5.6x entre el monto menor y el mayor -- caso central de por qué V-10 debe frenar aquí en vez de sumar/asumir."
+  },
+  {
+    "id": "n2-02",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "¿Cuánto he facturado en comercio minorista?",
+    "respuesta_esperada": "¿Te refieres a un mes específico? Hay documentos de comercio minorista en diciembre de 2025 (3 documentos), febrero, abril y mayo de 2026, con montos que van de $1,183.22 hasta $219,674.83 -- es una diferencia muy grande como para sumarlos sin confirmar contigo primero.",
+    "fragmentos_fuente": [
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": false,
+    "nota": "6 documentos en 4 meses, variación de 185x entre el menor y el mayor monto -- el caso más extremo del dataset."
+  },
+  {
+    "id": "n2-03",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "Dame un reporte de mis gastos.",
+    "respuesta_esperada": "Con gusto, pero necesito que me digas de qué período y de qué categoría -- tienes documentos de restaurante, salud, comercio minorista y construcción, distribuidos entre noviembre de 2025 y mayo de 2026. ¿Quieres el reporte de todo ese rango o de un mes/categoría en particular?",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md",
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md",
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md",
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "nota": "Sin período NI categoría -- el caso más abierto; ambos campos obligatorios faltan a la vez."
+  },
+  {
+    "id": "n2-04",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "¿Cuánto gasté este trimestre?",
+    "respuesta_esperada": "¿A qué trimestre te refieres exactamente? 'Este trimestre' es ambiguo sin saber la fecha actual de referencia y sin especificar la categoría -- dime el rango de meses o la categoría para poder darte un número preciso.",
+    "fragmentos_fuente": [],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "nota": "Período relativo ('trimestre') sin ancla de fecha clara -- distinto de los demás casos porque ni siquiera con retrieval perfecto se resuelve; requiere aclaración conversacional, no solo datos."
+  },
+  {
+    "id": "n2-05",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "¿Cuánto he registrado en el rubro de salud?",
+    "respuesta_esperada": "¿Buscas solo ingresos, solo la nota de crédito, o el total combinado? En salud tienes un documento tipo egreso de diciembre de 2025 ($21,875.01) y dos de ingreso de enero de 2026 ($7,715.22 y $2,186.00) -- son naturalezas distintas y prefiero confirmar antes de sumarlas.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "nota": "Ambigüedad de TIPO (ingreso vs egreso/nota de crédito) además de período -- distinto de los casos anteriores que solo tenían ambigüedad de período."
+  },
+  {
+    "id": "n2-06",
+    "nivel_ambiguedad": "alta",
+    "accion_esperada": "preguntar",
+    "pregunta": "¿Cuál fue mi documento de mayor monto?",
+    "respuesta_esperada": "¿De qué categoría o período quieres saberlo? Sin acotar, el de mayor monto en todo el historial es el de construcción de noviembre de 2025 ($917,948.81), pero si te refieres solo a un rubro o mes el resultado puede ser otro.",
+    "fragmentos_fuente": [
+      "cfdi_v33_egreso_restaurante_045.md",
+      "cfdi_v33_egreso_restaurante_047.md",
+      "cfdi_v33_egreso_salud_048.md",
+      "cfdi_v33_ingreso_comercio_minorista_038.md",
+      "cfdi_v33_ingreso_comercio_minorista_039.md",
+      "cfdi_v33_ingreso_salud_031.md",
+      "cfdi_v33_ingreso_salud_032.md",
+      "cfdi_v40_egreso_comercio_minorista_0211.md",
+      "cfdi_v40_egreso_comercio_minorista_022.md",
+      "cfdi_v40_egreso_comercio_minorista_024.md",
+      "cfdi_v40_egreso_comercio_minorista_025.md",
+      "cfdi_v40_egreso_construccion_026.md",
+      "cfdi_v40_egreso_construccion_027.md",
+      "cfdi_v40_egreso_construccion_028.md",
+      "cfdi_v40_egreso_construccion_029.md"
+    ],
+    "campo_periodo_faltante": true,
+    "campo_tipo_faltante": true,
+    "nota": "Pregunta superlativa ('el mayor') sin acotar universo -- el sistema SÍ puede calcular una respuesta técnica, pero probablemente no es la pregunta real del usuario."
+  }
+]
