@@ -1,0 +1,98 @@
+[
+  {
+    "pregunta": "\u00bfCu\u00e1nto gast\u00e9 en total en junio de 2025?",
+    "respuesta_esperada": "El gasto total en junio de 2025 fue de $58,400.00 MXN distribuido en facturas de servicios de nube y consultoria fiscal.",
+    "fragmentos_fuente": ["cfdi_sintetico_junio_2025.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfQu\u00e9 facturas emiti\u00f3 el proveedor con RFC XAMA900101ABC?",
+    "respuesta_esperada": "El proveedor XAMA900101ABC (Servicios Cloud MX SA de CV) emiti\u00f3 facturas mensuales por $22,000.00 por servicios de infraestructura en la nube.",
+    "fragmentos_fuente": ["cfdi_sintetico_proveedor_cloud.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfCu\u00e1l fue mi gasto en servicios de nube durante el primer semestre?",
+    "respuesta_esperada": "El gasto en servicios de infraestructura en la nube fue de facturas mensuales de $22,000.00 del proveedor Servicios Cloud MX SA de CV.",
+    "fragmentos_fuente": ["cfdi_sintetico_proveedor_cloud.md"],
+    "dificultad": "media",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfQu\u00e9 proveedores me facturaron en mayo de 2025?",
+    "respuesta_esperada": "En mayo de 2025 facturaron: Servicios Cloud MX SA de CV por $22,000.00 y Papeleria Central SA por $3,480.00.",
+    "fragmentos_fuente": ["cfdi_sintetico_mayo_2025.md", "cfdi_sintetico_papeleria.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfCu\u00e1ntas facturas de tipo ingreso tengo registradas?",
+    "respuesta_esperada": "Se registran facturas de tipo Ingreso (I) en el periodo enero-junio 2025.",
+    "fragmentos_fuente": ["cfdi_sintetico_resumen_semestral.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfCu\u00e1l fue el gasto promedio mensual en el primer semestre de 2025?",
+    "respuesta_esperada": "El gasto mensual incluye servicios de nube, software y papeleria distribuidos en los 6 meses del semestre.",
+    "fragmentos_fuente": ["cfdi_sintetico_resumen_semestral.md"],
+    "dificultad": "media",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfTengo facturas pagadas con transferencia electr\u00f3nica?",
+    "respuesta_esperada": "Si, las facturas de servicios de nube fueron pagadas con forma de pago 03 (Transferencia electronica de fondos).",
+    "fragmentos_fuente": ["cfdi_sintetico_proveedor_cloud.md", "cfdi_sintetico_resumen_semestral.md"],
+    "dificultad": "media",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfCu\u00e1nto IVA pagu\u00e9 en el segundo trimestre de 2025?",
+    "respuesta_esperada": "El IVA acreditable del segundo trimestre se calcula al 16% sobre los gastos con tasa de IVA aplicable de abril a junio.",
+    "fragmentos_fuente": ["cfdi_sintetico_junio_2025.md", "cfdi_sintetico_mayo_2025.md"],
+    "dificultad": "alta",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfQu\u00e9 conceptos factur\u00f3 Papeler\u00eda Central SA en 2025?",
+    "respuesta_esperada": "Papeleria Central SA (RFC PACS810312XYZ) facturo resmas de papel bond, toner y articulos de oficina varios.",
+    "fragmentos_fuente": ["cfdi_sintetico_papeleria.md"],
+    "dificultad": "media",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfQu\u00e9 mes tuvo mayor gasto en el primer semestre?",
+    "respuesta_esperada": "Marzo 2025 tuvo mayor gasto por la renovacion anual de licencias de software ademas de los gastos recurrentes de nube.",
+    "fragmentos_fuente": ["cfdi_sintetico_resumen_semestral.md"],
+    "dificultad": "alta",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfCu\u00e1nto gaste en consultoria fiscal en 2025?",
+    "respuesta_esperada": "Se registro una factura de consultoria fiscal por $36,400.00 del proveedor Consultoria Fiscal Avanzada SC en el Q2 2025.",
+    "fragmentos_fuente": ["cfdi_sintetico_consultoria_q2.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  },
+  {
+    "pregunta": "\u00bfQu\u00e9 RFC tiene el receptor en mis facturas?",
+    "respuesta_esperada": "El RFC receptor en todas las facturas es DEMO010101AA1, correspondiente a la organizacion de prueba registrada en VISIR.",
+    "fragmentos_fuente": ["cfdi_sintetico_resumen_semestral.md"],
+    "dificultad": "baja",
+    "_origen": "cfdi-sintetico",
+    "_id_organizacion_prueba": "org-test-visir-001"
+  }
+]

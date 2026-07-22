@@ -135,6 +135,12 @@ def _postprocesar(
                 nodo["RFC"] = _norm_rfc(str(rfc))
                 if not validar_formato_rfc(nodo["RFC"]):
                     print(f" RFC {entidad} '{nodo['RFC']}' no tiene un formato válido")
+            if nodo.get("regimen_fiscal"):
+                nodo["regimen_fiscal"] = normalizar(nodo.get("regimen_fiscal"), "regimen_fiscal")
+
+    receptor = datos.get("receptor", {})
+    if isinstance(receptor, dict) and receptor.get("uso_cfdi"):
+        receptor["uso_cfdi"] = normalizar(receptor.get("uso_cfdi"), "uso_cfdi")
 
     uuid_llm = str(datos.get("folio_fiscal") or "")
     if uuid_extraido and es_uuid_valido(uuid_extraido):

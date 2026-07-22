@@ -4,9 +4,12 @@ import json
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 _MODELO_ES_LOCAL = False
 _MODELO_RUTA = "intfloat/multilingual-e5-small"
@@ -37,7 +40,7 @@ class SugerenciaCategoria:
 
 
 @lru_cache(maxsize=1)
-def _cargar_modelo() -> Any:
+def _cargar_modelo() -> SentenceTransformer:
     from sentence_transformers import SentenceTransformer
 
     origen = str(_MODELO_RUTA) if _MODELO_ES_LOCAL else _MODELO_RUTA
@@ -51,7 +54,7 @@ def _con_prefijo(texto: str, prefijo: str) -> str:
 @lru_cache(maxsize=1)
 def _cargar_catalogo() -> dict[str, dict]:
     with _CATALOGO_PATH.open(encoding="utf-8") as f:
-        return dict(json.load(f))
+        return cast(dict[str, dict], json.load(f))
 
 
 def _construir_contexto(info: dict) -> str:
@@ -70,7 +73,7 @@ def _construir_contexto(info: dict) -> str:
 @lru_cache(maxsize=1)
 def _cargar_codigos_validos() -> list[str]:
     with _CODIGOS_PATH.open(encoding="utf-8") as f:
-        return list(json.load(f))
+        return cast(list[str], json.load(f))
 
 
 @lru_cache(maxsize=1)
