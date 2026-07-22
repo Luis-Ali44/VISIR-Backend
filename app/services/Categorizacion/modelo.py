@@ -4,8 +4,12 @@ import json
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 _MODELO_ES_LOCAL = False
 _MODELO_RUTA = "intfloat/multilingual-e5-small"
@@ -17,8 +21,12 @@ _PREFIJO_QUERY = "query: "
 UMBRAL_CONFIANZA = 0.80
 
 _CATALOGO_PATH = Path(__file__).parent.parent.parent.parent / "data" / "catalogo_prodserv_sat.json"
-_CODIGOS_PATH = Path(__file__).parent.parent.parent.parent / "models" / "embeddings" / "catalogo_codigos.json"
-_EMBEDDINGS_CACHE_PATH = Path(__file__).parent.parent.parent.parent / "models" / "embeddings" / "catalogo_embeddings.npy"
+_CODIGOS_PATH = (
+    Path(__file__).parent.parent.parent.parent / "models" / "embeddings" / "catalogo_codigos.json"
+)
+_EMBEDDINGS_CACHE_PATH = (
+    Path(__file__).parent.parent.parent.parent / "models" / "embeddings" / "catalogo_embeddings.npy"
+)
 _CODIGO_PLACEHOLDER = "01010101"
 
 
@@ -32,7 +40,7 @@ class SugerenciaCategoria:
 
 
 @lru_cache(maxsize=1)
-def _cargar_modelo():
+def _cargar_modelo() -> SentenceTransformer:
     from sentence_transformers import SentenceTransformer
 
     origen = str(_MODELO_RUTA) if _MODELO_ES_LOCAL else _MODELO_RUTA
@@ -46,7 +54,7 @@ def _con_prefijo(texto: str, prefijo: str) -> str:
 @lru_cache(maxsize=1)
 def _cargar_catalogo() -> dict[str, dict]:
     with _CATALOGO_PATH.open(encoding="utf-8") as f:
-        return json.load(f)
+        return cast(dict[str, dict], json.load(f))
 
 
 def _construir_contexto(info: dict) -> str:
@@ -65,7 +73,7 @@ def _construir_contexto(info: dict) -> str:
 @lru_cache(maxsize=1)
 def _cargar_codigos_validos() -> list[str]:
     with _CODIGOS_PATH.open(encoding="utf-8") as f:
-        return json.load(f)
+        return cast(list[str], json.load(f))
 
 
 @lru_cache(maxsize=1)
@@ -82,9 +90,7 @@ def _cargar_o_construir_embeddings_catalogo() -> tuple[list[str], np.ndarray]:
 
     catalogo = _cargar_catalogo()
     claves = [c for c in catalogo if c != _CODIGO_PLACEHOLDER]
-    textos = [
-        _con_prefijo(_construir_contexto(catalogo[c]), _PREFIJO_PASSAGE) for c in claves
-    ]
+    textos = [_con_prefijo(_construir_contexto(catalogo[c]), _PREFIJO_PASSAGE) for c in claves]
 
     modelo = _cargar_modelo()
     vectores = modelo.encode(
@@ -116,16 +122,11 @@ def categorizar_concepto(
     claves, vectores = _cargar_o_construir_embeddings_catalogo()
 
     consulta_texto = _con_prefijo(descripcion, _PREFIJO_QUERY)
-    consulta = modelo.encode(
-        [consulta_texto], normalize_embeddings=True, convert_to_numpy=True
-    )[0]
+    consulta = modelo.encode([consulta_texto], normalize_embeddings=True, convert_to_numpy=True)[0]
     scores = vectores @ consulta
 
     top_idx = np.argsort(-scores)[:k]
-    top_k = [
-        (claves[i], catalogo[claves[i]]["descripcion"], float(scores[i]))
-        for i in top_idx
-    ]
+    top_k = [(claves[i], catalogo[claves[i]]["descripcion"], float(scores[i])) for i in top_idx]
 
     mejor_clave, mejor_desc, mejor_score = top_k[0]
     categorizado = mejor_score >= umbral
