@@ -6,6 +6,7 @@ import re
 import unicodedata
 from functools import cache, lru_cache
 from pathlib import Path
+from typing import cast
 
 
 def expandir_abreviaturas(texto: str) -> str:
@@ -310,7 +311,7 @@ def _leer_json(nombre_archivo: str) -> dict:
         return {}
     try:
         with ruta.open(encoding="utf-8") as f:
-            return json.load(f)
+            return cast(dict, json.load(f))
     except (json.JSONDecodeError, OSError):
         return {}
 
