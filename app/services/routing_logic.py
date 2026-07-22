@@ -51,13 +51,13 @@ def analizar_lexico(pregunta: str) -> dict[str, object]:
     if match_normativa > 0 and match_numerica > 0:
         return {
             "ruta_seleccionada": "HIBRIDO",
-            "confianza_lexica": 0.85,
+            "confianza_lexica": 0.70,
             "palabras_clave_detectadas": detectadas,
         }
     if match_numerica > match_normativa:
         return {
             "ruta_seleccionada": "CFDI_PROPIOS",
-            "confianza_lexica": 0.90,
+            "confianza_lexica": 0.70,
             "palabras_clave_detectadas": detectadas,
         }
     if match_normativa > 0:

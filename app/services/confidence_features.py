@@ -97,10 +97,10 @@ def question_clarity(pregunta: str, tiene_contexto_previo: bool = False) -> floa
 
 
 def data_completeness(fragmentos_encontrados: int, periodo_detectado: bool) -> float:
-    if not periodo_detectado:
-        return 0.5
     if fragmentos_encontrados == 0:
         return 0.0
+    if not periodo_detectado:
+        return 0.7
     if fragmentos_encontrados < 3:
         return 0.6
     return 1.0
