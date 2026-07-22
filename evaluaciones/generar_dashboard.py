@@ -30,11 +30,15 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <style>
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-  body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #1a1a2e; padding: 2rem; }}
+  body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa; color: #1a1a2e; padding: 2rem; }}
   h1 {{ font-size: 1.8rem; margin-bottom: 0.5rem; }}
   .subtitle {{ color: #666; margin-bottom: 2rem; }}
-  .grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }}
-  .card {{ background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
+  .grid {{ display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-bottom: 2rem; }}
+  .card {{ background: white; border-radius: 12px; padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); }}
   .card h2 {{ font-size: 1rem; color: #666; margin-bottom: 0.5rem; }}
   .card .value {{ font-size: 2.2rem; font-weight: 700; }}
   .card .value.pass {{ color: #22c55e; }}
@@ -42,9 +46,11 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
   .card .value.warn {{ color: #f59e0b; }}
   canvas {{ max-height: 300px; }}
   table {{ width: 100%; border-collapse: collapse; margin-top: 1rem; }}
-  th, td {{ padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9rem; }}
+  th, td {{ padding: 0.5rem 0.75rem; text-align: left; border-bottom: 1px solid #eee;
+    font-size: 0.9rem; }}
   th {{ background: #f8fafc; font-weight: 600; }}
-  .badge {{ display: inline-block; padding: 0.15rem 0.5rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; }}
+  .badge {{ display: inline-block; padding: 0.15rem 0.5rem; border-radius: 6px;
+    font-size: 0.75rem; font-weight: 600; }}
   .badge.ok {{ background: #dcfce7; color: #166534; }}
   .badge.fail {{ background: #fee2e2; color: #991b1b; }}
   .section-title {{ font-size: 1.2rem; margin: 2rem 0 1rem; }}
@@ -139,7 +145,7 @@ def _badge(ok: bool) -> str:
 def buscar_metricas(output_dir: Path) -> dict:
     metrics_path = output_dir / "metrics_summary.json"
     if metrics_path.exists():
-        return json.loads(metrics_path.read_text(encoding="utf-8"))
+        return dict(json.loads(metrics_path.read_text(encoding="utf-8")))
 
     # Fallback: buscar el JSON de evaluación más reciente
     jsons = sorted(output_dir.glob("eval_*.json"), key=os.path.getmtime, reverse=True)

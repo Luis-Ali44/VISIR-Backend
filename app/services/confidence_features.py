@@ -110,4 +110,4 @@ def rag_coverage(fuentes_recuperadas: list[dict]) -> float:
     if not fuentes_recuperadas:
         return 0.0
     similitudes = [f.get("similarity", 0.0) for f in fuentes_recuperadas]
-    return sum(similitudes) / len(similitudes)
+    return float(sum(similitudes) / len(similitudes))

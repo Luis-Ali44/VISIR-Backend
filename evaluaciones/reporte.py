@@ -9,7 +9,7 @@ from metricas import ResultadoRecall
 def _emoji_score(score: int | float | None) -> str:
     if score is None:
         return "⚪"
-    s = int(round(score))
+    s = round(score)
     if s >= 4:
         return "🟢"
     if s == 3:
@@ -52,9 +52,12 @@ def generar_reporte(
         "",
         "| Métrica | Valor | Hits |",
         "|---------|-------|------|",
-        f"| Recall@1 | **{recall.recall_at_1:.2%}** | {recall.hits_by_k.get(1, 0)}/{recall.total_preguntas} |",
-        f"| Recall@3 | **{recall.recall_at_3:.2%}** | {recall.hits_by_k.get(3, 0)}/{recall.total_preguntas} |",
-        f"| Recall@5 | **{recall.recall_at_5:.2%}** | {recall.hits_by_k.get(5, 0)}/{recall.total_preguntas} |",
+        f"| Recall@1 | **{recall.recall_at_1:.2%}** | "
+        f"{recall.hits_by_k.get(1, 0)}/{recall.total_preguntas} |",
+        f"| Recall@3 | **{recall.recall_at_3:.2%}** | "
+        f"{recall.hits_by_k.get(3, 0)}/{recall.total_preguntas} |",
+        f"| Recall@5 | **{recall.recall_at_5:.2%}** | "
+        f"{recall.hits_by_k.get(5, 0)}/{recall.total_preguntas} |",
         "",
     ]
 
@@ -76,8 +79,10 @@ def generar_reporte(
             "",
             "| Métrica | Media | Preguntas críticas (< 3) |",
             "|---------|-------|--------------------------|",
-            f"| Fidelidad | **{media_fid:.2f} / 5** {_emoji_score(media_fid)} | {fidelidad_critica} |",
-            f"| Relevancia | **{media_rel:.2f} / 5** {_emoji_score(media_rel)} | {relevancia_critica} |",
+            f"| Fidelidad | **{media_fid:.2f} / 5** {_emoji_score(media_fid)} | "
+            f"{fidelidad_critica} |",
+            f"| Relevancia | **{media_rel:.2f} / 5** {_emoji_score(media_rel)} | "
+            f"{relevancia_critica} |",
             "",
         ]
 
@@ -145,11 +150,14 @@ def generar_reporte(
     lineas += [
         "## Cómo Interpretar Este Reporte",
         "",
-        "- **Recall@k**: mide si el fragmento correcto aparece en los primeros k resultados del retriever.",
+        "- **Recall@k**: mide si el fragmento correcto aparece "
+        "en los primeros k resultados del retriever.",
         "  Un Recall@1 bajo pero Recall@5 alto sugiere problemas de *ranking*, no de *cobertura*.",
-        "- **Fidelidad**: detecta alucinaciones (respuestas que van más allá del contexto recuperado).",
+        "- **Fidelidad**: detecta alucinaciones "
+        "(respuestas que van más allá del contexto recuperado).",
         "  Score < 3 indica que el LLM inventó información. Revisar el prompt del sistema.",
-        "- **Relevancia**: detecta respuestas tangenciales (correctas pero que no satisfacen la pregunta).",
+        "- **Relevancia**: detecta respuestas tangenciales "
+        "(correctas pero que no satisfacen la pregunta).",
         "  Score < 3 sugiere mejorar la fragmentación o el prompt de usuario.",
         "",
         "Para re-ejecutar este reporte:",

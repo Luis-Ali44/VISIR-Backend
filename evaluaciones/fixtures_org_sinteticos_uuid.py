@@ -6,16 +6,16 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_ROOT / ".env")
 
-import os
+import os  # noqa: E402
 
-from app.services.org_ingestion_service import ingestar_cfdi_organizacion
-from evaluaciones.fixtures_org import CFDIS_SINTETICOS, FILENAMES_ESPERADOS
-from rag.config import load_config_from_env
-from rag.store import FiscalChromaStore
+from app.services.org_ingestion_service import ingestar_cfdi_organizacion  # noqa: E402
+from evaluaciones.fixtures_org import CFDIS_SINTETICOS, FILENAMES_ESPERADOS  # noqa: E402
+from rag.config import load_config_from_env  # noqa: E402
+from rag.store import FiscalChromaStore  # noqa: E402
 
 ID_ORGANIZACION_PRUEBA = "11111111-1111-1111-1111-111111111111"
 
@@ -96,7 +96,8 @@ def stats() -> None:
     )
     s = store.stats_by_org(ID_ORGANIZACION_PRUEBA)
     print(
-        f"Org {ID_ORGANIZACION_PRUEBA}: {s['total_chunks']} chunks, {s['documentos_unicos']} documentos"
+        f"Org {ID_ORGANIZACION_PRUEBA}: {s['total_chunks']} chunks, "
+        f"{s['documentos_unicos']} documentos"
     )
 
 

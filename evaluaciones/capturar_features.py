@@ -6,11 +6,12 @@ import os
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_ROOT / ".env")
 
@@ -26,7 +27,7 @@ from app.services.confidence_features import (  # noqa: E402
 ID_ORGANIZACION_PRUEBA = "11111111-1111-1111-1111-111111111111"
 
 
-def cargar_servicio():
+def cargar_servicio() -> Any:
     from app.services.rag_service import RAGServiceLangGraph
     from rag.chain import FiscalRAGChain
     from rag.config import load_config_from_env
@@ -53,7 +54,7 @@ def cargar_servicio():
     )
 
 
-def capturar_fila(servicio, item: dict) -> dict:
+def capturar_fila(servicio: Any, item: dict) -> dict:
     pregunta = item["pregunta"]
     t0 = time.perf_counter()
 
@@ -132,9 +133,9 @@ def main() -> None:
 
     if errores:
         print(f"[WARN] {len(errores)} preguntas fallaron:")
-        for e in errores:
-            err_msg = str(e["error"])[:80]
-            print(f"       [{e['idx']}] {e['pregunta'][:50]} - {err_msg}")
+        for err_item in errores:
+            err_msg = str(err_item["error"])[:80]
+            print(f"       [{err_item['idx']}] {err_item['pregunta'][:50]} - {err_msg}")
 
     if filas:
         niveles = sorted(

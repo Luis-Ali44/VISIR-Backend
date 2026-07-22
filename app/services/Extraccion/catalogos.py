@@ -310,7 +310,7 @@ def _leer_json(nombre_archivo: str) -> dict:
         return {}
     try:
         with ruta.open(encoding="utf-8") as f:
-            return json.load(f)
+            return dict(json.load(f))
     except (json.JSONDecodeError, OSError):
         return {}
 

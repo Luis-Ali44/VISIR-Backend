@@ -30,7 +30,7 @@ class Section:
     content: str
     char_count: int = 0
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         self.char_count = len(self.content)
 
 
@@ -88,7 +88,7 @@ class FiscalDocumentChunker:
 
     def __init__(
         self,
-        embed_model,
+        embed_model: object,
         breakpoint_threshold: int = 88,
         buffer_size: int = 2,
         min_section_length: int = 200,

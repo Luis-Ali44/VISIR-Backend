@@ -7,15 +7,15 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_ROOT / ".env")
 
-import os
+import os  # noqa: E402
 
-from app.services.org_ingestion_service import ingestar_cfdi_organizacion
-from rag.config import load_config_from_env
-from rag.store import FiscalChromaStore
+from app.services.org_ingestion_service import ingestar_cfdi_organizacion  # noqa: E402
+from rag.config import load_config_from_env  # noqa: E402
+from rag.store import FiscalChromaStore  # noqa: E402
 
 ID_ORG_PRUEBA = "org-test-visir-001"
 ID_USUARIO_PRUEBA = "user-test-visir-001"
@@ -241,16 +241,16 @@ def indexar_fixtures(verbose: bool = True) -> None:
             + "\n".join(f"  - {e}" for e in errores)
         )
 
-    if chunks_nuevos == 0:
-        if chunks_despues < chunks_antes:
-            raise RuntimeError(
-                f"La ingesta redujo el conteo de chunks para org={ID_ORG_PRUEBA}. "
-                "Revisa la configuracion de embeddings o ChromaDB."
-            )
+    if chunks_nuevos == 0 and chunks_despues < chunks_antes:
+        raise RuntimeError(
+            f"La ingesta redujo el conteo de chunks para org={ID_ORG_PRUEBA}. "
+            "Revisa la configuracion de embeddings o ChromaDB."
+        )
 
     if verbose:
         print(
-            "  Verificación OK: filenames y conteo de chunks coinciden con el dataset de evaluación.\n"
+            "  Verificación OK: filenames y conteo de chunks "
+            "coinciden con el dataset de evaluación.\n"
         )
 
 

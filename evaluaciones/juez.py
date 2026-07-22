@@ -4,11 +4,15 @@ import json
 import re
 import time
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from langchain_core.exceptions import OutputParserException
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+
+if TYPE_CHECKING:
+    pass
 
 _PROMPTS_DIR = Path(__file__).parent / "prompts"
 
@@ -24,16 +28,16 @@ class RobustJsonOutputParser(JsonOutputParser):
     def parse(self, text: str) -> dict:
         clean = re.sub(r"```(?:json)?\s*", "", text).replace("```", "").strip()
         try:
-            return json.loads(clean)
-        except json.JSONDecodeError:
+            return dict(json.loads(clean))
+        except json.JSONDecodeError as e:
             match = re.search(r"\{.*\}", clean, re.DOTALL)
             if match:
-                return json.loads(match.group())
+                return dict(json.loads(match.group()))
             preview = clean[:300].replace("\n", " | ")
             raise OutputParserException(
                 f"No se pudo extraer JSON del output del LLM. "
                 f"Inicio del output (primeros 300 chars): {preview}"
-            )
+            ) from e
 
 
 def _format_fragmentos_para_juez(fragmentos: list[str | dict]) -> str:
@@ -72,17 +76,20 @@ class FidelidadChain:
     ) -> dict:
         for intento in range(3):
             try:
-                return self._chain.invoke(
-                    {
-                        "pregunta": pregunta,
-                        "fragmentos": _format_fragmentos_para_juez(fragmentos),
-                        "respuesta_generada": respuesta_generada,
-                    }
+                return dict(
+                    self._chain.invoke(
+                        {
+                            "pregunta": pregunta,
+                            "fragmentos": _format_fragmentos_para_juez(fragmentos),
+                            "respuesta_generada": respuesta_generada,
+                        }
+                    )
                 )
             except Exception:
                 if intento == 2:
                     raise
                 time.sleep(2)
+        return {}
 
 
 class RelevanciaChain:
@@ -108,17 +115,20 @@ class RelevanciaChain:
     ) -> dict:
         for intento in range(3):
             try:
-                return self._chain.invoke(
-                    {
-                        "pregunta": pregunta,
-                        "respuesta_generada": respuesta_generada,
-                        "respuesta_esperada": respuesta_esperada,
-                    }
+                return dict(
+                    self._chain.invoke(
+                        {
+                            "pregunta": pregunta,
+                            "respuesta_generada": respuesta_generada,
+                            "respuesta_esperada": respuesta_esperada,
+                        }
+                    )
                 )
             except Exception:
                 if intento == 2:
                     raise
                 time.sleep(2)
+        return {}
 
 
 class RelevanciaAmbiguaChain:
@@ -144,17 +154,20 @@ class RelevanciaAmbiguaChain:
     ) -> dict:
         for intento in range(3):
             try:
-                return self._chain.invoke(
-                    {
-                        "pregunta": pregunta,
-                        "respuesta_generada": respuesta_generada,
-                        "respuesta_esperada": respuesta_esperada,
-                    }
+                return dict(
+                    self._chain.invoke(
+                        {
+                            "pregunta": pregunta,
+                            "respuesta_generada": respuesta_generada,
+                            "respuesta_esperada": respuesta_esperada,
+                        }
+                    )
                 )
             except Exception:
                 if intento == 2:
                     raise
                 time.sleep(2)
+        return {}
 
 
 class JuezFiscal:

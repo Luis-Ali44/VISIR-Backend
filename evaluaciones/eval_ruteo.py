@@ -36,7 +36,7 @@ sys.path.insert(0, str(_ROOT))
 
 load_dotenv(_ROOT / ".env")
 
-from app.services.routing_logic import analizar_lexico
+from app.services.routing_logic import analizar_lexico  # noqa: E402
 
 
 def _estado_base(pregunta: str) -> dict[str, object]:
@@ -89,9 +89,9 @@ def evaluar_lexico(dataset: list[dict[str, str]]) -> tuple[float, list[dict[str,
 
     for item in dataset:
         estado = _estado_base(item["pregunta"])
-        salida = analizar_lexico(estado["pregunta"])
+        salida = analizar_lexico(str(estado["pregunta"]))
         ruta_predicha = salida["ruta_seleccionada"]
-        confianza = float(salida["confianza_lexica"])
+        confianza = float(salida.get("confianza_lexica", 0) or 0)  # type: ignore[arg-type]
         escalaria = confianza < 0.85
         acierto = (not escalaria) and (ruta_predicha == item["ruta_esperada"])
 
@@ -146,13 +146,13 @@ def evaluar_completo(dataset: list[dict[str, str]]) -> tuple[float, list[dict[st
 
     for item in dataset:
         estado = _estado_base(item["pregunta"])
-        estado_lexico = servicio._nodo_analisis_lexico(estado)
+        estado_lexico = servicio._nodo_analisis_lexico(estado)  # type: ignore[arg-type]
         estado.update(estado_lexico)
-        if float(estado["confianza_lexica"]) < 0.85:
-            estado_llm = servicio._nodo_validacion_llm(estado)
+        if float(estado.get("confianza_lexica", 0) or 0) < 0.85:  # type: ignore[arg-type]
+            estado_llm = servicio._nodo_validacion_llm(estado)  # type: ignore[arg-type]
             estado.update(estado_llm)
 
-        ruta_predicha = estado["ruta_seleccionada"]
+        ruta_predicha: str = str(estado.get("ruta_seleccionada", ""))
         acierto = ruta_predicha == item["ruta_esperada"]
         if acierto:
             aciertos += 1
@@ -194,10 +194,13 @@ def main() -> None:
     print("\nPregunta | Esperada | Predicha | Acierto")
     print("-" * 60)
     for item in detalle:
-        ok_str = "OK" if item["acierto"] else "XX"
+        pregunta: str = str(item.get("pregunta", ""))
+        ruta_esp: str = str(item.get("ruta_esperada", ""))
+        ruta_pred: str = str(item.get("ruta_predicha", ""))
+        ok_str = "OK" if item.get("acierto") else "XX"
         print(
-            f"{item['pregunta'][:40]:40s} | {item['ruta_esperada']:14s} | "
-            f"{item['ruta_predicha']}{' (escala)' if item.get('escalaria_a_llm') else ''} | "
+            f"{pregunta[:40]:40s} | {ruta_esp:14s} | "
+            f"{ruta_pred}{' (escala)' if item.get('escalaria_a_llm') else ''} | "
             f"{ok_str}"
         )
 

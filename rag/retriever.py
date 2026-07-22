@@ -18,6 +18,7 @@ class RetrievalContext:
     page_number: int | None = None
     importance: int = 3
     importance_weight: float = 0.6
+    _combined_score: float = 0.0
 
 
 class FiscalRAGRetriever:

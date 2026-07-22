@@ -9,7 +9,7 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-from app.services.confidence_scoring import ConfidenceScorer
+from app.services.confidence_scoring import ConfidenceScorer  # noqa: E402
 
 
 def cargar_casos(path: str) -> list[dict]:
@@ -92,7 +92,6 @@ def _imprimir_resultado(resultado: dict, modo: str) -> str:
         f"  {'-' * 60}",
     ]
     for d in resultado["detalle"]:
-        acc_ok = "OK" if d["accion_ok"] else "XX"
         conf_ok = "OK" if d["confianza_ok"] else "XX"
         lines.append(
             f"  {d['id']:>8s} {d['accion']:>20s} {d['accion_esperada']:>20s} "

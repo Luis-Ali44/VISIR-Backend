@@ -22,7 +22,7 @@ def _buscar_ultimo_json(directorio: Path, patron: str) -> dict:
     if not archivos:
         return {}
     try:
-        return json.loads(archivos[0].read_text(encoding="utf-8"))
+        return dict(json.loads(archivos[0].read_text(encoding="utf-8")))
     except Exception:
         return {}
 

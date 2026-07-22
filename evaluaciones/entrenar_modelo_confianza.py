@@ -9,11 +9,11 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-import numpy as np
-from sklearn.linear_model import Ridge
-from sklearn.metrics import mean_absolute_error
+import numpy as np  # noqa: E402
+from sklearn.linear_model import Ridge  # noqa: E402
+from sklearn.metrics import mean_absolute_error  # noqa: E402
 
-from app.services.confidence_config import BASELINE_PESOS, FEATURES
+from app.services.confidence_config import BASELINE_PESOS, FEATURES  # noqa: E402
 
 # Buckets de calibración: (limite_inferior, limite_superior, etiqueta)
 # Ajustable según necesidad — cambiar aquí sin tocar el resto del código.
@@ -49,8 +49,8 @@ def _mae_por_nivel(y_true: np.ndarray, y_pred: np.ndarray, niveles: list[str]) -
     return result
 
 
-def _check_colinealidad(X: np.ndarray, nombres: list[str]) -> None:
-    corr = np.corrcoef(X.T)
+def _check_colinealidad(x: np.ndarray, nombres: list[str]) -> None:
+    corr = np.corrcoef(x.T)
     print("\n--- Matriz de correlación entre features ---")
     print(f"{'':>28s}", end="")
     for n in nombres:
@@ -107,7 +107,7 @@ def main() -> None:
     print(f"[DATASET] {len(validos)} filas válidas de {len(dataset)} totales")
 
     # Preparar X, y
-    X = np.array([[f.get(col, 0.0) for col in FEATURES] for f in validos], dtype=float)
+    x = np.array([[f.get(col, 0.0) for col in FEATURES] for f in validos], dtype=float)
     y = np.array([f["calidad"] for f in validos], dtype=float)
     niveles = [f.get("nivel_ambiguedad", "desconocido") for f in validos]
 
@@ -119,7 +119,7 @@ def main() -> None:
         print(f"  {nivel}: {n}")
 
     # 1. Colinealidad
-    _check_colinealidad(X, FEATURES)
+    _check_colinealidad(x, FEATURES)
 
     # 2. LOOCV + Ridge con búsqueda de alpha
     alphas = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
@@ -135,12 +135,12 @@ def main() -> None:
         for holdout in range(n):
             mascara = np.ones(n, dtype=bool)
             mascara[holdout] = False
-            X_train, y_train = X[mascara], y[mascara]
-            X_test, y_test = X[~mascara], y[~mascara]
+            x_train, y_train = x[mascara], y[mascara]
+            x_test, y_test = x[~mascara], y[~mascara]
 
             model = Ridge(alpha=alpha)
-            model.fit(X_train, y_train)
-            y_pred = model.predict(X_test)
+            model.fit(x_train, y_train)
+            y_pred = model.predict(x_test)
             maes.append(abs(y_pred[0] - y_test[0]))
 
         mae_prom = float(np.mean(maes))
@@ -155,8 +155,8 @@ def main() -> None:
 
     # 3. Entrenar modelo final con mejor alpha (100% datos)
     final_model = Ridge(alpha=mejor_alpha)
-    final_model.fit(X, y)
-    y_pred_final = final_model.predict(X)
+    final_model.fit(x, y)
+    y_pred_final = final_model.predict(x)
 
     # 4. Baseline de pesos fijos
     y_baseline = np.array([_baseline_prediction(f) for f in validos], dtype=float)
@@ -170,7 +170,8 @@ def main() -> None:
     print("=" * 60)
     print(f"{'':>24s}  {'MODELO':>10s}  {'BASELINE':>10s}  {'DIF':>10s}")
     print(
-        f"{'global':>24s}  {mae_modelo['global']:>10.4f}  {mae_baseline['global']:>10.4f}  {(mae_baseline['global'] - mae_modelo['global']):>+10.4f}"
+        f"{'global':>24s}  {mae_modelo['global']:>10.4f}  {mae_baseline['global']:>10.4f}  "
+        f"{(mae_baseline['global'] - mae_modelo['global']):>+10.4f}"
     )
     for nivel in ["clara", "leve", "alta"]:
         m_m = mae_modelo.get(nivel, 0)
@@ -188,11 +189,11 @@ def main() -> None:
     for holdout in range(n):
         mascara = np.ones(n, dtype=bool)
         mascara[holdout] = False
-        X_train, y_train = X[mascara], y[mascara]
-        X_test = X[~mascara]
+        x_train, y_train = x[mascara], y[mascara]
+        x_test = x[~mascara]
         model = Ridge(alpha=mejor_alpha)
-        model.fit(X_train, y_train)
-        y_pred_loocv[holdout] = float(model.predict(X_test)[0])
+        model.fit(x_train, y_train)
+        y_pred_loocv[holdout] = float(model.predict(x_test)[0])
 
     cal_buckets = []
     print(f"\n{'Bucket':>12s}  {'n':>3s}  {'pred_prom':>9s}  {'real_prom':>9s}  {'diff':>+7s}")
@@ -223,7 +224,8 @@ def main() -> None:
         if label == "0.85-1.0" and real_prom < CALIBRACION_ACEPTACION_BUCKET_ALTO:
             flag = " <<< DESCALIBRADO"
         print(
-            f"  {label:>10s}  {entry['n']:>3d}  {pred_prom:>9.4f}  {real_prom:>9.4f}  {diff:>+7.4f}{flag}"
+            f"  {label:>10s}  {entry['n']:>3d}  {pred_prom:>9.4f}  "
+            f"{real_prom:>9.4f}  {diff:>+7.4f}{flag}"
         )
 
     bucket_alto = next((b for b in cal_buckets if b.get("bucket") == "0.85-1.0"), None)
@@ -244,13 +246,14 @@ def main() -> None:
     print("  COEFICIENTES DEL MODELO RIDGE")
     print("=" * 60)
     print(f"{'Feature':>24s}  {'Coeficiente':>12s}")
-    for col, coef in sorted(zip(FEATURES, final_model.coef_), key=lambda x: -abs(x[1])):
+    coef_pares = sorted(zip(FEATURES, final_model.coef_, strict=True), key=lambda x: -abs(x[1]))
+    for col, coef in coef_pares:
         print(f"{col:>24s}  {coef:>+12.6f}")
     print(f"{'intercept':>24s}  {final_model.intercept_:>+12.6f}")
 
     signos_raros = [
         col
-        for col, coef in zip(FEATURES, final_model.coef_)
+        for col, coef in zip(FEATURES, final_model.coef_, strict=True)
         if col != "campo_periodo_faltante" and col != "campo_tipo_faltante" and coef < -0.01
     ]
     if signos_raros:
@@ -289,7 +292,7 @@ def main() -> None:
         "modelo_supera_baseline": gana,
         "mae_por_nivel_modelo": {k: v for k, v in mae_modelo.items() if k != "global"},
         "mae_por_nivel_baseline": {k: v for k, v in mae_baseline.items() if k != "global"},
-        "coeficientes": {col: float(c) for col, c in zip(FEATURES, final_model.coef_)},
+        "coeficientes": {col: float(c) for col, c in zip(FEATURES, final_model.coef_, strict=True)},
         "intercepto": float(final_model.intercept_),
         "resultados_alpha": [(a, m) for a, m in resultados_alpha],
         "calibracion_buckets": cal_buckets,

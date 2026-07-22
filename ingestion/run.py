@@ -89,7 +89,8 @@ def run_queries(config: RAGConfig, custom_query: str | None = None) -> None:
         else:
             for ctx in results:
                 print(
-                    f"\n  [{ctx.rank}] Similitud: {ctx.similarity:.4f} | Importancia: {ctx.importance}/5"
+                    f"\n  [{ctx.rank}] Similitud: {ctx.similarity:.4f} | "
+                    f"Importancia: {ctx.importance}/5"
                 )
                 print(f"       Fuente:  {ctx.filename}")
                 print(f"       Sección: {ctx.section[:60]}")
@@ -202,7 +203,8 @@ def main() -> None:
     print("\n[INICIO] Pipeline RAG Fiscal")
     print(f"   Modelo embeddings : {config.embedding_model_name}")
     print(
-        f"   Timeout           : {config.embedding_timeout}s | Reintentos: {config.embedding_max_retries}"
+        f"   Timeout           : {config.embedding_timeout}s | "
+        f"Reintentos: {config.embedding_max_retries}"
     )
     print(f"   ChromaDB          : {config.chroma_path}")
     print(f"   Data dir          : {DATA_DIR}")

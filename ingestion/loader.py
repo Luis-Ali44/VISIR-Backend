@@ -2,10 +2,9 @@ from pathlib import Path
 
 import pymupdf
 import pymupdf4llm
+from llama_index.core import Document
 
 pymupdf4llm.use_layout(False)
-
-from llama_index.core import Document
 
 
 def load_pdf(

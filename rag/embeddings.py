@@ -29,8 +29,8 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
         timeout: int = 30,
         max_retries: int = 3,
         embed_batch_size: int = 32,
-        **kwargs,
-    ):
+        **kwargs: object,
+    ) -> None:
         super().__init__(
             model_name=model_name,
             base_url=base_url.rstrip("/"),
@@ -104,11 +104,12 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
 
                 # Fallback: formato Ollama nativo /api/embed (batch real)
                 if "embeddings" in data:
-                    return data["embeddings"]
+                    embeddings: list[list[float]] = data["embeddings"]
+                    return embeddings
 
                 raise ValueError(f"Respuesta inesperada del servidor: {list(data.keys())}")
 
-            except requests.exceptions.Timeout:
+            except requests.exceptions.Timeout as e:
                 wait = 2**attempt
                 logger.warning(
                     "[Embeddings] Timeout en intento %d/%d (lote=%d). Reintentando en %ds...",
@@ -123,7 +124,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
                         f"tras {self.max_retries} intentos (lote de {len(texts)} textos).\n"
                         f"  URL: {self.base_url}\n"
                         f"  Aumenta EMBEDDING_TIMEOUT en .env o reduce embed_batch_size."
-                    )
+                    ) from e
                 time.sleep(wait)
 
             except requests.exceptions.ConnectionError as e:
@@ -131,7 +132,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
                     f"[ERROR] Conexión perdida con el servidor de embeddings: {e}\n"
                     f"  URL: {self.base_url}\n"
                     f"  Verifica que el servidor siga corriendo."
-                )
+                ) from e
 
             except requests.exceptions.HTTPError as e:
                 if resp.status_code in (503, 429):
@@ -163,7 +164,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
                         f"[ERROR] HTTP {resp.status_code} del servidor de embeddings: {e}\n"
                         f"  URL: {url}\n"
                         f"  Verifica el modelo ({self.model_name}) y la API key."
-                    )
+                    ) from e
 
         raise RuntimeError(f"Embedding fallido tras {self.max_retries} intentos.")
 

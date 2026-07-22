@@ -113,7 +113,7 @@ def reindexar_org_desde_supabase(
     from rag.store import FiscalChromaStore
 
     pipeline = get_org_ingestion_pipeline()
-    resultado = {
+    resultado: dict[str, Any] = {
         "intentados": 0,
         "exitosos": 0,
         "fallidos": 0,

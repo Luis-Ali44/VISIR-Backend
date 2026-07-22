@@ -11,7 +11,7 @@ from pathlib import Path
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_ROOT / ".env")
 
@@ -62,7 +62,8 @@ def main() -> None:
         etiquetados = json.loads(output_path.read_text(encoding="utf-8"))
         ids_procesados = {item.get("id", "") for item in etiquetados}
         print(
-            f"[REANUDANDO] {len(etiquetados)} filas ya procesadas, {len(dataset_features) - len(ids_procesados)} pendientes"
+            f"[REANUDANDO] {len(etiquetados)} filas ya procesadas, "
+            f"{len(dataset_features) - len(ids_procesados)} pendientes"
         )
 
     groq_api_key = os.getenv("GROQ_API_KEY", "")
@@ -166,8 +167,10 @@ def main() -> None:
             errantes = [f for f in altas if f.get("accion_esperada") != "preguntar"]
             if errantes:
                 print(f"\n[CHECK] {len(errantes)} casos 'alta' sin accion_esperada='preguntar':")
-                for e in errantes:
-                    print(f"        {e.get('id', '?')}: {e.get('accion_esperada', '?')}")
+                for err_item in errantes:
+                    print(
+                        f"        {err_item.get('id', '?')}: {err_item.get('accion_esperada', '?')}"
+                    )
 
 
 if __name__ == "__main__":

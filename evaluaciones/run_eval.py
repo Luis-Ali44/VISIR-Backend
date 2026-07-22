@@ -7,6 +7,7 @@ import sys
 import time
 from datetime import datetime
 from pathlib import Path
+from typing import Any
 
 os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 
@@ -14,19 +15,19 @@ _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
 sys.path.insert(0, str(_ROOT / "evaluaciones"))
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(_ROOT / ".env")
 
-from evaluaciones.juez import JuezFiscal
-from evaluaciones.metricas import (
+from evaluaciones.juez import JuezFiscal  # noqa: E402
+from evaluaciones.metricas import (  # noqa: E402
     calcular_recall_at_k,
     calcular_recall_global,
     recall_por_dificultad,
 )
-from evaluaciones.reporte import generar_reporte
-from rag.config import load_config_from_env
-from rag.retriever import FiscalRAGRetriever, OrgRAGRetriever
+from evaluaciones.reporte import generar_reporte  # noqa: E402
+from rag.config import load_config_from_env  # noqa: E402
+from rag.retriever import FiscalRAGRetriever, OrgRAGRetriever  # noqa: E402
 
 
 def cargar_dataset(path: str) -> list[dict]:
@@ -89,7 +90,7 @@ def recuperar_para_evaluacion(
     return filenames_recuperados, chunk_ids_recuperados, fragmentos_para_juez
 
 
-def crear_retriever(config, retriever_name: str) -> FiscalRAGRetriever | OrgRAGRetriever:
+def crear_retriever(config: Any, retriever_name: str) -> FiscalRAGRetriever | OrgRAGRetriever:
     if retriever_name == "org":
         return OrgRAGRetriever(config)
     return FiscalRAGRetriever(config)
@@ -100,13 +101,13 @@ def generar_respuesta_rag(
     model: str,
     base_url: str,
     pregunta: str,
-    fragmentos_raw,
+    fragmentos_raw: list[dict[str, Any]] | list[Any],
 ) -> tuple[str, int, int]:
     from rag.chain import FiscalRAGChain
 
     chain = FiscalRAGChain(api_key=api_key, model=model, base_url=base_url)
     try:
-        resultado = chain.invoke(pregunta=pregunta, fragmentos=fragmentos_raw)
+        resultado = chain.invoke(pregunta=pregunta, fragmentos=fragmentos_raw)  # type: ignore[arg-type]
         return resultado.texto, resultado.tokens_entrada, resultado.tokens_salida
     except Exception:
         print("         [WARN] Fallo generación RAG, usando fallback")
@@ -220,12 +221,13 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
 
             t2 = time.time()
             try:
+                accion_esp: str | None = item.get("accion_esperada")
                 eval_completo = juez.evaluar_completo(
                     pregunta=pregunta,
-                    fragmentos=fragmentos_para_juez,
+                    fragmentos=fragmentos_para_juez,  # type: ignore[arg-type]
                     respuesta_generada=respuesta_generada,
                     respuesta_esperada=respuesta_esperada,
-                    accion_esperada=item.get("accion_esperada"),
+                    accion_esperada=accion_esp or "",
                 )
                 eval_fidelidad = eval_completo["fidelidad"]
                 eval_relevancia = eval_completo["relevancia"]
@@ -242,7 +244,8 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
 
             print(f"         Tokens → entrada:{tokens_entrada}  salida:{tokens_salida}")
             print(
-                f"         Juez → Fidelidad:{fid_score}/10  Relevancia:{rel_score}/10  ({lat_juez}ms)"
+                f"         Juez → Fidelidad:{fid_score}/10  "
+                f"Relevancia:{rel_score}/10  ({lat_juez}ms)"
             )
 
             resultado_item.update(
@@ -286,7 +289,6 @@ def ejecutar_evaluacion(args: argparse.Namespace) -> None:
     )
 
     if modo == "completo":
-        scores_fid = [r["tokens_entrada"] for r in resultados if "tokens_entrada" in r]
         total_tokens_entrada = sum(r.get("tokens_entrada", 0) for r in resultados)
         total_tokens_salida = sum(r.get("tokens_salida", 0) for r in resultados)
         scores_fid_eval = [r["fidelidad_score"] for r in resultados if "fidelidad_score" in r]

@@ -84,7 +84,8 @@ class RAGIngestionPipeline:
 
         print(f"[INIT] Modelo de embeddings: {config.embedding_model_name}")
         print(
-            f"[INIT] Timeout: {config.embedding_timeout}s | Reintentos: {config.embedding_max_retries}"
+            f"[INIT] Timeout: {config.embedding_timeout}s | "
+            f"Reintentos: {config.embedding_max_retries}"
         )
 
         self.embed_model = build_index_embed_model(
@@ -151,7 +152,7 @@ class RAGIngestionPipeline:
                 current_priority = int(priority_match.group(1)) if priority_match else 3
                 current_title = (
                     re.sub(
-                        r"^Prioridad\s*\d+\s*[-–—:]\s*", "", heading, flags=re.IGNORECASE
+                        r"^Prioridad\s*\d+\s*[-\-:]\s*", "", heading, flags=re.IGNORECASE
                     ).strip()
                     or heading
                 )
@@ -177,12 +178,12 @@ class RAGIngestionPipeline:
 
     @staticmethod
     def _cosine_similarity(vector_a: list[float], vector_b: list[float]) -> float:
-        dot = sum(a * b for a, b in zip(vector_a, vector_b))
+        dot = sum(a * b for a, b in zip(vector_a, vector_b, strict=True))
         norm_a = sum(a * a for a in vector_a) ** 0.5
         norm_b = sum(b * b for b in vector_b) ** 0.5
         if not norm_a or not norm_b:
             return 0.0
-        return dot / (norm_a * norm_b)
+        return float(dot / (norm_a * norm_b))
 
     def _score_topic_importance(self, text: str) -> tuple[int, str, float, int]:
         if not self.topic_seed_profiles:
@@ -207,8 +208,8 @@ class RAGIngestionPipeline:
         if best_similarity < 0:
             return 3, best_title, 0.0, best_priority
 
-        weighted_score = best_similarity * (best_priority / 5.0)
-        importance = max(1, min(5, int(round(1 + (weighted_score * 4)))))
+        weighted_score = float(best_similarity * (best_priority / 5.0))
+        importance = max(1, min(5, round(1 + (weighted_score * 4))))
         return importance, best_title, round(best_similarity, 4), best_priority
 
     def ingest(
@@ -266,7 +267,8 @@ class RAGIngestionPipeline:
             doc.metadata["topic_similarity"] = sem_sim
 
         print(
-            f"      Relevancia semántica: {sem_importance}/5 | tema: {topic_title} | sim={sem_sim:.4f}"
+            f"      Relevancia semántica: {sem_importance}/5 | "
+            f"tema: {topic_title} | sim={sem_sim:.4f}"
         )
 
         if preview_sections and page_documents:
@@ -290,7 +292,8 @@ class RAGIngestionPipeline:
                 all_chunks.append(chunk)
 
         print(
-            f"      {len(section_titles)} secciones | {len(all_chunks)} chunks generados dinámicamente"
+            f"      {len(section_titles)} secciones | "
+            f"{len(all_chunks)} chunks generados dinámicamente"
         )
 
         # ── Embeddings por lote ──────────────────────────────────────────────
@@ -302,17 +305,17 @@ class RAGIngestionPipeline:
         # hace el trabajo de agrupación, y el backend HTTP real ya no
         # itera texto por texto.
         print("      Calculando embeddings (batch HTTP real)...")
-        texts = [chunk.text for chunk in all_chunks]
+        texts = [str(chunk.get_content()) for chunk in all_chunks]
         embeddings = self.embed_model.get_text_embedding_batch(texts, show_progress=False)
 
         records = [
             ChunkRecord(
-                chunk_hash=compute_chunk_hash(chunk.text),
-                text=chunk.text,
+                chunk_hash=compute_chunk_hash(str(chunk.get_content())),
+                text=str(chunk.get_content()),
                 embedding=embedding,
                 metadata=chunk.metadata,
             )
-            for chunk, embedding in zip(all_chunks, embeddings)
+            for chunk, embedding in zip(all_chunks, embeddings, strict=True)
         ]
 
         print("      Indexando en ChromaDB...")

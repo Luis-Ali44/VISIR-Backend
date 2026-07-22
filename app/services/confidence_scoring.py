@@ -3,6 +3,7 @@ import logging
 import os
 import pickle
 from pathlib import Path
+from typing import Any
 
 import mlflow
 import numpy as np
@@ -60,7 +61,7 @@ class ConfidenceScorer:
                 self.model_path or "(no configurado)",
             )
 
-    def _cargar_modelo_mlflow(self):
+    def _cargar_modelo_mlflow(self) -> Any | None:
         tracking_uri = os.getenv("MLFLOW_TRACKING_URI")
         if not tracking_uri:
             return None
@@ -83,11 +84,11 @@ class ConfidenceScorer:
         mp = Path(self.model_path)
         return mp.parent / "reporte_entrenamiento.json" if mp.parent else None
 
-    def _preparar_X(self, features: dict[str, float]):  # noqa: N802
+    def _preparar_X(self, features: dict[str, float]) -> Any:  # noqa: N802
         X = np.array([[features.get(col, 0.0) for col in FEATURES]], dtype=float)  # noqa: N806
         if hasattr(self.model, "_model_meta"):
             try:
-                import pandas as pd  # type: ignore[import-untyped]
+                import pandas as pd
 
                 X = pd.DataFrame(X, columns=FEATURES)  # noqa: N806
             except ImportError:

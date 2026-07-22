@@ -84,7 +84,7 @@ class FiscalChromaStore:
                 limit=page_size,
                 offset=offset,
             )
-            hashes.update(m.get("doc_hash", "") for m in results["metadatas"])
+            hashes.update(str(m.get("doc_hash", "")) for m in (results["metadatas"] or []))
         return hashes - {""}
 
     def upsert_chunk(self, record: ChunkRecord) -> bool:
@@ -155,10 +155,7 @@ class FiscalChromaStore:
             filters.update(where_filter)
         if min_importance is not None:
             importance_filter = {"importance": {"$gte": min_importance}}
-            if filters:
-                filters = {"$and": [filters, importance_filter]}
-            else:
-                filters = importance_filter
+            filters = {"$and": [filters, importance_filter]} if filters else importance_filter
 
         query_kwargs = {
             "query_embeddings": [query_embedding],
@@ -176,7 +173,7 @@ class FiscalChromaStore:
                 QueryResult(
                     chunk_id=raw["ids"][0][i],
                     text=raw["documents"][0][i],
-                    metadata=raw["metadatas"][0][i],
+                    metadata=dict(raw["metadatas"][0][i]),
                     distance=raw["distances"][0][i],
                 )
             )
@@ -200,11 +197,12 @@ class FiscalChromaStore:
         )
         metadatas = results["metadatas"]
 
-        doc_ids = {m.get("id_documento", "") for m in metadatas} - {""}
+        metadatas_list: list = metadatas if metadatas is not None else []
+        doc_ids = {str(m.get("id_documento", "")) for m in metadatas_list} - {""}
 
         return {
             "collection": self.collection_name,
-            "total_chunks": len(metadatas),
+            "total_chunks": len(metadatas_list),
             "documentos_unicos": len(doc_ids),
         }
 
