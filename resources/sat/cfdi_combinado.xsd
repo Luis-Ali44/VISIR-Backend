@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- CFDI´s -->
   <xs:import
       namespace="http://www.sat.gob.mx/cfd/4"
       schemaLocation="cfd/4/cfdv40.xsd"/>
   <xs:import
+      namespace="http://www.sat.gob.mx/cfd/3"
+      schemaLocation="cfd/3.3/cfdv33.xsd"/>
+<!-- Timbre Fiscal -->
+
+  <xs:import
       namespace="http://www.sat.gob.mx/TimbreFiscalDigital"
       schemaLocation="cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"/>
+
+
+<!-- Complementos -->
+    <!-- Leyendas Fiscal -->
   <xs:import
       namespace="http://www.sat.gob.mx/leyendasFiscales"
       schemaLocation="cfd/leyendasFiscales/leyendasFisc.xsd"/>
+
+    <!-- Carta Porte 3.1 -->    
+  <xs:import
+      namespace="http://www.sat.gob.mx/CartaPorte31"
+      schemaLocation="cfd/CartaPorte/CartaPorte31.xsd"/>
+
+    <!-- Comercio Exterior -->
+  <xs:import
+      namespace="http://www.sat.gob.mx/ComercioExterior20"
+      schemaLocation="cfd/ComercioExterior/ComercioExterior20.xsd"/>
+
+    <!-- INE 1.1 -->
+  <xs:import
+      namespace="http://www.sat.gob.mx/ine"
+      schemaLocation="cfd/ine/ine11.xsd"/>
+
+    <!-- NÓMINA 1.2 -->
+  <xs:import
+      namespace="http://www.sat.gob.mx/nomina12"
+      schemaLocation="cfd/nomina/nomina12.xsd"/>
+
+    <!-- PAGOS 2.0 -->
+  <xs:import
+      namespace="http://www.sat.gob.mx/Pagos20"
+      schemaLocation="cfd/Pagos/Pagos20.xsd"/>
+
 </xs:schema>
