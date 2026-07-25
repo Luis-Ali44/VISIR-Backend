@@ -35,11 +35,21 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
+
+#Usuario y grupo sin privilegios 
+#RUN groupadd -r appuser && useradd -r -g appuser -m appuser
+ 
 COPY --from=builder /app/.venv /app/.venv
 COPY app ./app
 COPY resources ./resources
 COPY rag ./rag
 COPY ingestion ./ingestion
+
+# Crear la carpeta de Chroma y darle permisos a appuser
+#RUN mkdir -p /app/chroma_db && chown -R appuser:appuser /app/chroma_db
+
+#Ahora el contenedor se ejecuta con este usuario "appuser"
+#USER appuser
 
 EXPOSE 8000
 
