@@ -12,5 +12,4 @@ chroma_db/
 validation_results/
 repomix-output.xml
 mlflow.db
-
 .env
