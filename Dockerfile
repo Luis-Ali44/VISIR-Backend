@@ -21,12 +21,25 @@ FROM python:3.12-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH" \
+    PATH="/app/.venv/bin:/opt/conda/bin:$PATH" \
     PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 
 ENV PYTHONPATH=/app
 
 WORKDIR /app
+
+# Instala miniconda para que MLflow pueda crear su entorno aislado
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgl1 \
+    libglib2.0-0 \
+    libgomp1 \
+    wget \
+    bzip2 \
+    && wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+    && bash /tmp/miniconda.sh -b -p /opt/conda \
+    && rm /tmp/miniconda.sh \
+    && /opt/conda/bin/conda clean -afy \
+    && rm -rf /var/lib/apt/lists/*
 
 # Las mismas librerías del sistema deben estar en runtime, no solo en builder
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -36,7 +49,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 
-#Usuario y grupo sin privilegios 
+# Usuario y grupo sin privilegios 
 #RUN groupadd -r appuser && useradd -r -g appuser -m appuser
  
 COPY --from=builder /app/.venv /app/.venv

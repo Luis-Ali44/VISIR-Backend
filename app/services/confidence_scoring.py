@@ -68,7 +68,7 @@ class ConfidenceScorer:
         try:
             mlflow.set_tracking_uri(tracking_uri)
             modelo = mlflow.pyfunc.load_model("models:/confianza_ridge@produccion")
-            logger.info("Modelo confianza_ridge cargado desde MLflow (alias produccion)")
+            logger.info("Modelo confianza_ridge cargado desde MLflow")
             return modelo
         except Exception as exc:
             logger.warning(

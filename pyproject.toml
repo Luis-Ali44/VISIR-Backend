@@ -47,6 +47,8 @@ dependencies = [
     # ── MLflow / DagsHub — consumo del modelo de confianza @produccion ────
     "mlflow>=2.20.0",
     "dagshub>=0.3.0",
+    # torchvision para que MLflow pueda inspeccionar el modelo antes de usar conda
+    "torchvision>=0.18,<0.21",
     # pandas (versión exacta que espera el modelo MLflow)
     "pandas==2.3.3",
     "scipy==1.15.2",
