@@ -4,15 +4,7 @@ from uuid import UUID
 
 from fastapi import HTTPException, UploadFile
 
-from app.repositories.documents_repository import (
-    delete_document_storage,
-    get_document_by_hash,
-    get_document_by_id,
-    get_documents_repository,
-    get_my_documents,
-    save_document_metadata,
-    save_document_storage,
-)
+from app.repositories.documents_repository import DocumentRepository
 from app.schemas.documents_schema import (
     DocumentCreate,
     DocumentoFallido,
@@ -66,6 +58,7 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
     id_usuario = user.id
     id_organizacion = user.id_organizacion
     nombre_archivo = archivo.filename or "archivo"
+    repo = DocumentRepository(user)
 
     if not id_usuario or not id_organizacion:
         raise HTTPException(status_code=400, detail="Usuario u organización inválidos")
@@ -74,7 +67,7 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
 
     hash_archivo = hashlib.sha256(contenido).hexdigest()
 
-    duplicados = get_document_by_hash(hash_archivo)
+    duplicados = repo.get_document_by_hash(hash_archivo)
 
     if duplicados:
         raise HTTPException(
@@ -100,8 +93,7 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
 
     # Guardar el archivo en el almacenamiento y obtener la ruta
     try:
-        ruta_archivo = save_document_storage(
-            id_usuario=id_usuario,
+        ruta_archivo = repo.save_document_storage(
             contenido_archivo=contenido,
             nombre_archivo=nombre_archivo,
             tipo_archivo=tipo_archivo,
@@ -131,20 +123,20 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
 
     # Guardar metadata en la base de datos
     try:
-        resultado = save_document_metadata(
+        resultado = repo.save_document_metadata(
             metadata.model_dump(mode="json")
         )  # Maneja el UUID como str para que no de error
 
     except Exception as exc:
-        delete_document_storage(ruta_archivo)  # Eliminar el archivo si falla la metadata
+        repo.delete_document_storage(ruta_archivo)  # Eliminar el archivo si falla la metadata
         raise HTTPException(
             status_code=500, detail=f"No se pudieron guardar los metadatos del documento {exc}"
         ) from exc
 
     if not isinstance(resultado, list) or not resultado or not isinstance(resultado[0], dict):
-        delete_document_storage(ruta_archivo)  # Eliminar el archivo si falla la metadata
         raise HTTPException(
-            status_code=500, detail="No se pudo recuperar la metadata guardada del documento"
+            status_code=500,
+            detail="La metadata fue guardada pero la respuesta no tiene el formato esperado",
         )
 
     # Obtenemos id_documento de la metadata guardada para relacionarlo con las extracciones

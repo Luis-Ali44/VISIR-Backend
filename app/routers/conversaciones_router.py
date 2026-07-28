@@ -5,17 +5,7 @@ from typing import cast
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from app.core.dependencies import get_user
-from app.repositories.conversaciones_repository import (
-    actualizar_contexto,
-    actualizar_contexto_con_turno,
-    construir_contexto_inicial,
-    crear_sesion,
-    eliminar_sesion,
-    guardar_turno,
-    listar_sesiones,
-    obtener_sesion,
-    obtener_turnos_por_sesion,
-)
+from app.repositories.conversaciones_repository import ConversacionesRepository
 from app.schemas.conversacion import (
     ContinuarConversacionRequest,
     CrearConversacionRequest,
@@ -87,7 +77,9 @@ def crear_conversacion(
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
 
-    sesion_id = crear_sesion(usuario.id, usuario.id_organizacion)
+    repo = ConversacionesRepository(usuario)
+
+    sesion_id = repo.crear_sesion(usuario.id, usuario.id_organizacion)
     if not sesion_id:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
@@ -103,7 +95,7 @@ def crear_conversacion(
             historial=[],
         )
 
-        guardar_turno(
+        repo.guardar_turno(
             id_usuario=usuario.id,
             id_organizacion=usuario.id_organizacion,
             mensaje_usuario=body.pregunta,
@@ -111,8 +103,8 @@ def crear_conversacion(
             sesion_id=sesion_id,
         )
 
-        contexto = construir_contexto_inicial(body.pregunta, respuesta, metadata)
-        actualizar_contexto(sesion_id, usuario.id_organizacion, contexto)
+        contexto = repo.construir_contexto_inicial(body.pregunta, respuesta, metadata)
+        repo.actualizar_contexto(sesion_id, usuario.id_organizacion, contexto)
 
         fuentes_raw: list[dict] = metadata.get("fuentes_recuperadas", [])
         fuentes_citadas = _construir_fuentes(fuentes_raw)
@@ -149,8 +141,8 @@ def listar_conversaciones(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-
-    sesiones = listar_sesiones(usuario.id, usuario.id_organizacion)
+    repo = ConversacionesRepository(usuario)
+    sesiones = repo.listar_sesiones(usuario.id, usuario.id_organizacion)
     return [
         SesionListaItem(
             sesion_id=s["sesion_id"],
@@ -172,15 +164,16 @@ def obtener_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
+    repo = ConversacionesRepository(usuario)
 
-    sesion = obtener_sesion(sesion_id, usuario.id_organizacion)
+    sesion = repo.obtener_sesion(sesion_id, usuario.id_organizacion)
     if not sesion:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Sesion no encontrada.",
         )
 
-    turnos = obtener_turnos_por_sesion(sesion_id, usuario.id_organizacion)
+    turnos = repo.obtener_turnos_por_sesion(sesion_id, usuario.id_organizacion)
     return SesionDetalleResponse(
         sesion_id=sesion_id,
         contexto=sesion.get("contexto"),
@@ -208,8 +201,8 @@ def continuar_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-
-    sesion = obtener_sesion(sesion_id, usuario.id_organizacion)
+    repo = ConversacionesRepository(usuario)
+    sesion = repo.obtener_sesion(sesion_id, usuario.id_organizacion)
     if not sesion:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -228,7 +221,7 @@ def continuar_conversacion(
             historial=historial,
         )
 
-        guardar_turno(
+        repo.guardar_turno(
             id_usuario=usuario.id,
             id_organizacion=usuario.id_organizacion,
             mensaje_usuario=body.pregunta,
@@ -236,10 +229,10 @@ def continuar_conversacion(
             sesion_id=sesion_id,
         )
 
-        contexto_nuevo = actualizar_contexto_con_turno(
+        contexto_nuevo = repo.actualizar_contexto_con_turno(
             contexto_actual, body.pregunta, respuesta, metadata
         )
-        actualizar_contexto(sesion_id, usuario.id_organizacion, contexto_nuevo)
+        repo.actualizar_contexto(sesion_id, usuario.id_organizacion, contexto_nuevo)
 
         fuentes_raw: list[dict] = metadata.get("fuentes_recuperadas", [])
         fuentes_citadas = _construir_fuentes(fuentes_raw)
@@ -277,8 +270,8 @@ def eliminar_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-
-    ok = eliminar_sesion(sesion_id, usuario.id_organizacion)
+    repo = ConversacionesRepository(usuario)
+    ok = repo.eliminar_sesion(sesion_id, usuario.id_organizacion)
     if not ok:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

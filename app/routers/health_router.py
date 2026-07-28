@@ -5,7 +5,6 @@ from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
 from app.core.config import settings
-from app.core.database import supabase
 
 router = APIRouter(prefix="/health", tags=["Monitoreo"])
 
@@ -15,7 +14,7 @@ async def health_check() -> JSONResponse:
     health_status: dict[str, Any] = {"status": "healthy", "services": {"api": "online"}}
 
     try:
-        supabase.table("extracciones").select("id").limit(1).execute()
+        self.scoped("extracciones").select("id").limit(1).execute()
         health_status["services"]["supabase"] = "online"
     except Exception as e:
         health_status["status"] = "con_falla"

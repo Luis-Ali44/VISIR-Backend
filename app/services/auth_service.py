@@ -1,11 +1,9 @@
 from fastapi import HTTPException, status
 
-from app.repositories.auth_repository import (
-    login_repository,
-    logout_repository,
-    registro_repository,
-)
+from app.repositories.auth_repository import AuthRepository
 from app.schemas.auth_schema import Login, MenssageResponse, Registrar, TokenResponse
+
+repo = AuthRepository()
 
 
 def registro_service(data: Registrar) -> MenssageResponse:
@@ -22,7 +20,7 @@ def registro_service(data: Registrar) -> MenssageResponse:
                 detail="Tu contraseña no puede ser igual a tu correo, nombre o apellido",
             )
 
-        response = registro_repository(data)
+        response = repo.registro_repository(data)
 
         if not response:
             raise HTTPException(
@@ -42,7 +40,7 @@ def registro_service(data: Registrar) -> MenssageResponse:
 
 def login_service(data: Login) -> TokenResponse:
     try:
-        response = login_repository(data)
+        response = repo.login_repository(data)
 
         if not response.session:
             raise HTTPException(
@@ -57,5 +55,5 @@ def login_service(data: Login) -> TokenResponse:
 
 
 def logout_service(jwt_token: str) -> MenssageResponse:
-    logout_repository(jwt_token)
+    repo.logout_repository(jwt_token)
     return MenssageResponse(menssage="Sesion Cerrada")
