@@ -9,7 +9,8 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.types import Send
 
-from app.repositories.extracciones_repositories import get_estadisticas_basicas
+from app.repositories.extracciones_repositories import ExtraccionesRepository #get_estadisticas_basicas
+from app.core.database import ExecCtx
 from app.schemas.consulta import DecisionEnrutamiento, VisirState
 from app.services.confidence_features import (
     data_completeness as _data_completeness,
@@ -205,7 +206,9 @@ class RAGServiceLangGraph:
             for f in fragmentos
         ]
 
-        stats = get_estadisticas_basicas(id_organizacion=state["id_organizacion"])
+        ctx = ExecCtx(actor="system", id_organizacion=state["id_organizacion"])
+        repo = ExtraccionesRepository(ctx)
+        stats = repo.get_estadisticas_basicas(id_organizacion=state["id_organizacion"])
 
         return {
             "datos_cfdi": {"fragmentos_cfdis": fragmentos_dict},

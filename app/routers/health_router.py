@@ -6,6 +6,8 @@ from fastapi.responses import JSONResponse
 
 from app.core.config import settings
 
+from app.core.database import ExecCtx, cliente_for
+
 router = APIRouter(prefix="/health", tags=["Monitoreo"])
 
 
@@ -14,7 +16,9 @@ async def health_check() -> JSONResponse:
     health_status: dict[str, Any] = {"status": "healthy", "services": {"api": "online"}}
 
     try:
-        self.scoped("extracciones").select("id").limit(1).execute()
+        ctx = ExecCtx(actor="system", id_organizacion="health-check-org")
+        db = cliente_for(ctx)
+        db.table("extracciones").select("id").limit(1).execute()
         health_status["services"]["supabase"] = "online"
     except Exception as e:
         health_status["status"] = "con_falla"

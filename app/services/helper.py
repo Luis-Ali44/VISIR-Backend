@@ -3,7 +3,7 @@ from pathlib import Path
 
 from lxml import etree
 
-from app.repositories.documents_repository import nombre_forma_pago, tipo_comprobante
+from app.repositories.documents_repository import DocumentRepository #nombre_forma_pago, tipo_comprobante
 
 
 def parse_fecha(date_str: str) -> datetime:
@@ -36,12 +36,12 @@ def parse_fecha(date_str: str) -> datetime:
     raise ValueError(f"Formato de fecha no soportado: {date_str!r}")
 
 
-def map_tipo_comprobante(tipo: str) -> str | None:
-    return tipo_comprobante(tipo)
+def map_tipo_comprobante(tipo: str, repo: DocumentRepository) -> str | None:
+    return repo.tipo_comprobante(tipo)
 
 
-def get_nombre_forma_pago(forma_pago: str) -> str | None:
-    return nombre_forma_pago(forma_pago)
+def get_nombre_forma_pago(forma_pago: str, repo:DocumentRepository) -> str | None:
+    return repo.nombre_forma_pago(forma_pago)
 
 
 base__dir = Path(__file__).resolve().parent.parent.parent

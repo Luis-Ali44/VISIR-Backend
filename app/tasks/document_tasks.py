@@ -8,15 +8,11 @@ import structlog
 from celery import Celery
 
 from app.core.config import settings
+from app.core.database import ExecCtx
 from app.core.logging import configurar_logging
 from app.core.sentry import configurar_sentry
-from app.repositories.documents_repository import (
-    actualizar_estado_documento,
-    delete_document_metadata,
-    delete_document_storage,
-    descargar_documento_storage,
-    save_extracciones_repository,
-)
+from app.repositories.documents_repository import DocumentRepository
+from app.repositories.extracciones_repositories import ExtraccionesRepository
 from app.services.Extraccion.pipeline import procesar
 from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
 from app.services.org_ingestion_service import ingestar_cfdi_organizacion
@@ -52,6 +48,18 @@ def _normalizar_cfdis_extraidos(data: dict) -> list[dict[str, Any]]:
     return resultado
 
 
+def limpiar_fallo(doc_repo: DocumentRepository, ruta_storage: str, id_doc: str) -> None:
+    """Función interna para mantener la consistencia si algo truena"""
+    try:
+        doc_repo.delete_document_storage(ruta_storage)
+        doc_repo.delete_document_metadata(id_doc)
+        log.warning("limpieza_por_fallo_completada", id_documento=id_doc)
+
+    except Exception as e:
+        log.error("limpieza_por_fallo_critica", id_documento=id_doc, error=str(e))
+
+
+
 @celery_app.task(name="Procesar_documentos")
 # EJECUTAMOS EL PIPELINE DE PAOLA PARA EXTRAER LOS DATOS
 def iniciar_procesamiento(
@@ -59,7 +67,11 @@ def iniciar_procesamiento(
 ) -> dict[str, str]:
     log.info("ocr_iniciado", id_documento=id_documento, id_organizacion=id_organizacion)
 
-    contenido = descargar_documento_storage(ruta_archivo)
+    ctx = ExecCtx(actor="system", id_organizacion=id_organizacion)
+    doc_repo = DocumentRepository(ctx)
+    extracciones_repo = ExtraccionesRepository(ctx)
+
+    contenido = doc_repo.descargar_documento_storage(ruta_archivo)
 
     if contenido is None:
         log.error("descarga_storage_fallida", id_documento=id_documento, ruta_archivo=ruta_archivo)
@@ -161,8 +173,8 @@ def iniciar_procesamiento(
 
     # Guardamos las extracciones en la base de datos
     try:
-        save_extracciones_repository(rows)
-        actualizar_estado_documento(id_documento)
+        extracciones_repo.save_extracciones_repository(rows)
+        doc_repo.actualizar_estado_documento(id_documento)
         log.info("documento_procesado_exitosamente")
 
         for datos in cfdis_datos:
@@ -183,12 +195,3 @@ def iniciar_procesamiento(
         return {"status": "failed", "detail": "No se pudieron guardar las extracciones en la BD"}
 
 
-def limpiar_fallo(ruta_storage: str, id_doc: str) -> None:
-    """Función interna para mantener la consistencia si algo truena"""
-    try:
-        delete_document_storage(ruta_storage)
-        delete_document_metadata(id_doc)
-        log.warning("limpieza_por_fallo_completada", id_documento=id_doc)
-
-    except Exception as e:
-        log.error("limpieza_por_fallo_critica", id_documento=id_doc, error=str(e))

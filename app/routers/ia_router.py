@@ -5,7 +5,7 @@ from typing import cast
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
 from app.core.dependencies import get_user
-from app.repositories.conversaciones_repository import guardar_turno, obtener_historial
+from app.repositories.conversaciones_repository import ConversacionesRepository
 from app.schemas.consulta import ConsultaRequest, ConsultaResponse, FuenteCitada
 from app.schemas.user_schema import UsuarioActual
 from app.services.rag_service import RAGServiceLangGraph
@@ -57,6 +57,8 @@ def procesar_pregunta_ia(
     usuario: UsuarioActual = Depends(get_user),
     rag_service: RAGServiceLangGraph = Depends(get_rag_service),
 ) -> ConsultaResponse:
+
+    repo=ConversacionesRepository(usuario)
     solicitud_id = str(uuid.uuid4())
 
     if not usuario.id_organizacion:
@@ -66,7 +68,7 @@ def procesar_pregunta_ia(
         )
 
     try:
-        historial = obtener_historial(usuario.id, usuario.id_organizacion)
+        historial = repo.obtener_historial(usuario.id, usuario.id_organizacion)
 
         respuesta, _ruta, metadata = rag_service.ejecutar_consulta(
             pregunta=body.pregunta,
@@ -76,7 +78,7 @@ def procesar_pregunta_ia(
             historial=historial,
         )
 
-        guardar_turno(
+        repo.guardar_turno(
             id_usuario=usuario.id,
             id_organizacion=usuario.id_organizacion,
             mensaje_usuario=body.pregunta,
