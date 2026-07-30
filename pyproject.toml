@@ -15,7 +15,7 @@ dependencies = [
     "supabase>=2.30.0",
     "uvicorn>=0.47.0",
     # ── Extracción de CFDIs — OCR + LLM (módulo Extraccion/) ─────────────────
-    "numpy==1.26.4",
+    "numpy==2.2.3",
     "paddlepaddle==3.2.1",
     "paddleocr==3.5.0",
     "PyMuPDF==1.27.2.3",
@@ -47,8 +47,11 @@ dependencies = [
     # ── MLflow / DagsHub — consumo del modelo de confianza @produccion ────
     "mlflow>=2.20.0",
     "dagshub>=0.3.0",
-    # pandas (compatible con numpy==1.26 necesario por paddlepaddle)
-    "pandas>=2.0,<2.3",
+    # torchvision para que MLflow pueda inspeccionar el modelo antes de usar conda
+    "torchvision>=0.18,<0.21",
+    # pandas (versión exacta que espera el modelo MLflow)
+    "pandas==2.3.3",
+    "scipy==1.15.2",
     # ── Utilidades ────────────────────────────────────────────────────────────
     "python-dotenv>=1.0.0",
     "sentence-transformers>=5.6.1",

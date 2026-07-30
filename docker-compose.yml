@@ -14,6 +14,7 @@ services:
       - ./ingestion:/app/ingestion
       - ./data:/app/data
       - ./chroma_db:/app/chroma_db
+      - ./evaluaciones:/app/evaluaciones
     depends_on:
       postgres:
         condition: service_healthy
@@ -35,6 +36,7 @@ services:
         - ./ingestion:/app/ingestion
         - ./data:/app/data
         - ./chroma_db:/app/chroma_db
+        - ./evaluaciones:/app/evaluaciones
       depends_on:
         redis:
           condition: service_healthy
