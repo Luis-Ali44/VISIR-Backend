@@ -3,11 +3,12 @@ from uuid import uuid4
 
 from app.core.database import ExecCtx
 from app.repositories.base_repository import BaseRepository
+from app.schemas.user_schema import UsuarioActual
 
 
 class DocumentRepository(BaseRepository):
-    def __init__(self, ctx: ExecCtx):
-        super().__init__(ctx)
+    def __init__(self, user_or_ctx: UsuarioActual | ExecCtx):
+        super().__init__(user_or_ctx)
 
     def save_document_storage(
         self, contenido_archivo: bytes, nombre_archivo: str, tipo_archivo: str
@@ -15,20 +16,23 @@ class DocumentRepository(BaseRepository):
         extension = nombre_archivo.split(".")[-1]
         ruta_archivo = f"usuarios/{self.ctx.id_usuario}/documentos/{uuid4()}.{extension}"
         self.db.storage.from_("documentos").upload(
-            path=ruta_archivo, file=contenido_archivo, file_options={"content-type": tipo_archivo}
+            path=ruta_archivo,
+            file=contenido_archivo,
+            file_options={"content-type": tipo_archivo},
         )
         return ruta_archivo
 
     def save_document_metadata(self, data: dict) -> list[Any]:
-        response = self.scoped("documentos").insert(data).execute()
+        data["id_organizacion"] = self.ctx.id_organizacion
+        response = self.table("documentos").insert(data).execute()
         return list(response.data)
 
     def get_document_by_id(self, documento_id: str) -> list[Any]:
-        response = self.scoped("documentos").select().eq("id", documento_id).execute()
+        response = self.scoped("documentos").eq("id", documento_id).execute()
         return list(response.data)
 
     def get_documents_repository(self, limit: int, cursor: str | None = None) -> list[Any]:
-        query = self.scoped("documentos").select("*").order("created_at", desc=True).limit(limit)
+        query = self.scoped("documentos").order("created_at", desc=True).limit(limit)
         if cursor:
             query = query.lt("created_at", cursor)
         response = query.execute()
@@ -39,7 +43,6 @@ class DocumentRepository(BaseRepository):
     ) -> list[Any]:
         query = (
             self.scoped("documentos")
-            .select("*")
             .eq("id_organizacion", id_organizacion)
             .eq("id_usuario", id_usuario)
             .order("created_at", desc=True)
@@ -78,7 +81,9 @@ class DocumentRepository(BaseRepository):
         return None
 
     def save_extracciones_repository(self, data: list[dict[str, Any]]) -> list[Any]:
-        response = self.scoped("extracciones").insert(data).execute()
+        for row in data:
+            row["id_organizacion"] = self.ctx.id_organizacion
+        response = self.table("extracciones").insert(data).execute()
         return list(response.data)
 
     def tipo_comprobante(self, tipo: str) -> str | None:
@@ -123,10 +128,12 @@ class DocumentRepository(BaseRepository):
         self.db.storage.from_("documentos").remove([ruta_archivo])
 
     def delete_document_metadata(self, documento_id: str) -> None:
-        self.scoped("documentos").delete().eq("id", documento_id).execute()
+        self.table("documentos").delete().eq("id", documento_id).eq(
+            "id_organizacion", self.ctx.id_organizacion
+        ).execute()
 
     def get_document_by_hash(self, hash_archivo: str) -> list[Any]:
-        response = self.scoped("documentos").select("*").eq("hash_archivo", hash_archivo).execute()
+        response = self.scoped("documentos").eq("hash_archivo", hash_archivo).execute()
         return list(response.data)
 
     def descargar_documento_storage(self, ruta_archivo: str) -> Any:
@@ -138,12 +145,15 @@ class DocumentRepository(BaseRepository):
             return None
 
     def update_document_estado(self, documento_id: str, estado: str) -> None:
-        self.scoped("documentos").update({"estado": estado}).eq("id", documento_id).execute()
+        self.table("documentos").update({"estado": estado}).eq("id", documento_id).eq(
+            "id_organizacion", self.ctx.id_organizacion
+        ).execute()
 
     def actualizar_estado_documento(self, id_documento: str) -> None:
         (
-            self.scoped("documentos")
+            self.table("documentos")
             .update({"estado_documento": "procesado"})
             .eq("id", id_documento)
+            .eq("id_organizacion", self.ctx.id_organizacion)
             .execute()
         )

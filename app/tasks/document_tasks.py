@@ -12,7 +12,6 @@ from app.core.database import ExecCtx
 from app.core.logging import configurar_logging
 from app.core.sentry import configurar_sentry
 from app.repositories.documents_repository import DocumentRepository
-from app.repositories.extracciones_repositories import ExtraccionesRepository
 from app.services.Extraccion.pipeline import procesar
 from app.services.helper import get_nombre_forma_pago, map_tipo_comprobante, parse_fecha
 from app.services.org_ingestion_service import ingestar_cfdi_organizacion
@@ -31,10 +30,6 @@ def _normalizar_cfdis_extraidos(data: dict) -> list[dict[str, Any]]:
 
     if not isinstance(data, dict):
         return []
-
-    if data.get("fuente") == "xml":
-        datos = data.get("datos")
-        return [datos] if isinstance(datos, dict) else []
 
     cfdis = data.get("cfdis")
     if not isinstance(cfdis, list):
@@ -59,24 +54,33 @@ def limpiar_fallo(doc_repo: DocumentRepository, ruta_storage: str, id_doc: str) 
         log.error("limpieza_por_fallo_critica", id_documento=id_doc, error=str(e))
 
 
-
 @celery_app.task(name="Procesar_documentos")
 # EJECUTAMOS EL PIPELINE DE PAOLA PARA EXTRAER LOS DATOS
 def iniciar_procesamiento(
-    id_documento: str, id_organizacion: str, id_usuario: str, ruta_archivo: str, nombre_archivo: str
+    id_documento: str,
+    id_organizacion: str,
+    id_usuario: str,
+    ruta_archivo: str,
+    nombre_archivo: str,
 ) -> dict[str, str]:
     log.info("ocr_iniciado", id_documento=id_documento, id_organizacion=id_organizacion)
 
     ctx = ExecCtx(actor="system", id_organizacion=id_organizacion)
     doc_repo = DocumentRepository(ctx)
-    extracciones_repo = ExtraccionesRepository(ctx)
 
     contenido = doc_repo.descargar_documento_storage(ruta_archivo)
 
     if contenido is None:
-        log.error("descarga_storage_fallida", id_documento=id_documento, ruta_archivo=ruta_archivo)
-        limpiar_fallo(ruta_archivo, id_documento)
-        return {"status": "failed", "detail": "No se pudo descargar el archivo de storage"}
+        log.error(
+            "descarga_storage_fallida",
+            id_documento=id_documento,
+            ruta_archivo=ruta_archivo,
+        )
+        limpiar_fallo(doc_repo, ruta_archivo, id_documento)
+        return {
+            "status": "failed",
+            "detail": "No se pudo descargar el archivo de storage",
+        }
 
     ext = Path(nombre_archivo or "archivo.pdf").suffix
     tmp_path = None
@@ -100,7 +104,7 @@ def iniciar_procesamiento(
             error=str(exec),
         )
         sentry_sdk.capture_exception(exec)
-        limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
+        limpiar_fallo(doc_repo, ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "fallido", "details": "No se pudo procesar el archivo"}
     finally:
         if tmp_path and tmp_path.exists():
@@ -113,7 +117,7 @@ def iniciar_procesamiento(
         sentry_sdk.capture_message(
             f"No se encontraron cfdis para documento {id_documento}", level="warning"
         )
-        limpiar_fallo(ruta_storage=ruta_archivo, id_doc=id_documento)
+        limpiar_fallo(doc_repo, ruta_storage=ruta_archivo, id_doc=id_documento)
         return {"status": "failed", "detail": "No se encontraron CFDIs"}
 
     log.info("cfdis_extraidos", cantidad=len(cfdis_datos))
@@ -152,9 +156,11 @@ def iniciar_procesamiento(
                 "regimen_fiscal": receptor.get("regimen_fiscal"),
                 "total": float(datos.get("total") or 0.0),
                 "metodo_pago": datos.get("metodo_pago") or "PUE",
-                "forma_pago": get_nombre_forma_pago(str(forma_pago)) if forma_pago else None,
+                "forma_pago": (
+                    get_nombre_forma_pago(str(forma_pago), doc_repo) if forma_pago else None
+                ),
                 "tipo_comprobante": (
-                    map_tipo_comprobante(str(tipo_comprobante_raw))
+                    map_tipo_comprobante(str(tipo_comprobante_raw), doc_repo)
                     if tipo_comprobante_raw is not None
                     else None
                 )
@@ -173,7 +179,7 @@ def iniciar_procesamiento(
 
     # Guardamos las extracciones en la base de datos
     try:
-        extracciones_repo.save_extracciones_repository(rows)
+        doc_repo.save_extracciones_repository(rows)
         doc_repo.actualizar_estado_documento(id_documento)
         log.info("documento_procesado_exitosamente")
 
@@ -191,7 +197,8 @@ def iniciar_procesamiento(
     except Exception as exc:
         log.error("guardado_extracciones_fallido", error=str(exc))
         sentry_sdk.capture_exception(exc)
-        limpiar_fallo(ruta_archivo, id_documento)
-        return {"status": "failed", "detail": "No se pudieron guardar las extracciones en la BD"}
-
-
+        limpiar_fallo(doc_repo, ruta_archivo, id_documento)
+        return {
+            "status": "failed",
+            "detail": "No se pudieron guardar las extracciones en la BD",
+        }

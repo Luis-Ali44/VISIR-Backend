@@ -1,13 +1,14 @@
 from datetime import date
 from typing import Any
 
+from app.core.database import ExecCtx
 from app.repositories.base_repository import BaseRepository
 from app.schemas.user_schema import UsuarioActual
 
 
 class ExtraccionesRepository(BaseRepository):
-    def __init__(self, user: UsuarioActual):
-        super().__init__(user)
+    def __init__(self, user_or_ctx: UsuarioActual | ExecCtx):
+        super().__init__(user_or_ctx)
 
     def get_extraccion_by_id(self, extraccion_id: str) -> list[Any]:
         response = self.scoped("extracciones").eq("id", extraccion_id).execute()

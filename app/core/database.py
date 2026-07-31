@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Literal
 
-from supabase.client import Client, create_client
+from supabase.client import Client, ClientOptions, create_client
 
 from app.core.config import settings
 from app.schemas.user_schema import UsuarioActual
@@ -26,6 +26,7 @@ def cliente_for(ctx: ExecCtx) -> Client:
         c = create_client(
             settings.SUPABASE_URL,
             settings.SUPABASE_PUBLIC_KEY,
+            options=ClientOptions(headers={"Authorization": f"Bearer {ctx.jwt}"}),
         )
         c.postgrest.auth(ctx.jwt)
         return c
