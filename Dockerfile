@@ -50,8 +50,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 # Usuario y grupo sin privilegios 
-RUN groupadd -r appuser && useradd -r -g appuser -m appuser
- 
+#RUN groupadd -r appuser && useradd -r -g appuser -m appuser
+RUN groupadd -g 1000 appuser && useradd -u 1000 -g appuser -m appuser
+
 COPY --from=builder /app/.venv /app/.venv
 COPY app ./app
 COPY resources ./resources

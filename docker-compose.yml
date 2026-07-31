@@ -13,7 +13,7 @@ services:
       - ./rag:/app/rag
       - ./ingestion:/app/ingestion
       - ./data:/app/data
-      - ./chroma_db:/app/chroma_db
+      - ./chroma_db:/app/chroma_db:rw
       - ./evaluaciones:/app/evaluaciones
     depends_on:
       postgres:
@@ -35,7 +35,7 @@ services:
         - ./rag:/app/rag
         - ./ingestion:/app/ingestion
         - ./data:/app/data
-        - ./chroma_db:/app/chroma_db
+        - ./chroma_db:/app/chroma_db:rw
         - ./evaluaciones:/app/evaluaciones
       depends_on:
         redis:
@@ -77,3 +77,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  chroma_db:
