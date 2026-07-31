@@ -1,16 +1,16 @@
 from datetime import date
 from typing import Any
 
-from app.core.database import ExecCtx
 from app.repositories.base_repository import BaseRepository
+from app.schemas.user_schema import UsuarioActual
 
 
 class ExtraccionesRepository(BaseRepository):
-    def __init__(self, ctx: ExecCtx):
-        super().__init__(ctx)
+    def __init__(self, user: UsuarioActual):
+        super().__init__(user)
 
     def get_extraccion_by_id(self, extraccion_id: str) -> list[Any]:
-        response = self.scoped("extracciones").select("*").eq("id", extraccion_id).execute()
+        response = self.scoped("extracciones").eq("id", extraccion_id).execute()
         return list(response.data)
 
     def get_extracciones_repository(
@@ -26,7 +26,7 @@ class ExtraccionesRepository(BaseRepository):
         estado: str | None = None,
     ) -> list[Any]:
 
-        query = self.scoped("extracciones").select("*").limit(limit).order("created_at", desc=True)
+        query = self.scoped("extracciones").limit(limit).order("created_at", desc=True)
 
         if id_organizacion:
             query = query.eq("id_organizacion", id_organizacion)
