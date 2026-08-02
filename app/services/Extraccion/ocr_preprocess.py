@@ -66,7 +66,7 @@ def _preprocesar_nativo(img: np.ndarray) -> np.ndarray:
 
 def _preprocesar_escaneado(img: np.ndarray) -> np.ndarray:
     gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
-    std = float(np.std(gray))
+    std = float(np.std(gray.astype(np.float64)))
     clip = 1.5 if std > 40 else 3.0
     clahe = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8, 8))
     gray = clahe.apply(gray)
