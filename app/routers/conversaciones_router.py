@@ -4,6 +4,7 @@ from typing import cast
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
+from app.core.database import ExecCtx
 from app.core.dependencies import get_user
 from app.repositories.conversaciones_repository import ConversacionesRepository
 from app.schemas.conversacion import (
@@ -77,7 +78,8 @@ def crear_conversacion(
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
 
-    repo = ConversacionesRepository(usuario)
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
 
     sesion_id = repo.crear_sesion(usuario.id, usuario.id_organizacion)
     if not sesion_id:
@@ -141,8 +143,9 @@ def listar_conversaciones(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-    repo = ConversacionesRepository(usuario)
-    sesiones = repo.listar_sesiones(usuario.id, usuario.id_organizacion)
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
+    sesiones = repo.listar_sesiones(usuario.id, ctx.id_organizacion)
     return [
         SesionListaItem(
             sesion_id=s["sesion_id"],
@@ -164,16 +167,17 @@ def obtener_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-    repo = ConversacionesRepository(usuario)
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
 
-    sesion = repo.obtener_sesion(sesion_id, usuario.id_organizacion)
+    sesion = repo.obtener_sesion(sesion_id, ctx.id_organizacion)
     if not sesion:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Sesion no encontrada.",
         )
 
-    turnos = repo.obtener_turnos_por_sesion(sesion_id, usuario.id_organizacion)
+    turnos = repo.obtener_turnos_por_sesion(sesion_id, ctx.id_organizacion)
     return SesionDetalleResponse(
         sesion_id=sesion_id,
         contexto=sesion.get("contexto"),
@@ -201,8 +205,10 @@ def continuar_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-    repo = ConversacionesRepository(usuario)
-    sesion = repo.obtener_sesion(sesion_id, usuario.id_organizacion)
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
+
+    sesion = repo.obtener_sesion(sesion_id, ctx.id_organizacion)
     if not sesion:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -270,7 +276,10 @@ def eliminar_conversacion(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="El usuario actual no esta vinculado a ninguna organizacion.",
         )
-    repo = ConversacionesRepository(usuario)
+
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
+
     ok = repo.eliminar_sesion(sesion_id, usuario.id_organizacion)
     if not ok:
         raise HTTPException(

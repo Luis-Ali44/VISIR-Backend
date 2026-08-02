@@ -153,9 +153,10 @@ async def subir_documento_service(archivo: UploadFile, user: UsuarioActual) -> D
     return DocumentResponse(**resultado[0])
 
 
-def get_document_id(document_id: str) -> list[Any]:
+def get_document_id(document_id: str, user: UsuarioActual) -> list[Any]:
 
-    documento = get_document_by_id(document_id)
+    repo = DocumentRepository(user)
+    documento = repo.get_document_by_id(document_id)
 
     if not documento:
         raise HTTPException(status_code=404, detail="Documento no encontrado")
@@ -165,9 +166,11 @@ def get_document_id(document_id: str) -> list[Any]:
 
 def get_documents_service(
     limit: int,
+    user: UsuarioActual,
     cursor: str | None = None,
 ) -> dict[str, object]:
-    documentos = get_documents_repository(limit=limit, cursor=cursor)
+    repo = DocumentRepository(user)
+    documentos = repo.get_documents_repository(limit=limit, cursor=cursor)
 
     next_cursor = None
     if documentos:
@@ -189,8 +192,8 @@ def get_my_documents_service(
         raise HTTPException(
             status_code=400, detail="El usuario no esta registrado en ninguna organizacion"
         )
-
-    documentos = get_my_documents(
+    repo = DocumentRepository(usuario_actual)
+    documentos = repo.get_my_documents(
         limit=limit, cursor=cursor, id_usuario=id_usuario, id_organizacion=id_organizacion
     )
 

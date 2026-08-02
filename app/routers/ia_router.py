@@ -4,6 +4,7 @@ from typing import cast
 
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 
+from app.core.database import ExecCtx
 from app.core.dependencies import get_user
 from app.repositories.conversaciones_repository import ConversacionesRepository
 from app.schemas.consulta import ConsultaRequest, ConsultaResponse, FuenteCitada
@@ -57,8 +58,8 @@ def procesar_pregunta_ia(
     usuario: UsuarioActual = Depends(get_user),
     rag_service: RAGServiceLangGraph = Depends(get_rag_service),
 ) -> ConsultaResponse:
-
-    repo=ConversacionesRepository(usuario)
+    ctx = ExecCtx.from_user(usuario, jwt=usuario.jwt)
+    repo = ConversacionesRepository(ctx)
     solicitud_id = str(uuid.uuid4())
 
     if not usuario.id_organizacion:

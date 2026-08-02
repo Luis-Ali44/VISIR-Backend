@@ -1,17 +1,16 @@
 from datetime import date
-from typing import Any
 
 from fastapi import APIRouter, Depends, Query
 
 from app.core.dependencies import get_user
-from app.schemas.extraccion import ExtraccionResponse
+from app.schemas.extraccion import ExtraccionesPaginadasResponse, ExtraccionResponse
 from app.schemas.user_schema import UsuarioActual
 from app.services.extracciones_service import get_extraccion_by_id_service, get_extracciones_service
 
 router = APIRouter(prefix="/v1/Extracciones", tags=["Extracciones"])
 
 
-@router.get("", response_model=dict[str, object])
+@router.get("", response_model=ExtraccionesPaginadasResponse)
 async def get_extracciones(
     usuario: UsuarioActual = Depends(get_user),
     limit: int = Query(10, ge=1, le=50),
@@ -23,7 +22,7 @@ async def get_extracciones(
     rfc_receptor: str | None = None,
     tipo_comprobante: str | None = None,
     estado: str | None = None,
-) -> dict[str, object]:
+) -> ExtraccionesPaginadasResponse:
     return get_extracciones_service(
         usuario=usuario,
         limit=limit,
@@ -38,9 +37,9 @@ async def get_extracciones(
     )
 
 
-@router.get("/{extraccion_id}", response_model=list[ExtraccionResponse])
+@router.get("/{extraccion_id}", response_model=ExtraccionResponse)
 async def get_extraccion_by_id_router(
     extraccion_id: str,
     usuario: UsuarioActual = Depends(get_user),
-) -> list[Any]:
+) -> ExtraccionResponse:
     return get_extraccion_by_id_service(extraccion_id, usuario=usuario)

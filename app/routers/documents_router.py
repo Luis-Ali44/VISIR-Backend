@@ -28,8 +28,9 @@ async def upload_document(
 async def get_documents(
     limit: int = Query(10, ge=1, le=50),
     cursor: str | None = None,
+    user: UsuarioActual = Depends(get_user),
 ) -> dict[str, object]:
-    return get_documents_service(limit=limit, cursor=cursor)
+    return get_documents_service(limit=limit, cursor=cursor, user=user)
 
 
 @router.get("/MyDocuments", response_model=dict[str, object])
@@ -50,5 +51,5 @@ async def subir_carpeta(
 
 
 @router.get("/{document_id}", response_model=list[DocumentResponse])
-async def get_document(document_id: str) -> list[Any]:
-    return get_document_id(document_id)
+async def get_document(document_id: str, user: UsuarioActual = Depends(get_user)) -> list[Any]:
+    return get_document_id(document_id, user)

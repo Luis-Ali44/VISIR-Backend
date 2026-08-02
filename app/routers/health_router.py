@@ -5,7 +5,6 @@ from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
 from app.core.config import settings
-
 from app.core.database import ExecCtx, cliente_for
 
 router = APIRouter(prefix="/health", tags=["Monitoreo"])

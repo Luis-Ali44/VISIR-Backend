@@ -1,12 +1,12 @@
 import logging
 
-logger = logging.getLogger(__name__)
-
 from app.core.database import ExecCtx
 from app.repositories.base_repository import BaseRepository
 
+logger = logging.getLogger(__name__)
 
-class DocumentRepository(BaseRepository):
+
+class LlmRouterLogRepository(BaseRepository):
     def __init__(self, ctx: ExecCtx):
         super().__init__(ctx)
 

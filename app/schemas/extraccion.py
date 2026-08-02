@@ -28,3 +28,8 @@ class ExtraccionResponse(BaseModel):
     estado: str = Field("procesado", description="Estado del procesamiento")
     metadatos: dict[str, Any] = Field(..., description="JSON completo estructurado por Mistral")
     created_at: datetime = Field(..., description="Fecha de creación del registro")
+
+
+class ExtraccionesPaginadasResponse(BaseModel):
+    data: list[ExtraccionResponse]
+    next_cursor: str | None = None

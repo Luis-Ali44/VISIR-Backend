@@ -9,8 +9,10 @@ from langchain_openai import ChatOpenAI
 from langgraph.graph import END, StateGraph
 from langgraph.types import Send
 
-from app.repositories.extracciones_repositories import ExtraccionesRepository #get_estadisticas_basicas
 from app.core.database import ExecCtx
+from app.repositories.extracciones_repositories import (
+    ExtraccionesRepository,  # get_estadisticas_basicas
+)
 from app.schemas.consulta import DecisionEnrutamiento, VisirState
 from app.services.confidence_features import (
     data_completeness as _data_completeness,

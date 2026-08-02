@@ -11,6 +11,8 @@ from typing import Any
 
 from langchain_openai import ChatOpenAI
 
+from app.repositories.llm_router_log_repository import LlmRouterLogRepository
+
 logger = logging.getLogger(__name__)
 
 _ERRORES_FALLBACK = (
@@ -155,9 +157,15 @@ class LLMCascadeRouter:
         self, resultado: ResultadoCascada, complejidad: float, id_organizacion: str | None
     ) -> None:
         try:
-            from app.repositories.llm_router_log_repository import registrar_uso
+            from app.core.database import ExecCtx
 
-            registrar_uso(
+            if not id_organizacion:
+                logger.warning("No se registró uso de cascada: falta id_organizacion")
+                return
+
+            ctx = ExecCtx(actor="system", id_organizacion=id_organizacion)
+            repo = LlmRouterLogRepository(ctx)
+            repo.registrar_uso(
                 id_organizacion=id_organizacion,
                 tier_solicitado=resultado.tier_solicitado,
                 tier_usado=resultado.tier_usado,
