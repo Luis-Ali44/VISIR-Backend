@@ -13,6 +13,7 @@ def get_extraccion_by_id_service(extraccion_id: str, usuario: UsuarioActual) -> 
 
     if not extraccion:
         raise HTTPException(status_code=404, detail="Extracción no encontrada")
+    extraccion = extraccion[0]
     return ExtraccionResponse.model_validate(extraccion)
 
 
