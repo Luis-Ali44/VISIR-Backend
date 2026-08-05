@@ -30,11 +30,14 @@ jobs:
       - name: Instalar dependencias
         run: uv sync
 
-      - name: Ruff — linter
-        run: uv run ruff check app
+      - name: Pre-commit — ejecutar hooks sobre todos los archivos
+        run: uv run pre-commit run --all-files
 
-      - name: Mypy — tipos
-        run: uv run mypy app
+      - name: Ruff — linter (todo el repo)
+        run: uv run ruff check .
+
+      - name: Mypy — tipos (todo el repo)
+        run: uv run mypy .
 
       - name: Pytest — tests
         run: uv run pytest
