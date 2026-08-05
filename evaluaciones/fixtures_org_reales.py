@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from typing import Any, cast
 
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
@@ -285,10 +286,13 @@ def indexar_fixtures() -> None:
             f"después={chunks_despues}). Revisa que Ollama/embeddings estén disponibles."
         )
 
-    metadatas = store.collection.get(
-        where={"id_organizacion": {"$eq": ID_ORGANIZACION_PRUEBA}},
-        include=["metadatas"],
-    )["metadatas"]
+    metadatas = (
+        store.collection.get(
+            where=cast(Any, {"id_organizacion": {"$eq": ID_ORGANIZACION_PRUEBA}}),
+            include=["metadatas"],
+        )["metadatas"]
+        or []
+    )
     filenames_indexados = {m.get("filename") for m in metadatas}
     esperados = {c["archivo"] + ".md" for c in CFDIS_REALES}
     faltantes = esperados - filenames_indexados

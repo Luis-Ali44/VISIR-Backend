@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import time
+from typing import Any
 
 import requests
 from llama_index.core.base.embeddings.base import BaseEmbedding, Embedding
@@ -29,7 +30,7 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
         timeout: int = 30,
         max_retries: int = 3,
         embed_batch_size: int = 32,
-        **kwargs: object,
+        **kwargs: Any,
     ) -> None:
         super().__init__(
             model_name=model_name,

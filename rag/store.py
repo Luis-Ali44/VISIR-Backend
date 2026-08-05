@@ -1,5 +1,6 @@
 import os
 from dataclasses import dataclass
+from typing import Any, cast
 
 os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 
@@ -57,7 +58,7 @@ class FiscalChromaStore:
     def document_already_indexed(self, doc_hash: str) -> bool:
 
         results = self.collection.get(
-            where={"doc_hash": {"$eq": doc_hash}},
+            where=cast(Any, {"doc_hash": {"$eq": doc_hash}}),
             limit=1,
             include=[],
         )
@@ -99,7 +100,7 @@ class FiscalChromaStore:
 
         self.collection.upsert(
             ids=[record.chunk_hash],
-            embeddings=[record.embedding],
+            embeddings=cast(Any, [record.embedding]),
             documents=[record.text],
             metadatas=[safe_metadata],
         )
@@ -132,7 +133,7 @@ class FiscalChromaStore:
         if new_records:
             self.collection.upsert(
                 ids=[r.chunk_hash for r in new_records],
-                embeddings=[r.embedding for r in new_records],
+                embeddings=cast(Any, [r.embedding for r in new_records]),
                 documents=[r.text for r in new_records],
                 metadatas=[
                     self._sanitize_metadata({**r.metadata, "chunk_hash": r.chunk_hash})
@@ -157,7 +158,7 @@ class FiscalChromaStore:
             importance_filter = {"importance": {"$gte": min_importance}}
             filters = {"$and": [filters, importance_filter]} if filters else importance_filter
 
-        query_kwargs = {
+        query_kwargs: dict[str, Any] = {
             "query_embeddings": [query_embedding],
             "n_results": top_k,
             "include": ["documents", "metadatas", "distances"],
@@ -166,6 +167,11 @@ class FiscalChromaStore:
             query_kwargs["where"] = filters
 
         raw = self.collection.query(**query_kwargs)
+
+        assert raw["ids"] is not None
+        assert raw["documents"] is not None
+        assert raw["metadatas"] is not None
+        assert raw["distances"] is not None
 
         results = []
         for i in range(len(raw["ids"][0])):
@@ -192,7 +198,7 @@ class FiscalChromaStore:
         where = {"id_organizacion": {"$eq": id_organizacion}}
 
         results = self.collection.get(
-            where=where,
+            where=cast(Any, where),
             include=["metadatas"],
         )
         metadatas = results["metadatas"]

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import Any, cast
 
 _ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(_ROOT))
@@ -224,10 +225,11 @@ def indexar_fixtures(verbose: bool = True) -> None:
         print(f"{'=' * 60}\n")
 
     results_meta = store.collection.get(
-        where={"id_organizacion": {"$eq": ID_ORG_PRUEBA}},
+        where=cast(Any, {"id_organizacion": {"$eq": ID_ORG_PRUEBA}}),
         include=["metadatas"],
     )
-    filenames_indexados = {m.get("filename", "") for m in results_meta["metadatas"]}
+    metadatas_meta = results_meta["metadatas"] or []
+    filenames_indexados = {m.get("filename", "") for m in metadatas_meta}
     faltantes = FILENAMES_ESPERADOS - filenames_indexados
     if faltantes:
         raise RuntimeError(
@@ -264,7 +266,7 @@ def limpiar_fixtures(verbose: bool = True) -> None:
     )
 
     results = store.collection.get(
-        where={"id_organizacion": {"$eq": ID_ORG_PRUEBA}},
+        where=cast(Any, {"id_organizacion": {"$eq": ID_ORG_PRUEBA}}),
         include=[],
     )
     ids_a_borrar = results["ids"]

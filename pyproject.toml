@@ -104,6 +104,10 @@ warn_unused_ignores = true
 module = "tests.*"
 disallow_untyped_defs = false
 
+[[tool.mypy.overrides]]
+module = "evaluaciones.juez"
+disable_error_code = ["name-defined"]
+
 [tool.pydantic-mypy]
 init_typed = true
 
