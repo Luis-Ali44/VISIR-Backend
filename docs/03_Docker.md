@@ -4,50 +4,54 @@
 
 ## Dockerfile multi-stage
 
-Dos etapas para mantener la imagen de producción pequeña y sin herramientas de build.
+La imagen actual usa una construcción en dos etapas para mantener el contenedor de ejecución más pequeño y compatible con OCR/ML.
 
-**Stage 1 — builder**: instala dependencias con uv
-**Stage 2 — runtime**: copia solo el `.venv` y el código
+- Etapa 1: `builder` instala dependencias con `uv` y las librerías del sistema necesarias para `opencv`/`paddlepaddle`.
+- Etapa 2: `runtime` copia el entorno virtual generado, la aplicación y los recursos adicionales (`resources`, `rag`, `ingestion`).
 
 ```dockerfile
 FROM python:3.12-slim AS builder
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 WORKDIR /app
-COPY pyproject.toml .
-RUN uv sync --no-dev --no-cache
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev --no-cache
 
 FROM python:3.12-slim AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:/opt/conda/bin:$PATH" \
+    PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+ENV PYTHONPATH=/app
 WORKDIR /app
-COPY --from=builder /app/.venv /app/.venv
-COPY app ./app
-EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 ```
+
+> El Dockerfile real también instala `libgl1`, `libglib2.0-0`, `libgomp1`, y Miniconda para soportar partes del pipeline de extracción y evaluación.
 
 ---
 
 ## docker-compose.yml
 
-| Servicio | Imagen | Puerto | Uso |
-|---|---|---|---|
-| `api` | build local | `8000` | FastAPI |
-| `postgres` | `postgres:16-alpine` | `5432` | Base de datos local |
-| `redis` | `redis:7-alpine` | `6379` | Cache / colas |
+El stack de desarrollo actual define cuatro servicios principales:
 
-`api` espera a que `postgres` y `redis` estén healthy antes de arrancar.
+| Servicio | Imagen / build | Puerto | Uso |
+|---|---|---|---|
+| `api` | build local | `8000` | FastAPI principal |
+| `worker` | build local | sin expuesto | worker de Celery para procesamiento de documentos |
+| `postgres` | `postgres:16-alpine` | `5435` | Base de datos local de desarrollo |
+| `redis` | `redis:7-alpine` | `6380` | Broker/cola para Celery |
+
+`api` espera a que `postgres` y `redis` estén healthy antes de arrancar. El servicio `worker` depende de `redis` y de `api`.
 
 ---
 
-## Comandos
+## Comandos útiles
 
 ```bash
-make dev          # construir y levantar
-make dev-down     # bajar
-make dev-logs     # logs de la API en tiempo real
-make dev-reset    # bajar, borrar volúmenes y reconstruir
+make dev          # construir y levantar la API
+make dev-down     # bajar los servicios
+make dev-logs     # ver logs de la API en tiempo real
+make dev-reset    # bajar, borrar volúmenes y reconstruir todo
 ```
 
 O directamente:
@@ -55,39 +59,24 @@ O directamente:
 ```bash
 docker compose up --build
 docker compose down
-docker compose down -v     
+docker compose down -v
 docker compose logs -f api
+docker compose logs -f worker
 ```
 
 ---
 
-## Usar Supabase cloud (sin postgres local)
+## Supabase cloud y servicios locales
 
-Comentar los servicios `postgres` y `redis` en `docker-compose.yml` y quitar el `depends_on` de `api`:
-
-```yaml
-api:
-  build: .
-  ports:
-    - "8000:8000"
-  env_file:
-    - .env
-  volumes:
-    - ./app:/app/app
-
-# postgres:
-#   ...
-# redis:
-#   ...
-```
-
+La configuración actual sigue usando Supabase para la base de datos y storage, mientras que `postgres` y `redis` son servicios locales para desarrollo. Si prefieres trabajar solo contra Supabase cloud, puedes dejar fuera los servicios locales y asegurar que el archivo `.env` tenga las credenciales correctas de Supabase.
 ---
 
 ## Volúmenes
 
 | Volumen | Qué guarda |
 |---|---|
-| `postgres_data` | Datos de PostgreSQL entre reinicios |
-| `redis_data` | Datos de Redis entre reinicios |
+| `postgres_data` | Datos persistentes de PostgreSQL |
+| `redis_data` | Datos persistentes de Redis |
+| `chroma_db` | Índice y base vectorial de ChromaDB |
 
-`make dev-reset` borra estos volúmenes — útil para empezar desde cero.
+`make dev-reset` elimina los volúmenes de PostgreSQL y Redis, útil cuando se quiere reiniciar el entorno desde cero.
