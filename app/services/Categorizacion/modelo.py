@@ -4,10 +4,12 @@ import json
 from dataclasses import dataclass
 from functools import lru_cache
 from pathlib import Path
-from typing import cast
+from typing import TYPE_CHECKING, cast
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+
+if TYPE_CHECKING:
+    from sentence_transformers import SentenceTransformer
 
 _MODELO_ES_LOCAL = False
 _MODELO_RUTA = "intfloat/multilingual-e5-small"
@@ -39,9 +41,10 @@ class SugerenciaCategoria:
 
 @lru_cache(maxsize=1)
 def _cargar_modelo() -> SentenceTransformer:
+    from sentence_transformers import SentenceTransformer
+
     origen = str(_MODELO_RUTA) if _MODELO_ES_LOCAL else _MODELO_RUTA
-    modelo: SentenceTransformer = SentenceTransformer(origen)
-    return modelo
+    return cast("SentenceTransformer", SentenceTransformer(origen))
 
 
 def _con_prefijo(texto: str, prefijo: str) -> str:

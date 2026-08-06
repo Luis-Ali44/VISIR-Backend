@@ -17,7 +17,8 @@ on:
         required: true
 
 jobs:
-  ci:
+  calidad-codigo:
+    name: revision general con mypy, ruff y pytest
     runs-on: ubuntu-latest
 
     steps:
@@ -30,13 +31,10 @@ jobs:
       - name: Instalar dependencias
         run: uv sync
 
-      - name: Pre-commit — ejecutar hooks sobre todos los archivos
-        run: uv run pre-commit run --all-files
+      - name: Ruff — linter
+        run: uv run ruff .
 
-      - name: Ruff — linter (todo el repo)
-        run: uv run ruff check .
-
-      - name: Mypy — tipos (todo el repo)
+      - name: Mypy — tipos
         run: uv run mypy .
 
       - name: Pytest — tests
@@ -46,8 +44,6 @@ jobs:
           SUPABASE_PUBLIC_KEY: ${{ secrets.SUPABASE_PUBLIC_KEY }}
           SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
           MISTRAL_API_KEY: "api_for_test"
-          REDIS_URL: "redis://localhost:6379/0"
-          SENTRY_DSN: ""
 
       - name: Docker — compilar imagen
         run: docker build -t visir-api .

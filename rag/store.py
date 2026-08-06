@@ -2,6 +2,8 @@ import os
 from dataclasses import dataclass
 from typing import Any, cast
 
+import numpy as np
+
 os.environ.setdefault("PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION", "python")
 
 import chromadb
@@ -62,7 +64,8 @@ class FiscalChromaStore:
             limit=1,
             include=[],
         )
-        return len(results["ids"]) > 0
+        ids = cast(list[str], results.get("ids", []))
+        return len(ids) > 0
 
     def chunk_already_indexed(self, chunk_hash: str) -> bool:
 
@@ -159,28 +162,28 @@ class FiscalChromaStore:
             filters = {"$and": [filters, importance_filter]} if filters else importance_filter
 
         query_kwargs: dict[str, Any] = {
-            "query_embeddings": [query_embedding],
+            "query_embeddings": [np.asarray(query_embedding, dtype=np.float32)],
             "n_results": top_k,
             "include": ["documents", "metadatas", "distances"],
         }
         if filters:
-            query_kwargs["where"] = filters
+            query_kwargs["where"] = cast(Any, filters)
 
         raw = self.collection.query(**query_kwargs)
 
-        assert raw["ids"] is not None
-        assert raw["documents"] is not None
-        assert raw["metadatas"] is not None
-        assert raw["distances"] is not None
+        ids = cast(list[list[str]], raw.get("ids", []))
+        documents = cast(list[list[str]], raw.get("documents", []))
+        metadatas = cast(list[list[dict[str, Any]]], raw.get("metadatas", []))
+        distances = cast(list[list[float]], raw.get("distances", []))
 
         results = []
-        for i in range(len(raw["ids"][0])):
+        for i in range(len(ids[0]) if ids else 0):
             results.append(
                 QueryResult(
-                    chunk_id=raw["ids"][0][i],
-                    text=raw["documents"][0][i],
-                    metadata=dict(raw["metadatas"][0][i]),
-                    distance=raw["distances"][0][i],
+                    chunk_id=ids[0][i],
+                    text=documents[0][i],
+                    metadata=dict(metadatas[0][i]),
+                    distance=distances[0][i],
                 )
             )
 
@@ -201,9 +204,9 @@ class FiscalChromaStore:
             where=cast(Any, where),
             include=["metadatas"],
         )
-        metadatas = results["metadatas"]
+        metadatas = results.get("metadatas", [])
 
-        metadatas_list: list = metadatas if metadatas is not None else []
+        metadatas_list = cast(list[dict[str, Any]], metadatas if metadatas is not None else [])
         doc_ids = {str(m.get("id_documento", "")) for m in metadatas_list} - {""}
 
         return {

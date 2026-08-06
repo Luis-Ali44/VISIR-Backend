@@ -24,6 +24,7 @@ def test_cargar_documento_pdf_valido(tmp_path):
         id_usuario="83bfd116-2276-43d7-9c17-25d7bd6700d3",
         id_organizacion="22222222-2222-2222-2222-222222222222",
         id_categorias=None,
+        estado_documento="procesado",
         created_at=datetime.now(UTC),
     )
 

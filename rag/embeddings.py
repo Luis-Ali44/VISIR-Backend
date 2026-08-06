@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 import time
-from typing import Any
+from typing import Any, cast
 
 import requests
 from llama_index.core.base.embeddings.base import BaseEmbedding, Embedding
@@ -30,17 +30,18 @@ class OpenAICompatibleEmbeddingModel(BaseEmbedding):
         timeout: int = 30,
         max_retries: int = 3,
         embed_batch_size: int = 32,
-        **kwargs: Any,
+        **kwargs: object,
     ) -> None:
-        super().__init__(
-            model_name=model_name,
-            base_url=base_url.rstrip("/"),
-            api_key=api_key,
-            timeout=timeout,
-            max_retries=max_retries,
-            embed_batch_size=embed_batch_size,
-            **kwargs,
-        )
+        init_kwargs: dict[str, object] = {
+            "model_name": model_name,
+            "base_url": base_url.rstrip("/"),
+            "api_key": api_key,
+            "timeout": timeout,
+            "max_retries": max_retries,
+            "embed_batch_size": embed_batch_size,
+        }
+        init_kwargs.update(kwargs)
+        super().__init__(**cast(Any, init_kwargs))
         self._session = requests.Session()
         self._session.headers.update(
             {

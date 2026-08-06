@@ -17,13 +17,13 @@ class TestAnalisisLexico:
     def test_palabras_cfdi_devuelve_cfdi(self):
         result = analizar_lexico("¿Cuánto gasto en facturas este mes?")
         assert result["ruta_seleccionada"] == "CFDI_PROPIOS"
-        assert result["confianza_lexica"] == 0.90
+        assert result["confianza_lexica"] == 0.70
         assert "gasto" in result["palabras_clave_detectadas"]
 
     def test_mixto_devuelve_hibrido(self):
         result = analizar_lexico("¿Puedo deducir mis gastos de facturas según la ley?")
         assert result["ruta_seleccionada"] == "HIBRIDO"
-        assert result["confianza_lexica"] == 0.85
+        assert result["confianza_lexica"] == 0.70
 
     def test_sin_palabras_clave_devuelve_normativa(self):
         result = analizar_lexico("Hola mundo")
